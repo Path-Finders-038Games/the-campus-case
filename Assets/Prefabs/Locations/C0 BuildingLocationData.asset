@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc4fb6460057c441ad324bc6cd846e2, type: 3}
+  m_Name: C0 BuildingLocationData
+  m_EditorClassIdentifier: 
+  Data_NL:
+    Name: C0 Canteen
+    Description: "Momenteel bevind ik me in de C1 kantine. Ik heb net koffie besteld
+      bij de Deli, d\xE9 plek om speciale koffie te halen op de campus."
+    Facts: []
+    HintNextLocation: Ik heb de eerste uitdaging van de vereniging succesvol opgelost,
+      een schuifpuzzel. Nu vervolg in mijn weg naar de volgende locatie, de aanwijzing
+      zegt dat het een plek is waar mensen elkaar ontmoeten en naar sportwedstrijden
+      kijken onder het genot van een lekker drankje of hapje.
+  Data_EN:
+    Name: C0 Canteen
+    Description: 'I am located in the C1 Canteen right now. I ordered a coffee at
+      the Deli, the best place for special coffee on campus. '
+    Facts: []
+    HintNextLocation: "I just finished the society\u2019s first challenge, a sliding
+      puzzle. Now I will proceed to the next location. The clue tells me that it\u2019s
+      a place where people meet and watch sports games while having a nice drink
+      or snack. "
+  Name: C0 Canteen
+  Description: Food thing
+  Facts:
+  - Freet schuur
+  HintNextLocation: Tijd om te sporten

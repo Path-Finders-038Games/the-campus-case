@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc4fb6460057c441ad324bc6cd846e2, type: 3}
+  m_Name: X0 BuildingLocationData
+  m_EditorClassIdentifier: 
+  Data_NL:
+    Name: X0 Gebouw
+    Description: 'Ik bevind me nu bij X1, in dit gebouw houdt de school vaak evenementen.
+
+'
+    Facts: []
+    HintNextLocation: 'Ik heb net het logo van de vereniging gevonden, hij zat verstopt
+      in een schilderij. De volgende aanwijzing gaat over een locatie waar je informatie
+      kan krijgen.
+
+'
+  Data_EN:
+    Name: X Building
+    Description: 'I made it to X1, this is the building where Windesheim holds most
+      events.
+
+'
+    Facts: []
+    HintNextLocation: "I just found the society\u2019s logo hidden in a painting.
+      The next clue is about a place where you can get information."
+  Name: X Building
+  Description: This is the building were all the media studies are being held.
+  Facts:
+  - It has it's own canteen.
+  HintNextLocation: Go to somewhere else.

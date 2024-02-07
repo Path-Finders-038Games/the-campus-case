@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc4fb6460057c441ad324bc6cd846e2, type: 3}
+  m_Name: T5 BuildingLocationData
+  m_EditorClassIdentifier: 
+  Data_NL:
+    Name: 
+    Description: Ik ben nu in de middelste kamer van de T5-brug, hier kunnen studenten
+      studeren en koffie halen.
+    Facts: []
+    HintNextLocation: Ik heb de code van de kluis gekraakt en heb met succes de geheimen
+      van de vereniging gevonden!
+  Data_EN:
+    Name: T5 Building
+    Description: "I\u2019m in the middle room of the T5 Bridge right now, in this
+      place students can study and get coffee."
+    Facts: []
+    HintNextLocation: "I cracked the code to the safe and successfully uncovered
+      the society\u2019s secrets!"
+  Name: T5 Building
+  Description: It is the building were the IT and architeture studies are being held
+  Facts:
+  - There is coffee on almost every floor.
+  - There is a student workroom on T5 at the bridge.
+  HintNextLocation: Go to somewhere else.

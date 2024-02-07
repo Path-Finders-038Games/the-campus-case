@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc4fb6460057c441ad324bc6cd846e2, type: 3}
+  m_Name: S0 BuildingLocationData
+  m_EditorClassIdentifier: 
+  Data_NL:
+    Name: S0 Sportcafe
+    Description: "Ik zit momenteel in het sportcaf\xE9. Ik wilde een lekker biertje
+      bestellen, maar het personeel liet me weten dat dit de enige plek op de campus
+      is waar je alcohol kunt bestellen, alleen geldt dit pas na 16:00."
+    Facts: []
+    HintNextLocation: Ik heb zojuist de code gekraakt van de tweede uitdaging. Nu
+      ga ik op zoek naar de volgende locatie. De hint laat me weten dat het een groot
+      glazen gebouw zou moeten zijn.
+  Data_EN:
+    Name: S0 Sportcafe
+    Description: I am sitting in the sports cafe right now. I wanted to order a nice
+      beer but the personnel let me know that this is the only place on campus where
+      you can order alcohol which only applies after 4 pm.
+    Facts: []
+    HintNextLocation: "I just cracked the code in the society\u2019s second challenge.
+      The clue lets me know that it should be a big building made of glass."
+  Name: S0 Sportcafe
+  Description: Drank
+  Facts:
+  - Freet schuur + ahcohol
+  HintNextLocation: Wat voor events heeft windesheim
