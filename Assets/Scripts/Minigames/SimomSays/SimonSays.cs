@@ -149,14 +149,14 @@ namespace Minigames.SimomSays
         {
             for (int i = 0; i < _lenghtSequence; i++)
             {
-                int randomButtonId = UnityEngine.Random.Range(0, _safeButtonList.Count);
+                int randomButtonId = Random.Range(0, _safeButtonList.Count);
                 _taskSequence.Add(randomButtonId);
             }
         }
         //Adds to the sequence
         private void AddToSequence()
         {
-            int randomButtonId = UnityEngine.Random.Range(0, _safeButtonList.Count);
+            int randomButtonId = Random.Range(0, _safeButtonList.Count);
             _taskSequence.Add(randomButtonId);
         }
         private void LightUpButton(int buttonId)

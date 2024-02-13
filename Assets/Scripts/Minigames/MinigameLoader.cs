@@ -56,9 +56,9 @@ namespace Minigames
 
         void SpawnPrefab()
         {
-            UnityEngine.Quaternion temp = _planeHit.pose.rotation;
+            Quaternion temp = _planeHit.pose.rotation;
             //To have the placeble objects in the right rotation -90 is used
-            temp.eulerAngles = new UnityEngine.Vector3(GetCorrectPrefab().transform.eulerAngles.x,temp.eulerAngles.y,temp.eulerAngles.z);
+            temp.eulerAngles = new Vector3(GetCorrectPrefab().transform.eulerAngles.x,temp.eulerAngles.y,temp.eulerAngles.z);
             _spanwNew = Instantiate(GetCorrectPrefab(), _planeHit.pose.position, temp);
         }
 

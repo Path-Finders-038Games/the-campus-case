@@ -10,7 +10,7 @@ namespace Art._2D
         // Start is called before the first frame update
         void Start()
         {
-            rotateObject = this.gameObject;
+            rotateObject = gameObject;
             startRot = rotateObject.transform.rotation;
             SetTargetRot();
         }

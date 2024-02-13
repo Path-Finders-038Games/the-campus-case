@@ -274,7 +274,7 @@ namespace Minigames.Sliding_puzzel
             {
                 var lastPosition = _tilesScripts[index].transform.position;
                 Vector2Int lastMatrixPosition = _tilesScripts[index].Position;
-                int randomIndex = UnityEngine.Random.Range(0, tileCount);
+                int randomIndex = Random.Range(0, tileCount);
                 _tilesScripts[index].transform.position = _tilesScripts[randomIndex].transform.position;
                 _tilesScripts[index].Position = _tilesScripts[randomIndex].Position;
                 _tilesScripts[randomIndex].transform.position = lastPosition;

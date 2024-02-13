@@ -91,7 +91,7 @@ namespace Minigames.Hacking_Minigame
 
                             _timer = 0;
                             int spawnLocation = Random.Range(0, 3);
-                            GameObject.Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                            Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                         }
 
                         if (Health == 0)
@@ -124,7 +124,7 @@ namespace Minigames.Hacking_Minigame
         {
             PlayGame = false;
             GameObject winScreen = EndScreen.GetNamedChild("WinText");
-            GameObject.Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+            Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
             StartCoroutine(Wait());
         }
@@ -133,7 +133,7 @@ namespace Minigames.Hacking_Minigame
         {
             PlayGame = false;
             GameObject winScreen = EndScreen.GetNamedChild("LoseText");
-            GameObject.Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+            Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
             StartCoroutine(BackToNavigation());
         }

@@ -15,22 +15,22 @@ namespace Minigames.Hacking_Minigame
         // Update is called once per frame
         void Update()
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position,new Vector3(this.transform.position.x,distance,this.transform.position.z),bulletSpeed * Time.deltaTime); 
-            if(this.transform.position.y >= distance)
+            transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x,distance,transform.position.z),bulletSpeed * Time.deltaTime); 
+            if(transform.position.y >= distance)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

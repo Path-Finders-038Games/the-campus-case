@@ -15,8 +15,8 @@ namespace Minigames.Hacking_Minigame
         // Update is called once per frame
         void Update()
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x, -3, this.transform.position.z), speed * Time.deltaTime);
-            if(this.transform.position.y == -3)
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -3, transform.position.z), speed * Time.deltaTime);
+            if(transform.position.y == -3)
             {
                 Destroy(gameObject);
             }

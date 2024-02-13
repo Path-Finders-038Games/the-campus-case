@@ -29,7 +29,7 @@ public class TestPlaneLocker : MonoBehaviour
             PositionLocker.transform.position =
                    new Vector3(PositionLocker.transform.position.x, FloorPlane.transform.position.y, PositionLocker.transform.position.z);
         }
-        else if (raycastManager.Raycast(this.transform.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes))
+        else if (raycastManager.Raycast(transform.position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes))
         {
             FloorPlane = hits[0].trackable.gameObject;
             planeFound = true;

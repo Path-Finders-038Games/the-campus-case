@@ -20,7 +20,7 @@ namespace Art.Map.Lines
             {
                 filledAmount += speed * Time.deltaTime;
             }
-            meshRend = this.GetComponent<MeshRenderer>();
+            meshRend = GetComponent<MeshRenderer>();
             meshRend.material.SetFloat("_fillAmount", filledAmount);
         }
     }

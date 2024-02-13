@@ -21,7 +21,7 @@ namespace Minigames.Hacking_Minigame
                 if (_timer > relodeTime)
                 {
                     _timer = 0;
-                    GameObject Bullet = Instantiate(bullet, this.transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                    GameObject Bullet = Instantiate(bullet, transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                 }
             }
   
