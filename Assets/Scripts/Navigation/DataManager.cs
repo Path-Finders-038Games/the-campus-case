@@ -1,26 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+namespace Navigation
 {
-    public static DataManager Instance;
-
-    public int CurrentStep;
-    public string CurrentMap;
-    private void Awake()
+    public class DataManager : MonoBehaviour
     {
-        if (Instance == null)
+        public static DataManager Instance;
+
+        public int CurrentStep;
+        public string CurrentMap;
+        private void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            CurrentMap = PlayerPrefs.GetString("Currentmap");
+            CurrentStep = PlayerPrefs.GetInt("Currentstep");
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-        CurrentMap = PlayerPrefs.GetString("Currentmap");
-        CurrentStep = PlayerPrefs.GetInt("Currentstep");
     }
 }
 

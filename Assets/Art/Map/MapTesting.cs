@@ -1,59 +1,61 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MapTesting : MonoBehaviour
+namespace Art.Map
 {
-    public Animator animator;
-    bool mapOpen;
-
-    void Update()
+    public class MapTesting : MonoBehaviour
     {
-        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        public Animator animator;
+        bool mapOpen;
+
+        void Update()
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            if (Physics.Raycast(ray, out hit))
+            if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
-                if (hit.transform.gameObject.name == "MapScroll")
+                RaycastHit hit;
+                Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                if (Physics.Raycast(ray, out hit))
                 {
-                    EnterMap();   
+                    if (hit.transform.gameObject.name == "MapScroll")
+                    {
+                        EnterMap();   
+                    }
                 }
             }
         }
-    }
-    public void Togglemap()
-    {
-        animator.SetTrigger("ToggleMap");
-        if (mapOpen)
+        public void Togglemap()
         {
-            mapOpen = false;
+            animator.SetTrigger("ToggleMap");
+            if (mapOpen)
+            {
+                mapOpen = false;
+            }
+            else
+            {
+                mapOpen = true;
+                StartCoroutine(Mapdelay());
+            }
         }
-        else
+
+        public IEnumerator Mapdelay()
         {
-            mapOpen = true;
-            StartCoroutine(Mapdelay());
+            yield return new WaitForSeconds(2f);
+            EnterMap();
         }
-    }
+        public void ToggleDesk()
+        {
+            animator.SetTrigger("Despawn");
+        }
 
-    public IEnumerator Mapdelay()
-    {
-        yield return new WaitForSeconds(2f);
-        EnterMap();
-    }
-    public void ToggleDesk()
-    {
-        animator.SetTrigger("Despawn");
-    }
+        public void EnterMap()
+        {
+            SceneManager.LoadScene(1);
+        }
 
-    public void EnterMap()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void ExitMap()
-    {
-        SceneManager.LoadScene(0);
+        public void ExitMap()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

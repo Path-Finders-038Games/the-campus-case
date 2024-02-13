@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TestCam : MonoBehaviour
+namespace Art.Camera
 {
-    public Animator animator;
-    public void TakePicture()
+    public class TestCam : MonoBehaviour
     {
-        animator.SetTrigger("EquipState");
+        public Animator animator;
+        public void TakePicture()
+        {
+            animator.SetTrigger("EquipState");
+        }
     }
 }

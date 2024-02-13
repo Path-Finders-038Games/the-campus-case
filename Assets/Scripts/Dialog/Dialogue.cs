@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialogue : MonoBehaviour
+namespace Dialog
 {
-    public string Text;
-    public bool IsRead;
-    public Dialogue(string text)
+    public class Dialogue : MonoBehaviour
     {
-        Text = text;
-        IsRead = false;
+        public string Text;
+        public bool IsRead;
+        public Dialogue(string text)
+        {
+            Text = text;
+            IsRead = false;
+        }
     }
 }

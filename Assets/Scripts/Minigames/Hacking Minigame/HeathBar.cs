@@ -1,38 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeathBar : MonoBehaviour
+namespace Minigames.Hacking_Minigame
 {
-    // Start is called before the first frame update
-    public Sprite[] HealthSprites;
-    Image Image;
-
-    void Start()
+    public class HeathBar : MonoBehaviour
     {
-        Image = GetComponent<Image>();
-    }
+        // Start is called before the first frame update
+        public Sprite[] HealthSprites;
+        Image Image;
 
-    // Update is called once per frame
-    void Update()
-    {
-        switch (GameController.gameController.Health)
+        void Start()
         {
-            case (0):
-                Image.sprite = HealthSprites[0];
-                break;
-            case (1):
-                Image.sprite = HealthSprites[1];
-                break;
-            case (2):
-                Image.sprite = HealthSprites[2];
-                break;
-            case (3):
-                Image.sprite = HealthSprites[3];
-                break;
-            default:
-                break;
+            Image = GetComponent<Image>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            switch (GameController.gameController.Health)
+            {
+                case (0):
+                    Image.sprite = HealthSprites[0];
+                    break;
+                case (1):
+                    Image.sprite = HealthSprites[1];
+                    break;
+                case (2):
+                    Image.sprite = HealthSprites[2];
+                    break;
+                case (3):
+                    Image.sprite = HealthSprites[3];
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
