@@ -11,7 +11,7 @@ namespace Minigames.Mastermind
         public Sprite Yellow, Blue, Red, Green, White, Black;
         public string[] SecretCode = new string[4];
         public string[] SecretCodeTemp = new string[4];
-        private Dictionary<string, Sprite> _dicoSprite = new Dictionary<string, Sprite>();
+        private Dictionary<string, Sprite> _dicoSprite = new();
         private string[] _codePlayer = new string[4];
         public GameObject HiddenSlot;
 

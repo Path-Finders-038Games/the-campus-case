@@ -10,7 +10,7 @@ public class TestPlaneLocker : MonoBehaviour
     public GameObject PositionLocker;
     bool planeFound;
     GameObject FloorPlane;
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    static List<ARRaycastHit> hits = new();
 
     public
     // Start is called before the first frame update

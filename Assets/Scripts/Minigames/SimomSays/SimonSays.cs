@@ -23,9 +23,9 @@ namespace Minigames.SimomSays
         public TMP_Text Text;
         //Start sequence lenght
         private int _lenghtSequence = 3;
-        private List<GameObject> _safeButtonList = new List<GameObject>();
-        private List<int> _taskSequence = new List<int>();
-        private List<int> _playerSequence = new List<int>();
+        private List<GameObject> _safeButtonList = new();
+        private List<int> _taskSequence = new();
+        private List<int> _playerSequence = new();
         private int _rounds = 3;
         private int _curentRound = 1;
         private int _waitTime = 1;
@@ -44,7 +44,7 @@ namespace Minigames.SimomSays
         public GameObject BuddyImage;
         public Sprite BuddyDogSprite;
         public Sprite BuddyCatSprite;
-        private List<Dialogue> _startMinigame = new List<Dialogue>();
+        private List<Dialogue> _startMinigame = new();
         // Start is called before the first frame update
         void Start()
         {

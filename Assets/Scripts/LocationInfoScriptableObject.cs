@@ -13,7 +13,7 @@ public class LocationInfoScriptableObject : ScriptableObject
 
     public string Name;
     public string Description;
-    public List<string> Facts = new List<string>();
+    public List<string> Facts = new();
     public string HintNextLocation;
 }
 
@@ -24,7 +24,7 @@ public class LocationData
     [TextArea(0,5)]
     public string Description;
     [TextArea(0, 5)]
-    public List<string> Facts = new List<string>();
+    public List<string> Facts = new();
     [TextArea(0, 5)]
     public string HintNextLocation;
 }

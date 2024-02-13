@@ -33,8 +33,8 @@ namespace Minigames.Sliding_puzzel
         public GameObject BuddyImage;
         public Sprite BuddyDogSprite;
         public Sprite BuddyCatSprite;
-        private List<Dialogue> _startMinigame = new List<Dialogue>();
-        private List<Dialogue> _endMinigame = new List<Dialogue>();
+        private List<Dialogue> _startMinigame = new();
+        private List<Dialogue> _endMinigame = new();
         // Start is called before the first frame update 
         void Start()
         {

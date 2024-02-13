@@ -12,7 +12,7 @@ public class SpawnPrefab : MonoBehaviour
 
     private GameObject _spanwNew;
     ARRaycastManager raycastManager;
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    static List<ARRaycastHit> hits = new();
     public GameObject Prefab;
     private ARRaycastHit _planeHit;
     private float _distance = 999;

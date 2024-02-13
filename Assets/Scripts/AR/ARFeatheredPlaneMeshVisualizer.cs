@@ -100,9 +100,9 @@ namespace AR
             mesh.UploadMeshData(false);
         }
 
-        static List<Vector3> s_FeatheringUVs = new List<Vector3>();
+        static List<Vector3> s_FeatheringUVs = new();
 
-        static List<Vector3> s_Vertices = new List<Vector3>();
+        static List<Vector3> s_Vertices = new();
 
         ARPlaneMeshVisualizer m_PlaneMeshVisualizer;
 

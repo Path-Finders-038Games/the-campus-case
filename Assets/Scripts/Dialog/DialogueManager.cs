@@ -6,8 +6,8 @@ namespace Dialog
     public class DialogueManager : MonoBehaviour
     {
         public static DialogueManager Instance;
-        public Dictionary<int, List<Dialogue>> DutchBuddyDialogue = new Dictionary<int, List<Dialogue>>();
-        public Dictionary<int, List<Dialogue>> EnglishBuddyDialogue = new Dictionary<int, List<Dialogue>>();
+        public Dictionary<int, List<Dialogue>> DutchBuddyDialogue = new();
+        public Dictionary<int, List<Dialogue>> EnglishBuddyDialogue = new();
         private void Awake()
         {
       

@@ -20,7 +20,7 @@ namespace Minigames
         public GameObject Default;
 
         ARRaycastManager raycastManager;
-        static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+        static List<ARRaycastHit> hits = new();
         private ARRaycastHit _planeHit;
         private float _distance = 999;
         void Start()

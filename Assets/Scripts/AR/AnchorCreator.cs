@@ -85,7 +85,7 @@ namespace AR
             }
         }
 
-        static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+        static List<ARRaycastHit> s_Hits = new();
 
         List<ARAnchor> m_AnchorPoints;
 
