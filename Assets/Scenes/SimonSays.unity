@@ -1247,12 +1247,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1569322493}
   - component: {fileID: 1569322492}
-  - component: {fileID: 1569322491}
   - component: {fileID: 1569322490}
-  - component: {fileID: 1569322489}
-  - component: {fileID: 1569322488}
+  - component: {fileID: 1569322491}
   - component: {fileID: 1569322487}
   - component: {fileID: 1569322486}
+  - component: {fileID: 1569322494}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -1286,34 +1285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RaycastPrefab: {fileID: 0}
---- !u!114 &1569322488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569322485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc19cc5510a91346bb016f4c32ba0d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _placeblePrefab: []
---- !u!114 &1569322489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569322485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 0}
-  m_MaxNumberOfMovingImages: 0
-  m_TrackedImagePrefab: {fileID: 0}
 --- !u!114 &1569322490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,6 +1346,19 @@ Transform:
   - {fileID: 448890439}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569322494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569322485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb47e4f5f763ec4792603650016aced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositionLocker: {fileID: 0}
 --- !u!1 &1802546340
 GameObject:
   m_ObjectHideFlags: 0

@@ -284,12 +284,11 @@ GameObject:
   m_Component:
   - component: {fileID: 484952182}
   - component: {fileID: 484952181}
-  - component: {fileID: 484952180}
   - component: {fileID: 484952179}
-  - component: {fileID: 484952178}
-  - component: {fileID: 484952177}
+  - component: {fileID: 484952180}
   - component: {fileID: 484952176}
-  - component: {fileID: 484952175}
+  - component: {fileID: 484952178}
+  - component: {fileID: 484952183}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -297,19 +296,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &484952175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484952174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 788587e994f1943f3856c1c332db429b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AnchorPrefab: {fileID: 0}
 --- !u!114 &484952176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,19 +309,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RaycastPrefab: {fileID: 0}
---- !u!114 &484952177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484952174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc19cc5510a91346bb016f4c32ba0d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _placeblePrefab: []
 --- !u!114 &484952178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,6 +385,35 @@ Transform:
   - {fileID: 1217698242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &484952183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484952174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a04815f1449dab448b5fd338e79940f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Minigames:
+  - MapName: T5Map
+    minigame: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
+      type: 3}
+  - MapName: C0Map
+    minigame: {fileID: 8221244126007089358, guid: 1dab6b51f6b87b248b98dac5e6e19210,
+      type: 3}
+  - MapName: S0Map
+    minigame: {fileID: 8430659435007741985, guid: bc343f0cdc3398940a30832733ad479f,
+      type: 3}
+  - MapName: X1Map
+    minigame: {fileID: 6775056468626484808, guid: fb108abca05cea34b84ac09f1aa2b764,
+      type: 3}
+  - MapName: T2Map
+    minigame: {fileID: 7971184478392807997, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+      type: 3}
+  Default: {fileID: 6717461012115478838, guid: f52a6233cd202484d8cff91a5ca7a6e7, type: 3}
 --- !u!1 &694060473
 GameObject:
   m_ObjectHideFlags: 0

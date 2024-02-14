@@ -501,8 +501,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1892953924}
   - component: {fileID: 1892953923}
-  - component: {fileID: 1892953922}
   - component: {fileID: 1892953921}
+  - component: {fileID: 1892953922}
   - component: {fileID: 1892953920}
   - component: {fileID: 1892953919}
   - component: {fileID: 1892953918}
@@ -552,7 +552,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc19cc5510a91346bb016f4c32ba0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _placeblePrefab: []
+  _placeblePrefab:
+  - {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33, type: 3}
 --- !u!114 &1892953920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,9 +566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 0}
-  m_MaxNumberOfMovingImages: 0
-  m_TrackedImagePrefab: {fileID: 0}
+  m_SerializedLibrary: {fileID: 11400000, guid: e03adbd43a8d2474fb478c7afd29b182,
+    type: 2}
+  m_MaxNumberOfMovingImages: 1
+  m_TrackedImagePrefab: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
+    type: 3}
 --- !u!114 &1892953921
 MonoBehaviour:
   m_ObjectHideFlags: 0

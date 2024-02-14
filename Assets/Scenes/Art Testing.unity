@@ -673,12 +673,12 @@ GameObject:
   m_Component:
   - component: {fileID: 978171837}
   - component: {fileID: 978171836}
-  - component: {fileID: 978171835}
   - component: {fileID: 978171834}
-  - component: {fileID: 978171833}
-  - component: {fileID: 978171832}
+  - component: {fileID: 978171835}
   - component: {fileID: 978171831}
   - component: {fileID: 978171830}
+  - component: {fileID: 978171833}
+  - component: {fileID: 978171838}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -712,19 +712,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RaycastPrefab: {fileID: 0}
---- !u!114 &978171832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978171829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc19cc5510a91346bb016f4c32ba0d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _placeblePrefab: []
 --- !u!114 &978171833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,8 +724,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 0}
-  m_MaxNumberOfMovingImages: 0
+  m_SerializedLibrary: {fileID: 11400000, guid: e03adbd43a8d2474fb478c7afd29b182,
+    type: 2}
+  m_MaxNumberOfMovingImages: 1
   m_TrackedImagePrefab: {fileID: 0}
 --- !u!114 &978171834
 MonoBehaviour:
@@ -801,6 +789,19 @@ Transform:
   - {fileID: 1017902041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &978171838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978171829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb47e4f5f763ec4792603650016aced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PositionLocker: {fileID: 0}
 --- !u!1 &1017902035
 GameObject:
   m_ObjectHideFlags: 0
