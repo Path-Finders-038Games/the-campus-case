@@ -1,43 +1,44 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+namespace Navigation
 {
+    public class MapManager : MonoBehaviour
+    {
     
-    public GameObject[] Maps;
-    public int Mapnnmber;
-    public void SwitchMap(string nameMap)
-    {
-        foreach (var map in Maps)
+        public GameObject[] Maps;
+        public int Mapnnmber;
+        public void SwitchMap(string nameMap)
         {
-            map.SetActive(false);
+            foreach (var map in Maps)
+            {
+                map.SetActive(false);
+            }
+
+            GameObject selectedMap = Array.Find(Maps, map => map.name == nameMap);
+            if (selectedMap != null)
+            {
+                selectedMap.SetActive(true);
+            }else
+            {
+                Debug.Log("Map not found: " + nameMap);   
+            }
         }
 
-        GameObject selectedMap = Array.Find(Maps, map => map.name == nameMap);
-        if (selectedMap != null)
+        public void NextMap()
         {
-            selectedMap.SetActive(true);
-        }else
-        {
-            Debug.Log("Map not found: " + nameMap);   
-        }
-    }
+            foreach (var map in Maps)
+            {
+                map.SetActive(false);
+            }
+            if(Mapnnmber > 6)
+            {
+                Mapnnmber = 0;
+            }
 
-    public void NextMap()
-    {
-        foreach (var map in Maps)
-        {
-            map.SetActive(false);
-        }
-        if(Mapnnmber > 6)
-        {
-            Mapnnmber = 0;
-        }
+            Maps[Mapnnmber].SetActive(true);
+            Mapnnmber++;
 
-        Maps[Mapnnmber].SetActive(true);
-        Mapnnmber++;
-
+        }
     }
 }

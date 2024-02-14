@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Stepbystep : MonoBehaviour
+namespace Navigation
 {
-    public TMP_Text GuideText;
-    public Image GuideImage;
-   
-    public void UpdateGuide(string text, Sprite image)
+    public class Stepbystep : MonoBehaviour
     {
-        GuideText.text = text;
-        GuideImage.sprite = image;
+        public TMP_Text GuideText;
+        public Image GuideImage;
+   
+        public void UpdateGuide(string text, Sprite image)
+        {
+            GuideText.text = text;
+            GuideImage.sprite = image;
+        }
     }
 }

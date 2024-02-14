@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class SlidingPuzzleTile : MonoBehaviour
+namespace Minigames.Sliding_puzzel
 {
-    public int Id = 0;
-    public Vector2Int Position = new Vector2Int();
-    public string Name;
-    // Start is called before the first frame update
-    void Awake()
+    public class SlidingPuzzleTile : MonoBehaviour
     {
-        Name = gameObject.name;
+        public int Id = 0;
+        public Vector2Int Position = new();
+        public string Name;
+        // Start is called before the first frame update
+        void Awake()
+        {
+            Name = gameObject.name;
+        }
     }
 }
