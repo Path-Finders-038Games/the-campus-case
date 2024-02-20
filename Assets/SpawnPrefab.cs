@@ -1,11 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Numerics;
 using UnityEngine.XR.ARFoundation;
-using static UnityEngine.XR.ARSubsystems.XRCpuImage;
 
 public class SpawnPrefab : MonoBehaviour
 {
