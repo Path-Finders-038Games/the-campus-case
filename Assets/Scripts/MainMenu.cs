@@ -14,15 +14,18 @@ public class MainMenu : MonoBehaviour
     public GameObject BuddyScreen;
     public GameObject LanguageScreen;
     public GameObject IntroductionScreen;
-    public GameObject TitleScreenTextEN;
-    public GameObject TitleScreenTextNL;
+    // public GameObject TitleScreenTextEN;
+    // public GameObject TitleScreenTextNL;
     public GameObject BuddyScreenTextEN;
     public GameObject BuddyScreenTextNL;
     public GameObject IntroductionScreenTextEN;
     public GameObject IntroductionScreenTextNL;
-    public GameObject ContinueBtnNL;
-    public GameObject ContinueBtnEN;
-    public TMP_Text ContinueGameButtonENText;
+    public GameObject ContinueBtn;
+    public TMP_Text ContinueText;
+    public GameObject NewGameBtn;
+    public TMP_Text NewGameText;
+    public GameObject QuitBtn;
+    public TMP_Text QuitText;
     public GameObject BuddyCatImage;
     public GameObject BuddyDogImage;
     private int _navigationLocation;
@@ -36,8 +39,8 @@ public class MainMenu : MonoBehaviour
         _navigationLocation = 1;
         if (PlayerPrefs.GetInt("Currentstep") == 0)
         {
-            ContinueBtnEN.SetActive(false);
-            ContinueBtnNL.SetActive(false);
+            // ContinueBtnEN.SetActive(false);
+            // ContinueBtnNL.SetActive(false);
         }
     }
     private void LoadLanguage()
@@ -86,13 +89,13 @@ public class MainMenu : MonoBehaviour
     }
     private void SetActiveDutchMenu(bool isActive)
     {
-        TitleScreenTextNL.SetActive(isActive);
+        // TitleScreenTextNL.SetActive(isActive);
         BuddyScreenTextNL.SetActive(isActive);
         IntroductionScreenTextNL.SetActive(isActive);
     }
     private void SetActiveEnglishMenu(bool isActive)
     {
-        TitleScreenTextEN.SetActive(isActive);
+        // TitleScreenTextEN.SetActive(isActive);
         BuddyScreenTextEN.SetActive(isActive);
         IntroductionScreenTextEN.SetActive(isActive);
     }
@@ -111,8 +114,9 @@ public class MainMenu : MonoBehaviour
     private void SwitchToTitleScreen()
     {
         DialogManagerV2.Initialize();
-        string txt = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
-        Debug.Log(txt);
+        ContinueText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
+        NewGameText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");
+        QuitText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "quitBtn");
         LanguageScreen.SetActive(false);
         TitleScreen.SetActive(true);
     }
