@@ -3,22 +3,24 @@ using UnityEngine.SceneManagement;
 
 public class sceneLoader : MonoBehaviour
 {
-
     public int sceneID;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Start is called before the first frame update.
+    /// </summary>
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame.
+    /// </summary>
     void Update()
     {
-        
     }
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(sceneID);   
+        SceneManager.LoadScene(sceneID);
     }
 }

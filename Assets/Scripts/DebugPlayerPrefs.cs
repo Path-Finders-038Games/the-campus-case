@@ -2,18 +2,21 @@ using UnityEngine;
 
 public class DebugPlayerPrefs : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
     }
-    // Update is called once per frame
+
     void Update()
     {
-        
     }
+
+    /// <summary>
+    /// Clears all <see cref="PlayerPrefs"/>.
+    /// </summary>
     public void ClearPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
     }
 }
+
+F

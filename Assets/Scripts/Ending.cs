@@ -7,28 +7,32 @@ public class Ending : MonoBehaviour
 {
     public RawImage image;
     public List<Texture2D> TextureList;
-    int currentImage;
-    // Start is called before the first frame update
+
+    private int _currentImage;
+
+    /// <summary>
+    /// Inits the ending cutscene.
+    /// </summary>
     void Start()
     {
-        currentImage = 0;
-        image.texture = TextureList[currentImage];
+        _currentImage = 0;
+        image.texture = TextureList[_currentImage];
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Goes to the next image in the cutscene when the screen is touched.
+    /// </summary>
     void Update()
     {
-        if (Input.touchCount >= 1 && Input.touches[0].phase == TouchPhase.Began)
+        if (Input.touchCount < 1 || Input.touches[0].phase != TouchPhase.Began) return;
+
+        _currentImage++;
+
+        if (_currentImage >= TextureList.Count)
         {
-            currentImage++;
-           
-
-            if (currentImage >= TextureList.Count)
-            {
-                SceneManager.LoadScene(0);
-            }
-
-            image.texture = TextureList[currentImage];
+            SceneManager.LoadScene(0);
         }
+
+        image.texture = TextureList[_currentImage];
     }
 }

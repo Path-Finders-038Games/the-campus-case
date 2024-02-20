@@ -12,13 +12,11 @@ public class SpawnPrefab : MonoBehaviour
     private ARRaycastHit _planeHit;
     private float _distance = 999;
 
-    // Start is called before the first frame update
     void Start()
     {
         raycastManager = GetComponent<ARRaycastManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
