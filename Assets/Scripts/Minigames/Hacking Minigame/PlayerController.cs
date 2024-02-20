@@ -59,7 +59,7 @@ namespace Minigames.Hacking_Minigame
                 return;
             }
 
-            Vector3 newPosition = new Vector3(currentPos.x + distance, currentPos.y, currentPos.z);
+            Vector3 newPosition = new(currentPos.x + distance, currentPos.y, currentPos.z);
 
             transform.position = newPosition;
         }

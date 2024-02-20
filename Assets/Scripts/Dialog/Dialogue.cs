@@ -6,6 +6,7 @@ namespace Dialog
     {
         public string Text;
         public bool IsRead;
+
         public Dialogue(string text)
         {
             Text = text;

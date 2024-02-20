@@ -191,7 +191,7 @@ namespace Minigames.Hacking_Minigame
             }
             LocationUIName.text = LocationFile.Name;
             LocationUIDescription.text = LocationFile.Description;
-            StringBuilder locationFacts = new StringBuilder("Facts\n");
+            StringBuilder locationFacts = new("Facts\n");
             foreach (string fact in LocationFile.Facts)
             {
                 locationFacts.AppendLine(fact + "\n");

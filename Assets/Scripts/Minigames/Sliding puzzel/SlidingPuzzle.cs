@@ -91,10 +91,10 @@ namespace Minigames.Sliding_puzzel
         private bool CanSwitch(Vector2 tilePos)
         {
             Vector2 emptySpacePos = EmptySpace.GetComponent<SlidingPuzzleTile>().Position;
-            Vector2 plusX = new Vector2(tilePos.x + 1, tilePos.y);
-            Vector2 minX = new Vector2(tilePos.x - 1, tilePos.y);
-            Vector2 plusY = new Vector2(tilePos.x, tilePos.y + 1);
-            Vector2 minY = new Vector2(tilePos.x, tilePos.y - 1);
+            Vector2 plusX = new(tilePos.x + 1, tilePos.y);
+            Vector2 minX = new(tilePos.x - 1, tilePos.y);
+            Vector2 plusY = new(tilePos.x, tilePos.y + 1);
+            Vector2 minY = new(tilePos.x, tilePos.y - 1);
             if (new Vector2[] {plusX,minX,plusY,minY}.Contains(emptySpacePos))
             {
                 return true;
@@ -145,7 +145,7 @@ namespace Minigames.Sliding_puzzel
             }
             LocationUIName.text = LocationFile.Name;
             LocationUIDescription.text = LocationFile.Description;
-            StringBuilder locationFacts = new StringBuilder("Facts\n");
+            StringBuilder locationFacts = new("Facts\n");
             foreach (string fact in LocationFile.Facts)
             {
                 locationFacts.AppendLine(fact + "\n");
