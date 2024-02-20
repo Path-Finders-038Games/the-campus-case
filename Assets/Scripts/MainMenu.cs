@@ -4,12 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public enum Language
-    {
-        Dutch,
-        English
-    }
-
     public GameObject TitleScreen;
     public GameObject BuddyScreen;
     public GameObject LanguageScreen;
@@ -46,30 +40,16 @@ public class MainMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the language from the player preferences. Defaults to English.
-    /// </summary>
-    /// <returns>Currently selected <see cref="Language"/></returns>
-    private Language GetLanguage()
-    {
-        return PlayerPrefs.GetString("Language") switch
-        {
-            "NL" => Language.Dutch,
-            "EN" => Language.English,
-            _ => Language.English
-        };
-    }
-
-    /// <summary>
     /// This method sets the language based on the player preferences.
     /// </summary>
     private void LoadLanguage()
     {
-        switch (GetLanguage())
+        switch (Language.GetLanguage())
         {
-            case Language.Dutch:
+            case Language.Languages.Dutch:
                 SetLanguageToDutch();
                 break;
-            case Language.English:
+            case Language.Languages.English:
             default:
                 SetLanguageToEnglish();
                 break;
@@ -110,15 +90,15 @@ public class MainMenu : MonoBehaviour
     /// It does *NOT* save the language to the player preferences.
     /// </summary>
     /// <param name="language"><see cref="Language"/> to be switched to.</param>
-    private void ChangeLanguage(Language language)
+    private void ChangeLanguage(Language.Languages language)
     {
         switch (language)
         {
-            case Language.Dutch:
+            case Language.Languages.Dutch:
                 SetActiveDutchMenu(true);
                 SetActiveEnglishMenu(false);
                 break;
-            case Language.English:
+            case Language.Languages.English:
             default:
                 SetActiveDutchMenu(false);
                 SetActiveEnglishMenu(true);
@@ -154,7 +134,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetLanguageToDutch()
     {
-        ChangeLanguage(Language.Dutch);
+        ChangeLanguage(Language.Languages.Dutch);
         PlayerPrefs.SetString("Language", "NL");
         SwitchToTitleScreen();
     }
@@ -165,7 +145,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetLanguageToEnglish()
     {
-        ChangeLanguage(Language.English);
+        ChangeLanguage(Language.Languages.English);
         PlayerPrefs.SetString("Language", "EN");
         SwitchToTitleScreen();
     }
