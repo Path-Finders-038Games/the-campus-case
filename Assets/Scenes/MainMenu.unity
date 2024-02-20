@@ -387,7 +387,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 330.08704, y: 0}
+  m_SizeDelta: {x: 160.00006, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &53073754
 MonoBehaviour:
@@ -5001,6 +5001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8710616458812447730, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
+      propertyPath: m_Name
+      value: ContinueGameButtonENText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710616458812447730, guid: 123660a36d86adf46b042e1d3e452e0c,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5733,6 +5738,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8710616458812447730, guid: 123660a36d86adf46b042e1d3e452e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: QuitButtonENText
+      objectReference: {fileID: 0}
     - target: {fileID: 9020584570239247441, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5820,6 +5830,7 @@ MonoBehaviour:
   IntroductionScreenTextNL: {fileID: 1031423448}
   ContinueBtnNL: {fileID: 228654266}
   ContinueBtnEN: {fileID: 1660506221}
+  ContinueGameButtonENText: {fileID: 0}
   BuddyCatImage: {fileID: 443352161}
   BuddyDogImage: {fileID: 74270529}
 --- !u!4 &2080418636

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Dialog;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +22,7 @@ public class MainMenu : MonoBehaviour
     public GameObject IntroductionScreenTextNL;
     public GameObject ContinueBtnNL;
     public GameObject ContinueBtnEN;
+    public TMP_Text ContinueGameButtonENText;
     public GameObject BuddyCatImage;
     public GameObject BuddyDogImage;
     private int _navigationLocation;
@@ -107,6 +110,9 @@ public class MainMenu : MonoBehaviour
     }
     private void SwitchToTitleScreen()
     {
+        DialogManagerV2.Initialize();
+        string txt = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
+        Debug.Log(txt);
         LanguageScreen.SetActive(false);
         TitleScreen.SetActive(true);
     }
