@@ -18,5 +18,3 @@ public class DebugPlayerPrefs : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 }
-
-F
