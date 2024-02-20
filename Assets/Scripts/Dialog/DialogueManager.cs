@@ -9,6 +9,9 @@ namespace Dialog
         public Dictionary<int, List<Dialogue>> DutchBuddyDialogue = new();
         public Dictionary<int, List<Dialogue>> EnglishBuddyDialogue = new();
 
+        /// <summary>
+        /// Initializes the dialogue lists and sets the instance to this object.
+        /// </summary>
         private void Awake()
         {
             if (Instance == null)
@@ -23,6 +26,11 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Fills the dialogue lists with the dialogue for the buddy.
+        /// HOLY SH*T, this is a lot of dialogue.
+        /// TODO: This should be moved to localization files.
+        /// </summary>
         private void FillDialogueList()
         {
             #region Buddy Dialogue
