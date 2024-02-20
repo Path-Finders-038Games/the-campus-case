@@ -10,6 +10,7 @@ using UnityEngine;
 -add animation code
 -integrate with project 
 -test correct funtionality in unity
+-test scaling of objects
  */
 
 public class Hangman : MonoBehaviour
