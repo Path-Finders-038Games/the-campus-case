@@ -86,7 +86,6 @@ namespace Minigames
         {
             // set locale
             // ...
-
             // Access the localization table collection
             LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
 
