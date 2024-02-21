@@ -1,14 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.XR.CoreUtils;
-using UnityEditor.Localization.Editor;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
-using UnityEngine.SocialPlatforms;
+using UnityEngine.Localization;
 
 
 /*
@@ -38,24 +33,21 @@ namespace Minigames
         {
         }
 
-        
 
 
-    //list of potential words for the game to select
+
+        //list of potential words for the game to select
         public List<String> words = new List<String>();
-        public GameObject Keyboard { get; set; }
-
-        private List<GameObject> KeyboardLetters;
 
         //the word that is being guessed
         private String word { get; set; }
 
         //a list of letters that make up the word
-        private List<Character> wordletters = new List<Character>();
+        public List<Character> wordletters = new List<Character>();
 
         //list of incorrectly guessed letters
         //no use at the moment but might be used later
-        private List<char> wrongletters = new List<char>();
+        //private List<char> wrongletters = new List<char>();
         //list of guessed letters
         private List<char> guessedletters = new List<char>();
 
@@ -72,13 +64,13 @@ namespace Minigames
             LocalizationSetup();
             //setup of the word generation for the game
             System.Random random = new System.Random();
-            word = words[random.Next(0, words.Count-1)];
+            Debug.Log("words count + "+ words.Count);
+            word = words[random.Next(0, words.Count - 1)];
             foreach (char character in word)
             {
                 wordletters.Add(new Character(character));
             }
-            
-            //KeyboardLetters = 
+
         }
 
         //retrieve list of words for the game to choose between based on selected language
@@ -105,31 +97,15 @@ namespace Minigames
         }
         // method used to make a guess
         // also include potential animation code
-        public void Guess()
+        public void Guess(char guess)
         {
             //snippet checking if the letter has been guessed before
             // duplicate guess check probably made redundant in the final version
-            Console.WriteLine("please make a guess");
-            char guess;
-            while (true)
-            {
-                guess = Console.ReadKey().KeyChar;
-                if (wrongletters.Contains(guess) || guessedletters.Contains(guess))
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("this letter has already been guessed");
-                }
-                else
-                {
-                    guessedletters.Add(guess);
-                    break;
-                }
-            }
+            guessedletters.Add(guess);     
 
             //snippet checking if the word has any letters from the guess
             //if not its counted as a incorrect guess
             //potential animations included here also
-            Console.WriteLine();
             int count = 0;
             foreach (Character letter in wordletters)
             {
@@ -141,10 +117,12 @@ namespace Minigames
             }
             if (count == 0)
             {
-                wrongletters.Add(guess);
+                //wrongletters.Add(guess);
                 fout++;
-                Console.WriteLine("FOUT!");
             }
+
+            CheckLost();
+            CheckWon();
         }
 
 
@@ -166,7 +144,7 @@ namespace Minigames
             //code for what to do when the user has won
             if (won)
             {
-                Console.WriteLine("gefeliciteerd");
+                //needs work
             }
         }
 
@@ -176,42 +154,22 @@ namespace Minigames
         {
             if (fout == 6)
             {
-                Console.WriteLine("verloren");
-                won = true;
+                //still needs work
             }
         }
-
-        //code for playing the game in a console window
-        //redundant in final version
-        public void ConsoleShow()
+        // class for each individual letter in the word 
+        public class Character
         {
-            foreach (Character character in wordletters)
+            // letter itself
+            public char Letter;
+            // if it has been guessed yet or not
+            public bool Guessed;
+
+            public Character(char letter)
             {
-                if (character.Guessed == true)
-                {
-                    Console.Write(character.Letter);
-                }
-                else
-                {
-                    Console.Write("*");
-                }
+                this.Letter = letter;
+                this.Guessed = false;
             }
-            Console.WriteLine();
-        }
-    }
-
-    // class for each individual letter in the word 
-    public class Character
-    {
-        // letter itself
-        public char Letter;
-        // if it has been guessed yet or not
-        public bool Guessed;
-
-        public Character(char letter)
-        {
-            this.Letter = letter;
-            this.Guessed = false;
         }
     }
 }
