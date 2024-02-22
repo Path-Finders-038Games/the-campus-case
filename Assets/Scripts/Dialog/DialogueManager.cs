@@ -50,7 +50,7 @@ namespace Dialog
                 new Dialogue(
                     "We zijn momenteel in de C1 Kantine, Windesheim heeft ons laten weten dat er hier ergens een aanwijzing zou moeten zijn over de locatie van de vereniging... laten we die vinden!"),
                 new Dialogue(
-                    "Ik zie dat er een icoon op je kaart staat… dat ziet er interessant uit, laten we er op klikken!"),
+                    "Ik zie dat er een icoon op je kaart staat... dat ziet er interessant uit, laten we er op klikken!"),
             };
             DutchBuddyDialogue.Add(1, BuddyDialogueCcanteenNL);
             //C canteen minigame

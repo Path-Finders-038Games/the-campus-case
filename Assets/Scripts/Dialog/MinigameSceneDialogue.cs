@@ -62,6 +62,9 @@ namespace Dialog
             }
         }
 
+        /// <summary>
+        /// Sets the buddy image based on the player preferences.
+        /// </summary>
         private void SetBuddy()
         {
             string buddyChoice = PlayerPrefs.GetString("Buddy");

@@ -123,7 +123,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void SwitchToTitleScreen()
     {
-        DialogManagerV2.Initialize();
+        DialogueManagerV2.Initialize();
         PopulateUiWithLocalizedStrings();
         LanguageScreen.SetActive(false);
         TitleScreen.SetActive(true);
@@ -177,16 +177,16 @@ public class MainMenu : MonoBehaviour
     private void PopulateUiWithLocalizedStrings()
     {
         // Title screen
-        ContinueText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
-        NewGameText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");
-        QuitText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "quitBtn");
+        ContinueText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
+        NewGameText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");
+        QuitText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "quitBtn");
         
         // Buddy screen
-        BuddyChoiceTitle.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "buddyChoiceTitle");
+        BuddyChoiceTitle.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "buddyChoiceTitle");
         
         // Introduction screen
-        IntroductionTitle.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionTitle");
-        IntroductionMessage.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionMessage");
-        IntroductionBuddyMessage.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
+        IntroductionTitle.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionTitle");
+        IntroductionMessage.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionMessage");
+        IntroductionBuddyMessage.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
     }
 }
