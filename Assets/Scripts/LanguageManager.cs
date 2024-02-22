@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.SocialPlatforms;
 
 public static class LanguageManager
 {

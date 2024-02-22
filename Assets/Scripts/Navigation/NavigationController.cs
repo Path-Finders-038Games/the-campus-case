@@ -88,10 +88,10 @@ namespace Navigation
         private void UpdateGuide()
         {
             // Set the text to the current step's text based on the current language.
-            string text = Language.GetLanguage() switch
+            string text = LanguageManager.GetLanguage() switch
             {
-                Language.Languages.Dutch => Steps[DataManager.Instance.CurrentStep].text_NL,
-                Language.Languages.English => Steps[DataManager.Instance.CurrentStep].text_EN,
+                LanguageManager.Language.Dutch => Steps[DataManager.Instance.CurrentStep].text_NL,
+                LanguageManager.Language.English => Steps[DataManager.Instance.CurrentStep].text_EN,
                 _ => Steps[DataManager.Instance.CurrentStep].text_EN
             };
 
