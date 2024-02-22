@@ -12,23 +12,24 @@ namespace Dialog
         public GameObject BuddyImage;
         public Sprite BuddyDogSprite;
         public Sprite BuddyCatSprite;
-        private bool _isLastText = false;
-        private bool _isDoneTaking = false;
-        // Start is called before the first frame update
+        
+        private bool _isLastText;
+        private bool _isDoneTaking;
+
         void Start()
         {
             BuddyDialogueObject.SetActive(false);
             SetBuddy();
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (DataManager.Instance.CurrentStep <= 3)
             {
                 UpdateDialogue();
-            }  
+            }
         }
+
         private void UpdateDialogue()
         {
             if (!_isDoneTaking)
@@ -45,6 +46,7 @@ namespace Dialog
                         _isDoneTaking = true;
                     }
                 }
+
                 if (PlayerPrefs.GetString("Language").Equals("NL"))
                 {
                     if (!_isLastText)
@@ -58,25 +60,32 @@ namespace Dialog
                     }
                 }
             }
-        
         }
+
         private void SetBuddy()
         {
             string buddyChoice = PlayerPrefs.GetString("Buddy");
-            if (buddyChoice.Equals("Cat"))
+            BuddyImage.GetComponent<Image>().sprite = buddyChoice switch
             {
-                BuddyImage.GetComponent<Image>().sprite = BuddyCatSprite;
-            }
-            if (buddyChoice.Equals("Dog"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyDogSprite;
-            }
+                "Cat" => BuddyCatSprite,
+                "Dog" => BuddyDogSprite,
+                _ => BuddyImage.GetComponent<Image>().sprite,
+            };
         }
-        private void SetBuddyDialogueText(string Dialogue)
+
+        /// <summary>
+        /// Set the buddy dialogue text and activate the dialogue object.
+        /// </summary>
+        /// <param name="dialogue">Text to display in the dialog.</param>
+        private void SetBuddyDialogueText(string dialogue)
         {
-            BuddyTextBlock.text = Dialogue;
+            BuddyTextBlock.text = dialogue;
             BuddyDialogueObject.SetActive(true);
         }
+
+        /// <summary>
+        /// Deactivate the dialogue object and set the last text to true.
+        /// </summary>
         public void OnTextBlockClick()
         {
             BuddyDialogueObject.SetActive(false);

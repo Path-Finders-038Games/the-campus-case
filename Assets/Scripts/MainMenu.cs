@@ -30,13 +30,13 @@ public class MainMenu : MonoBehaviour
     // Navigation
     private int _navigationLocation;
 
-    void Awake()
-    {
-        LoadLanguage();
-    }
-
     void Start()
     {
+        // During development, clear the language to test the language screen and localization strings
+        PlayerPrefs.DeleteKey("Language");
+        
+        LoadLanguage();
+        
         _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
