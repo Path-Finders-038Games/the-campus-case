@@ -76,7 +76,7 @@ namespace Dialog
             {
                 new Dialogue("Het ziet ernaar uit dat je de code moet kraken door de juiste combinatie te raden."),
                 new Dialogue(
-                    "Kraak de code door de geheime kleurencombinatie te achterhalen. De zwarte pinnen aan de rechterkant geven aan hoeveel kleuren op de juiste plaats staan ​​en de witte pinnen geven aan hoeveel kleuren er in de code staan, maar niet op de juiste plaats."),
+                    "Kraak de code door de geheime kleurencombinatie te achterhalen. De zwarte pinnen aan de rechterkant geven aan hoeveel kleuren op de juiste plaats staan en de witte pinnen geven aan hoeveel kleuren er in de code staan, maar niet op de juiste plaats."),
                 new Dialogue(
                     "Je hebt het opgelost! Dat was een goede denkwijze die je daar had! laten we eens kijken waar we nu heen moeten..."),
             };
@@ -160,7 +160,7 @@ namespace Dialog
             {
                 new Dialogue(
                     "We are located at the C1 Canteen right now, Windesheim has let us know that there should be a clue about the society's whereabouts around here... let's find it!"),
-                new Dialogue("I see there’s an icon on your map… it seems interesting, maybe we should click it!"),
+                new Dialogue("I see there’s an icon on your map... it seems interesting, maybe we should click it!"),
             };
             EnglishBuddyDialogue.Add(1, BuddyDialogueCcanteenEN);
             //C Canteen minigame
@@ -173,7 +173,7 @@ namespace Dialog
                 new Dialogue("Tab the puzzle pieces to switch them with the empty one until the picture looks right."),
                 new Dialogue("We unlocked our first clue! Let's follow the navigator to the next location!"),
                 new Dialogue(
-                    "Follow the red line and navigation instructions on your screen. press “next” when you’re at the end to get the next instruction. "),
+                    "Follow the red line and navigation instructions on your screen. press “next” when you’re at the end to get the next instruction."),
             };
             EnglishBuddyDialogue.Add(-1, BuddyDialogueCcanteenMinigameEN);
             //Sport cafe
@@ -246,7 +246,7 @@ namespace Dialog
             //T5 bridge minigame
             List<Dialogue> BuddyDialogueTbridgeMinigameEN = new()
             {
-                new Dialogue("I’m really curious as to what’s inside of this safe! "),
+                new Dialogue("I’m really curious as to what’s inside of this safe!"),
                 new Dialogue("To unlock the safe, it seems you have to press the colors and mimic the pattern!"),
             };
             EnglishBuddyDialogue.Add(-5, BuddyDialogueTbridgeMinigameEN);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -48,6 +49,7 @@ namespace Dialog
 
         /// <summary>
         /// Returns the current step for the given map. After the first call, any subsequent call will return the next dialogue step.
+        /// If the last step has been reached, it will return the last step again.
         /// </summary>
         /// <param name="table">Localization table to look in for the maps/minigames dialog</param>
         /// <param name="map">Map/Minigame to get the dialog for.</param>
@@ -57,20 +59,43 @@ namespace Dialog
         /// string dialog = DialogueManagerV2.GetDialogueString("SlidingPuzzle", "SlidingPuzzleExplanation");
         /// </code>
         /// This will return the first step of the SlidingPuzzleExplanation dialog.
+        /// (SlidingPuzzleExplanation_0 in the localization table)
         /// <code>
         /// string dialog = DialogueManagerV2.GetDialogueString("SlidingPuzzle", "SlidingPuzzleExplanation");
         /// </code>
         /// This will return the second step of the SlidingPuzzleExplanation dialog.
+        /// (SlidingPuzzleExplanation_1 in the localization table)
         /// </example>
         public static string GetDialogueString(string table, string map)
         {
+            // Get the string table from the localization settings
+            LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
+            StringTable stringTable = tableCollection.GetTable(table);
+            ICollection<StringTableEntry> entries = stringTable.Values;
+            
+            // If the map is not in the dictionary, add it with a value of 0
             if (!DialogueProgress.ContainsKey(map)) DialogueProgress.Add(map, 0);
 
-            string key = map + "_" + DialogueProgress[map];
+            // Get the current step
+            int step = DialogueProgress[map];
+            
+            // count the amount of steps in the dialog
+            int stepCount = entries.Count(e => e.Key.StartsWith(map + "_"));
+            
+            // If the current step is greater than or equal to the amount of steps, return the last step
+            if (step >= stepCount) step = stepCount - 1;
+            
+            // Create the key
+            string key = map + "_" + step;
 
+            // Get the entry from the string table
+            StringTableEntry entry = entries.First(e => e.Key == key);
+            
+            // Increase the step
             DialogueProgress[map]++;
-
-            return GetLocalizedString(table, key);
+            
+            // Return the localized string
+            return entry.GetLocalizedString(_locale);
         }
 
         /// <summary>

@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LocalizationDialogue_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 45b65879f26c0b3448c9e9564dc7a762, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 124834856960
+    m_Localized: We are located at the C Canteen right now, Windesheim has let us
+      know that there should be a clue about the society's whereabouts around here...
+      let's find it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324823465984
+    m_Localized: "I see there\u2019s an icon on your map... it seems interesting,
+      maybe we should click it!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393765240832
+    m_Localized: "It looks like we can put this item on a surface by pressing on
+      the wall, let\u2019s try it!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 451910877184
+    m_Localized: when you see dots through the camera of your phone that means you
+      can place an object there, press on the surface with the dots to place the
+      object.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 494722138112
+    m_Localized: This looks like a sliding puzzle! Let's solve it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 497997889536
+    m_Localized: Tab the puzzle pieces to switch them with the empty one until the
+      picture looks right.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501214920704
+    m_Localized: We unlocked our first clue! Let's follow the navigator to the next
+      location!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 506206142464
+    m_Localized: "Follow the red line and navigation instructions on your screen.
+      press \u201Cnext\u201D when you\u2019re at the end to get the next instruction."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 773110677504
+    m_Localized: Another icon of those on the map! Maybe we can place it on the wall
+      here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 880128344064
+    m_Localized: It seems like you have to crack the code by guessing the right combination.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 960830947328
+    m_Localized: Crack the code by figuring out the secret color combination, the
+      black pins on the right indicate how many colors are in the right place and
+      the white pins indicate how many colors are inside of the code but not in the
+      right place.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 963628548096
+    m_Localized: You did it! That was some great thinking you did there! Let's see
+      where we have to go now...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1320496709632
+    m_Localized: The navigator is pointing us towards these stairs, let's go up.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1323273338880
+    m_Localized: You can also take the elevator in the corner to the right of the
+      stairs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1463161765888
+    m_Localized: This is a cool place! and it has got another cafeteria too!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1498456834048
+    m_Localized: "There is another icon on the map here, let\u2019s place it on the
+      wall."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552991174656
+    m_Localized: These icons look like the society's logo, maybe it's in here somewhere!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1556057210880
+    m_Localized: Find the logo of the secret society in this image and press on it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1556933820416
+    m_Localized: You've got a great eye for detail, you spotted that in no-time!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1557621686272
+    m_Localized: the navigator is pointing us down the stairs, let's go explore!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2676120928256
+    m_Localized: According to our navigator this is the T building, let's go up the
+      stairs to the second floor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2707355910144
+    m_Localized: You can also take the elevator when you enter the building and turn
+      left or right.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2858204053504
+    m_Localized: "We\u2019re at the T2 Desk right now, I heard this is the best place
+      to get information around the T-Building!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2898125438976
+    m_Localized: "There is another icon here, let's see what\u2019s in store for
+      us!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3051980898304
+    m_Localized: It seems we are going to hack the system!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3095274504192
+    m_Localized: "Swipe left and right to cover all the lanes and make sure your
+      base doesn\u2019t get overrun by the enemies"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3096927059968
+    m_Localized: "I think we\u2019re almost at the end of this mystery. up the stairs
+      we go to the 5th floor and final location!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3377400168448
+    m_Localized: In this room, students can study & chill whenever they like!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3419330625536
+    m_Localized: "I\u2019m really curious as to what\u2019s inside of this safe!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3440549609472
+    m_Localized: To unlock the safe, it seems you have to press the colors and mimic
+      the pattern!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3441363304448
+    m_Localized: You did it! you successfully helped Windesheim and exposed the society!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
