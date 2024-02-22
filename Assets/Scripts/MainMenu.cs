@@ -5,19 +5,24 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject TitleScreen;
+    public GameObject ContinueBtn;
+    public TMP_Text ContinueText;
+    public TMP_Text NewGameText;
+    public TMP_Text QuitText;
+    
+    // Buddy screen
     public GameObject BuddyScreen;
-    public GameObject LanguageScreen;
+    public TMP_Text BuddyChoiceTitle;
+    
+    // Introduction screen
     public GameObject IntroductionScreen;
-    public GameObject TitleScreenTextEN;
-    public GameObject TitleScreenTextNL;
-    public GameObject BuddyScreenTextEN;
-    public GameObject BuddyScreenTextNL;
-    public GameObject IntroductionScreenTextEN;
-    public GameObject IntroductionScreenTextNL;
-    public GameObject ContinueBtnNL;
-    public GameObject ContinueBtnEN;
-    public GameObject BuddyCatImage;
-    public GameObject BuddyDogImage;
+    public TMP_Text IntroductionTitle;
+    public TMP_Text IntroductionMessage;
+    public TMP_Text IntroductionBuddyMessage;
+    public GameObject IntroductionBuddyCat;
+    public GameObject IntroductionBuddyDog;
+    
+    // Navigation
     private int _navigationLocation;
 
     void Awake()
@@ -32,10 +37,7 @@ public class MainMenu : MonoBehaviour
         // If there is no saved game, hide the continue button
         if (PlayerPrefs.GetInt("Currentstep") == 0)
         {
-            // Two buttons for each language.
-            // TODO: Add localisation to reduce the amount of buttons
-            ContinueBtnEN.SetActive(false);
-            ContinueBtnNL.SetActive(false);
+            ContinueBtn.SetActive(false);
         }
     }
 
@@ -44,16 +46,21 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void LoadLanguage()
     {
-        switch (Language.GetLanguage())
+        switch (LanguageManager.GetLanguage())
         {
-            case Language.Languages.Dutch:
-                SetLanguageToDutch();
+            case LanguageManager.Language.Dutch:
+                OnDutchBtn();
                 break;
-            case Language.Languages.English:
+            case LanguageManager.Language.English:
+                OnEnglishBtn();
+                break;
+            case LanguageManager.Language.None:
             default:
-                SetLanguageToEnglish();
+                LanguageScreen.SetActive(true);
+                TitleScreen.SetActive(false);
                 break;
         }
+        
     }
 
     /// <summary>
@@ -84,57 +91,8 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-
-    /// <summary>
-    /// This method changes the language of the game.
-    /// It does *NOT* save the language to the player preferences.
-    /// </summary>
-    /// <param name="language"><see cref="Language"/> to be switched to.</param>
-    private void ChangeLanguage(Language.Languages language)
+    public void OnDutchBtn()
     {
-        switch (language)
-        {
-            case Language.Languages.Dutch:
-                SetActiveDutchMenu(true);
-                SetActiveEnglishMenu(false);
-                break;
-            case Language.Languages.English:
-            default:
-                SetActiveDutchMenu(false);
-                SetActiveEnglishMenu(true);
-                break;
-        }
-    }
-
-    /// <summary>
-    /// Set the active state of the Dutch menu.
-    /// </summary>
-    /// <param name="isActive"><see cref="bool"/> to set the state</param>
-    private void SetActiveDutchMenu(bool isActive)
-    {
-        TitleScreenTextNL.SetActive(isActive);
-        BuddyScreenTextNL.SetActive(isActive);
-        IntroductionScreenTextNL.SetActive(isActive);
-    }
-
-    /// <summary>
-    /// Set the active state of the English menu.
-    /// </summary>
-    /// <param name="isActive"><see cref="bool"/> to set the state</param>
-    private void SetActiveEnglishMenu(bool isActive)
-    {
-        TitleScreenTextEN.SetActive(isActive);
-        BuddyScreenTextEN.SetActive(isActive);
-        IntroductionScreenTextEN.SetActive(isActive);
-    }
-
-    /// <summary>
-    /// Set the language to Dutch and switch to the title screen.
-    /// This is a separate method to allow for the language to be set from the language screen.
-    /// </summary>
-    public void SetLanguageToDutch()
-    {
-        ChangeLanguage(Language.Languages.Dutch);
         PlayerPrefs.SetString("Language", "NL");
         SwitchToTitleScreen();
     }
@@ -145,7 +103,6 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetLanguageToEnglish()
     {
-        ChangeLanguage(Language.Languages.English);
         PlayerPrefs.SetString("Language", "EN");
         SwitchToTitleScreen();
     }
@@ -155,6 +112,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void SwitchToTitleScreen()
     {
+        DialogManagerV2.Initialize();
+        PopulateUiWithLocalizedStrings();
         LanguageScreen.SetActive(false);
         TitleScreen.SetActive(true);
     }
@@ -184,8 +143,8 @@ public class MainMenu : MonoBehaviour
     public void SetBuddyToCat()
     {
         PlayerPrefs.SetString("Buddy", "Cat");
-        BuddyCatImage.SetActive(true);
-        BuddyDogImage.SetActive(false);
+        IntroductionBuddyCat.SetActive(true);
+        IntroductionBuddyDog.SetActive(false);
         SwitchToIntroductionScreen();
     }
 
@@ -196,8 +155,27 @@ public class MainMenu : MonoBehaviour
     public void SetBuddyToDog()
     {
         PlayerPrefs.SetString("Buddy", "Dog");
-        BuddyCatImage.SetActive(false);
-        BuddyDogImage.SetActive(true);
+        IntroductionBuddyCat.SetActive(false);
+        IntroductionBuddyDog.SetActive(true);
         SwitchToIntroductionScreen();
+    }
+
+    /// <summary>
+    /// Populates the localized strings for the UI elements.
+    /// </summary>
+    private void PopulateUiWithLocalizedStrings()
+    {
+        // Title screen
+        ContinueText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
+        NewGameText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");
+        QuitText.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "quitBtn");
+        
+        // Buddy screen
+        BuddyChoiceTitle.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "buddyChoiceTitle");
+        
+        // Introduction screen
+        IntroductionTitle.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionTitle");
+        IntroductionMessage.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionMessage");
+        IntroductionBuddyMessage.text = DialogManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
     }
 }
