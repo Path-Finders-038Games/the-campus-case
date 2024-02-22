@@ -30,6 +30,26 @@ MonoBehaviour:
     m_Localized: Quit
     m_Metadata:
       m_Items: []
+  - m_Id: 641512316387328
+    m_Localized: Choose your Buddy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641768055685120
+    m_Localized: Introduction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641804957171712
+    m_Localized: Welcome to Windesheim! There are rumors going around the school
+      about a secret society operating on campus, leaving strange puzzles and hints
+      about their location... that's why the school decided to hire a famous detective
+      to solve the case, you! Can you help the school and expose the society?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641849970442240
+    m_Localized: I'll be your trusty companion troughout this investigation! You
+      can interact with the text cloud by clicking it.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

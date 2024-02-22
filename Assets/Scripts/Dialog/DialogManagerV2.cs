@@ -29,24 +29,22 @@ namespace Dialog
             LocalizationSettings.SelectedLocale = _locale;
         }
         
+        /// <summary>
+        /// Gets the string from the localization table based on the key and table.
+        /// Automatically selects the correct language based on the player preferences.
+        /// </summary>
+        /// <param name="table">Localization table to search in.</param>
+        /// <param name="key">Key to search for.</param>
+        /// <returns>Localized <see cref="string"/> according to the user preferences.</returns>
         public static string GetLocalizedString(string table, string key)
         {
-            // Access the localization table collection
             LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
-
-            // Get the String Table from the collection
             StringTable stringTable = tableCollection.GetTable(table);
 
-            // Get all entries in the table
             ICollection<StringTableEntry> entries = stringTable.Values;
-
-            // Find the entry with the key
             StringTableEntry entry = entries.First(e => e.Key == key);
             
-            // Get the localized string
-            string localizedString = entry.GetLocalizedString(_locale);
-            
-            return localizedString;
+            return entry.GetLocalizedString(_locale);
         }
     }
 }

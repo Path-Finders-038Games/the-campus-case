@@ -30,6 +30,27 @@ MonoBehaviour:
     m_Localized: Sluiten
     m_Metadata:
       m_Items: []
+  - m_Id: 641512316387328
+    m_Localized: Kies je Buddy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641768055685120
+    m_Localized: Introductie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641804957171712
+    m_Localized: "Welkom op Windesheim! er gaan geruchten rond de school dat er een
+      geheime studentenvereniging actief is op de campus die vreemde puzzels en hints
+      achter laat over hun locatie\u2026 en daarom besloot de school een beroemde
+      detective in te schakelen om deze zaak op te lossen en dat ben jij! Kun jij
+      de school helpen en de vereniging ontmaskeren?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641849970442240
+    m_Localized: 'Tijdens dit onderzoek ben ik er om jou te helpen! Je kunt interacteren
+      met de tekst wolk door erop te klikken '
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

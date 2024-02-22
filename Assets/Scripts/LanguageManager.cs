@@ -7,6 +7,7 @@ public static class LanguageManager
 {
     public enum Language
     {
+        None,
         Dutch,
         English,
     }
@@ -21,7 +22,7 @@ public static class LanguageManager
         {
             "NL" => Language.Dutch,
             "EN" => Language.English,
-            _ => Language.English,
+            _ => Language.None,
         };
     }
 }

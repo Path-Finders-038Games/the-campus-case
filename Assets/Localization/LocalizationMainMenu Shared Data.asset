@@ -27,6 +27,22 @@ MonoBehaviour:
     m_Key: quitBtn
     m_Metadata:
       m_Items: []
+  - m_Id: 641512316387328
+    m_Key: buddyChoiceTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641768055685120
+    m_Key: introductionTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641804957171712
+    m_Key: introductionMessage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641849970442240
+    m_Key: introductionBuddyMessage
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
