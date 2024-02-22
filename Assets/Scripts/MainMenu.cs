@@ -1,9 +1,14 @@
-using System;
+using Dialog;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Language screen
+    public GameObject LanguageScreen;
+    
+    // Title screen
     public GameObject TitleScreen;
     public GameObject ContinueBtn;
     public TMP_Text ContinueText;
@@ -43,16 +48,17 @@ public class MainMenu : MonoBehaviour
 
     /// <summary>
     /// This method sets the language based on the player preferences.
+    /// If there is no language set, show the language screen.
     /// </summary>
     private void LoadLanguage()
     {
         switch (LanguageManager.GetLanguage())
         {
             case LanguageManager.Language.Dutch:
-                OnDutchBtn();
+                SetLanguageToDutch();
                 break;
             case LanguageManager.Language.English:
-                OnEnglishBtn();
+                SetLanguageToEnglish();
                 break;
             case LanguageManager.Language.None:
             default:
@@ -91,7 +97,12 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    public void OnDutchBtn()
+    
+    /// <summary>
+    /// Set the language to Dutch and switch to the title screen.
+    /// This is a separate method to allow for the language to be set from the language screen.
+    /// </summary>
+    public void SetLanguageToDutch()
     {
         PlayerPrefs.SetString("Language", "NL");
         SwitchToTitleScreen();
