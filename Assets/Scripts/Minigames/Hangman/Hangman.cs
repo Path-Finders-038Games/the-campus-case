@@ -27,6 +27,7 @@ namespace Minigames
             Hangman Hangman = new Hangman();
             Setup();
             Debug.Log("hangman startup");
+
         }
 
         // Update is called once per frame
@@ -41,7 +42,7 @@ namespace Minigames
         public List<String> words = new List<String>();
 
         //the word that is being guessed
-        private String word { get; set; }
+        public String word { get; set; }
 
         //a list of letters that make up the word
         public List<Character> wordletters = new List<Character>();
@@ -65,7 +66,7 @@ namespace Minigames
             LocalizationSetup();
             //setup of the word generation for the game
             System.Random random = new System.Random();
-            word = words[random.Next(0, words.Count - 1)];
+            word = words[random.Next(0, words.Count)];
             foreach (char character in word)
             {
                 wordletters.Add(new Character(character));

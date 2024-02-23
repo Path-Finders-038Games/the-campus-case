@@ -216,8 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c09be0e0c05d4647b7338a5609bea20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  mat: {fileID: 2100000, guid: eeb21f17e8073714ebbd17616d182527, type: 2}
+  mesh: {fileID: -2888700847283579708, guid: ce77a817ca107c5429491463789da8df, type: 3}
   guessworddisplay: {fileID: 7570793806529172686}
   hangman: {fileID: 3139322702835580812}
 --- !u!1 &4375917232017731411 stripped
@@ -480,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 761704030953425857, guid: c05541ba028435b4786b6ecc3952f26e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 761704030953425857, guid: c05541ba028435b4786b6ecc3952f26e,
         type: 3}
@@ -545,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 4488286600766709475, guid: c05541ba028435b4786b6ecc3952f26e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4488286600766709475, guid: c05541ba028435b4786b6ecc3952f26e,
         type: 3}
@@ -560,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 4488286600766709475, guid: c05541ba028435b4786b6ecc3952f26e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4488286600766709475, guid: c05541ba028435b4786b6ecc3952f26e,
         type: 3}

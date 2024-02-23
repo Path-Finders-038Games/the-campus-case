@@ -19,11 +19,31 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 101820936192
-    m_Localized: Getest
+    m_Localized: Geheim
     m_Metadata:
       m_Items: []
   - m_Id: 35213741969408
-    m_Localized: getestert
+    m_Localized: Puzzel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112248090537984
+    m_Localized: Buddy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112260308545536
+    m_Localized: Zandloper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112274518847488
+    m_Localized: Rondleiding
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112301484027904
+    m_Localized: Detective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112317514657792
+    m_Localized: Mysterie
     m_Metadata:
       m_Items: []
   references:

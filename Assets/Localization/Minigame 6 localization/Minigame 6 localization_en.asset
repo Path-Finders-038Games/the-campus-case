@@ -19,11 +19,31 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 101820936192
-    m_Localized: Tested
+    m_Localized: Secret
     m_Metadata:
       m_Items: []
   - m_Id: 35213741969408
-    m_Localized: testered
+    m_Localized: Puzzle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112248090537984
+    m_Localized: Buddy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112260308545536
+    m_Localized: Hourglass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112274518847488
+    m_Localized: Tour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112301484027904
+    m_Localized: Detective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112317514657792
+    m_Localized: Mystery
     m_Metadata:
       m_Items: []
   references:
