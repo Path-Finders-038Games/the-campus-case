@@ -26,6 +26,7 @@ namespace Minigames
             // create the instance of the game and run the setup method to make it ready for playing
             Hangman Hangman = new Hangman();
             Setup();
+            Debug.Log("hangman startup");
         }
 
         // Update is called once per frame
@@ -64,7 +65,6 @@ namespace Minigames
             LocalizationSetup();
             //setup of the word generation for the game
             System.Random random = new System.Random();
-            Debug.Log("words count + "+ words.Count);
             word = words[random.Next(0, words.Count - 1)];
             foreach (char character in word)
             {
@@ -91,8 +91,7 @@ namespace Minigames
             foreach (var entry in entries)
             {
                 words.Add(entry.Value);
-                Debug.Log("Key: " + entry.Key + ", Value: " + entry.Value);
-                Debug.Log("werkt niet");
+                Debug.Log(words.Count + "woorden toegevoegd");
             }
         }
         // method used to make a guess

@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 
 namespace Minigames
@@ -12,9 +9,10 @@ namespace Minigames
         private List<GameObject> childrenListLetters = new List<GameObject>();
         private Hangman Hangman;
 
-        List<GameObject> WordLetters = new List<GameObject>();
+        List<WordLetter> WordLetters = new List<WordLetter>();
         public Mesh Mesh;
-        public GameObject guessword;
+        public Material mat;
+        public GameObject guessworddisplay;
         public Hangman hangman;
         // Start is called before the first frame update
         void Start()
@@ -22,7 +20,11 @@ namespace Minigames
             Debug.Log("manager startup");
             GetChildObjects(transform);
             WordSetup();
+            hangman.Guess('e');
+            Debug.Log("gegokt");
+            Debug.Log("AHHHHHHHHH");
         }
+        
 
         private void Update()
         {
@@ -31,6 +33,7 @@ namespace Minigames
                 RaycastCheck();
             }
             //Debug.Log(guessword.name);
+            wordcheck();
         }
 
         void GetChildObjects(Transform parent)
@@ -45,25 +48,52 @@ namespace Minigames
 
         public void WordSetup()
         {
-            int count = 1;
+            float count = -0.4f;
             Debug.Log("entry");
             Debug.Log(hangman.wordletters.Count);
             
             foreach (Hangman.Character letter in hangman.wordletters)
             {
                 Debug.Log(letter.Letter);
-                Vector3 offset =new Vector3(count, 0, 0);
+                Vector3 offset =new Vector3(.5f, 0, 0);
+                offset.z = count;
                 GameObject gameObject = new GameObject();
                 gameObject.name = letter.Letter.ToString();
                 gameObject.AddComponent<MeshFilter>().mesh = Mesh;
-                gameObject.AddComponent<MeshRenderer>();
-                gameObject.transform.SetParent(guessword.transform);
-                gameObject.transform.position += offset;
-                WordLetters.Add(gameObject);
-                gameObject.gameObject.SetActive(true);
-                count++;
+                gameObject.AddComponent<MeshRenderer>().material = mat;
+
+                gameObject.transform.position = guessworddisplay.transform.position;
+                gameObject.transform.rotation = guessworddisplay.transform.rotation;
+                gameObject.transform.localScale = guessworddisplay.transform.localScale;
+                gameObject.transform.SetParent(guessworddisplay.transform);
+                gameObject.transform.localScale = new Vector3(.25f,.5f, .1f);
+                gameObject.transform.localPosition += offset;
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                
+                WordLetters.Add(new WordLetter(letter.Letter,gameObject));
+                //gameObject.SetActive(false);
+                count = count + .1F;
             }
             Debug.Log("exit");
+        }
+
+        public void wordcheck()
+        {
+            foreach (Hangman.Character letter in hangman.wordletters)
+            {
+                if(letter.Guessed == true)
+                {
+                    foreach(WordLetter wordLetter in WordLetters)
+                    {
+                        Debug.Log("dit vierkant is " + wordLetter.letter +wordLetter.gameObject.GetComponent<MeshRenderer>().enabled);
+                        if(wordLetter.letter == letter.Letter)
+                        {
+                           wordLetter.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                            letter.Guessed = false;
+                        }
+                    }
+                }
+            }
         }
 
         private void RaycastCheck()
@@ -83,6 +113,18 @@ namespace Minigames
                     }
                 }
             }
+            wordcheck();
+        }
+    }
+    public class WordLetter
+    {
+        public char letter;
+        public GameObject gameObject;
+
+        public WordLetter(char letter,GameObject gameObject)
+        {
+            this.letter = letter;
+            this.gameObject = gameObject;
         }
     }
 }
