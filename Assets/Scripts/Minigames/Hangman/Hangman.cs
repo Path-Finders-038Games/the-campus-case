@@ -99,6 +99,8 @@ namespace Minigames
         // also include potential animation code
         public void Guess(char guess)
         {
+            Debug.Log("enter guess");
+            Debug.Log(guess);
             //snippet checking if the letter has been guessed before
             // duplicate guess check probably made redundant in the final version
             guessedletters.Add(guess);     
@@ -113,6 +115,7 @@ namespace Minigames
                 {
                     letter.Guessed = true;
                     count++;
+                    Debug.Log(letter.Guessed);
                 }
             }
             if (count == 0)
@@ -145,6 +148,7 @@ namespace Minigames
             if (won)
             {
                 //needs work
+                Debug.Log("WWWWWWWWWWWWWWWWWWWWWW");
             }
         }
 
@@ -154,6 +158,7 @@ namespace Minigames
         {
             if (fout == 6)
             {
+                Debug.Log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
                 //still needs work
             }
         }

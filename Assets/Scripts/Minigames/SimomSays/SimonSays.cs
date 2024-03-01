@@ -260,6 +260,7 @@ namespace Minigames.SimomSays
             if (Physics.Raycast(ray, out hit, _raycastRange))
             {
                 string name = hit.transform.gameObject.name;
+                Debug.Log(name);
                 switch (name)
                 {
                     case "SafeButtonLT":
