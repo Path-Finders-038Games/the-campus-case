@@ -1,6 +1,8 @@
 using Minigames;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +11,7 @@ public class AnimationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //children = HangmanObject.GetChildGameObjects();
         Setup();
     }
 
@@ -17,26 +20,32 @@ public class AnimationManager : MonoBehaviour
     {
         
     }
-    public Hangman Hangman_Game;
+    public GameObject HangmanObject;
+    private List<GameObject> children = new List<GameObject>();
     private int progress = 0;
 
     private List<AnimationTransform> Parts;
 
-    public GameObject Plank_Middle;
-    public GameObject Plank_Upper;
-    public GameObject Support_Up;
-    public GameObject Rope;
-    public GameObject Rope2;
-    public GameObject Seat;
-    public GameObject Bear_head;
-    public GameObject Bear_Body;
-    public GameObject Bear_Arm_Right;
-    public GameObject Bear_Arm_Left;
-    public GameObject Bear_Leg_Left;
-    public GameObject Bear_Leg_Right;
+    private GameObject Plank_Middle;
+    private GameObject Plank_Upper;
+    private GameObject Support_Up;
+    private GameObject Rope;
+    private GameObject Rope2;
+    private GameObject Seat;
+    private GameObject Bear_head;
+    private GameObject Bear_Body;
+    private GameObject Bear_Arm_Right;
+    private GameObject Bear_Arm_Left;
+    private GameObject Bear_Leg_Left;
+    private GameObject Bear_Leg_Right;
 
     public void Setup()
     {
+            foreach (Transform child in HangmanObject.transform)
+            {
+                    children.Add(child.gameObject);
+            }
+
         Parts.Add(new AnimationTransform(Plank_Middle, Plank_Middle.transform));
         Parts.Add(new AnimationTransform(Plank_Upper, Plank_Upper.transform));
         Parts.Add(new AnimationTransform(Support_Up, Support_Up.transform));

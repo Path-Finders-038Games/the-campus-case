@@ -4,20 +4,21 @@ using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
 using UnityEngine.Localization;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 
 /*
  Todo:
--delete console related code
 -add animation code
--integrate with project 
 -test correct funtionality in unity
--test scaling of objects
+-improve presentation to user
+-update to new minigamea standards
  */
 
 namespace Minigames
 {
-
+    // class for all logic related to the hangman minigame
     public class Hangman : MonoBehaviour
     {
         // Start is called before the first frame update
@@ -26,7 +27,6 @@ namespace Minigames
             // create the instance of the game and run the setup method to make it ready for playing
             Hangman Hangman = new Hangman();
             Setup();
-            Debug.Log("hangman startup");
 
         }
 
@@ -50,6 +50,7 @@ namespace Minigames
         //list of incorrectly guessed letters
         //no use at the moment but might be used later
         //private List<char> wrongletters = new List<char>();
+
         //list of guessed letters
         private List<char> guessedletters = new List<char>();
 
@@ -60,7 +61,6 @@ namespace Minigames
         public bool won = false;
 
         //setup method used for setting up the game at the beginning
-        //also include potential code for animations etc
         public void Setup()
         {
             LocalizationSetup();
@@ -92,15 +92,13 @@ namespace Minigames
             foreach (var entry in entries)
             {
                 words.Add(entry.Value);
-                Debug.Log(words.Count + "woorden toegevoegd");
             }
         }
         // method used to make a guess
-        // also include potential animation code
         public void Guess(char guess)
         {
-            Debug.Log("enter guess");
-            Debug.Log(guess);
+            char guessUpper = char.ToUpper(guess);
+            char guessLower = char.ToLower(guess);
             //snippet checking if the letter has been guessed before
             // duplicate guess check probably made redundant in the final version
             guessedletters.Add(guess);     
@@ -111,11 +109,10 @@ namespace Minigames
             int count = 0;
             foreach (Character letter in wordletters)
             {
-                if (guess == letter.Letter)
+                if (guessUpper == letter.Letter || guessLower == letter.Letter)
                 {
                     letter.Guessed = true;
                     count++;
-                    Debug.Log(letter.Guessed);
                 }
             }
             if (count == 0)
@@ -143,12 +140,11 @@ namespace Minigames
                 }
             }
 
-
             //code for what to do when the user has won
             if (won)
             {
                 //needs work
-                Debug.Log("WWWWWWWWWWWWWWWWWWWWWW");
+                BackToNavigation();
             }
         }
 
@@ -158,9 +154,14 @@ namespace Minigames
         {
             if (fout == 6)
             {
-                Debug.Log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+                BackToNavigation();
                 //still needs work
             }
+        }
+        IEnumerator BackToNavigation()
+        {
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene(1);
         }
         // class for each individual letter in the word 
         public class Character

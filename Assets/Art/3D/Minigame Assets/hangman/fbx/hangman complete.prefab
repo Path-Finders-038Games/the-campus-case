@@ -785,7 +785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: -2888700847283579708, guid: ce77a817ca107c5429491463789da8df, type: 3}
   guessworddisplay: {fileID: 7570793806529172686}
-  hangman: {fileID: 3139322702835580812}
+  hangman: {fileID: 8259800885839427170}
 --- !u!1 &3848175707638282219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4284726218258185368, guid: ccb95c3364b6c9f4bb599e5894c3fd91,
@@ -1304,7 +1304,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb85312a4f070ba4d9abc2bf39f8d33a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3139322702835580812}
+      addedObject: {fileID: 3317056731595966038}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb85312a4f070ba4d9abc2bf39f8d33a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8259800885839427170}
   m_SourcePrefab: {fileID: 100100000, guid: fb85312a4f070ba4d9abc2bf39f8d33a, type: 3}
 --- !u!4 &2395749675975311758 stripped
 Transform:
@@ -1318,7 +1322,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2789365197905159781}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3139322702835580812
+--- !u!114 &3317056731595966038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059273523348658996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e105968c1edb9724283fef35657accbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HangmanObject: {fileID: 0}
+--- !u!114 &8259800885839427170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

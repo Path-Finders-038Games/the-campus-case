@@ -7,19 +7,29 @@ using UnityEngine;
 
 namespace Minigames
 {
+    // class responsible for the interaction between the user and the hangman game
     public class KeyboardManager : MonoBehaviour
     {
+        // list of all letters on the guessingboard
         private List<GameObject> childrenListLetters = new List<GameObject>();
+
+        //list of all letters in the word
         List<WordLetter> WordLetters = new List<WordLetter>();
 
+        // mesh of the letters
         public Mesh mesh;
+
+        //dictionary of all materials used by the letters
         public Dictionary<string,Material> Mats = new Dictionary<string, Material>();
+
+        //object as background for the guessword to be displayed against
         public GameObject guessworddisplay;
+
+        //hangman game
         public Hangman hangman;
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("manager startup");
             GetChildObjects(transform);
             Setup();
             WordSetup();
@@ -28,7 +38,7 @@ namespace Minigames
 
         private void Update()
         {
-            
+            //checks if the user is touching the screen and fires a raycast
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
                 RaycastCheck();
@@ -37,8 +47,10 @@ namespace Minigames
             //wordcheck();
         }
 
+        //gets the material of each letter and makes a name for it and puts it into the dictionary
         public void Setup()
         {
+            
             foreach (GameObject go in childrenListLetters)
             {
                 char letter = go.name.Last();
@@ -50,6 +62,8 @@ namespace Minigames
             
         }
 
+        //gets all child objects of the clipboard by their transform component
+        //uses count to step over the clipboard object
         void GetChildObjects(Transform parent)
         {
             int count = 0;
@@ -57,13 +71,13 @@ namespace Minigames
             {
                 if (count > 0)
                 {
-                    Debug.Log(child.name);
                     childrenListLetters.Add(child.gameObject);
                 }
                 count++;
             }
         }
 
+        //setup method for the guessworddisplay
         public void WordSetup()
         {
             float countoffset = 0.42f;
@@ -98,9 +112,9 @@ namespace Minigames
             }
         }
 
+        //check to see if letters should be turned visible
         public void Wordcheck()
         {
-            Debug.Log("enter wordcheck");
             foreach (Hangman.Character letter in hangman.wordletters)
             {
                 Debug.Log(letter.Letter + " = " + letter.Guessed);
@@ -108,7 +122,7 @@ namespace Minigames
                 {
                     foreach(WordLetter wordLetter in WordLetters)
                     {
-                        Debug.Log("dit vierkant is " + wordLetter.letter + wordLetter.gameObject.GetComponent<MeshRenderer>().enabled);
+                       
                         if(wordLetter.letter == letter.Letter)
                         {
                            wordLetter.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -117,35 +131,23 @@ namespace Minigames
                 }
             }
         }
-
+        //checks where the user touches the AR object and guesses the selected letter
         private void RaycastCheck()
         {
             Debug.Log(hangman.word);
             RaycastHit hit;
             Vector2 touchpos = Input.touches[0].position;
-            Debug.Log("step 1 " + touchpos);
             Ray ray = Camera.main.ScreenPointToRay(touchpos);
-            Debug.Log("step 2 " + ray);
             if (Physics.Raycast(ray, out hit, 100))
            {
                 string name = hit.transform.gameObject.name;
-                Debug.Log("step 3 " + name);
                 foreach (GameObject child in childrenListLetters)
                 {
-                    Debug.Log("step 4 " + child.name);
 
                     if (child.name == name)
                     {
-                        Debug.Log("step 5 " + child.name);
                         char input = name.Last();
-                        Debug.Log("step 6 " + input);
-                        Debug.Log(hangman.word);
-                        input = char.ToUpper(input);
                         hangman.Guess(input);
-                        input = char.ToLower(input);
-                        hangman.Guess(input);
-                        Debug.Log("step 7 " + input);
-                        Debug.Log("complete");
                     }
                 }
                 Wordcheck();
@@ -154,6 +156,7 @@ namespace Minigames
            
         }
     }
+    // letter object class
     public class WordLetter
     {
         public char letter;
