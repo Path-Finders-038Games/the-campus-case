@@ -210,18 +210,9 @@ namespace Minigames.Mastermind
         }
         public override void SplitDialogue()
         {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-2][0]);
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-2][1]);
-                _endMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-2][2]);
-            }
-            if (PlayerPrefs.GetString("Language").Equals("EN"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-2][0]);
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-2][1]);
-                _endMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-2][2]);
-            }
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_0"));
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_1"));
+            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_2"));
         }
         public override void SetBuddy()
         {

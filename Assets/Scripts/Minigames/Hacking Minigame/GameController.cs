@@ -233,18 +233,9 @@ namespace Minigames.Hacking_Minigame
         }
         public override void SplitDialogue()
         {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-4][0]);
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-4][1]);
-                _endMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-4][2]);
-            }
-            if (PlayerPrefs.GetString("Language").Equals("EN"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-4][0]);
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-4][1]);
-                _endMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-4][2]);
-            }
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_1"));
+            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_2"));
         }
         public override void SetBuddy()
         {

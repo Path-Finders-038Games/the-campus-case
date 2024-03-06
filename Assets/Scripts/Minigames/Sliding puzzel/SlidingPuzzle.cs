@@ -12,63 +12,60 @@ namespace Minigames.Sliding_puzzel
     public class SlidingPuzzle : Minigame
     {
         public Transform EmptySpace;
-        private List<SlidingPuzzleTile> _tilesScripts;
         public List<GameObject> TileObjects;
-        private int[,] _correctBoard;
-        private int[,] _currentBoard;
-        private bool _isSolvable;
-        private static int _boardTileCount;
+        
         public LocationInfoScriptableObject LocationInfo;
         public TMP_Text LocationUIName;
         public TMP_Text LocationUIDescription;
         public TMP_Text LocationUIFacts;
         public TMP_Text LocationUIHintNextLocation;
         public GameObject LocationFileUI;
-        private bool _isChecking;
-        private int _raycastRange;
         public GameObject GameBoard;
         public Button HideLocationFileButton;
+        
         public TMP_Text BuddyTextBlock;
         public GameObject BuddyDialogueObject;
         public GameObject BuddyImage;
         public Sprite BuddyDogSprite;
         public Sprite BuddyCatSprite;
+        
+        private int[,] _correctBoard;
+        private int[,] _currentBoard;
+        private bool _isSolvable;
+        private static int _boardTileCount;
+        private bool _isChecking;
+        private int _raycastRange;
+        
         private List<Dialogue> _startMinigame = new();
         private List<Dialogue> _endMinigame = new();
-        // Start is called before the first frame update 
+        private List<SlidingPuzzleTile> _tilesScripts;
+        
         void Start()
         {
             GameSetup();   
         }
-        // Update is called once per frame
+        
         void Update()
         {
             UpdateDialogue();
-            if (_isChecking)
+            if (!_isChecking) return;
+            
+            //Screen touched check
+            if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
-                //Screen touched check
-                if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
-                {
-                    RaycastCheck();
-                }
+                RaycastCheck();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public override void SplitDialogue()
         {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-1][2]);
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-1][3]);
-                _endMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-1][4]);
-                _endMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-1][5]);
-            }
-            if (PlayerPrefs.GetString("Language").Equals("EN"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-1][2]);
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-1][3]);
-                _endMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-1][4]);
-                _endMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-1][5]);
-            }
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_1"));
+            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_2"));
+            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_3"));
         }
         private void RaycastCheck()
         {
@@ -340,6 +337,7 @@ namespace Minigames.Sliding_puzzel
         public override void OnTextBlockClick()
         {
             string text = BuddyTextBlock.text;
+            
             if (!LocationFile.IsCompleted)
             {
                 _startMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
@@ -348,31 +346,20 @@ namespace Minigames.Sliding_puzzel
             {
                 _endMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
             }
+            
             BuddyDialogueObject.SetActive(false);
         }
         public override void UpdateDialogue()
         {
             if (!LocationFile.IsCompleted)
             {
-                foreach (Dialogue dialogue in _startMinigame)
-                {
-                    if (dialogue.IsRead != true)
-                    {
-                        SetBuddyDialogueText(dialogue.Text);
-                        break;
-                    }
-                }
+                Dialogue dialogue = _startMinigame.First(dialogue => dialogue.IsRead != true);
+                SetBuddyDialogueText(dialogue.Text);
             }
             else
             {
-                foreach (Dialogue dialogue in _endMinigame)
-                {
-                    if (dialogue.IsRead != true)
-                    {
-                        SetBuddyDialogueText(dialogue.Text);
-                        break;
-                    }
-                }
+                Dialogue dialogue = _endMinigame.First(dialogue => dialogue.IsRead != true);
+                SetBuddyDialogueText(dialogue.Text);
             }
         
         }

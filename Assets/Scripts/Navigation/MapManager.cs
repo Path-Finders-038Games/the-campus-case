@@ -32,7 +32,6 @@ namespace Navigation
             
             // Loop around when the end of the array is reached
             if (Mapnnmber > Maps.Length - 1) Mapnnmber = 0;
-
             
             Maps[Mapnnmber].SetActive(true);
             Mapnnmber++;

@@ -12,7 +12,7 @@ namespace Dialog
         public GameObject BuddyImage;
         public Sprite BuddyDogSprite;
         public Sprite BuddyCatSprite;
-        
+
         private bool _isLastText;
         private bool _isDoneTaking;
 
@@ -32,33 +32,16 @@ namespace Dialog
 
         private void UpdateDialogue()
         {
-            if (!_isDoneTaking)
+            if (_isDoneTaking) return;
+            
+            if (!_isLastText)
             {
-                if (PlayerPrefs.GetString("Language").Equals("EN"))
-                {
-                    if (!_isLastText)
-                    {
-                        SetBuddyDialogueText(DialogueManager.Instance.EnglishBuddyDialogue[-1][0].Text);
-                    }
-                    else
-                    {
-                        SetBuddyDialogueText(DialogueManager.Instance.EnglishBuddyDialogue[-1][1].Text);
-                        _isDoneTaking = true;
-                    }
-                }
-
-                if (PlayerPrefs.GetString("Language").Equals("NL"))
-                {
-                    if (!_isLastText)
-                    {
-                        SetBuddyDialogueText(DialogueManager.Instance.DutchBuddyDialogue[-1][0].Text);
-                    }
-                    else
-                    {
-                        SetBuddyDialogueText(DialogueManager.Instance.DutchBuddyDialogue[-1][1].Text);
-                        _isDoneTaking = true;
-                    }
-                }
+                SetBuddyDialogueText(DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "arExplanation_0"));
+            }
+            else
+            {
+                SetBuddyDialogueText(DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "arExplanation_1"));
+                _isDoneTaking = true;
             }
         }
 

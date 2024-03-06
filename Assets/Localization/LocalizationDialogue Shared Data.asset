@@ -24,27 +24,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 393765240832
-    m_Key: slidingPuzzle_0
+    m_Key: arExplanation_0
     m_Metadata:
       m_Items: []
   - m_Id: 451910877184
-    m_Key: slidingPuzzle_1
+    m_Key: arExplanation_1
     m_Metadata:
       m_Items: []
   - m_Id: 494722138112
-    m_Key: slidingPuzzle_2
+    m_Key: slidingPuzzle_0
     m_Metadata:
       m_Items: []
   - m_Id: 497997889536
-    m_Key: slidingPuzzle_3
+    m_Key: slidingPuzzle_1
     m_Metadata:
       m_Items: []
   - m_Id: 501214920704
-    m_Key: slidingPuzzle_4
+    m_Key: slidingPuzzle_2
     m_Metadata:
       m_Items: []
   - m_Id: 506206142464
-    m_Key: slidingPuzzle_5
+    m_Key: slidingPuzzle_3
     m_Metadata:
       m_Items: []
   - m_Id: 773110677504
@@ -128,11 +128,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3419330625536
-    m_Key: SimonSaysMinigame_0
+    m_Key: simonSaysMinigame_0
     m_Metadata:
       m_Items: []
   - m_Id: 3440549609472
-    m_Key: SimonSaysMinigame_1
+    m_Key: simonSaysMinigame_1
     m_Metadata:
       m_Items: []
   - m_Id: 3441363304448

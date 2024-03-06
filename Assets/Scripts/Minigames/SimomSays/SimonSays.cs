@@ -68,16 +68,8 @@ namespace Minigames.SimomSays
         }
         public override void SplitDialogue()
         {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-5][0]);
-                _startMinigame.Add(DialogueManager.Instance.DutchBuddyDialogue[-5][1]);
-            }
-            if (PlayerPrefs.GetString("Language").Equals("EN"))
-            {
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-5][0]);
-                _startMinigame.Add(DialogueManager.Instance.EnglishBuddyDialogue[-5][1]);
-            }
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_1"));
         }
         public override void PrepareStep()
         {
