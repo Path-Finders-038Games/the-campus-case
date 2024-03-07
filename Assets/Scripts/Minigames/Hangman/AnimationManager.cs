@@ -46,18 +46,18 @@ public class AnimationManager : MonoBehaviour
                     children.Add(child.gameObject);
             }
 
-        Parts.Add(new AnimationTransform(Plank_Middle, Plank_Middle.transform));
-        Parts.Add(new AnimationTransform(Plank_Upper, Plank_Upper.transform));
-        Parts.Add(new AnimationTransform(Support_Up, Support_Up.transform));
-        Parts.Add(new AnimationTransform(Rope, Rope.transform));
-        Parts.Add(new AnimationTransform(Rope2, Rope2.transform));
-        Parts.Add(new AnimationTransform(Seat, Seat.transform));
-        Parts.Add(new AnimationTransform(Bear_head, Bear_head.transform));
-        Parts.Add(new AnimationTransform(Bear_Body, Bear_Body.transform));
-        Parts.Add(new AnimationTransform(Bear_Arm_Right, Bear_Arm_Right.transform));
-        Parts.Add(new AnimationTransform(Bear_Arm_Left, Bear_Arm_Left.transform));
-        Parts.Add(new AnimationTransform(Bear_Leg_Left, Bear_Leg_Left.transform));
-        Parts.Add(new AnimationTransform(Bear_Leg_Right, Bear_Leg_Right.transform));
+        Parts.Add(new AnimationTransform(Plank_Middle, Plank_Middle.transform,new Vector3(0,0,0),new Vector3(0,45,0)));
+        Parts.Add(new AnimationTransform(Plank_Upper, Plank_Upper.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Support_Up, Support_Up.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Rope, Rope.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Rope2, Rope2.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Seat, Seat.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Bear_head, Bear_head.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Bear_Body, Bear_Body.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Bear_Arm_Right, Bear_Arm_Right.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Bear_Arm_Left, Bear_Arm_Left.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Bear_Leg_Left, Bear_Leg_Left.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+        Parts.Add(new AnimationTransform(Bear_Leg_Right, Bear_Leg_Right.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
     }
 
     public void Animation_0()
@@ -135,11 +135,13 @@ public class AnimationTransform
     private Transform dissasembled;
     private bool completed;
 
-    public AnimationTransform(GameObject Part,Transform transform)
+    public AnimationTransform(GameObject Part,Transform transform_assembled,Vector3 transform_dissassembled_position,Vector3 transform_dissassembled_rotation)
     {
         part = Part;
-        assembled = transform;
-        dissasembled = transform;
+        assembled = transform_assembled;
+        dissasembled = transform_assembled;
+        dissasembled.position = transform_dissassembled_position;
+        dissasembled.Rotate(transform_dissassembled_rotation);
         completed = false;
     }
 }

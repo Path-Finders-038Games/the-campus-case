@@ -11,8 +11,7 @@ using System.Collections;
 /*
  Todo:
 -add animation code
--test correct funtionality in unity
--improve presentation to user
+-improve presentation to user(text on win or lose)
 -update to new minigamea standards
  */
 
@@ -144,7 +143,7 @@ namespace Minigames
             if (won)
             {
                 //needs work
-                BackToNavigation();
+                SceneManager.LoadScene(1);
             }
         }
 
@@ -154,14 +153,9 @@ namespace Minigames
         {
             if (fout == 6)
             {
-                BackToNavigation();
                 //still needs work
+                SceneManager.LoadScene(1);
             }
-        }
-        IEnumerator BackToNavigation()
-        {
-            yield return new WaitForSeconds(3);
-            SceneManager.LoadScene(1);
         }
         // class for each individual letter in the word 
         public class Character
