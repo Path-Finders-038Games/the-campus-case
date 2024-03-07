@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
-using UnityEngine;
+using JetBrains.Annotations;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
@@ -11,7 +10,7 @@ namespace Dialog
     public static class DialogueManagerV2
     {
         private static Locale _locale;
-        private static readonly Dictionary<string, int> DialogueProgress = new(); // Key: map/minigame name, Value: current step
+        private static List<string> _readDialogues;
 
         /// <summary>
         /// Sets the locale to align with the language set in the player preferences.
@@ -27,6 +26,8 @@ namespace Dialog
 
             _locale = Locale.CreateLocale(cultureCode);
             LocalizationSettings.SelectedLocale = _locale;
+
+            _readDialogues = new List<string>();
         }
 
         /// <summary>
@@ -61,20 +62,49 @@ namespace Dialog
         }
 
         /// <summary>
-        /// Resets all dialogue progress.
+        /// Marks the dialogue as read.
         /// </summary>
-        public static void ResetDialogueProgress()
+        /// <param name="key">Key of the dialogue to mark as read.</param>
+        public static void MarkDialogueAsRead(string key)
         {
-            DialogueProgress.Clear();
+            if (!_readDialogues.Contains(key))
+            {
+                _readDialogues.Add(key);
+            }
         }
 
         /// <summary>
-        /// Resets the dialogue progress for the given map.
+        /// Gets the dialogues starting with the given key from the given table.
         /// </summary>
-        /// <param name="map"></param>
-        public static void ResetDialogueProgress(string map)
+        /// <param name="table">Localization table to search in.</param>
+        /// <param name="key">Key to search for.</param>
+        /// <returns>List of Dialogues starting with the given key.</returns>
+        public static List<Dialogue> GetDialoguesStartingWith(string table, string key)
         {
-            DialogueProgress[map] = 0;
+            LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
+            StringTable stringTable = tableCollection.GetTable(table);
+
+            ICollection<StringTableEntry> entries = stringTable.Values;
+            List<Dialogue> dialogues = new();
+
+            foreach (StringTableEntry entry in entries.Where(e => e.Key.StartsWith(key)))
+            {
+                string localizedString = entry.GetLocalizedString(_locale);
+                Dialogue dialogue = new(localizedString);
+                dialogues.Add(dialogue);
+            }
+
+            return dialogues;
+        }
+
+        /// <summary>
+        /// Gets the first unread dialogue from the given list of dialogues.
+        /// </summary>
+        /// <param name="dialogues">IEnumerable with dialogues to ve checked.</param>
+        /// <returns>First unread Dialogue</returns>
+        public static Dialogue GetFirstUnreadDialogue(IEnumerable<Dialogue> dialogues)
+        {
+            return dialogues.FirstOrDefault(dialogue => !_readDialogues.Contains(dialogue.Text));
         }
     }
 }
