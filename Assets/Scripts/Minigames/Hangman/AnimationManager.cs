@@ -24,20 +24,20 @@ public class AnimationManager : MonoBehaviour
     private List<GameObject> children = new List<GameObject>();
     private int progress = 0;
 
-    private List<AnimationTransform> Parts;
+    private List<AnimationTransform> Parts = new List<AnimationTransform>();
 
-    private GameObject Plank_Middle;
-    private GameObject Plank_Upper;
-    private GameObject Support_Up;
+    private GameObject Support_Plank1;
+    private GameObject Support_Plank2;
+    private GameObject Support_Plank3;
+    private GameObject Support_Plank4;
+    private GameObject Support_Lower1;
+    private GameObject Support_Lower2;
+    private GameObject Upper_Plank;
+    private GameObject Support_Side1;
+    private GameObject Support_Side2;
     private GameObject Rope;
-    private GameObject Rope2;
     private GameObject Seat;
-    private GameObject Bear_head;
-    private GameObject Bear_Body;
-    private GameObject Bear_Arm_Right;
-    private GameObject Bear_Arm_Left;
-    private GameObject Bear_Leg_Left;
-    private GameObject Bear_Leg_Right;
+    private GameObject Bear;
 
     public void Setup()
     {
@@ -45,84 +45,65 @@ public class AnimationManager : MonoBehaviour
             {
                     children.Add(child.gameObject);
             }
+        Support_Plank1 = children[0];
+        Support_Plank2 = children[1];
+        Support_Plank3 = children[2];
+        Support_Plank4 = children[3];
+        Support_Lower1 = children[4];
+        Support_Lower2 = children[5];
+        Upper_Plank = children[6];
+        Support_Side1 = children[7];
+        Support_Side2 = children[8];
+        Rope = children[9];
+        Seat = children[10];
+        Bear = children[11];
 
-        Parts.Add(new AnimationTransform(Plank_Middle, Plank_Middle.transform,new Vector3(0,0,0),new Vector3(0,45,0)));
-        Parts.Add(new AnimationTransform(Plank_Upper, Plank_Upper.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Support_Up, Support_Up.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Rope, Rope.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Rope2, Rope2.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Seat, Seat.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Bear_head, Bear_head.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Bear_Body, Bear_Body.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Bear_Arm_Right, Bear_Arm_Right.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Bear_Arm_Left, Bear_Arm_Left.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Bear_Leg_Left, Bear_Leg_Left.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
-        Parts.Add(new AnimationTransform(Bear_Leg_Right, Bear_Leg_Right.transform, new Vector3(0, 0, 0), new Vector3(0, 45, 0)));
+
+        Debug.Log("children count = " + children.Count);
+
+
+
+        Parts.Add(new AnimationTransform(Support_Plank1, Support_Plank1.transform,new Vector3(7,0.5f,1),new Vector3(0,0,0)));
+        Parts.Add(new AnimationTransform(Support_Plank2, Support_Plank2.transform, new Vector3(5.75f, 0.5f, 1), new Vector3(0, 0, 0)));
+        Parts.Add(new AnimationTransform(Support_Plank3, Support_Plank3.transform, new Vector3(3.7f, 0.5f, 5.6f), new Vector3(0, 90, 0)));
+        Parts.Add(new AnimationTransform(Support_Plank4, Support_Plank4.transform, new Vector3(3.7f, 0.5f, -4.3f), new Vector3(0, 90, 0)));
+        Parts.Add(new AnimationTransform(Support_Lower1, Support_Lower1.transform, new Vector3(2.1f, 0.5f, -2.2f), new Vector3(0, -90, 0)));
+        Parts.Add(new AnimationTransform(Support_Lower2, Support_Lower2.transform, new Vector3(2.1f, 0.5f, -3), new Vector3(0, -90, 0)));
+        Parts.Add(new AnimationTransform(Upper_Plank, Upper_Plank.transform, new Vector3(-1.3f, 0.5f, -2.9f), new Vector3(0, 0, 0)));
+        Parts.Add(new AnimationTransform(Support_Side1, Support_Side1.transform, new Vector3(-2.7f, 0.5f, -4.2f), new Vector3(0, 0, 0)));
+        Parts.Add(new AnimationTransform(Support_Side2, Support_Side2.transform, new Vector3(-2.7f, 0.5f, -0.8f), new Vector3(0, 0, 0)));
+        Parts.Add(new AnimationTransform(Rope, Rope.transform, new Vector3(2.5f, 0.5f, -1), new Vector3(0, 90, 90)));
+        Parts.Add(new AnimationTransform(Seat, Seat.transform, new Vector3(0.75f, 0.5f, -0.3f), new Vector3(-90, 0, 0)));
+        Parts.Add(new AnimationTransform(Bear, Bear.transform, new Vector3(-0.72f, 0.27f, 4.34f), new Vector3(0, -65, 100)));
+
+
+        Debug.Log("parts count = " + Parts.Count);
+
+        foreach (var part in Parts)
+        {
+            part.setuppos();
+            part.rotatesetup();
+        }
+
+        foreach(var part in Parts)
+        {
+            AnimationPlay();
+        }
     }
 
-    public void Animation_0()
+    public void AnimationPlay()
     {
-
-    }
-
-    public void Animation_1()
-    {
-
-    }
-
-    public void Animation_2()
-    {
-
-    }
-
-    public void Animation_3()
-    {
-
-    }
-
-    public void Animation_4()
-    {
-
-    }
-
-    public void Animation_5()
-    {
-
-    }
-
-    public void Animation_6()
-    {
-
-    }
-
-    public void Animation_7()
-    {
-
-    }
-
-    public void Animation_8()
-    {
-
-    }
-
-    public void Animation_9()
-    {
-
-    }
-
-    public void Animation_10()
-    {
-
-    }
-
-    public void Animation_11()
-    {
-
-    }
-
-    public void Animation_12()
-    {
-
+        foreach(var part in Parts)
+        {
+            if(part.completed == false)
+            {
+                part.MoveToPosition();
+                part.RotateToDirection();
+                part.completed = true;
+                Debug.Log(" play that shit");
+            }
+            break;
+        }
     }
     
     
@@ -133,15 +114,72 @@ public class AnimationTransform
     private GameObject part;
     private Transform assembled;
     private Transform dissasembled;
-    private bool completed;
+    public bool completed;
 
     public AnimationTransform(GameObject Part,Transform transform_assembled,Vector3 transform_dissassembled_position,Vector3 transform_dissassembled_rotation)
     {
         part = Part;
         assembled = transform_assembled;
+        assembled.localPosition = transform_assembled.localPosition;
         dissasembled = transform_assembled;
-        dissasembled.position = transform_dissassembled_position;
-        dissasembled.Rotate(transform_dissassembled_rotation);
+        dissasembled.localPosition = transform_dissassembled_position;
         completed = false;
     }
+
+    public IEnumerator setuppos()
+    {
+        var currentPos = part.transform.localPosition;
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / 1;
+            part.transform.localPosition = Vector3.Lerp(currentPos, dissasembled.localPosition, t);
+            yield return null;
+        }
+        part.transform.localPosition = dissasembled.localPosition;
+    }
+
+    public IEnumerator rotatesetup()
+    {
+        var startRotation = part.transform.rotation;
+        var direction = dissasembled.transform.localPosition - part.transform.localPosition;
+        var finalRotation = Quaternion.LookRotation(direction);
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / 1;
+            part.transform.rotation = Quaternion.Lerp(startRotation, finalRotation, t);
+            yield return null;
+        }
+        part.transform.localRotation = finalRotation;
+    }
+
+    public IEnumerator MoveToPosition()
+    {
+        var currentPos = part.transform.localPosition;
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / 3;
+            part.transform.localPosition = Vector3.Lerp(currentPos, assembled.localPosition, t);
+            yield return null;
+        }
+        part.transform.localPosition = assembled.localPosition;
+    }
+
+    public IEnumerator RotateToDirection()
+    {
+        var startRotation = part.transform.localRotation;
+        var direction = assembled.transform.localPosition - part.transform.localPosition;
+        var finalRotation = Quaternion.LookRotation(direction);
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / 3;
+            part.transform.rotation = Quaternion.Lerp(startRotation, finalRotation, t);
+            yield return null;
+        }
+        part.transform.localRotation = finalRotation;
+    }
+
 }

@@ -59,6 +59,8 @@ namespace Minigames
         // boolean signalling whether the user has won the game 
         public bool won = false;
 
+        public AnimationManager animationManager;
+
         //setup method used for setting up the game at the beginning
         public void Setup()
         {
@@ -118,6 +120,9 @@ namespace Minigames
             {
                 //wrongletters.Add(guess);
                 fout++;
+                animationManager.AnimationPlay();
+                Debug.Log("should be playing animation");
+
             }
 
             CheckLost();
