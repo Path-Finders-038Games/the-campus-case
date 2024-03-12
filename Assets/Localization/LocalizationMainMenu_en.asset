@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LocalizationMainMenu_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: ef7335ed113e9004aa8adfae01ff2948, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 34186190848
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4007043522560
+    m_Localized: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4076228567040
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641512316387328
+    m_Localized: Choose your Buddy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641768055685120
+    m_Localized: Introduction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641804957171712
+    m_Localized: Welcome to Windesheim! There are rumors going around the school
+      about a secret society operating on campus, leaving strange puzzles and hints
+      about their location... that's why the school decided to hire a famous detective
+      to solve the case, you! Can you help the school and expose the society?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 641849970442240
+    m_Localized: I'll be your trusty companion troughout this investigation! You
+      can interact with the text cloud by clicking it.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

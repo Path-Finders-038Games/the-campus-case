@@ -1,11 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using System.Numerics;
 using UnityEngine.XR.ARFoundation;
-using static UnityEngine.XR.ARSubsystems.XRCpuImage;
 
 public class SpawnPrefab : MonoBehaviour
 {
@@ -17,13 +12,11 @@ public class SpawnPrefab : MonoBehaviour
     private ARRaycastHit _planeHit;
     private float _distance = 999;
 
-    // Start is called before the first frame update
     void Start()
     {
         raycastManager = GetComponent<ARRaycastManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)

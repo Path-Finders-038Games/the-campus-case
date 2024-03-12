@@ -15,17 +15,23 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_Data:
     m_SerializedData: []
-  m_GUID: c148e9abf5cb6654daf42b51ec574421
+  m_GUID: a5d16328a9f79024fbaaa77a4b9bf8b6
   m_SerializeEntries:
-  - m_GUID: 48f5653e0237c30499ecd20ff3295e41
-    m_Address: Minigame 6 localization_en
+  - m_GUID: 8a127efce2257c542a2fb21f70bdb789
+    m_Address: LocalizationMainMenu_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 617c8b7ec6e08fa40884d545d0709268
+    m_Address: LocalizationDialogue_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 5075b123331edbe488e0cb015fcd1c50, type: 2}
+  m_Settings: {fileID: 11400000, guid: 00837b1c425db2d42bbd0e1862f968ef, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 2b2299786645b1a4a9d081be140cee6e, type: 2}
-    - {fileID: 11400000, guid: 07f4bfea853b3384798696d48ab03d02, type: 2}
+    - {fileID: 11400000, guid: 630ee414e9b1ab54d8bac69a5b65926c, type: 2}
+    - {fileID: 11400000, guid: 2c9a48876b4378747aff31d3a3cf7b9b, type: 2}

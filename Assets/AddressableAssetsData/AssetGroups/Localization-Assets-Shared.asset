@@ -15,17 +15,21 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_Data:
     m_SerializedData: []
-  m_GUID: 45cc3fbb8497deb46a10adcb3d3ac766
+  m_GUID: d61869d1dff8d4547a91fe878614cd62
   m_SerializeEntries:
-  - m_GUID: 9982d654c2e8a07419b699dbcb1bdbb4
-    m_Address: Assets/Localization/Minigame 6 localization/Minigame 6 localization
-      Shared Data.asset
+  - m_GUID: ef7335ed113e9004aa8adfae01ff2948
+    m_Address: Assets/Localization/LocalizationMainMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45b65879f26c0b3448c9e9564dc7a762
+    m_Address: Assets/Localization/LocalizationDialogue Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 5075b123331edbe488e0cb015fcd1c50, type: 2}
+  m_Settings: {fileID: 11400000, guid: 00837b1c425db2d42bbd0e1862f968ef, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: bd5f4dba62d355449bdcff319d62e447, type: 2}
-    - {fileID: 11400000, guid: 740318d49815ae042871eaf5aa5e0c41, type: 2}
+    - {fileID: 11400000, guid: 7b806c1146b4f284693b1b626acf7469, type: 2}
+    - {fileID: 11400000, guid: e3cee2b7fac43154abb8f9bb246fb393, type: 2}

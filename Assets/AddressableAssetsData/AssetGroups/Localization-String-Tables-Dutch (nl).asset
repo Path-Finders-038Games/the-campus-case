@@ -15,17 +15,23 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Dutch (nl)
   m_Data:
     m_SerializedData: []
-  m_GUID: 29cf67d336e65a64f96ead81eefcdc09
+  m_GUID: 56f887634c3cd1c4aaa2ef56256bc73c
   m_SerializeEntries:
-  - m_GUID: 80f0397dd013b5a46b4f389469a22451
-    m_Address: Minigame 6 localization_nl
+  - m_GUID: 2cbfd622306a3a842bdc002b197f4b39
+    m_Address: LocalizationMainMenu_nl
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-nl
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e4f4bfdba2446042969f5736676a4ae
+    m_Address: LocalizationDialogue_nl
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-nl
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
-  m_Settings: {fileID: 11400000, guid: 5075b123331edbe488e0cb015fcd1c50, type: 2}
+  m_Settings: {fileID: 11400000, guid: 00837b1c425db2d42bbd0e1862f968ef, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 2ea3b437c1f96494abe908b118138efe, type: 2}
-    - {fileID: 11400000, guid: fafd37f791c62934d81980ec7018e165, type: 2}
+    - {fileID: 11400000, guid: 0fe3cca03500c9047a6d1ce68ef9f5fa, type: 2}
+    - {fileID: 11400000, guid: ccc8fe1913c1c464b8b67fe991f0e212, type: 2}

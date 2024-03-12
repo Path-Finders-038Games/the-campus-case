@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
   m_Name: Localization-Assets-Shared_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: d0ae572f4526e6b4ab6de9a730fbd338, type: 2}
+  m_Group: {fileID: 11400000, guid: 895bd27d8d22e8d4f993b364e2b0cc18, type: 2}
   m_StaticContent: 0
