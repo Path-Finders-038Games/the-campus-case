@@ -10,7 +10,6 @@ using System.Collections;
 
 /*
  Todo:
--add animation code
 -improve presentation to user(text on win or lose)
 -update to new minigamea standards
  */
@@ -45,10 +44,6 @@ namespace Minigames
 
         //a list of letters that make up the word
         public List<Character> wordletters = new List<Character>();
-
-        //list of incorrectly guessed letters
-        //no use at the moment but might be used later
-        //private List<char> wrongletters = new List<char>();
 
         //list of guessed letters
         private List<char> guessedletters = new List<char>();
@@ -118,10 +113,8 @@ namespace Minigames
             }
             if (count == 0)
             {
-                //wrongletters.Add(guess);
                 fout++;
-                animationManager.AnimationPlay();
-                Debug.Log("should be playing animation");
+                animationManager.AssemblePart();
 
             }
 
@@ -156,7 +149,7 @@ namespace Minigames
         // method for checking if the user has lost the game
         public void CheckLost()
         {
-            if (fout == 6)
+            if (fout == 12)
             {
                 //still needs work
                 SceneManager.LoadScene(1);

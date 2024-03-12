@@ -5,6 +5,11 @@ using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/*
+ add dialogue to the game
+potentially centralize code between 3 scripts
+ */
+
 namespace Minigames
 {
     // class responsible for the interaction between the user and the hangman game
@@ -14,7 +19,7 @@ namespace Minigames
         private List<GameObject> childrenListLetters = new List<GameObject>();
 
         //list of all letters in the word
-        List<WordLetter> WordLetters = new List<WordLetter>();
+        private List<WordLetter> WordLetters = new List<WordLetter>();
 
         // mesh of the letters
         public Mesh mesh;
@@ -23,7 +28,7 @@ namespace Minigames
         public Dictionary<string,Material> Mats = new Dictionary<string, Material>();
 
         //object as background for the guessword to be displayed against
-        public GameObject guessworddisplay;
+        public GameObject GuesswordDisplay;
 
         //hangman game
         public Hangman hangman;
@@ -43,8 +48,6 @@ namespace Minigames
             {
                 RaycastCheck();
             }
-            //Debug.Log(guessword.name);
-            //wordcheck();
         }
 
         //gets the material of each letter and makes a name for it and puts it into the dictionary
@@ -82,9 +85,9 @@ namespace Minigames
         {
             float countoffset = 0.42f;
             Vector3 scale = new Vector3(.25f, 2, hangman.wordletters.Count + 2);
-            guessworddisplay.transform.localScale = scale;
+            GuesswordDisplay.transform.localScale = scale;
             int amount = hangman.wordletters.Count;
-            Vector3 space =  guessworddisplay.transform.localScale;
+            Vector3 space =  GuesswordDisplay.transform.localScale;
             foreach (Hangman.Character letter in hangman.wordletters)
             {
                 String input = "Paper " + letter.Letter.ToString().ToUpper();
@@ -97,12 +100,12 @@ namespace Minigames
                 gameObject.AddComponent<MeshFilter>().mesh = mesh;
                 gameObject.AddComponent<MeshRenderer>().material = mat;
 
-                gameObject.transform.position = guessworddisplay.transform.position;
-                gameObject.transform.rotation = guessworddisplay.transform.rotation;
+                gameObject.transform.position = GuesswordDisplay.transform.position;
+                gameObject.transform.rotation = GuesswordDisplay.transform.rotation;
                 gameObject.transform.Rotate(0,-90,0);
-                gameObject.transform.localScale = guessworddisplay.transform.localScale;
-                gameObject.transform.SetParent(guessworddisplay.transform);
-                gameObject.transform.localScale = new Vector3((50/hangman.wordletters.Count), 24, (1/guessworddisplay.transform.localScale.x));
+                gameObject.transform.localScale = GuesswordDisplay.transform.localScale;
+                gameObject.transform.SetParent(GuesswordDisplay.transform);
+                gameObject.transform.localScale = new Vector3((50/hangman.wordletters.Count), 24, (1/GuesswordDisplay.transform.localScale.x));
                 gameObject.transform.localPosition += offset;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
 
@@ -117,7 +120,6 @@ namespace Minigames
         {
             foreach (Hangman.Character letter in hangman.wordletters)
             {
-                Debug.Log(letter.Letter + " = " + letter.Guessed);
                 if(letter.Guessed == true)
                 {
                     foreach(WordLetter wordLetter in WordLetters)
@@ -134,7 +136,6 @@ namespace Minigames
         //checks where the user touches the AR object and guesses the selected letter
         private void RaycastCheck()
         {
-            Debug.Log(hangman.word);
             RaycastHit hit;
             Vector2 touchpos = Input.touches[0].position;
             Ray ray = Camera.main.ScreenPointToRay(touchpos);
@@ -148,6 +149,7 @@ namespace Minigames
                     {
                         char input = name.Last();
                         hangman.Guess(input);
+                        child.active = false;
                     }
                 }
                 Wordcheck();

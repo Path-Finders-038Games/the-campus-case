@@ -402,7 +402,7 @@ MonoBehaviour:
     minigame: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
       type: 3}
   - MapName: C0Map
-    minigame: {fileID: 7985207449370841564, guid: bd0c133aab3262d47bdc7ce5b63a851f,
+    minigame: {fileID: 8221244126007089358, guid: 1dab6b51f6b87b248b98dac5e6e19210,
       type: 3}
   - MapName: S0Map
     minigame: {fileID: 8430659435007741985, guid: bc343f0cdc3398940a30832733ad479f,
