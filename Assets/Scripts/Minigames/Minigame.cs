@@ -2,17 +2,18 @@ using UnityEngine;
 
 namespace Minigames
 {
-    public  abstract class Minigame :MonoBehaviour
+    public abstract class Minigame : MonoBehaviour
     {
         public LocationFile LocationFile;
-        // Start is called before the first frame update
-        public void GameSetup() 
+
+        public void GameSetup()
         {
             SetBuddy();
             SplitDialogue();
             PrepareStep();
             StartGameStep();
         }
+
         public abstract void PrepareStep();
         public abstract void StartGameStep();
         public abstract void CompleteGameStep();

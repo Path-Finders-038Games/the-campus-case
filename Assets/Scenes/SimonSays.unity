@@ -1046,6 +1046,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 80117907}
     m_Modifications:
+    - target: {fileID: 2674122225815661346, guid: a46b25b162935c54ea0d74799123c482,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674122225815661346, guid: a46b25b162935c54ea0d74799123c482,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 46d06574f4baebe4ebd81f5c75870dce,
+        type: 3}
     - target: {fileID: 2716747928155602683, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
       propertyPath: m_Name
@@ -1129,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
@@ -1139,7 +1150,7 @@ PrefabInstance:
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
@@ -1149,7 +1160,7 @@ PrefabInstance:
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
@@ -1204,7 +1215,7 @@ PrefabInstance:
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 563
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6120836291559626280, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
@@ -1299,7 +1310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlanePrefab: {fileID: 4776765576899091622, guid: 3738bd65ede154463b2c35064b9e5fdb,
     type: 3}
-  m_DetectionMode: -1
+  m_DetectionMode: 2
 --- !u!114 &1569322491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,11 +1470,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 80117907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 481}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1960383297
 MonoBehaviour:
   m_ObjectHideFlags: 0

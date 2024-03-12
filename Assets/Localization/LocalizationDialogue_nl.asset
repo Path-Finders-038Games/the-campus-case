@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LocalizationDialogue_nl
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: nl
+  m_SharedData: {fileID: 11400000, guid: 45b65879f26c0b3448c9e9564dc7a762, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 124834856960
+    m_Localized: We zijn momenteel in de C Kantine, Windesheim heeft ons laten weten
+      dat er hier ergens een aanwijzing zou moeten zijn over de locatie van de vereniging...
+      laten we die vinden!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324823465984
+    m_Localized: Ik zie dat er een icoon op je kaart staat... dat ziet er interessant
+      uit, laten we er op klikken!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393765240832
+    m_Localized: Het lijkt er op dat we dit voorwerp op een oppervlakte kunnen zetten
+      door op de muur te klikken, laten we dat proberen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 451910877184
+    m_Localized: Op het moment dat je puntjes op de muur ziet door je telefooncamera,
+      betekent dit dat je daar een object kan plaatsen. druk op de muuroppervlakte
+      met de puntjes om het object te plaatsen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 494722138112
+    m_Localized: Het lijkt er op dat dit een schuifpuzzel is, laten we hem oplossen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 497997889536
+    m_Localized: Druk op de puzzelstukjes om ze te verwisselen met de lege, totdat
+      de afbeelding klopt.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501214920704
+    m_Localized: We hebben de eerste aanwijzing vrijgespeeld! Laten we de navigator
+      volgen naar de volgende locatie!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 506206142464
+    m_Localized: "Volg de rode lijn en navigatie-instructies op het scherm. druk
+      op \u201Cvolgende\u201D wanneer je aan het einde bent zodat je nieuwe instructies
+      kan ontvangen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 773110677504
+    m_Localized: Nog een icoon op de kaart! misschien kunnen we het hier op de muur
+      plaatsen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 880128344064
+    m_Localized: Het ziet ernaar uit dat je de code moet kraken door de juiste combinatie
+      te raden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 960830947328
+    m_Localized: Kraak de code door de geheime kleurencombinatie te achterhalen.
+      De zwarte pinnen aan de rechterkant geven aan hoeveel kleuren op de juiste
+      plaats staan en de witte pinnen geven aan hoeveel kleuren er in de code staan,
+      maar niet op de juiste plaats.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 963628548096
+    m_Localized: Je hebt het opgelost! Dat was een goede denkwijze die je daar had!
+      laten we eens kijken waar we nu heen moeten...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1320496709632
+    m_Localized: De navigator wijst ons naar deze trap, laat we naar boven gaan.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1323273338880
+    m_Localized: Je kunt ook de lift nemen in de hoek rechts van de trap.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1463161765888
+    m_Localized: Dit is een coole plek! en het heeft ook nog eens een cafetaria!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1498456834048
+    m_Localized: Er zit hier nog een icoontje op de map, laten we het op de muur
+      plaatsen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552991174656
+    m_Localized: Deze iconen lijken op het logo van de vereniging, misschien staat
+      die hier ergens!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1556057210880
+    m_Localized: Zoek het logo van de vereniging in deze afbeelding en druk hier
+      op.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1556933820416
+    m_Localized: Je hebt een goed oog voor detail, dat heb je in no-time opgelost!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1557621686272
+    m_Localized: De navigator wijst ons naar beneden, de trap af. Laten we het verkennen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2676120928256
+    m_Localized: Volgens onze navigator is dit het T-gebouw, laten we de trap op
+      gaan naar de tweede verdieping.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2707355910144
+    m_Localized: Je kunt ook de lift nemen als je dit gebouw binnen gaat en links
+      of rechts afslaat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2858204053504
+    m_Localized: We staan nu bij de T2 Balie, ik heb gehoord dat dit de beste plek
+      is om informatie te krijgen rondom het T-Gebouw!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2898125438976
+    m_Localized: Er is hier nog een pictogram, laten we zien wat ons te wachten staat!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3051980898304
+    m_Localized: Het lijkt erop dat we het systeem gaan hacken!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3095274504192
+    m_Localized: Veeg naar links en rechts om alle banen te beschermen en zorg ervoor
+      dat je basis niet wordt overspoeld door de vijanden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3096927059968
+    m_Localized: Ik denk dat we het einde van dit mysterie naderen. Laten we de trap
+      op gaan naar de 5e verdieping en laatste locatie!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3377400168448
+    m_Localized: In deze ruimte kunnen studenten studeren wanneer ze willen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3419330625536
+    m_Localized: Ik ben erg benieuwd naar wat er in deze kluis zit!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3440549609472
+    m_Localized: Het lijkt erop dat je op de kleuren aan moet drukken en het patroon
+      na moet bootsen om de kluis te ontgrendelen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3441363304448
+    m_Localized: Je hebt het gedaan! Je hebt Windesheim met succes geholpen en alle
+      geheimen van de vereniging onthuld!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

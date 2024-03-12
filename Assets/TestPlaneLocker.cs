@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -12,16 +11,13 @@ public class TestPlaneLocker : MonoBehaviour
     GameObject FloorPlane;
     static List<ARRaycastHit> hits = new();
 
-    public
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         planeManager = GetComponent<ARPlaneManager>();
         raycastManager = GetComponent<ARRaycastManager>();
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (planeFound && FloorPlane != null)

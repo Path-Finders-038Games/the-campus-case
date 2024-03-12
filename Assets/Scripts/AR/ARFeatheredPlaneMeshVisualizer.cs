@@ -68,7 +68,7 @@ namespace AR
             mesh.GetVertices(s_Vertices);
 
             Vector3 centerInPlaneSpace = s_Vertices[s_Vertices.Count - 1];
-            Vector3 uv = new Vector3(0, 0, 0);
+            Vector3 uv = new(0, 0, 0);
             float shortestUVMapping = float.MaxValue;
 
             // Assume the last vertex is the center vertex.

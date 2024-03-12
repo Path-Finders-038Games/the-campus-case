@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: LocalizationDialogue Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: LocalizationDialogue
+  m_TableCollectionNameGuidString: 45b65879f26c0b3448c9e9564dc7a762
+  m_Entries:
+  - m_Id: 124834856960
+    m_Key: c0_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 324823465984
+    m_Key: c0_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393765240832
+    m_Key: arExplanation_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 451910877184
+    m_Key: arExplanation_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 494722138112
+    m_Key: slidingPuzzle_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 497997889536
+    m_Key: slidingPuzzle_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501214920704
+    m_Key: slidingPuzzle_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 506206142464
+    m_Key: slidingPuzzle_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 773110677504
+    m_Key: s0_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 880128344064
+    m_Key: mastermindPuzzle_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 960830947328
+    m_Key: mastermindPuzzle_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 963628548096
+    m_Key: mastermindPuzzle_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1320496709632
+    m_Key: mastermindPuzzle_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1323273338880
+    m_Key: mastermindPuzzle_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1463161765888
+    m_Key: x1_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1498456834048
+    m_Key: x1_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552991174656
+    m_Key: waldoMinigame_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1556057210880
+    m_Key: waldoMinigame_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1556933820416
+    m_Key: waldoMinigame_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1557621686272
+    m_Key: waldoMinigame_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2676120928256
+    m_Key: t0_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2707355910144
+    m_Key: t0_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2858204053504
+    m_Key: t2_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2898125438976
+    m_Key: t2_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3051980898304
+    m_Key: hackerMinigame_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3095274504192
+    m_Key: hackerMinigame_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3096927059968
+    m_Key: hackerMinigame_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3377400168448
+    m_Key: t5_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3419330625536
+    m_Key: simonSaysMinigame_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3440549609472
+    m_Key: simonSaysMinigame_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3441363304448
+    m_Key: ending_0
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2124173408724058142
+  references:
+    version: 2
+    RefIds:
+    - rid: 2124173408724058142
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1708603453022
