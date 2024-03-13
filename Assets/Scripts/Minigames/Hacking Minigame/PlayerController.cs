@@ -26,12 +26,12 @@ namespace Minigames.Hacking_Minigame
             {
                 Vector2 currentPos = Input.GetTouch(0).position;
             
-                Vector2 delataPos = _startPos- currentPos;
+                Vector2 deltaPos = _startPos- currentPos;
             
 
                 if (!hasMoved) 
                 {
-                    switch (delataPos.x)
+                    switch (deltaPos.x)
                     {
                         case > 100:
                             SwitchLaneLeft();

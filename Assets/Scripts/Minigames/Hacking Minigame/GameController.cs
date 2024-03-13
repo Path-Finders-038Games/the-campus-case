@@ -7,6 +7,7 @@ namespace Minigames.Hacking_Minigame
 {
     public class GameController : Minigame
     {
+        private bool _animationDone;
         private float health;
         public float Health
         {
@@ -38,7 +39,7 @@ namespace Minigames.Hacking_Minigame
 
         public Animator[] Animations;
         public AnimationClip Animation;
-        private bool _animationDone;
+        
 
         public Canvas GameCanvas;
 
@@ -90,11 +91,8 @@ namespace Minigames.Hacking_Minigame
                         {
                             GameWon();
                         }
-
-
                     }
                 }
-            
         }
 
         public Vector3 LanePos(int lane)
@@ -105,7 +103,6 @@ namespace Minigames.Hacking_Minigame
         public Vector3 TextPos()
         {
             return new Vector3(Lanes[1].transform.position.x, Lanes[1].transform.position.y, Lanes[1].transform.position.z);
-
         }
 
         void GameWon()
