@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: -2888700847283579708, guid: ce77a817ca107c5429491463789da8df, type: 3}
-  guessworddisplay: {fileID: 7570793806529172686}
+  GuesswordDisplay: {fileID: 7570793806529172686}
   hangman: {fileID: 9110831404831054544}
 --- !u!1 &3848175707638282219 stripped
 GameObject:

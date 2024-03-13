@@ -8,7 +8,7 @@ namespace Minigames.Hacking_Minigame
         // Start is called before the first frame update
         public Sprite[] HealthSprites;
         Image Image;
-
+        private int count = 0;
         void Start()
         {
             Image = GetComponent<Image>();

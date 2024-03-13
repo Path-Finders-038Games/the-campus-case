@@ -6,6 +6,7 @@ using UnityEngine.Localization.Tables;
 using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEditor.Localization;
 
 
 /*
@@ -76,8 +77,8 @@ namespace Minigames
             // set locale
             // ...
             // Access the localization table collection
-            LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
 
+            LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
             // Get the String Table from the collection
             StringTable stringTable = tableCollection.GetTable("Minigame 6 localization");
 
