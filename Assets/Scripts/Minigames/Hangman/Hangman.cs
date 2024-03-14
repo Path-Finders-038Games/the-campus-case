@@ -85,7 +85,7 @@ namespace Minigames
             ICollection<StringTableEntry> entries = stringTable.Values;
 
             // Iterate through each entry and print key-value pairs
-            foreach (var entry in entries)
+            foreach (StringTableEntry entry in entries)
             {
                 words.Add(entry.Value);
             }

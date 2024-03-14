@@ -184,7 +184,7 @@ namespace Minigames.Hacking_Minigame
                 SceneManager.LoadScene(1);
             }
 
-            foreach (var item in Animations)
+            foreach (Animator item in Animations)
             {
                 item.SetTrigger("Test");
             }

@@ -236,7 +236,7 @@ namespace Minigames.Sliding_puzzel
             int tileCount = 7; //Empty space excluded
             for (int index = 0; index <= 7; index++)
             {
-                var lastPosition = _tilesScripts[index].transform.position;
+                Vector3 lastPosition = _tilesScripts[index].transform.position;
                 Vector2Int lastMatrixPosition = _tilesScripts[index].Position;
                 int randomIndex = Random.Range(0, tileCount);
                 _tilesScripts[index].transform.position = _tilesScripts[randomIndex].transform.position;

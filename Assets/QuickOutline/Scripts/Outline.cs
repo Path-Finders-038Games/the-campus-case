@@ -14,7 +14,6 @@ using UnityEngine;
 namespace QuickOutline.Scripts
 {
   [DisallowMultipleComponent]
-
   public class Outline : MonoBehaviour {
     private static HashSet<Mesh> registeredMeshes = new();
 
@@ -23,11 +22,11 @@ namespace QuickOutline.Scripts
       OutlineVisible,
       OutlineHidden,
       OutlineAndSilhouette,
-      SilhouetteOnly
+      SilhouetteOnly,
     }
 
     public Mode OutlineMode {
-      get { return outlineMode; }
+      get => outlineMode;
       set {
         outlineMode = value;
         needsUpdate = true;
@@ -35,7 +34,7 @@ namespace QuickOutline.Scripts
     }
 
     public Color OutlineColor {
-      get { return outlineColor; }
+      get => outlineColor;
       set {
         outlineColor = value;
         needsUpdate = true;
@@ -43,7 +42,7 @@ namespace QuickOutline.Scripts
     }
 
     public float OutlineWidth {
-      get { return outlineWidth; }
+      get => outlineWidth;
       set {
         outlineWidth = value;
         needsUpdate = true;
@@ -102,10 +101,10 @@ namespace QuickOutline.Scripts
     }
 
     void OnEnable() {
-      foreach (var renderer in renderers) {
+      foreach (Renderer renderer in renderers) {
 
         // Append outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+        List<Material> materials = renderer.sharedMaterials.ToList();
 
         materials.Add(outlineMaskMaterial);
         materials.Add(outlineFillMaterial);
@@ -140,10 +139,10 @@ namespace QuickOutline.Scripts
     }
 
     void OnDisable() {
-      foreach (var renderer in renderers) {
+      foreach (Renderer renderer in renderers) {
 
         // Remove outline shaders
-        var materials = renderer.sharedMaterials.ToList();
+        List<Material> materials = renderer.sharedMaterials.ToList();
 
         materials.Remove(outlineMaskMaterial);
         materials.Remove(outlineFillMaterial);
@@ -162,9 +161,9 @@ namespace QuickOutline.Scripts
     void Bake() {
 
       // Generate smooth normals for each mesh
-      var bakedMeshes = new HashSet<Mesh>();
+      HashSet<Mesh> bakedMeshes = new HashSet<Mesh>();
 
-      foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
+      foreach (MeshFilter meshFilter in GetComponentsInChildren<MeshFilter>()) {
 
         // Skip duplicates
         if (!bakedMeshes.Add(meshFilter.sharedMesh)) {
@@ -172,7 +171,7 @@ namespace QuickOutline.Scripts
         }
 
         // Serialize smooth normals
-        var smoothNormals = SmoothNormals(meshFilter.sharedMesh);
+        List<Vector3> smoothNormals = SmoothNormals(meshFilter.sharedMesh);
 
         bakeKeys.Add(meshFilter.sharedMesh);
         bakeValues.Add(new ListVector3() { data = smoothNormals });
@@ -182,7 +181,7 @@ namespace QuickOutline.Scripts
     void LoadSmoothNormals() {
 
       // Retrieve or generate smooth normals
-      foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
+      foreach (MeshFilter meshFilter in GetComponentsInChildren<MeshFilter>()) {
 
         // Skip if smooth normals have already been adopted
         if (!registeredMeshes.Add(meshFilter.sharedMesh)) {
@@ -190,14 +189,14 @@ namespace QuickOutline.Scripts
         }
 
         // Retrieve or generate smooth normals
-        var index = bakeKeys.IndexOf(meshFilter.sharedMesh);
-        var smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
+        int index = bakeKeys.IndexOf(meshFilter.sharedMesh);
+        List<Vector3> smoothNormals = (index >= 0) ? bakeValues[index].data : SmoothNormals(meshFilter.sharedMesh);
 
         // Store smooth normals in UV3
         meshFilter.sharedMesh.SetUVs(3, smoothNormals);
 
         // Combine submeshes
-        var renderer = meshFilter.GetComponent<Renderer>();
+        Renderer renderer = meshFilter.GetComponent<Renderer>();
 
         if (renderer != null) {
           CombineSubmeshes(meshFilter.sharedMesh, renderer.sharedMaterials);
@@ -205,7 +204,7 @@ namespace QuickOutline.Scripts
       }
 
       // Clear UV3 on skinned mesh renderers
-      foreach (var skinnedMeshRenderer in GetComponentsInChildren<SkinnedMeshRenderer>()) {
+      foreach (SkinnedMeshRenderer skinnedMeshRenderer in GetComponentsInChildren<SkinnedMeshRenderer>()) {
 
         // Skip if UV3 has already been reset
         if (!registeredMeshes.Add(skinnedMeshRenderer.sharedMesh)) {
@@ -223,13 +222,13 @@ namespace QuickOutline.Scripts
     List<Vector3> SmoothNormals(Mesh mesh) {
 
       // Group vertices by location
-      var groups = mesh.vertices.Select((vertex, index) => new KeyValuePair<Vector3, int>(vertex, index)).GroupBy(pair => pair.Key);
+      IEnumerable<IGrouping<Vector3, KeyValuePair<Vector3, int>>> groups = mesh.vertices.Select((vertex, index) => new KeyValuePair<Vector3, int>(vertex, index)).GroupBy(pair => pair.Key);
 
       // Copy normals to a new list
-      var smoothNormals = new List<Vector3>(mesh.normals);
+      List<Vector3> smoothNormals = new List<Vector3>(mesh.normals);
 
       // Average normals for grouped vertices
-      foreach (var group in groups) {
+      foreach (IGrouping<Vector3, KeyValuePair<Vector3, int>> group in groups) {
 
         // Skip single vertices
         if (group.Count() == 1) {
@@ -237,16 +236,16 @@ namespace QuickOutline.Scripts
         }
 
         // Calculate the average normal
-        var smoothNormal = Vector3.zero;
+        Vector3 smoothNormal = Vector3.zero;
 
-        foreach (var pair in group) {
+        foreach (KeyValuePair<Vector3, int> pair in group) {
           smoothNormal += smoothNormals[pair.Value];
         }
 
         smoothNormal.Normalize();
 
         // Assign smooth normal to each vertex
-        foreach (var pair in group) {
+        foreach (KeyValuePair<Vector3, int> pair in group) {
           smoothNormals[pair.Value] = smoothNormal;
         }
       }
