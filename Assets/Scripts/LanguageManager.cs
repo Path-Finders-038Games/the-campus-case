@@ -2,9 +2,9 @@ using UnityEngine;
 
 public static class LanguageManager
 {
+    //Languages can be added here but must be added in the GetLanguage function (Down below and Minigame.cs (file)
     public enum Language
     {
-        None,
         Dutch,
         English,
     }
@@ -19,7 +19,7 @@ public static class LanguageManager
         {
             "NL" => Language.Dutch,
             "EN" => Language.English,
-            _ => Language.None,
+            _ => Language.English,
         };
     }
 }
