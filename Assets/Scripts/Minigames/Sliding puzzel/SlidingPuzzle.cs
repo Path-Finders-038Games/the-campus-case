@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Dialog;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,8 +11,7 @@ namespace Minigames.Sliding_puzzel
     {
         public Transform EmptySpace;
         public List<GameObject> TileObjects;
-
-
+        
         public GameObject GameBoard;
         public Button HideLocationFileButton;
 

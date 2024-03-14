@@ -10,18 +10,19 @@ namespace Minigames
 {
     public abstract class Minigame : MonoBehaviour
     {
-        public LocationFile LocationFile;
+        protected LocationFile LocationFile;
+
         //Getting everything the buddy needs to say and do
         public TMP_Text BuddyTextBlock;
         public GameObject BuddyDialogueObject;
         public GameObject BuddyImage;
         public Sprite BuddyDogSprite;
         public Sprite BuddyCatSprite;
-        
+
         //getting the end and start dialogue
         public List<Dialogue> StartMinigame = new();
         public List<Dialogue> EndMinigame = new();
-        
+
         //Getting the location info
         public LocationInfoScriptableObject LocationInfo;
         public TMP_Text LocationUIName;
@@ -30,8 +31,14 @@ namespace Minigames
         public TMP_Text LocationUIHintNextLocation;
         public GameObject LocationFileUI;
 
+        public abstract void SplitDialogue();
+        public abstract void PrepareStep();
+        public abstract void StartGameStep();
+        public abstract void CompleteGameStep();
+        public abstract void ShowLocationFile();
+        public abstract void HideLocationFile();
 
-        public void SetBuddy()
+        protected void SetBuddy()
         {
             string buddyChoice = PlayerPrefs.GetString("Buddy");
             BuddyImage.GetComponent<Image>().sprite = buddyChoice switch
@@ -41,13 +48,8 @@ namespace Minigames
                 _ => BuddyImage.GetComponent<Image>().sprite,
             };
         }
-        public abstract void SplitDialogue();
-        public abstract void PrepareStep();
-        public abstract void StartGameStep();
-        public abstract void CompleteGameStep();
-        public abstract void ShowLocationFile();
-        public abstract void HideLocationFile();
-        public void SetLocationFile()
+
+        protected void SetLocationFile()
         {
             LocationFile = LanguageManager.GetLanguage() switch
             {
@@ -55,7 +57,7 @@ namespace Minigames
                 LanguageManager.Language.English => EnglishFile(),
                 _ => LocationFile
             };
-            
+
             LocationUIName.text = LocationFile.Name;
             LocationUIDescription.text = LocationFile.Description;
 
@@ -67,49 +69,47 @@ namespace Minigames
 
             LocationUIFacts.text = locationFacts.ToString();
         }
-        public LocationFile DutchFile()
+
+        private LocationFile DutchFile()
         {
             return new LocationFile(LocationInfo.Data_NL.Name, LocationInfo.Data_NL.Description,
                 LocationInfo.Data_NL.Facts, LocationInfo.Data_NL.HintNextLocation, false);
         }
 
-        public LocationFile EnglishFile()
+        private LocationFile EnglishFile()
         {
             return new LocationFile(LocationInfo.Data_EN.Name, LocationInfo.Data_EN.Description,
                 LocationInfo.Data_EN.Facts, LocationInfo.Data_EN.HintNextLocation, false);
         }
-        public void SetBuddyDialogueText(string Dialogue)
+
+        private void SetBuddyDialogueText(string dialogue)
         {
-            BuddyTextBlock.text = Dialogue;
+            BuddyTextBlock.text = dialogue;
             BuddyDialogueObject.SetActive(true);
         }
+
         public void OnTextBlockClick()
         {
             string text = BuddyTextBlock.text;
 
-            if (!LocationFile.IsCompleted)
+            if (LocationFile.IsCompleted)
             {
-                StartMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
+                EndMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
             }
             else
             {
-                EndMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
+                StartMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
             }
 
             BuddyDialogueObject.SetActive(false);
         }
-        public void UpdateDialogue()
-         {
-            if (!LocationFile.IsCompleted)
-            {
-                Dialogue dialogue = StartMinigame.First(dialogue => dialogue.IsRead != true);
-                SetBuddyDialogueText(dialogue.Text);
-            }
-            else
-            {
-                Dialogue dialogue = EndMinigame.First(dialogue => dialogue.IsRead != true);
-                SetBuddyDialogueText(dialogue.Text);
-            }
+
+        protected void UpdateDialogue()
+        {
+            Dialogue dialogue = LocationFile.IsCompleted
+                ? EndMinigame.First(dialogue => dialogue.IsRead != true)
+                : StartMinigame.First(dialogue => dialogue.IsRead != true);
+            SetBuddyDialogueText(dialogue.Text);
         }
     }
 }
