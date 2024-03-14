@@ -24,14 +24,6 @@ namespace Minigames.Sliding_puzzel
 
         private List<SlidingPuzzleTile> _tilesScripts;
 
-        void Start()
-        {
-            SetBuddy();
-            SplitDialogue();
-            PrepareStep();
-            StartGameStep();
-        }
-
         void Update()
         {
             UpdateDialogue();
@@ -49,10 +41,10 @@ namespace Minigames.Sliding_puzzel
         /// </summary>
         public override void SplitDialogue()
         {
-            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
-            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_1"));
-            EndMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_2"));
-            EndMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_3"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_2"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_3"));
         }
 
         private void RaycastCheck()

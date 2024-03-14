@@ -31,9 +31,9 @@ namespace Minigames
 
         // Dialogue lists.
         // These will be set in the minigame itself.
-        protected List<Dialogue> TutorialDialogues = new();
-        protected List<Dialogue> WonDialogues = new();
-        protected List<Dialogue> LostDialogues = new();
+        protected readonly List<Dialogue> TutorialDialogues = new();
+        protected readonly List<Dialogue> WonDialogues = new();
+        protected readonly List<Dialogue> LostDialogues = new();
 
         // Location info.
         // These will be set in the Unity editor.
@@ -61,6 +61,20 @@ namespace Minigames
                 _gameState = value;
                 ProcessGameState(_gameState);
             }
+        }
+        
+        /// <summary>
+        /// Starts the minigame.
+        /// If you want to add custom logic, override this and call the base method.
+        /// </summary>
+        public virtual void Start()
+        {
+            SetBuddy();
+            SplitDialogue();
+            PrepareStep();
+            StartGameStep();
+            
+            GameState = GameState.Tutorial;
         }
         
         public abstract void SplitDialogue();
