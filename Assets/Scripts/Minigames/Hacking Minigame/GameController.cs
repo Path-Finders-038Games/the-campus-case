@@ -29,23 +29,10 @@ namespace Minigames.Hacking_Minigame
         public AnimationClip Animation;
         private bool _animationDone;
 
-        public LocationInfoScriptableObject LocationInfo;
-        public TMP_Text LocationUIName;
-        public TMP_Text LocationUIDescription;
-        public TMP_Text LocationUIFacts;
-        public TMP_Text LocationUIHintNextLocation;
-        public GameObject LocationFileUI;
         public Button HideLocationFileButton;
         bool locationFileClosed;
         public Canvas GameCanvas;
 
-        public TMP_Text BuddyTextBlock;
-        public GameObject BuddyDialogueObject;
-        public GameObject BuddyImage;
-        public Sprite BuddyDogSprite;
-        public Sprite BuddyCatSprite;
-        private List<Dialogue> _startMinigame = new();
-        private List<Dialogue> _endMinigame = new();
 
         private float _timer;
         // Start is called before the first frame update
@@ -54,7 +41,10 @@ namespace Minigames.Hacking_Minigame
             gameController = this;
             _animationDone = false;
             locationFileClosed = false;
-            GameSetup();
+            SetBuddy();
+            SplitDialogue();
+            PrepareStep();
+            StartGameStep();
         }
 
         // Update is called once per frame
@@ -178,38 +168,6 @@ namespace Minigames.Hacking_Minigame
             LocationFile.IsCompleted = true;
             ShowLocationFile();
         }
-
-        public override void SetLocationFile()
-        {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                LocationFile = DutchFile();
-            }
-            else
-            {
-                LocationFile = EnglishFile();
-            }
-            LocationUIName.text = LocationFile.Name;
-            LocationUIDescription.text = LocationFile.Description;
-            StringBuilder locationFacts = new("Facts\n");
-            foreach (string fact in LocationFile.Facts)
-            {
-                locationFacts.AppendLine(fact + "\n");
-            }
-            LocationUIFacts.text = locationFacts.ToString();
-        }
-
-        public override LocationFile DutchFile()
-        {
-            return new LocationFile(LocationInfo.Data_NL.Name, LocationInfo.Data_NL.Description, LocationInfo.Data_NL.Facts, LocationInfo.Data_NL.HintNextLocation, false);
-
-        }
-
-        public override LocationFile EnglishFile()
-        {
-            return new LocationFile(LocationInfo.Data_EN.Name, LocationInfo.Data_EN.Description, LocationInfo.Data_EN.Facts, LocationInfo.Data_EN.HintNextLocation, false);
-
-        }
    
         public override void ShowLocationFile()
         {
@@ -233,65 +191,9 @@ namespace Minigames.Hacking_Minigame
         }
         public override void SplitDialogue()
         {
-            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
-            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_1"));
-            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_2"));
-        }
-        public override void SetBuddy()
-        {
-            string buddyChoice = PlayerPrefs.GetString("Buddy");
-            if (buddyChoice.Equals("Cat"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyCatSprite;
-            }
-            if (buddyChoice.Equals("Dog"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyDogSprite;
-            }
-        }
-        public override void SetBuddyDialogueText(string Dialogue)
-        {
-            BuddyTextBlock.text = Dialogue;
-            BuddyDialogueObject.SetActive(true);
-        }
-        public override void OnTextBlockClick()
-        {
-            string text = BuddyTextBlock.text;
-            if (!LocationFile.IsCompleted)
-            {
-                _startMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
-            }
-            else
-            {
-                _endMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
-            }
-            BuddyDialogueObject.SetActive(false);
-        }
-        public override void UpdateDialogue()
-        {
-            if (!LocationFile.IsCompleted)
-            {
-                foreach (Dialogue dialogue in _startMinigame)
-                {
-                    if (dialogue.IsRead != true)
-                    {
-                        SetBuddyDialogueText(dialogue.Text);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Dialogue dialogue in _endMinigame)
-                {
-                    if (dialogue.IsRead != true)
-                    {
-                        SetBuddyDialogueText(dialogue.Text);
-                        break;
-                    }
-                }
-            }
-
+            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
+            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_1"));
+            EndMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_2"));
         }
     }
 }
