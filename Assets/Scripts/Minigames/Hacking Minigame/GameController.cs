@@ -7,14 +7,15 @@ namespace Minigames.Hacking_Minigame
 {
     public class GameController : Minigame
     {
+        private float _timer;
         private bool _animationDone;
-        private float health;
+        private float _health;
         public float Health
         {
-            get { return health; }
+            get { return _health; }
             set
             {
-                health = value; 
+                _health = value; 
                 healthController.ReduceHealth();
             }
         }
@@ -35,7 +36,7 @@ namespace Minigames.Hacking_Minigame
         public int CurrentLane;
 
         public static GameController gameController;
-        public HealthController healthController;
+        public static HealthController healthController;
 
         public Animator[] Animations;
         public AnimationClip Animation;
@@ -43,56 +44,33 @@ namespace Minigames.Hacking_Minigame
 
         public Canvas GameCanvas;
 
-        private float _timer;
+     
         // Start is called before the first frame update
         void Start()
         {
             gameController = this;
             _animationDone = false;
             GameSetup();
+            StartCoroutine(WaitForAnimation());
         }
 
         // Update is called once per frame
         void Update()
         {
-                _timer += Time.deltaTime;
-                if (!_animationDone)
-                {
-                    StartCoroutine(WaitForAnimation());
-                }
-                if (_animationDone)
-                {
-                    if (PlayGame)
-                    {
-                        if (_timer > SpawnDelay && SpawnAmount != 0)
-                        {
-                            SpawnAmount--;
-                            GameObject spawn;
-                            int type = Random.RandomRange(0, 3);
-                            if (type < 2)
-                            {
-                                spawn = Weak;
-                            }
-                            else
-                            {
-                                spawn = Enemy;
-                            }
+            _timer += Time.deltaTime;
 
-                            _timer = 0;
-                            int spawnLocation = Random.Range(0, 3);
-                            Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                        }
+            if (!_animationDone || !PlayGame) return;
+          
+            if (_timer > SpawnDelay && SpawnAmount != 0) SpawnEnemy();
 
-                        if (Health == 0)
-                        {
-                            GameLost();
-                        }
-                        else if (EnemyAlive == 0)
-                        {
-                            GameWon();
-                        }
-                    }
-                }
+            if (Health == 0)
+            {
+                GameLost();
+            }
+            else if (EnemyAlive == 0)
+            {
+                GameWon();
+            }
         }
 
         public Vector3 LanePos(int lane)
@@ -104,6 +82,25 @@ namespace Minigames.Hacking_Minigame
         {
             return new Vector3(Lanes[1].transform.position.x, Lanes[1].transform.position.y, Lanes[1].transform.position.z);
         }
+
+        void SpawnEnemy()
+        {
+                SpawnAmount--;
+                GameObject spawn;
+                int type = Random.RandomRange(0, 3);
+                if (type < 2)
+                {
+                    spawn = Weak;
+                }
+                else
+                {
+                    spawn = Enemy;
+                }
+
+                _timer = 0;
+                int spawnLocation = Random.Range(0, 3);
+                Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+            }
 
         void GameWon()
         {
@@ -157,7 +154,7 @@ namespace Minigames.Hacking_Minigame
 
         public override void CompleteGameStep()
         {
-            ShowLocationFile();
+            //TBD
         }
 
         public override void SetLocationFile()

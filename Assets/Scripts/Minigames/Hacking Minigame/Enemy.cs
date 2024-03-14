@@ -4,8 +4,8 @@ namespace Minigames.Hacking_Minigame
 {
     public class Enemy : MonoBehaviour
     {
-        public float speed;
-        public int health;
+        public float Speed;
+        public int Health;
         // Start is called before the first frame update
         void Start()
         {
@@ -15,7 +15,7 @@ namespace Minigames.Hacking_Minigame
         // Update is called once per frame
         void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -3, transform.position.z), speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -3, transform.position.z), Speed * Time.deltaTime);
             if(transform.position.y == -3)
             {
                 Destroy(gameObject);
@@ -24,18 +24,18 @@ namespace Minigames.Hacking_Minigame
 
         private void OnCollisionEnter(Collision collision)
         {
-            health--;
+            Health--;
             Debug.Log("Enemy hit");
-            if(health == 0)
+            if(Health == 0)
             {
                 Destroy(gameObject);
             }
         }
         private void OnTriggerEnter(Collider other)
         {
-            health--;
+            Health--;
             Debug.Log("Enemy hit");
-            if (health == 0)
+            if (Health == 0)
             {
                 Destroy(gameObject);
             }
@@ -44,9 +44,9 @@ namespace Minigames.Hacking_Minigame
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            health--;
+            Health--;
             Debug.Log("Enemy hit");
-            if (health == 0)
+            if (Health == 0)
             {
                 Destroy(gameObject);
             }
@@ -56,9 +56,9 @@ namespace Minigames.Hacking_Minigame
         {
             if(collision.tag != "Enemy")
             {
-                health--;
+                Health--;
                 Debug.Log("Enemy hit");
-                if (health == 0)
+                if (Health == 0)
                 {
                     Destroy(gameObject);
                 }

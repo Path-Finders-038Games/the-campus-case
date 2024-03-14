@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CombatController : MonoBehaviour
 {
-    public GameObject bullet;
-    public float relodeTime;
+    public GameObject Bullet_Prefab;
+    public float ReloadTime;
 
     private float _timer;
     // Start is called before the first frame update
@@ -21,18 +21,18 @@ public class CombatController : MonoBehaviour
         if (GameController.gameController.PlayGame)
         {
             _timer += Time.deltaTime;
-            if (_timer > relodeTime)
+            if (_timer > ReloadTime)
             {
                 _timer = 0;
-                GameObject Bullet = Instantiate(bullet, transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                GameObject Bullet = Instantiate(Bullet_Prefab, transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
             }
         }
     }
 
     public class Bullet : MonoBehaviour
     {
-        public float bulletSpeed;
-        public float distance;
+        public float BulletSpeed;
+        public float Distance;
 
         private void Update()
         {
@@ -41,8 +41,8 @@ public class CombatController : MonoBehaviour
 
         public void BulletTravel()
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, distance, transform.position.z), bulletSpeed * Time.deltaTime);
-            if (transform.position.y >= distance)
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, Distance, transform.position.z), BulletSpeed * Time.deltaTime);
+            if (transform.position.y >= Distance)
             {
                 Destroy(gameObject);
             }

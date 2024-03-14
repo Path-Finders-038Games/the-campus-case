@@ -7,12 +7,11 @@ namespace Minigames.Hacking_Minigame
     {
         // Start is called before the first frame update
         public Sprite[] HealthSprites;
-        Image Image;
-        private int count = 0;
+        public Image Image;
+        private int _count = 0;
         void Start()
         {
-            Image = GetComponent<Image>();
-            Image.sprite = HealthSprites[count];
+            Image.sprite = HealthSprites[_count];
         }
 
         // Update is called once per frame
@@ -23,8 +22,8 @@ namespace Minigames.Hacking_Minigame
 
         public void ReduceHealth ()
         {
-            count++;
-            Image.sprite = HealthSprites[count];
+            _count++;
+            Image.sprite = HealthSprites[_count];
         }
 
         private void OnTriggerEnter(Collider other)

@@ -6,7 +6,7 @@ namespace Minigames.Hacking_Minigame
     {
         // Start is called before the first frame update
         private Vector2 _startPos;
-        private bool hasMoved;
+        private bool _hasMoved;
         void Start()
         {
         
@@ -18,26 +18,26 @@ namespace Minigames.Hacking_Minigame
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
                 _startPos = Input.GetTouch(0).position;
-                hasMoved = false;
+                _hasMoved = false;
 
             }
 
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Moved) 
             {
-                Vector2 currentPos = Input.GetTouch(0).position;
+                Vector2 _currentPos = Input.GetTouch(0).position;
             
-                Vector2 deltaPos = _startPos- currentPos;
+                Vector2 _deltaPos = _startPos- _currentPos;
             
 
-                if (!hasMoved) 
+                if (!_hasMoved) 
                 {
-                    switch (deltaPos.x)
+                    switch (_deltaPos.x)
                     {
                         case > 100:
-                            SwitchLaneLeft();
+                            SwitchLane(true);
                             break;
                         case < -100:
-                            SwitchLaneRight();
+                           SwitchLane(false);
                             break;
 
                         default:
@@ -49,44 +49,25 @@ namespace Minigames.Hacking_Minigame
 
         }
 
-        private void MoveObject(float distance)
+        private void SwitchLane(bool directionLeft)
         {
-
-            Vector3 currentPos = transform.position;
-            hasMoved = true;
-            if (currentPos.x == distance)
+            _hasMoved = true;
+            if(GameController.gameController.CurrentLane > 0&& GameController.gameController.CurrentLane < 2)
             {
-                return;
-            }
-
-            Vector3 newPosition = new(currentPos.x + distance, currentPos.y, currentPos.z);
-
-            transform.position = newPosition;
-        }
-
-
-        private void SwitchLaneRight()
-        {
-            hasMoved = true;
-            if(2 != GameController.gameController.CurrentLane)
-            {
-
-                GameController.gameController.CurrentLane++;
-                transform.position = new Vector3(GameController.gameController.Lanes[GameController.gameController.CurrentLane].transform.position.x, transform.position.y, transform.position.z);
-           
+                if(directionLeft)
+                {
+                    GameController.gameController.CurrentLane--;
+                    transform.position = new Vector3(GameController.gameController.Lanes[GameController.gameController.CurrentLane].transform.position.x, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    GameController.gameController.CurrentLane++;
+                    transform.position = new Vector3(GameController.gameController.Lanes[GameController.gameController.CurrentLane].transform.position.x, transform.position.y, transform.position.z);
+                }
             }
         }
 
-        private void SwitchLaneLeft()
-        {
-            hasMoved = true;
-            if (0 != GameController.gameController.CurrentLane)
-            {
-                GameController.gameController.CurrentLane--;
-                transform.position = new Vector3(GameController.gameController.Lanes[GameController.gameController.CurrentLane].transform.position.x, transform.position.y, transform.position.z);
-            
-            }
-        }
+       
 
         private void OnTriggerEnter(Collider other)
         {
