@@ -30,25 +30,17 @@ namespace Minigames.SimomSays
         private int _curentRound = 1;
         private int _waitTime = 1;
         private bool _isDoneChecking = true;
-        public TMP_Text LocationUIName; 
-        public TMP_Text LocationUIDescription; 
-        public TMP_Text LocationUIFacts;
-        public TMP_Text LocationUIHintNextLocation;
-        public GameObject LocationFileUI;
-        public LocationInfoScriptableObject LocationInfo;
         private int _raycastRange = 100;
         private bool _isPlaying = false;
         public Button HideLocationFileButton;
-        public TMP_Text BuddyTextBlock;
-        public GameObject BuddyDialogueObject;
-        public GameObject BuddyImage;
-        public Sprite BuddyDogSprite;
-        public Sprite BuddyCatSprite;
-        private List<Dialogue> _startMinigame = new();
+        
         // Start is called before the first frame update
         void Start()
         {
-            GameSetup();
+            SetBuddy();
+            SplitDialogue();
+            PrepareStep();
+            StartGameStep();
         }
         void Update()
         {
@@ -68,8 +60,8 @@ namespace Minigames.SimomSays
         }
         public override void SplitDialogue()
         {
-            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
-            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_1"));
+            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
+            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_1"));
         }
         public override void PrepareStep()
         {
@@ -94,37 +86,6 @@ namespace Minigames.SimomSays
             animator.SetTrigger("ToggleOpen");
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
-        }
-        public override void SetLocationFile()
-        {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                LocationFile = DutchFile();
-            }
-            else
-            {
-                LocationFile = EnglishFile();
-            }
-            LocationUIName.text = LocationFile.Name;
-            LocationUIDescription.text = LocationFile.Description;
-            StringBuilder locationFacts = new("Facts\n");
-            foreach (string fact in LocationFile.Facts)
-            {
-                locationFacts.AppendLine(fact + "\n");
-            }
-            LocationUIFacts.text = locationFacts.ToString();
-        }
-
-        public override LocationFile DutchFile()
-        {
-            return new LocationFile(LocationInfo.Data_NL.Name, LocationInfo.Data_NL.Description, LocationInfo.Data_NL.Facts, LocationInfo.Data_NL.HintNextLocation, false);
-
-        }
-
-        public override LocationFile EnglishFile()
-        {
-            return new LocationFile(LocationInfo.Data_EN.Name, LocationInfo.Data_EN.Description, LocationInfo.Data_EN.Facts, LocationInfo.Data_EN.HintNextLocation, false);
-
         }
         //starts the game
         private void StartGame()
@@ -285,47 +246,6 @@ namespace Minigames.SimomSays
         {
             StartCoroutine(LightUpAndOffButton(buttonId));
             AddToPlayerTaskSequence(buttonId);
-        }
-        public override void SetBuddy()
-        {
-            string buddyChoice = PlayerPrefs.GetString("Buddy");
-            if (buddyChoice.Equals("Cat"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyCatSprite;
-            }
-            if (buddyChoice.Equals("Dog"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyDogSprite;
-            }
-        }
-        public override void SetBuddyDialogueText(string Dialogue)
-        {
-            BuddyTextBlock.text = Dialogue;
-            BuddyDialogueObject.SetActive(true);
-        }
-        public override void OnTextBlockClick()
-        {
-            string text = BuddyTextBlock.text;
-            if (!LocationFile.IsCompleted)
-            {
-                _startMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
-            }
-            BuddyDialogueObject.SetActive(false);
-        }
-        public override void UpdateDialogue()
-        {
-            if (!LocationFile.IsCompleted)
-            {
-                foreach (Dialogue dialogue in _startMinigame)
-                {
-                    if (dialogue.IsRead != true)
-                    {
-                        SetBuddyDialogueText(dialogue.Text);
-                        break;
-                    }
-                }
-            }
-
         }
     }
 }
