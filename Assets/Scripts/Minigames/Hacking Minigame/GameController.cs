@@ -9,7 +9,7 @@ namespace Minigames.Hacking_Minigame
     {
         private float _timer;
         private bool _animationDone;
-        private float _health;
+        private float _health = 3;
         public float Health
         {
             get { return _health; }
@@ -36,7 +36,7 @@ namespace Minigames.Hacking_Minigame
         public int CurrentLane;
 
         public static GameController gameController;
-        public static HealthController healthController;
+        public HealthController healthController;
 
         public Animator[] Animations;
         public AnimationClip Animation;

@@ -19,6 +19,7 @@ public class AnimationManager : MonoBehaviour
     void Start()
     {
         Setup();
+        InvokeRepeating("AssemblePart", 2, .5f);
     }
 
     // Update is called once per frame
@@ -95,10 +96,12 @@ public class AnimationManager : MonoBehaviour
             StartCoroutine(part.RotatesSetup());
         }
     }
+
     //method to start playing the assembly animation
     public void AssemblePart()
     {
         StartCoroutine(AnimationPlay());
+        Debug.Log("assembling");
     }
     //coroutine to assemble the first part that hasnt yet been assembled
     public IEnumerator AnimationPlay()
@@ -107,9 +110,10 @@ public class AnimationManager : MonoBehaviour
         {
             if (!part.completed)
             {
+                part.completed = true;
                 yield return StartCoroutine(part.MoveToPosition());
                 yield return StartCoroutine(part.RotateToDirection());
-                part.completed = true;
+                
                 break;
             }
         }
