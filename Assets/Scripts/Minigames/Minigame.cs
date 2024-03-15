@@ -1,4 +1,3 @@
-using System;
 using Dialog;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +16,10 @@ namespace Minigames
         Lost,
     }
     
-    public abstract class Minigame : MonoBehaviour
+    public abstract partial class Minigame : MonoBehaviour
     {
+        // Location file.
+        // Still no clue what this is.
         protected LocationFile LocationFile;
 
         // Buddy dialogue.
@@ -64,9 +65,18 @@ namespace Minigames
         }
         
         /// <summary>
-        /// Starts the minigame.
+        /// Starts the minigame. Runs before the first frame update.
         /// If you want to add custom logic, override this and call the base method.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// public override void Start()
+        /// {
+        ///     // custom logic
+        ///     base.Start();
+        /// }
+        /// </code>
+        /// </example>
         public virtual void Start()
         {
             SetBuddy();
@@ -110,6 +120,9 @@ namespace Minigames
             LostScene.SetActive(gameState == GameState.Lost);
         }
 
+        /// <summary>
+        /// Sets the buddy image based on the player's choice.
+        /// </summary>
         protected void SetBuddy()
         {
             string buddyChoice = PlayerPrefs.GetString("Buddy");
@@ -121,6 +134,9 @@ namespace Minigames
             };
         }
 
+        /// <summary>
+        /// Sets the location file based on the current language.
+        /// </summary>
         protected void SetLocationFile()
         {
             LocationFile = LanguageManager.GetLanguage() switch
@@ -147,19 +163,26 @@ namespace Minigames
             return new LocationFile(LocationInfo.Data_NL.Name, LocationInfo.Data_NL.Description,
                 LocationInfo.Data_NL.Facts, LocationInfo.Data_NL.HintNextLocation, false);
         }
-
+        
         private LocationFile EnglishFile()
         {
             return new LocationFile(LocationInfo.Data_EN.Name, LocationInfo.Data_EN.Description,
                 LocationInfo.Data_EN.Facts, LocationInfo.Data_EN.HintNextLocation, false);
         }
-
+        
+        /// <summary>
+        /// Sets the buddy dialogue text.
+        /// </summary>
+        /// <param name="dialogue">Text to display in the dialogue popup.</param>
         private void SetBuddyDialogueText(string dialogue)
         {
             BuddyTextBlock.text = dialogue;
             BuddyDialogueObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Shows the location file based on the game state.
+        /// </summary>
         public void OnTextBlockClick()
         {
             string text = BuddyTextBlock.text;
@@ -183,6 +206,9 @@ namespace Minigames
             BuddyDialogueObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Updates the dialogue based on the game state.
+        /// </summary>
         protected void UpdateDialogue()
         {
             Dialogue dialogue = LocationFile.IsCompleted
@@ -191,6 +217,14 @@ namespace Minigames
                     : LostDialogues.First(dialogue => dialogue.IsRead != true)
                 : TutorialDialogues.First(dialogue => dialogue.IsRead != true);
             SetBuddyDialogueText(dialogue.Text);
+        }
+        
+        /// <summary>
+        /// Returns to the map.
+        /// </summary>
+        public void ReturnToMap()
+        {
+            SceneLoader.LoadScene(GameScene.Navigation);
         }
     }
 }

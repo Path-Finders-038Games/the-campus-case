@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
-using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using System.Linq;
 using Dialog;
 
@@ -137,7 +132,7 @@ namespace Minigames
         // method for checking if the user has lost the game
         public void CheckLost()
         {
-            if (fout == 12)
+            if (fout >= 12)
             {
                 //still needs work
                 SceneManager.LoadScene(1);

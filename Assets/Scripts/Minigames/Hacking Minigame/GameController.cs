@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 using Dialog;
-using TMPro;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -191,9 +188,9 @@ namespace Minigames.Hacking_Minigame
         }
         public override void SplitDialogue()
         {
-            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
-            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_1"));
-            EndMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_2"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_2"));
         }
     }
 }

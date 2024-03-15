@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Dialog;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.Sliding_puzzel
@@ -190,7 +189,7 @@ namespace Minigames.Sliding_puzzel
             LocationFileUI.SetActive(false);
             if (LocationFile.IsCompleted)
             {
-                SceneManager.LoadScene(1);
+                ReturnToMap();
             }
         }
 

@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Dialog;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -46,9 +42,9 @@ namespace Minigames.WaldoMinigame
         /// </summary>
         public override void SplitDialogue()
         {
-            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_0"));
-            StartMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_1"));
-            EndMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_2"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_2"));
         }
 
         /// <summary>
