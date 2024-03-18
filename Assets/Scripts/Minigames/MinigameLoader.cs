@@ -3,18 +3,19 @@ using System.Linq;
 using Navigation;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 namespace Minigames
 {
-    [System.Serializable]
-    public partial class Minigame
-    {
-        public string MapName;
-        public GameObject MinigamePrefab;
-    }
-
     public class MinigameLoader : MonoBehaviour
     {
+        [System.Serializable]
+        public class Minigame
+        {
+            public MinigameName MinigameName;
+            public GameObject MinigamePrefab;
+        }
+        
         private GameObject _spawnNew;
 
         public Minigame[] Minigames;
@@ -37,7 +38,7 @@ namespace Minigames
             _distance = 999;
 
             if (!_rayCastManager.Raycast(Input.touches[0].position, Hits,
-                    UnityEngine.XR.ARSubsystems.TrackableType.Planes)) return;
+                    TrackableType.Planes)) return;
 
 
             foreach (ARRaycastHit plane in Hits.Where(plane => plane.distance < _distance))
@@ -63,9 +64,10 @@ namespace Minigames
 
         private GameObject GetCorrectPrefab()
         {
-            if (!Minigames.Select(e => e.MapName).Contains(DataManager.Instance.CurrentMap)) return Default;
+            if (!Minigames.Select(e => SceneLoader.GetMinigameMapName(e.MinigameName)).Contains(DataManager.Instance.CurrentMap)) return Default;
 
-            return Minigames.Where(e => e.MapName == DataManager.Instance.CurrentMap).Select(e => e.MinigamePrefab).First();
+            return Minigames.Where(e => SceneLoader.GetMinigameMapName(e.MinigameName) == DataManager.Instance.CurrentMap).Select(e => e.MinigamePrefab)
+                .First();
         }
 
         public void DestroyPrefab()

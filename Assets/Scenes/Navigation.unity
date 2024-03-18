@@ -1874,7 +1874,7 @@ PrefabInstance:
     - target: {fileID: 9023944903060353633, guid: 332cf88ddfd2cf14ea8009b41f49db4c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: LoadMinigame
       objectReference: {fileID: 0}
     - target: {fileID: 9023944903060353633, guid: 332cf88ddfd2cf14ea8009b41f49db4c,
         type: 3}
@@ -1948,7 +1948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03a2e4ab9435424596ea692e90386b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameScene: 0
+  GameScene: 2
+  SelectedMinigame: 1
 --- !u!1001 &869549754
 PrefabInstance:
   m_ObjectHideFlags: 0

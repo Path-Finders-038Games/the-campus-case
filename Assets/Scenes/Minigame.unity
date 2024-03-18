@@ -399,19 +399,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Minigames:
   - MapName: T5Map
-    minigame: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
+    MinigamePrefab: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
       type: 3}
   - MapName: C0Map
-    minigame: {fileID: 8221244126007089358, guid: 1dab6b51f6b87b248b98dac5e6e19210,
+    MinigamePrefab: {fileID: 8221244126007089358, guid: 1dab6b51f6b87b248b98dac5e6e19210,
       type: 3}
   - MapName: S0Map
-    minigame: {fileID: 8430659435007741985, guid: bc343f0cdc3398940a30832733ad479f,
+    MinigamePrefab: {fileID: 8430659435007741985, guid: bc343f0cdc3398940a30832733ad479f,
       type: 3}
   - MapName: X1Map
-    minigame: {fileID: 6775056468626484808, guid: fb108abca05cea34b84ac09f1aa2b764,
+    MinigamePrefab: {fileID: 6775056468626484808, guid: fb108abca05cea34b84ac09f1aa2b764,
       type: 3}
   - MapName: T2Map
-    minigame: {fileID: 7971184478392807997, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+    MinigamePrefab: {fileID: 7971184478392807997, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
       type: 3}
   Default: {fileID: 6717461012115478838, guid: f52a6233cd202484d8cff91a5ca7a6e7, type: 3}
 --- !u!1 &694060473

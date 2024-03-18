@@ -1,3 +1,5 @@
+using System;
+using Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +11,20 @@ public enum GameScene
     Ending,
 }
 
+public enum MinigameName
+{
+    None,
+    SlidingPuzzle,
+    Mastermind,
+    WhereIsWaldo,
+    Hacking,
+    SimonSays,
+}
+
 public class SceneLoader : MonoBehaviour
 {
     public GameScene GameScene;
+    public MinigameName SelectedMinigame;
 
     public void LoadScene()
     {
@@ -27,6 +40,22 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(sceneId);
     }
+
+    public void LoadMinigame()
+    {
+        DataManager.Instance.CurrentMap = GetMinigameMapName(SelectedMinigame);
+        LoadScene(GameScene.Minigame);
+    }
+    
+    public static string GetMinigameMapName(MinigameName? minigameName) => minigameName switch
+    {
+        MinigameName.SlidingPuzzle => "C0Map",
+        MinigameName.Mastermind => "S0Map",
+        MinigameName.WhereIsWaldo => "X1Map",
+        MinigameName.Hacking => "T2Map",
+        MinigameName.SimonSays => "T5Map",
+        _ => "C0Map",
+    };
 
     /// <summary>
     /// Convert the GameScene enum to an integer. Used to load scenes. Default is MainMenu.
