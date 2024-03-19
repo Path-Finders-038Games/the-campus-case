@@ -39,8 +39,7 @@ namespace Minigames
 
             if (!_rayCastManager.Raycast(Input.touches[0].position, Hits,
                     TrackableType.Planes)) return;
-
-
+            
             foreach (ARRaycastHit plane in Hits.Where(plane => plane.distance < _distance))
             {
                 _distance = plane.distance;

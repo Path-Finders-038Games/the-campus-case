@@ -36,7 +36,7 @@ public class SceneLoader : MonoBehaviour
         LoadScene(GameSceneToId(gameScene));
     }
 
-    public static void LoadScene(int sceneId)
+    private static void LoadScene(int sceneId)
     {
         SceneManager.LoadScene(sceneId);
     }
