@@ -149,6 +149,7 @@ namespace Minigames.Mastermind
             code = new string[4];
             HideLocationFileButton.onClick.AddListener(HideLocationFile);
             SetLocationFile();
+            Debug.Log("sadas");
         }
 
         public override void StartGameStep()

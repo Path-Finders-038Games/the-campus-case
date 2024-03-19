@@ -633,7 +633,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4639441242440052974}
   - component: {fileID: 928476438783430349}
-  - component: {fileID: 1683694197073450232}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -688,21 +687,18 @@ MonoBehaviour:
   - {fileID: 882978747723739819}
   Animation: {fileID: 7400000, guid: a804a5158e817784c8e9a94a89dca3be, type: 2}
   GameCanvas: {fileID: 5030832880641896296}
---- !u!114 &1683694197073450232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3076419680243783703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d79938a651505549b08a00d549a11ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet_Prefab: {fileID: 1455717251906273815, guid: aadbf81ec1463074898e266bd22c7843,
-    type: 3}
-  ReloadTime: 1
+  LocationInfo: {fileID: 0}
+  LocationUIName: {fileID: 0}
+  LocationUIDescription: {fileID: 0}
+  LocationUIFacts: {fileID: 0}
+  LocationUIHintNextLocation: {fileID: 0}
+  LocationFileUI: {fileID: 0}
+  HideLocationFileButton: {fileID: 0}
+  BuddyTextBlock: {fileID: 0}
+  BuddyDialogueObject: {fileID: 0}
+  BuddyImage: {fileID: 0}
+  BuddyDogSprite: {fileID: 0}
+  BuddyCatSprite: {fileID: 0}
 --- !u!1 &4932145249438336441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,6 +3093,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5800008725689360998}
+    - targetCorrespondingSourceObject: {fileID: 2248063131389845392, guid: 8ad593d096f2d924c83e8b48c1a3359c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6934045030124480579}
   m_SourcePrefab: {fileID: 100100000, guid: 8ad593d096f2d924c83e8b48c1a3359c, type: 3}
 --- !u!224 &3845107502846792559 stripped
 RectTransform:
@@ -3122,6 +3122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a70c52765408844395540bcb757a9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6934045030124480579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5326630338473720843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d79938a651505549b08a00d549a11ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet_Prefab: {fileID: 1455717251906273815, guid: aadbf81ec1463074898e266bd22c7843,
+    type: 3}
+  ReloadTime: 1
 --- !u!1001 &7197897590506509604
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -123,6 +123,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &113300184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5326630338473720843, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2997494109352525371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &113300190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113300184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d79938a651505549b08a00d549a11ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet_Prefab: {fileID: 1455717251906273815, guid: aadbf81ec1463074898e266bd22c7843,
+    type: 3}
+  ReloadTime: 1
 --- !u!1 &1045386816 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6487339175410841455, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
@@ -364,10 +385,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hacking Minigame
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1683694197073450232, guid: 5790a8c6ec5aa5147820b117e9ca57ca, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5326630338473720843, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 113300190}
   m_SourcePrefab: {fileID: 100100000, guid: 5790a8c6ec5aa5147820b117e9ca57ca, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
