@@ -147,7 +147,7 @@ namespace Minigames
                     {
                         char input = name.Last();
                         hangman.Guess(input);
-                        child.active = false;
+                        child.SetActive(false);
                     }
                 }
                 Wordcheck();

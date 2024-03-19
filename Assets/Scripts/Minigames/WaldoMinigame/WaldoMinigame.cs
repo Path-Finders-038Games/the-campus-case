@@ -13,15 +13,6 @@ namespace Minigames.WaldoMinigame
 
         private bool _isChecking;
 
-
-        void Start()
-        {
-            SetBuddy();
-            SplitDialogue();
-            PrepareStep();
-            StartGameStep();
-        }
-
         void Update()
         {
             UpdateDialogue();

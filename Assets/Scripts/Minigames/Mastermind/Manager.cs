@@ -15,13 +15,6 @@ namespace Minigames.Mastermind
         [SerializeField] string[] code;
         public Button HideLocationFileButton;
 
-        void Start()
-        {
-            SetBuddy();
-            SplitDialogue();
-            PrepareStep();
-            StartGameStep();
-        }
         private void Update()
         {
             UpdateDialogue();

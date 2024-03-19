@@ -1607,7 +1607,7 @@ MonoBehaviour:
   TutorialScene: {fileID: 3588613908112012086}
   PlayingScene: {fileID: 3063621810517814136}
   WonScene: {fileID: 7424050567899144598}
-  LostScene: {fileID: 0}
+  LostScene: {fileID: 7424050567899144598}
   EmptySpace: {fileID: 3093003906740438043}
   TileObjects:
   - {fileID: 1586533903240672010}

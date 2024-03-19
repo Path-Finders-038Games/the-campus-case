@@ -33,15 +33,13 @@ namespace Minigames.Hacking_Minigame
 
         private float _timer;
         // Start is called before the first frame update
-        void Start()
+        public override void Start()
         {
             gameController = this;
             _animationDone = false;
             locationFileClosed = false;
-            SetBuddy();
-            SplitDialogue();
-            PrepareStep();
-            StartGameStep();
+            
+            base.Start();
         }
 
         // Update is called once per frame
@@ -66,7 +64,7 @@ namespace Minigames.Hacking_Minigame
                         {
                             SpawnAmount--;
                             GameObject spawn;
-                            int type = Random.RandomRange(0, 3);
+                            int type = Random.Range(0, 3);
                             if (type < 2)
                             {
                                 spawn = Weak;

@@ -33,14 +33,6 @@ namespace Minigames.SimomSays
         private bool _isPlaying = false;
         public Button HideLocationFileButton;
         
-        // Start is called before the first frame update
-        void Start()
-        {
-            SetBuddy();
-            SplitDialogue();
-            PrepareStep();
-            StartGameStep();
-        }
         void Update()
         {
             UpdateDialogue();

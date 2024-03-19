@@ -10263,6 +10263,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e64c047075f5248a05fd5f9de209cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuddyTextBlock: {fileID: 1052557792529071012}
+  BuddyDialogueObject: {fileID: 218860842939114830}
+  BuddyImage: {fileID: 731133652620996767}
+  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
+  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
+  LocationInfo: {fileID: 11400000, guid: 3ba99ba94221c804799e7fc9966d2ce3, type: 2}
+  LocationUIName: {fileID: 6697181165596272457}
+  LocationUIDescription: {fileID: 9151289564121363599}
+  LocationUIFacts: {fileID: 6679186035553022826}
+  LocationUIHintNextLocation: {fileID: 2958610867275355165}
+  LocationFileUI: {fileID: 1572457317649506381}
   mastermind: {fileID: 3986195502635391128}
   gameSlot:
   - {fileID: 5661207456014269854}
@@ -10285,18 +10296,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  LocationUIName: {fileID: 6697181165596272457}
-  LocationUIDescription: {fileID: 9151289564121363599}
-  LocationUIFacts: {fileID: 6679186035553022826}
-  LocationUIHintNextLocation: {fileID: 2958610867275355165}
-  LocationFileUI: {fileID: 1572457317649506381}
   HideLocationFileButton: {fileID: 1377283802952268868}
-  LocationInfo: {fileID: 11400000, guid: 3ba99ba94221c804799e7fc9966d2ce3, type: 2}
-  BuddyTextBlock: {fileID: 1052557792529071012}
-  BuddyDialogueObject: {fileID: 218860842939114830}
-  BuddyImage: {fileID: 731133652620996767}
-  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
-  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
 --- !u!1 &9072970714562340063
 GameObject:
   m_ObjectHideFlags: 0

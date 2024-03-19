@@ -47,10 +47,10 @@ namespace Minigames
 
         // Scenes.
         // These will be set in the Unity editor.
-        public GameObject TutorialScene;
-        public GameObject PlayingScene;
-        public GameObject WonScene;
-        public GameObject LostScene;
+        // public GameObject TutorialScene;
+        // public GameObject PlayingScene;
+        // public GameObject WonScene;
+        // public GameObject LostScene;
         
         // Game state. This will keep track of the current game state, execute logic and switch scenes when set.
         private GameState _gameState;
@@ -60,7 +60,7 @@ namespace Minigames
             set
             {
                 _gameState = value;
-                ProcessGameState(_gameState);
+                // ProcessGameState(_gameState);
             }
         }
         
@@ -114,10 +114,10 @@ namespace Minigames
         private void SwitchScene(GameState gameState)
         { 
             // hide all scenes and show the one that is needed
-            TutorialScene.SetActive(gameState == GameState.Tutorial);
-            PlayingScene.SetActive(gameState == GameState.Playing);
-            WonScene.SetActive(gameState == GameState.Won);
-            LostScene.SetActive(gameState == GameState.Lost);
+            // TutorialScene.SetActive(gameState == GameState.Tutorial);
+            // PlayingScene.SetActive(gameState == GameState.Playing);
+            // WonScene.SetActive(gameState == GameState.Won);
+            // LostScene.SetActive(gameState == GameState.Lost);
         }
 
         /// <summary>
@@ -213,16 +213,20 @@ namespace Minigames
         {
             Dialogue dialogue = LocationFile.IsCompleted
                 ? GameState == GameState.Won
-                    ? WonDialogues.First(dialogue => dialogue.IsRead != true)
-                    : LostDialogues.First(dialogue => dialogue.IsRead != true)
-                : TutorialDialogues.First(dialogue => dialogue.IsRead != true);
-            SetBuddyDialogueText(dialogue.Text);
+                    ? WonDialogues.FirstOrDefault(dialogue => dialogue.IsRead != true)
+                    : LostDialogues.FirstOrDefault(dialogue => dialogue.IsRead != true)
+                : TutorialDialogues.FirstOrDefault(dialogue => dialogue.IsRead != true);
+            
+            if (dialogue)
+            {
+                SetBuddyDialogueText(dialogue.Text);
+            }
         }
         
         /// <summary>
         /// Returns to the map.
         /// </summary>
-        public void ReturnToMap()
+        public static void ReturnToMap()
         {
             SceneLoader.LoadScene(GameScene.Navigation);
         }
