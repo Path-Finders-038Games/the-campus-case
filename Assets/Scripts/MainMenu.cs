@@ -60,6 +60,7 @@ public class MainMenu : MonoBehaviour
             case LanguageManager.Language.English:
                 SetLanguageToEnglish();
                 break;
+            case LanguageManager.Language.None:
             default:
                 LanguageScreen.SetActive(true);
                 TitleScreen.SetActive(false);

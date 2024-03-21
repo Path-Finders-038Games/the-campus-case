@@ -47,7 +47,7 @@ public class SceneLoader : MonoBehaviour
         LoadScene(GameScene.Minigame);
     }
     
-    public static string GetMinigameMapName(MinigameName? minigameName) => minigameName switch
+    public static string GetMinigameMapName(MinigameName minigameName) => minigameName switch
     {
         MinigameName.SlidingPuzzle => "C0Map",
         MinigameName.Mastermind => "S0Map",
