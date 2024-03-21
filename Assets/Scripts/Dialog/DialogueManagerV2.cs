@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
@@ -46,6 +45,20 @@ namespace Dialog
             StringTableEntry entry = entries.First(e => e.Key == key);
 
             return entry.GetLocalizedString(_locale);
+        }
+        
+        /// <summary>
+        /// Gets all localized strings from the given table.
+        /// </summary>
+        /// <param name="table">Localization table to search in.</param>
+        /// <returns>Localized <see cref="string"/> list according to the user preferences.</returns>
+        public static List<string> GetAllLocalizedStrings(string table)
+        {
+            LocalizedStringDatabase tableCollection = LocalizationSettings.StringDatabase;
+            StringTable stringTable = tableCollection.GetTable(table);
+
+            ICollection<StringTableEntry> entries = stringTable.Values;
+            return entries.Select(e => e.GetLocalizedString(_locale)).ToList();
         }
 
         /// <summary>

@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
-using UnityEngine.Localization.Tables;
 
 // TODO: Remove this class and move the dialogue to localization files.
 // ReSharper disable Unity.IncorrectMonoBehaviourInstantiation

@@ -29,7 +29,7 @@ namespace AR
         // Removes all the anchors that have been created.
         public void RemoveAllAnchors()
         {
-            foreach (var anchor in m_AnchorPoints)
+            foreach (ARAnchor anchor in m_AnchorPoints)
             {
                 Destroy(anchor);
             }
@@ -54,34 +54,33 @@ namespace AR
             if (Input.touchCount == 0)
                 return;
 
-            var touch = Input.GetTouch(0);
+            Touch touch = Input.GetTouch(0);
             if (touch.phase != TouchPhase.Began)
                 return;
 
-            if (m_RaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
+            if (!m_RaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon)) return;
+
+            // Raycast hits are sorted by distance, so the first one
+            // will be the closest hit.
+            Pose hitPose = s_Hits[0].pose;
+            TrackableId hitTrackableId = s_Hits[0].trackableId;
+            ARPlane hitPlane = m_PlaneManager.GetPlane(hitTrackableId);
+
+            // This attaches an anchor to the area on the plane corresponding to the raycast hit,
+            // and afterwards instantiates an instance of your chosen prefab at that point.
+            // This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
+            // with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
+            ARAnchor anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
+            Instantiate(m_AnchorPrefab, anchor.transform);
+
+            if (anchor == null)
             {
-                // Raycast hits are sorted by distance, so the first one
-                // will be the closest hit.
-                var hitPose = s_Hits[0].pose;
-                var hitTrackableId = s_Hits[0].trackableId;
-                var hitPlane = m_PlaneManager.GetPlane(hitTrackableId);
-
-                // This attaches an anchor to the area on the plane corresponding to the raycast hit,
-                // and afterwards instantiates an instance of your chosen prefab at that point.
-                // This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
-                // with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
-                var anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
-                Instantiate(m_AnchorPrefab, anchor.transform);
-
-                if (anchor == null)
-                {
-                    Debug.Log("Error creating anchor.");
-                }
-                else
-                {
-                    // Stores the anchor so that it may be removed later.
-                    m_AnchorPoints.Add(anchor);
-                }
+                Debug.Log("Error creating anchor.");
+            }
+            else
+            {
+                // Stores the anchor so that it may be removed later.
+                m_AnchorPoints.Add(anchor);
             }
         }
 

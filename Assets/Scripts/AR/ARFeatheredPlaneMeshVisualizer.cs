@@ -21,8 +21,8 @@ namespace AR
         /// </summary>
         public float featheringWidth
         { 
-            get { return m_FeatheringWidth; }
-            set { m_FeatheringWidth = value; } 
+            get => m_FeatheringWidth;
+            set => m_FeatheringWidth = value;
         }
 
         void Awake()

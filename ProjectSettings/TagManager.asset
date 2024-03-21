@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Canvas
+  - Verif
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - StencilLayer 2
   - Sim layer
   - StencilLayer 3
-  - 
+  - XR Simulation
   - 
   - 
   - 
