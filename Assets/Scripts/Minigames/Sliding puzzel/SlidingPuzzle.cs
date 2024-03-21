@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Dialog;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.Sliding_puzzel
@@ -13,21 +10,9 @@ namespace Minigames.Sliding_puzzel
     {
         public Transform EmptySpace;
         public List<GameObject> TileObjects;
-
-        public LocationInfoScriptableObject LocationInfo;
-        public TMP_Text LocationUIName;
-        public TMP_Text LocationUIDescription;
-        public TMP_Text LocationUIFacts;
-        public TMP_Text LocationUIHintNextLocation;
-        public GameObject LocationFileUI;
+        
         public GameObject GameBoard;
         public Button HideLocationFileButton;
-
-        public TMP_Text BuddyTextBlock;
-        public GameObject BuddyDialogueObject;
-        public GameObject BuddyImage;
-        public Sprite BuddyDogSprite;
-        public Sprite BuddyCatSprite;
 
         private int[,] _correctBoard;
         private int[,] _currentBoard;
@@ -36,14 +21,7 @@ namespace Minigames.Sliding_puzzel
         private bool _isChecking;
         private int _raycastRange;
 
-        private List<Dialogue> _startMinigame = new();
-        private List<Dialogue> _endMinigame = new();
         private List<SlidingPuzzleTile> _tilesScripts;
-
-        void Start()
-        {
-            GameSetup();
-        }
 
         void Update()
         {
@@ -62,10 +40,10 @@ namespace Minigames.Sliding_puzzel
         /// </summary>
         public override void SplitDialogue()
         {
-            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
-            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_1"));
-            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_2"));
-            _endMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_3"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_2"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_3"));
         }
 
         private void RaycastCheck()
@@ -130,40 +108,6 @@ namespace Minigames.Sliding_puzzel
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
             ShowLocationFile();
-        }
-
-        public override void SetLocationFile()
-        {
-            if (PlayerPrefs.GetString("Language").Equals("NL"))
-            {
-                LocationFile = DutchFile();
-            }
-            else
-            {
-                LocationFile = EnglishFile();
-            }
-
-            LocationUIName.text = LocationFile.Name;
-            LocationUIDescription.text = LocationFile.Description;
-            StringBuilder locationFacts = new("Facts\n");
-            foreach (string fact in LocationFile.Facts)
-            {
-                locationFacts.AppendLine(fact + "\n");
-            }
-
-            LocationUIFacts.text = locationFacts.ToString();
-        }
-
-        public override LocationFile DutchFile()
-        {
-            return new LocationFile(LocationInfo.Data_NL.Name, LocationInfo.Data_NL.Description,
-                LocationInfo.Data_NL.Facts, LocationInfo.Data_NL.HintNextLocation, false);
-        }
-
-        public override LocationFile EnglishFile()
-        {
-            return new LocationFile(LocationInfo.Data_EN.Name, LocationInfo.Data_EN.Description,
-                LocationInfo.Data_EN.Facts, LocationInfo.Data_EN.HintNextLocation, false);
         }
 
         private void SetTile(int row, int column, int id, SlidingPuzzleTile tile)
@@ -245,7 +189,7 @@ namespace Minigames.Sliding_puzzel
             LocationFileUI.SetActive(false);
             if (LocationFile.IsCompleted)
             {
-                SceneManager.LoadScene(1);
+                ReturnToMap();
             }
         }
 
@@ -283,7 +227,7 @@ namespace Minigames.Sliding_puzzel
             int tileCount = 7; //Empty space excluded
             for (int index = 0; index <= 7; index++)
             {
-                var lastPosition = _tilesScripts[index].transform.position;
+                Vector3 lastPosition = _tilesScripts[index].transform.position;
                 Vector2Int lastMatrixPosition = _tilesScripts[index].Position;
                 int randomIndex = Random.Range(0, tileCount);
                 _tilesScripts[index].transform.position = _tilesScripts[randomIndex].transform.position;
@@ -334,56 +278,6 @@ namespace Minigames.Sliding_puzzel
             int invCount = GetInversionCount(linearForm);
             // return true if inversion count is even.
             return (invCount % 2 == 0);
-        }
-
-        public override void SetBuddy()
-        {
-            string buddyChoice = PlayerPrefs.GetString("Buddy");
-            if (buddyChoice.Equals("Cat"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyCatSprite;
-            }
-
-            if (buddyChoice.Equals("Dog"))
-            {
-                BuddyImage.GetComponent<Image>().sprite = BuddyDogSprite;
-            }
-        }
-
-        public override void SetBuddyDialogueText(string Dialogue)
-        {
-            BuddyTextBlock.text = Dialogue;
-            BuddyDialogueObject.SetActive(true);
-        }
-
-        public override void OnTextBlockClick()
-        {
-            string text = BuddyTextBlock.text;
-
-            if (!LocationFile.IsCompleted)
-            {
-                _startMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
-            }
-            else
-            {
-                _endMinigame.Find(x => x.Text.Equals(text)).IsRead = true;
-            }
-
-            BuddyDialogueObject.SetActive(false);
-        }
-
-        public override void UpdateDialogue()
-        {
-            if (!LocationFile.IsCompleted)
-            {
-                Dialogue dialogue = _startMinigame.First(dialogue => dialogue.IsRead != true);
-                SetBuddyDialogueText(dialogue.Text);
-            }
-            else
-            {
-                Dialogue dialogue = _endMinigame.First(dialogue => dialogue.IsRead != true);
-                SetBuddyDialogueText(dialogue.Text);
-            }
         }
     }
 }

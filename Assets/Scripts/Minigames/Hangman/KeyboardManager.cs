@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -149,7 +147,7 @@ namespace Minigames
                     {
                         char input = name.Last();
                         hangman.Guess(input);
-                        child.active = false;
+                        child.SetActive(false);
                     }
                 }
                 Wordcheck();
