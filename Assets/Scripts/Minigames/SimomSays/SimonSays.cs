@@ -7,10 +7,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-//todo
-//delete buttonmat
-//remove buttons and use only the list
 namespace Minigames.SimomSays
 {
     public class SimonSays : Minigame
@@ -19,48 +15,33 @@ namespace Minigames.SimomSays
 
         // button on screen to start the simon says game
         public Button StartButton;
-
         //not used anywhere???
         public Material ButtonMat;
-
         //Text field for displaying messages
         public TMP_Text Text;
-
+        // list of the buttons on the safe
+        public List<GameObject> SafeButtonList = new();
+        //button for hiding location file
+        public Button HideLocationFileButton;
 
         //Start sequence lenght for round 1
         private int _lenghtSequence = 3;
-
-        // list of the buttons on the safe
-        public List<GameObject> SafeButtonList = new();
-
         //sequence of buttons to press
         private List<int> _taskSequence = new();
-
         //sequence of buttons the player presses
         private List<int> _playerSequence = new();
-
         //rounds the game will play
         private int _rounds = 3;
-
         //current round of the game
-        private int _curentRound = 1;
-
+        private int _currentRound = 1;
         //delay duration used to slow down game elements
         private int _waitTime = 1;
-
         //boolean used to control whether player input should be registered
         private bool _isDoneChecking = true;
-
         // variable used for the AR interaction unsure of its exact behaviour
         private int _raycastRange = 100;
-
         //boolean that signifies whether the player is still in play or has either lost or hasnt started yet
         private bool _isPlaying = false;
-
-        //button for hiding location file?
-        //probably not used (yet) 
-        public Button HideLocationFileButton;
-
         //the dialogue for the game
         private List<Dialogue> _startMinigame = new();
 
@@ -84,7 +65,7 @@ namespace Minigames.SimomSays
             }
         }
 
-        //???
+        //adds dialoguetext to the minigame from the localizationtable
         public override void SplitDialogue()
         {
             _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
@@ -116,8 +97,6 @@ namespace Minigames.SimomSays
             LocationFile.IsCompleted = true;
         }
 
-        // method for retrieving info based on language
-       
         //starts the game
         private void StartGame()
         {
@@ -177,7 +156,7 @@ namespace Minigames.SimomSays
             }
             Text.text = "Your Turn";
             yield return new WaitForSeconds(_waitTime);
-            Text.text = $"Round: {_curentRound}";
+            Text.text = $"Round: {_currentRound}";
             _isDoneChecking = false;
         }
 
@@ -211,7 +190,7 @@ namespace Minigames.SimomSays
         //Resets game
         private void ResetGame()
         {
-            _curentRound = 1;
+            _currentRound = 1;
             _playerSequence.Clear();
             _taskSequence.Clear();
         }
@@ -219,14 +198,14 @@ namespace Minigames.SimomSays
         private void NextRound()
         {
             _playerSequence.Clear();
-            if (_curentRound == _rounds)
+            if (_currentRound == _rounds)
             {
                 Text.text = "You won the game";
                 CompleteGameStep();
             }
             else
             {
-                _curentRound++;
+                _currentRound++;
                 AddToSequence();
                 StartCoroutine(ShowSequence());
             }
