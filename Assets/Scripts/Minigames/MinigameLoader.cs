@@ -23,9 +23,7 @@ namespace Minigames
         public Minigame[] Minigames;
 
         private GameObject _spawnedPrefab;
-
         private ARRaycastManager _raycastManager;
-        private ARRaycastHit _planeHit;
 
         private static readonly List<ARRaycastHit> PreviousRaycastHits = new();
 
@@ -41,33 +39,20 @@ namespace Minigames
             // If the prefab is already spawned, return.
             if (_spawnedPrefab != null) return;
 
-            // Check if there is more than 0 touches and if the touch is the beginning
-            // of the touch (to prevent multiple touches at once and holding down).
-            if (Input.touchCount <= 0 || Input.touches[0].phase != TouchPhase.Began) return;
+            // Check if there is one touch and if the touch is the beginning
+            // of the touch input (to prevent multiple touches at once and holding down).
+            if (Input.touchCount != 1 || Input.touches[0].phase != TouchPhase.Began) return;
 
-            // Set the distance to the maximum value. This is used to find the closest plane.
-            // This value is decreased when a closer plane is found.
-            float distance = float.MaxValue;
-
-            // If the raycast does not hit any planes, return. Planes are the dotted surfaces
-            // visible in the AR environment.
-            if (!_raycastManager.Raycast(Input.touches[0].position, PreviousRaycastHits,
+            // Create a list of ARRaycastHits to store the hit results. This is used to find the closest plane.
+            // Call the Raycast method and store the hit results in the list. The TrackableType is set to Planes.
+            // The function returns true if a plane is hit, and false if not. If the function returns false, return.
+            // The function also returns false if the hitResults list is empty, so this is checked as well.
+            List<ARRaycastHit> hitResults = new();
+            if (!_raycastManager.Raycast(Input.touches[0].position, hitResults,
                     TrackableType.Planes)) return;
-
-            // Find the closest plane. This is done by iterating through all the planes and
-            // checking if the distance is smaller than the previous distance.
-            foreach (ARRaycastHit plane in PreviousRaycastHits)
-            {
-                // If the current plane is not closer than the previous plane, exit the loop.
-                if (!(plane.distance < distance)) continue;
-
-                // Set the distance to the current plane's distance, and set the planeHit to the current plane.
-                distance = plane.distance;
-                _planeHit = plane;
-            }
-
-            // Spawn the prefab at the hit position.
-            SpawnPrefab(_planeHit);
+            
+            // Spawn the prefab at the first hit position. Cast the ARRaycastHit to an ARRaycastHit to prevent null reference.
+            SpawnPrefab(hitResults.First());
         }
 
         private void SpawnPrefab(ARRaycastHit plane)
