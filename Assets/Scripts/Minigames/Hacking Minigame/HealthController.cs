@@ -5,25 +5,27 @@ namespace Minigames.Hacking_Minigame
 {
     public class HealthController : MonoBehaviour
     {
-        // Start is called before the first frame update
+        // array of all the stages of the healthbar
         public Sprite[] HealthSprites;
+
+        //reference to the image component
         public Image Image;
+
+        // Start is called before the first frame update
         void Start()
         {
+            //set the image sprite to the full HP sprite
             Image.sprite = HealthSprites[3];
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        public void ReduceHealth (int health)
+        // change the health sprite to a new one based on the health points left
+        public void ChangeHealthSprite (int health)
         {
             Image.sprite = HealthSprites[health];
         }
 
+        //if something touches this object reduce health by 1
+        //if health reaches 0 destroy this gameobject
         private void OnTriggerEnter(Collider other)
         {
             Destroy(other.gameObject);
@@ -34,6 +36,8 @@ namespace Minigames.Hacking_Minigame
             }
         }
 
+        //if something touches this object reduce health by 1
+        //if health reaches 0 destroy this gameobject
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Destroy(collision.gameObject);

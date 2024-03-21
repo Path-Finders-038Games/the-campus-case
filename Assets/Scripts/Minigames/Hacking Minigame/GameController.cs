@@ -9,7 +9,27 @@ namespace Minigames.Hacking_Minigame
 {
     public class GameController : Minigame
     {
-        public float Health;
+
+        private float _timer;
+        private bool _animationDone;
+        private int _health = 3;
+        public int Health
+        {
+            get { return _health; }
+            set
+            {
+                _health = value;
+                healthController.ChangeHealthSprite(_health);
+            }
+        }
+
+        public Animator[] Animations;
+        public AnimationClip Animation;
+
+        public Button HideLocationFileButton;
+        bool locationFileClosed;
+        public Canvas GameCanvas;
+
         public float SpawnDelay;
         public int SpawnAmount;
         public int EnemyAlive;
@@ -20,18 +40,14 @@ namespace Minigames.Hacking_Minigame
         public GameObject[] Lanes;
         public GameObject EndScreen;
         public int CurrentLane;
+
         public static GameController gameController;
+        public static HealthController healthController;
+        
 
-        public Animator[] Animations;
-        public AnimationClip Animation;
-        private bool _animationDone;
-
-        public Button HideLocationFileButton;
-        bool locationFileClosed;
-        public Canvas GameCanvas;
+       
 
 
-        private float _timer;
         // Start is called before the first frame update
         public override void Start()
         {
@@ -169,6 +185,9 @@ namespace Minigames.Hacking_Minigame
             PlayGame = false;
             LocationFileUI.SetActive(true);
         }
+
+        //hide the locationfile
+        //and return to the map if the file is completed
         public override void HideLocationFile()
         {
             LocationFileUI.SetActive(false);
@@ -184,6 +203,8 @@ namespace Minigames.Hacking_Minigame
                 item.SetTrigger("Test");
             }
         }
+
+        //receive the dialogue used in the minigame
         public override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
