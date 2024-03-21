@@ -209,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 2
+  Position: {x: 2, y: 0}
   Name: 
 --- !u!1 &1586533903240672010
 GameObject:
@@ -931,8 +931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 8
+  Position: {x: 2, y: 2}
   Name: 
 --- !u!1 &5104259691196133227
 GameObject:
@@ -1093,8 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 6
+  Position: {x: 0, y: 2}
   Name: 
 --- !u!1 &5396128700308711132
 GameObject:
@@ -1218,8 +1218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 4
+  Position: {x: 1, y: 1}
   Name: 
 --- !u!1 &5877973161489136660
 GameObject:
@@ -1343,8 +1343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 1
+  Position: {x: 1, y: 0}
   Name: 
 --- !u!1 &7421481760566193819
 GameObject:
@@ -1543,8 +1543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 3
+  Position: {x: 0, y: 1}
   Name: 
 --- !u!1 &8221244126007089358
 GameObject:
@@ -1593,6 +1593,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fb35d491408ba40990d0787a04cd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuddyTextBlock: {fileID: 1369632723074567756}
+  BuddyDialogueObject: {fileID: 5104259691196133227}
+  BuddyImage: {fileID: 7421481760566193819}
+  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
+  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
+  LocationInfo: {fileID: 11400000, guid: 9fa5f7bccbeeb3f46ad0be7466a8faa4, type: 2}
+  LocationUIName: {fileID: 3325013288778032786}
+  LocationUIDescription: {fileID: 876533341785781588}
+  LocationUIFacts: {fileID: 3343016171174572721}
+  LocationUIHintNextLocation: {fileID: 6618853127016863174}
+  LocationFileUI: {fileID: 7424050567899144598}
+  TutorialScene: {fileID: 3588613908112012086}
+  PlayingScene: {fileID: 3063621810517814136}
+  WonScene: {fileID: 7424050567899144598}
+  LostScene: {fileID: 7424050567899144598}
   EmptySpace: {fileID: 3093003906740438043}
   TileObjects:
   - {fileID: 1586533903240672010}
@@ -1604,19 +1619,8 @@ MonoBehaviour:
   - {fileID: 5211542094760580471}
   - {fileID: 9102433522986368650}
   - {fileID: 5056574540307214704}
-  LocationInfo: {fileID: 11400000, guid: 9fa5f7bccbeeb3f46ad0be7466a8faa4, type: 2}
-  LocationUIName: {fileID: 3325013288778032786}
-  LocationUIDescription: {fileID: 876533341785781588}
-  LocationUIFacts: {fileID: 3343016171174572721}
-  LocationUIHintNextLocation: {fileID: 6618853127016863174}
-  LocationFileUI: {fileID: 7424050567899144598}
   GameBoard: {fileID: 3063621810517814136}
   HideLocationFileButton: {fileID: 7046131631513566623}
-  BuddyTextBlock: {fileID: 1369632723074567756}
-  BuddyDialogueObject: {fileID: 5104259691196133227}
-  BuddyImage: {fileID: 7421481760566193819}
-  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
-  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
 --- !u!1 &8790802112250197969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,8 +1876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 7
+  Position: {x: 1, y: 2}
   Name: 
 --- !u!1 &9119767664786922758
 GameObject:
@@ -1997,8 +2001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8370df4f30c8e428d97e56f92d83e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  Position: {x: 0, y: 0}
+  Id: 5
+  Position: {x: 2, y: 1}
   Name: 
 --- !u!1001 &4523282754814041728
 PrefabInstance:

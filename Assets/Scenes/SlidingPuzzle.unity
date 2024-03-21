@@ -186,8 +186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placeblePrefab:
   - {fileID: 8221244126007089358, guid: 1dab6b51f6b87b248b98dac5e6e19210, type: 3}
-  - {fileID: 6775056468626484808, guid: fb108abca05cea34b84ac09f1aa2b764, type: 3}
-  - {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33, type: 3}
 --- !u!114 &73551180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,7 +335,7 @@ GameObject:
   - component: {fileID: 384300700}
   - component: {fileID: 384300699}
   - component: {fileID: 384300698}
-  - component: {fileID: 384300697}
+  - component: {fileID: 384300701}
   m_Layer: 5
   m_Name: MinigameTrigger
   m_TagString: Untagged
@@ -365,19 +363,6 @@ RectTransform:
   m_AnchoredPosition: {x: -387, y: 1084}
   m_SizeDelta: {x: 40.4424, y: 40.5014}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &384300697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384300695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f82032b705a612945988cc1f5cf45e13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneID: 1
 --- !u!114 &384300698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,8 +407,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 384300697}
-        m_TargetAssemblyTypeName: sceneLoader, Assembly-CSharp
+      - m_Target: {fileID: 384300701}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -472,6 +457,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384300695}
   m_CullTransparentMesh: 1
+--- !u!114 &384300701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384300695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03a2e4ab9435424596ea692e90386b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameScene: 1
+  SelectedMinigame: 0
 --- !u!1 &475335830
 GameObject:
   m_ObjectHideFlags: 0

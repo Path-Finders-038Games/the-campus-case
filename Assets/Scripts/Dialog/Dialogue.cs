@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Dialog
 {
-    public class Dialogue : MonoBehaviour
+    public class Dialogue : ScriptableObject
     {
         public string Text;
         public bool IsRead;

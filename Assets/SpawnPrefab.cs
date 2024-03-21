@@ -24,7 +24,7 @@ public class SpawnPrefab : MonoBehaviour
             _distance = 999;
             if (raycastManager.Raycast(Input.touches[0].position, hits, UnityEngine.XR.ARSubsystems.TrackableType.Planes))
             {
-                foreach (var plane in hits)
+                foreach (ARRaycastHit plane in hits)
                 {
                     if (plane.distance < _distance)
                     {
