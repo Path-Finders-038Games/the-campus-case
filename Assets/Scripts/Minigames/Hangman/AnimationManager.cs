@@ -1,10 +1,6 @@
-using Minigames;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /*
  TODO:
@@ -89,7 +85,7 @@ public class AnimationManager : MonoBehaviour
         Parts.Add(new AnimationTransform(Bear, new Vector3(-4.4f, 0.75f, -2.8f), new Vector3(2.4f, -202, 96)));
 
         //set all parts to their unassembled position
-        foreach (var part in Parts)
+        foreach (AnimationTransform part in Parts)
         {
             StartCoroutine(part.SetupPos());
             StartCoroutine(part.RotatesSetup());
@@ -103,7 +99,7 @@ public class AnimationManager : MonoBehaviour
     //coroutine to assemble the first part that hasnt yet been assembled
     public IEnumerator AnimationPlay()
     {
-        foreach (var part in Parts)
+        foreach (AnimationTransform part in Parts)
         {
             if (!part.completed)
             {
@@ -156,8 +152,8 @@ public class AnimationTransform
     public IEnumerator SetupPos()
     {
 
-        var currentPos = parttransform.localPosition;
-        var t = 0f;
+        Vector3 currentPos = parttransform.localPosition;
+        float t = 0f;
         while (t <= 1f)
         {
             // total time for the animation to complete
@@ -173,9 +169,9 @@ public class AnimationTransform
     //method to set the rotation of the part in the dissassmebled state
     public IEnumerator RotatesSetup()
     {
-        var startRotation = parttransform.localEulerAngles;
-        var finalRotation = dissasembled_rot;
-        var t = 0f;
+        Vector3 startRotation = parttransform.localEulerAngles;
+        Vector3 finalRotation = dissasembled_rot;
+        float t = 0f;
         while (t <= 1f)
         {
             // total time for the animation to complete
@@ -191,8 +187,8 @@ public class AnimationTransform
     // method to set the position of the part in asembled state
     public IEnumerator MoveToPosition()
     {
-        var currentPos = parttransform.localPosition;
-        var t = 0f; 
+        Vector3 currentPos = parttransform.localPosition;
+        float t = 0f; 
         while (t <= 1f)
         {
             // total time for the animation to complete
@@ -208,9 +204,9 @@ public class AnimationTransform
     //method to set the rotation of the part in the assmebled state
     public IEnumerator RotateToDirection()
     {
-        var startRotation = parttransform.localEulerAngles;
-        var finalRotation = assembled_rot;
-        var t = 0f;
+        Vector3 startRotation = parttransform.localEulerAngles;
+        Vector3 finalRotation = assembled_rot;
+        float t = 0f;
         while (t <= 1f)
         {
             // total time for the animation to complete

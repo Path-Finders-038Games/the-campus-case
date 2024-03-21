@@ -197,13 +197,7 @@ public class Reporter : MonoBehaviour
 	string logDate;
 	float logsMemUsage;
 	float graphMemUsage;
-	public float TotalMemUsage
-	{
-		get
-		{
-			return logsMemUsage + graphMemUsage;
-		}
-	}
+	public float TotalMemUsage => logsMemUsage + graphMemUsage;
 	float gcTotalMemory;
 	public string UserData = "";
 	//frame rate per second
