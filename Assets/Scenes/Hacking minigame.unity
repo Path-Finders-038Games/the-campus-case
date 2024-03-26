@@ -364,8 +364,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hacking Minigame
       objectReference: {fileID: 0}
+    - target: {fileID: 8482976332368816690, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8482976332368816690, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c1b114a7571a8d547adfaed4aa4482ba, type: 2}
     m_RemovedComponents:
-    - {fileID: 1683694197073450232, guid: 5790a8c6ec5aa5147820b117e9ca57ca, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

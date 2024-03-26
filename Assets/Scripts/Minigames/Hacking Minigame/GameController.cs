@@ -42,7 +42,7 @@ namespace Minigames.Hacking_Minigame
         public int CurrentLane;
 
         public static GameController gameController;
-        public static HealthController healthController;
+        public  HealthController healthController;
         
 
        
