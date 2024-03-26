@@ -8,7 +8,7 @@ namespace Minigames.Mastermind
     public class Manager : Minigame
     {
         [SerializeField] Mastermind mastermind;
-        [SerializeField] GameObject[] gameSlot =  new GameObject[10];
+        [SerializeField] GameObject[] gameSlot = new GameObject[10];
         [SerializeField] GameObject[] gameVerif = new GameObject[4];
         private int _currentSlot, _currentCol;
         private Sprite _emptySprite;
@@ -22,7 +22,6 @@ namespace Minigames.Mastermind
 
         public void ColorSelect(Sprite sp)
         {
-
             if (!mastermind.HiddenSlot.activeInHierarchy) return;
 
             gameSlot[_currentSlot].transform.Find("c" + _currentCol).GetComponent<Image>().sprite = sp;
@@ -36,16 +35,14 @@ namespace Minigames.Mastermind
             for (int i = 1; i < 5; i++)
             {
                 gameSlot[_currentSlot].transform.Find("c" + i).GetComponent<Image>().sprite = _emptySprite;
-
             }
+
             _currentCol = 1;
         }
 
         public void Replay()
         {
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
         }
 
         public void ExitGame()
@@ -69,7 +66,6 @@ namespace Minigames.Mastermind
             for (int i = 1; i < 5; i++)
             {
                 if (gameSlot[_currentSlot].transform.Find("c" + i).GetComponent<Image>().sprite == _emptySprite) return;
-
             }
 
 
@@ -95,7 +91,6 @@ namespace Minigames.Mastermind
             {
                 Loose();
                 return;
-
             }
 
             _currentSlot++;
@@ -143,11 +138,12 @@ namespace Minigames.Mastermind
             LocationFile.IsCompleted = true;
             ShowLocationFile();
         }
-       
+
         public override void ShowLocationFile()
         {
             LocationFileUI.SetActive(true);
         }
+
         public override void HideLocationFile()
         {
             LocationFileUI.SetActive(false);
@@ -155,8 +151,8 @@ namespace Minigames.Mastermind
             {
                 SceneManager.LoadScene(1);
             }
-
         }
+
         public override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_0"));

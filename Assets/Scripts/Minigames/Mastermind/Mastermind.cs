@@ -48,41 +48,33 @@ namespace Minigames.Mastermind
             int good = 0;
             for (int i = 0; i < SecretCodeTemp.Length; i++)
             {
-                if (code[i] == SecretCodeTemp[i])
-                {
-                    good++;
-                    code[i] = "good";
-                    SecretCodeTemp[i] = "good";
-
-                }
+                if (code[i] != SecretCodeTemp[i]) continue;
+                
+                good++;
+                code[i] = "good";
+                SecretCodeTemp[i] = "good";
             }
+
             Array.Copy(code, _codePlayer, code.Length);
             return good;
         }
 
-
-
-
-
         public int GetWrongPosition()
         {
             int wrong = 0;
-            for (int i = 0; i < _codePlayer.Length; i++)
+            foreach (string t in _codePlayer)
             {
                 for (int j = 0; j < SecretCodeTemp.Length; j++)
                 {
-                    if (_codePlayer[i] == SecretCodeTemp[j] && _codePlayer[i] != "good" && SecretCodeTemp[j] != "good")
-                    {
-                        SecretCodeTemp[j] = "wrong";
-                        wrong++;
-                        break;
-                    }
-
+                    if (t != SecretCodeTemp[j] || t == "good" || SecretCodeTemp[j] == "good") continue;
+                    
+                    SecretCodeTemp[j] = "wrong";
+                    wrong++;
+                    break;
                 }
-
             }
+
             return wrong;
         }
-
     }
 }
