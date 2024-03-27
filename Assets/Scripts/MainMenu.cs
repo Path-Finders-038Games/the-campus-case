@@ -1,5 +1,6 @@
 using Dialog;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,18 +8,18 @@ public class MainMenu : MonoBehaviour
 {
     // Language screen
     public GameObject LanguageScreen;
-    
+
     // Title screen
     public GameObject TitleScreen;
     public GameObject ContinueBtn;
     public TMP_Text ContinueText;
     public TMP_Text NewGameText;
     public TMP_Text QuitText;
-    
+
     // Buddy screen
     public GameObject BuddyScreen;
     public TMP_Text BuddyChoiceTitle;
-    
+
     // Introduction screen
     public GameObject IntroductionScreen;
     public TMP_Text IntroductionTitle;
@@ -26,7 +27,7 @@ public class MainMenu : MonoBehaviour
     public TMP_Text IntroductionBuddyMessage;
     public GameObject IntroductionBuddyCat;
     public GameObject IntroductionBuddyDog;
-    
+
     // Navigation
     private int _navigationLocation;
 
@@ -34,9 +35,9 @@ public class MainMenu : MonoBehaviour
     {
         // During development, clear the language to test the language screen and localization strings
         PlayerPrefs.DeleteKey("Language");
-        
+
         LoadLanguage();
-        
+
         _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
@@ -66,7 +67,6 @@ public class MainMenu : MonoBehaviour
                 TitleScreen.SetActive(false);
                 break;
         }
-        
     }
 
     /// <summary>
@@ -97,7 +97,7 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
     /// <summary>
     /// Set the language to Dutch and switch to the title screen.
     /// This is a separate method to allow for the language to be set from the language screen.
@@ -180,13 +180,14 @@ public class MainMenu : MonoBehaviour
         ContinueText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
         NewGameText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");
         QuitText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "quitBtn");
-        
+
         // Buddy screen
         BuddyChoiceTitle.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "buddyChoiceTitle");
-        
+
         // Introduction screen
         IntroductionTitle.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionTitle");
         IntroductionMessage.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionMessage");
-        IntroductionBuddyMessage.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
+        IntroductionBuddyMessage.text =
+            DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
     }
 }

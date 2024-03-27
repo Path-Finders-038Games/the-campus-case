@@ -30,7 +30,7 @@ namespace Dialog
 
         private void UpdateDialogue()
         {
-            int currentStep = DataManager.Instance.CurrentStep;
+            int currentStep = DataManager.CurrentStep;
             if (PlayerPrefs.GetString("Language").Equals("EN"))
             {
                 if (!DialogueManager.Instance.EnglishBuddyDialogue.ContainsKey(currentStep)) return;
@@ -76,7 +76,7 @@ namespace Dialog
 
         public void OnTextBlockClick(string DialoguePerson)
         {
-            int currentStep = DataManager.Instance.CurrentStep;
+            int currentStep = DataManager.CurrentStep;
             if (PlayerPrefs.GetString("Language").Equals("EN"))
             {
                 if (DialoguePerson.Equals("Buddy"))

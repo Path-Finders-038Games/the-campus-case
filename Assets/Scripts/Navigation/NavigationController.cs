@@ -31,8 +31,8 @@ namespace Navigation
         private void Start()
         {
             UpdateGuide();
-            mapManager.SwitchMap(DataManager.Instance.CurrentMap);
-            meshRend = Steps[DataManager.Instance.CurrentStep].line.GetComponent<MeshRenderer>();
+            mapManager.SwitchMap(DataManager.CurrentMap);
+            meshRend = Steps[DataManager.CurrentStep].line.GetComponent<MeshRenderer>();
             filledAmount = 2;
         }
 
@@ -59,7 +59,7 @@ namespace Navigation
             if (meshRend != null) meshRend.material.SetFloat("_fillAmount", filledAmount);
 
             // Increase the current step by 1.
-            int currentstep = ++DataManager.Instance.CurrentStep;
+            int currentstep = ++DataManager.CurrentStep;
 
             // If the current step is greater than or equal to the amount of steps, load the next scene.
             if (currentstep >= Steps.Length) SceneManager.LoadScene(3);
@@ -72,14 +72,14 @@ namespace Navigation
             {
                 camera.transform.localPosition = new Vector3(0, 2.689579f, 0);
                 mapManager.SwitchMap(Steps[currentstep].map.name);
-                DataManager.Instance.CurrentMap = Steps[currentstep].map.name;
+                DataManager.CurrentMap = Steps[currentstep].map.name;
             }
 
             UpdateGuide();
 
             // Set the current step and map in the player preferences.
             PlayerPrefs.SetInt("Currentstep", currentstep);
-            PlayerPrefs.SetString("Currentmap", DataManager.Instance.CurrentMap);
+            PlayerPrefs.SetString("Currentmap", DataManager.CurrentMap);
         }
 
         /// <summary>
@@ -90,13 +90,13 @@ namespace Navigation
             // Set the text to the current step's text based on the current language.
             string text = LanguageManager.GetLanguage() switch
             {
-                LanguageManager.Language.Dutch => Steps[DataManager.Instance.CurrentStep].text_NL,
-                LanguageManager.Language.English => Steps[DataManager.Instance.CurrentStep].text_EN,
-                _ => Steps[DataManager.Instance.CurrentStep].text_EN
+                LanguageManager.Language.Dutch => Steps[DataManager.CurrentStep].text_NL,
+                LanguageManager.Language.English => Steps[DataManager.CurrentStep].text_EN,
+                _ => Steps[DataManager.CurrentStep].text_EN
             };
 
             // Update the guide with the text and the current step's image.
-            Stepbystep.UpdateGuide(text, Steps[DataManager.Instance.CurrentStep].image);
+            Stepbystep.UpdateGuide(text, Steps[DataManager.CurrentStep].image);
         }
     }
 }
