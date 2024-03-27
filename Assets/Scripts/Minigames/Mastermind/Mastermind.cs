@@ -19,6 +19,11 @@ namespace Minigames.Mastermind
         public Sprite Circle;
         public Sprite Triangle;
         public Sprite Empty;
+        
+        [Header("Verification Sprites")]
+        public Sprite CorrectPosition;
+        public Sprite CorrectColor;
+        public Sprite Incorrect;
 
         [Header("Game Board Properties")] 
         public int MaxRows = 10;
@@ -145,17 +150,17 @@ namespace Minigames.Mastermind
 
             for (int i = 0; i < goodPositions; i++)
             {
-                rowVerifyIcons[i].GetComponent<Image>().sprite = Heart;
+                rowVerifyIcons[i].GetComponent<Image>().sprite = CorrectPosition;
             }
 
             for (int i = goodPositions; i < goodColors + goodPositions; i++)
             {
-                rowVerifyIcons[i].GetComponent<Image>().sprite = Circle;
+                rowVerifyIcons[i].GetComponent<Image>().sprite = CorrectColor;
             }
 
             for (int i = goodColors + goodPositions; i < Cols; i++)
             {
-                rowVerifyIcons[i].GetComponent<Image>().sprite = Moon;
+                rowVerifyIcons[i].GetComponent<Image>().sprite = Incorrect;
             }
 
             if (goodPositions == 4)

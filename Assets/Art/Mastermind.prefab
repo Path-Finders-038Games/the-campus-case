@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -648,14 +648,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8980392, g: 0.06779932, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 73bfd1e4b02709b47ba38fcc27b7d960, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 06ca3b21c1af2ae4f814cf26fca19562, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 797566615724881500}
   - component: {fileID: 5158934232573640298}
   m_Layer: 5
-  m_Name: Red
+  m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -959,14 +959,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c74cab79726eb543b7d520af3377b2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9863aa07f4b93374f8a3dbd15feb87be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1047,7 +1047,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Red
+            m_StringArgument: Square
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &3046165486275933750
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.082875155, g: 0.8980392, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1468,7 +1468,7 @@ GameObject:
   - component: {fileID: 6808157363414489279}
   - component: {fileID: 5210243387214170210}
   m_Layer: 5
-  m_Name: Black
+  m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1514,14 +1514,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ceee480b76b22447aef6d4f01b36460, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d475b4d2dcf49d945bfb787983d59c1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1602,7 +1602,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Black
+            m_StringArgument: Star
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &4078395216943907667
@@ -1946,13 +1946,16 @@ MonoBehaviour:
   LocationUIFacts: {fileID: 6679186035553022826}
   LocationUIHintNextLocation: {fileID: 2958610867275355165}
   LocationFileUI: {fileID: 1572457317649506381}
-  Star: {fileID: 0}
-  Moon: {fileID: 0}
-  Heart: {fileID: 0}
-  Square: {fileID: 0}
-  Circle: {fileID: 0}
-  Triangle: {fileID: 0}
+  Star: {fileID: 21300000, guid: d475b4d2dcf49d945bfb787983d59c1f, type: 3}
+  Moon: {fileID: 21300000, guid: d63d7efbcfaa988479e0bb6e84c125a3, type: 3}
+  Heart: {fileID: 21300000, guid: eb16fad0fccfec84eb3d19ccef8a6e17, type: 3}
+  Square: {fileID: 21300000, guid: 9863aa07f4b93374f8a3dbd15feb87be, type: 3}
+  Circle: {fileID: 21300000, guid: f3980a52e2c4cb94da550c1d4ecda4fd, type: 3}
+  Triangle: {fileID: 21300000, guid: 3b7f129086dfe904d9392e04c8764048, type: 3}
   Empty: {fileID: 21300000, guid: 5052f7a7e7fbc754097b768fbb66e4d9, type: 3}
+  CorrectPosition: {fileID: 21300000, guid: c0e1562835987b648b9f44f6b0718651, type: 3}
+  CorrectColor: {fileID: 21300000, guid: 8ad21b0ca3a72554ea4716d2d722911d, type: 3}
+  Incorrect: {fileID: 21300000, guid: 06ca3b21c1af2ae4f814cf26fca19562, type: 3}
   MaxRows: 10
   InitialRowY: -165
   RowYOffset: -100
@@ -2624,7 +2627,7 @@ GameObject:
   - component: {fileID: 4510195685870856233}
   - component: {fileID: 6137330838478931710}
   m_Layer: 5
-  m_Name: Blue
+  m_Name: Moon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2670,14 +2673,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.22020864, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 50ed2b9a6de589849b122e0e5987acca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d63d7efbcfaa988479e0bb6e84c125a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2758,7 +2761,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Blue
+            m_StringArgument: Moon
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &8501784785646338817
@@ -2775,7 +2778,7 @@ GameObject:
   - component: {fileID: 8884397949574749658}
   - component: {fileID: 5697573823361892706}
   m_Layer: 5
-  m_Name: Green
+  m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2821,14 +2824,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.082875155, g: 0.8980392, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ed3681e20ed66584d8adb11539831ac0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb16fad0fccfec84eb3d19ccef8a6e17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2909,7 +2912,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Green
+            m_StringArgument: Heart
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &8612328984842826798
@@ -2926,7 +2929,7 @@ GameObject:
   - component: {fileID: 3743110905919465166}
   - component: {fileID: 7920455928414087563}
   m_Layer: 5
-  m_Name: White
+  m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2972,14 +2975,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec669b2913cfa4248bbadaab806707ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3980a52e2c4cb94da550c1d4ecda4fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3060,7 +3063,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: White
+            m_StringArgument: Circle
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &8831039288947585272
@@ -3077,7 +3080,7 @@ GameObject:
   - component: {fileID: 2491365884122851449}
   - component: {fileID: 7112092060057700985}
   m_Layer: 5
-  m_Name: Yellow
+  m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3123,14 +3126,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.81032574, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 637e39309d5e0fc48be79b7852657f9e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b7f129086dfe904d9392e04c8764048, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3211,7 +3214,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Yellow
+            m_StringArgument: Triangle
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1001 &5480905495848640347
@@ -3291,6 +3294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LocationFile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467849778657836822, guid: 7469c67da6f684b409a6011b79d586ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6467849778657836822, guid: 7469c67da6f684b409a6011b79d586ee,
         type: 3}
