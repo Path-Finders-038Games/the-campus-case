@@ -20,21 +20,23 @@ namespace Minigames.Mastermind
         public Sprite Triangle;
         public Sprite Empty;
 
-        [Header("Game Board Properties")] public int MaxRows = 10;
+        [Header("Game Board Properties")] 
+        public int MaxRows = 10;
         public int InitialRowY = -165;
         public int RowYOffset = -100;
         public int RowX = 400;
         public int RowZ = 0;
         private const int Cols = 4;
 
-        [Header("Game Logic Variables")] public GameObject RowParentPrefab;
+        [Header("Game Logic Variables")] 
+        public GameObject RowParentPrefab;
         public GameObject RowPrefab;
         public GameObject HiddenCodeRow;
         private GameObject[] _boardRows;
 
         private int _currentRow, _currentCol;
         private string[] _playerInputCode;
-        private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the color sprites
+        private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the shape sprites
         private readonly string[] _secretCodeToGuess = new string[Cols];
 
         // Done
@@ -44,50 +46,50 @@ namespace Minigames.Mastermind
         }
 
         // Done
-        private Sprite GetSpriteFromColor(MastermindColor mastermindColor) => mastermindColor switch
+        private Sprite GetSpriteFromShape(MastermindShape mastermindShape) => mastermindShape switch
         {
-            MastermindColor.Black => Triangle,
-            MastermindColor.Blue => Star,
-            MastermindColor.Green => Heart,
-            MastermindColor.Red => Moon,
-            MastermindColor.White => Square,
-            MastermindColor.Yellow => Circle,
+            MastermindShape.Star => Star,
+            MastermindShape.Moon => Moon,
+            MastermindShape.Heart => Heart,
+            MastermindShape.Square => Square,
+            MastermindShape.Circle => Circle,
+            MastermindShape.Triangle => Triangle,
             _ => null,
         };
 
         // Done
-        public void ColorSelect(string color)
+        public void ShapeSelect(string color)
         {
-            if (!Enum.TryParse(color, out MastermindColor mastermindColor))
+            if (!Enum.TryParse(color, out MastermindShape mastermindColor))
             {
-                string message = $"Failed to parse color {color} as it doesn't exist in the MastermindColor enum.";
+                string message = $"Failed to parse shape {color} as it doesn't exist in the MastermindShape enum.";
 
                 Debug.LogError(message);
                 throw new ArgumentException(message);
             }
 
-            ColorSelect(mastermindColor);
+            ShapeSelect(mastermindColor);
         }
 
-        private static string MastermindColorToString(MastermindColor mastermindColor) => mastermindColor switch
+        private static string MastermindColorToString(MastermindShape mastermindShape) => mastermindShape switch
         {
-            MastermindColor.Black => "Triangle",
-            MastermindColor.Blue => "Star",
-            MastermindColor.Green => "Heart",
-            MastermindColor.Red => "Moon",
-            MastermindColor.White => "Square",
-            MastermindColor.Yellow => "Circle",
+            MastermindShape.Star => "Star",
+            MastermindShape.Moon => "Moon",
+            MastermindShape.Heart => "Heart",
+            MastermindShape.Square => "Square",
+            MastermindShape.Circle => "Circle",
+            MastermindShape.Triangle => "Triangle",
             _ => null,
         };
 
         // Done
-        private void ColorSelect(MastermindColor color)
+        private void ShapeSelect(MastermindShape shape)
         {
             if (!HiddenCodeRow.activeInHierarchy) return;
 
             _boardRows[_currentRow].transform.Find("c" + _currentCol).GetComponent<Image>().sprite =
-                GetSpriteFromColor(color);
-            _playerInputCode.SetValue(MastermindColorToString(color), _currentCol - 1);
+                GetSpriteFromShape(shape);
+            _playerInputCode.SetValue(MastermindColorToString(shape), _currentCol - 1);
             _currentCol++;
 
             if (_currentCol == 5) _currentCol = 1;
@@ -137,7 +139,7 @@ namespace Minigames.Mastermind
             if (rowItemsToVerify.Any(rowItem => rowItem.GetComponent<Image>().sprite == Empty)) return;
 
             // Set the verify icons to the correct amount of green and yellow circles. Heart = correct position,
-            // yellow = correct color. Fill the rest with red circles
+            // yellow = correct shape. Fill the rest with red circles
             int goodPositions = GetAmountOfCorrectPositions(_playerInputCode, _secretCodeToGuess);
             int goodColors = GetAmountOfCorrectColors(_playerInputCode, _secretCodeToGuess);
 
@@ -168,7 +170,7 @@ namespace Minigames.Mastermind
                 return;
             }
 
-            // TODO: fix color for selected row
+            // TODO: fix shape for selected row
             _currentRow++;
 
             Color originMastermindColor = rowToVerify.GetComponent<Image>().color;
@@ -264,7 +266,7 @@ namespace Minigames.Mastermind
         // Done
         void Awake()
         {
-            // Add the color sprites to the dictionary
+            // Add the shape sprites to the dictionary
             _discoSprite.Add("Circle", Circle);
             _discoSprite.Add("Star", Star);
             _discoSprite.Add("Moon", Moon);
