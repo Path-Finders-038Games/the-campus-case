@@ -1,4 +1,5 @@
 using Dialog;
+using Navigation;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -34,14 +35,14 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         // During development, clear the language to test the language screen and localization strings
-        PlayerPrefs.DeleteKey("Language");
+        // PlayerPrefs.DeleteKey("Language");
 
         LoadLanguage();
 
         _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
-        if (PlayerPrefs.GetInt("Currentstep") == 0)
+        if (DataManager.CurrentStep == 0)
         {
             ContinueBtn.SetActive(false);
         }
@@ -74,8 +75,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnNewGameBtn()
     {
-        PlayerPrefs.SetInt("Currentstep", 0);
-        PlayerPrefs.SetString("Currentmap", "C0Map");
+        DataManager.CurrentStep = 0;
+        DataManager.CurrentMap = "C0Map";
         TitleScreen.SetActive(false);
         BuddyScreen.SetActive(true);
     }

@@ -52,7 +52,7 @@ namespace Minigames
             if (!_raycastManager.Raycast(Input.touches[0].position, hitResults,
                     TrackableType.Planes)) return;
             
-            _currentMap = PlayerPrefs.GetString("Currentmap");
+            _currentMap = DataManager.CurrentMap;
             
             // Spawn the prefab at the first hit position. Cast the ARRaycastHit to an ARRaycastHit to prevent null reference.
             SpawnPrefab(hitResults.First());

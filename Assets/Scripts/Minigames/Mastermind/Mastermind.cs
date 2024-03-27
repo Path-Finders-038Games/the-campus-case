@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Dialog;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -10,23 +11,22 @@ namespace Minigames.Mastermind
 {
     public class Mastermind : Minigame
     {
-        [Header("Color Circle Sprites")] public Sprite Yellow;
-        public Sprite Blue;
-        public Sprite Red;
-        public Sprite Green;
-        public Sprite White;
-        public Sprite Black;
+        [Header("Color Circle Sprites")]
+        public Sprite Star;
+        public Sprite Moon;
+        public Sprite Heart;
+        public Sprite Square;
+        public Sprite Circle;
+        public Sprite Triangle;
         public Sprite Empty;
 
         [Header("Game Board Properties")] public int MaxRows = 10;
         public int InitialRowY = -165;
-        public int RowYOffset = -110;
+        public int RowYOffset = -100;
         public int RowX = 400;
         public int RowZ = 0;
-        public int RowW = 800;
-        public int RowH = 110;
         private const int Cols = 4;
-        
+
         [Header("Game Logic Variables")] public GameObject RowParentPrefab;
         public GameObject RowPrefab;
         public GameObject HiddenCodeRow;
@@ -46,12 +46,12 @@ namespace Minigames.Mastermind
         // Done
         private Sprite GetSpriteFromColor(MastermindColor mastermindColor) => mastermindColor switch
         {
-            MastermindColor.Black => Black,
-            MastermindColor.Blue => Blue,
-            MastermindColor.Green => Green,
-            MastermindColor.Red => Red,
-            MastermindColor.White => White,
-            MastermindColor.Yellow => Yellow,
+            MastermindColor.Black => Triangle,
+            MastermindColor.Blue => Star,
+            MastermindColor.Green => Heart,
+            MastermindColor.Red => Moon,
+            MastermindColor.White => Square,
+            MastermindColor.Yellow => Circle,
             _ => null,
         };
 
@@ -69,6 +69,17 @@ namespace Minigames.Mastermind
             ColorSelect(mastermindColor);
         }
 
+        private static string MastermindColorToString(MastermindColor mastermindColor) => mastermindColor switch
+        {
+            MastermindColor.Black => "Triangle",
+            MastermindColor.Blue => "Star",
+            MastermindColor.Green => "Heart",
+            MastermindColor.Red => "Moon",
+            MastermindColor.White => "Square",
+            MastermindColor.Yellow => "Circle",
+            _ => null,
+        };
+
         // Done
         private void ColorSelect(MastermindColor color)
         {
@@ -76,7 +87,7 @@ namespace Minigames.Mastermind
 
             _boardRows[_currentRow].transform.Find("c" + _currentCol).GetComponent<Image>().sprite =
                 GetSpriteFromColor(color);
-            _playerInputCode.SetValue(nameof(color), _currentCol - 1);
+            _playerInputCode.SetValue(MastermindColorToString(color), _currentCol - 1);
             _currentCol++;
 
             if (_currentCol == 5) _currentCol = 1;
@@ -105,47 +116,44 @@ namespace Minigames.Mastermind
             GameObject[] rowItemsToVerify = new GameObject[Cols];
             GameObject[] rowVerifyIcons = new GameObject[Cols];
             GameObject rowToVerify = _boardRows[_currentRow];
-            GameObject previousRow = _boardRows[_currentRow - 1];
+            GameObject previousRow = _boardRows[Math.Max(_currentRow - 1, 0)];
 
             // Get the circles to verify. These are the circles that are in the row and don't have the "Verif" tag
             // These are the circles that will be used to verify the player's input (black and white 2x2 circles)
-            for (int i = 1; i < Cols + 1; i++)
+            for (int i = 0; i < rowItemsToVerify.Length; i++)
             {
-                rowItemsToVerify[i - 1] = rowToVerify.transform.Find("c" + i).gameObject;
+                rowItemsToVerify[i] = rowToVerify.transform.Find("c" + (i + 1)).gameObject;
             }
 
             // Get the verify icons. These are the circles that are in the row and have the "Verif" tag
             // These are the circles that will be used to show the player how many correct colors and positions they have
             // Brackets are used to scope index variable to the loop
-            for (int i = 1; i < Cols + 1; i++)
+            for (int i = 0; i < rowVerifyIcons.Length; i++)
             {
-                rowVerifyIcons[i - 1] = rowToVerify.transform.Find("v" + i).gameObject;
+                rowVerifyIcons[i] = rowToVerify.transform.Find("v" + (i + 1)).gameObject;
             }
 
             // check if the row is filled. If any of the circles are empty, return
-            for (int i = 1; i < Cols + 1; i++)
-            {
-                if (rowToVerify.transform.Find("c" + i).GetComponent<Image>().sprite == Empty) return;
-            }
+            if (rowItemsToVerify.Any(rowItem => rowItem.GetComponent<Image>().sprite == Empty)) return;
 
-            // Set the verify icons to the correct amount of green and yellow circles. Green = correct position,
+            // Set the verify icons to the correct amount of green and yellow circles. Heart = correct position,
             // yellow = correct color. Fill the rest with red circles
             int goodPositions = GetAmountOfCorrectPositions(_playerInputCode, _secretCodeToGuess);
             int goodColors = GetAmountOfCorrectColors(_playerInputCode, _secretCodeToGuess);
 
             for (int i = 0; i < goodPositions; i++)
             {
-                rowVerifyIcons[i].GetComponent<Image>().sprite = Green;
+                rowVerifyIcons[i].GetComponent<Image>().sprite = Heart;
             }
 
             for (int i = goodPositions; i < goodColors + goodPositions; i++)
             {
-                rowVerifyIcons[i].GetComponent<Image>().sprite = Yellow;
+                rowVerifyIcons[i].GetComponent<Image>().sprite = Circle;
             }
 
             for (int i = goodColors + goodPositions; i < Cols; i++)
             {
-                rowVerifyIcons[i].GetComponent<Image>().sprite = Red;
+                rowVerifyIcons[i].GetComponent<Image>().sprite = Moon;
             }
 
             if (goodPositions == 4)
@@ -184,35 +192,40 @@ namespace Minigames.Mastermind
         // Done
         private void PopulateBoard()
         {
+            _boardRows = new GameObject[MaxRows];
+
             // generate x amount of rows from the MastermindRow prefab, and set their position, and mount them to the parent
             for (int i = 0; i < MaxRows; i++)
             {
                 GameObject row = Instantiate(RowPrefab, new Vector3(RowX, InitialRowY + i * RowYOffset, RowZ),
                     Quaternion.identity);
                 row.transform.SetParent(RowParentPrefab.transform);
-                row.GetComponent<RectTransform>().sizeDelta = new Vector2(RowW, RowH);
+                row.transform.localScale = new Vector3(1,1,1);
+                // row.GetComponent<RectTransform>().sizeDelta = new Vector2(RowW, RowH);
+                row.layer = 5;
                 _boardRows[i] = row;
             }
+
+            Array.Reverse(_boardRows);
         }
 
         // Done
         public override void PrepareStep()
         {
-            PopulateBoard();
             SetLocationFile();
             GetNewSecretCode();
 
             _currentRow = 0; // 0-MaxRows
             _currentCol = 1; // 1-4
 
-            _boardRows = new GameObject[MaxRows];
             _playerInputCode = new string[Cols];
         }
 
         // Done
         public override void StartGameStep()
         {
-            ShowLocationFile();
+            PopulateBoard();
+            // ShowLocationFile();
         }
 
         // Done
@@ -252,12 +265,12 @@ namespace Minigames.Mastermind
         void Awake()
         {
             // Add the color sprites to the dictionary
-            _discoSprite.Add("Yellow", Yellow);
-            _discoSprite.Add("Blue", Blue);
-            _discoSprite.Add("Red", Red);
-            _discoSprite.Add("Green", Green);
-            _discoSprite.Add("White", White);
-            _discoSprite.Add("Black", Black);
+            _discoSprite.Add("Circle", Circle);
+            _discoSprite.Add("Star", Star);
+            _discoSprite.Add("Moon", Moon);
+            _discoSprite.Add("Heart", Heart);
+            _discoSprite.Add("Square", Square);
+            _discoSprite.Add("Triangle", Triangle);
         }
 
         // Done
@@ -299,11 +312,11 @@ namespace Minigames.Mastermind
             int goodColors = 0;
             List<string> secretCodeList = secretCode.ToList();
             List<string> codeToCheckList = codeToCheck.ToList();
-            
+
             for (int i = 0; i < codeToCheck.Length; i++)
             {
                 if (!secretCodeList.Contains(codeToCheckList[i])) continue;
-                
+
                 goodColors++;
                 secretCodeList.Remove(codeToCheckList[i]);
             }
