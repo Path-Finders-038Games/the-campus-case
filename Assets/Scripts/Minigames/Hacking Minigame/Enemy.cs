@@ -11,22 +11,20 @@ namespace Minigames.Hacking_Minigame
         public int Health;
 
         //target position the enemy moves towards
-        private Vector3 target;
+        private Vector3 _target;
+
         // Start is called before the first frame update
         void Start()
         {
-            target = new Vector3(transform.position.x, -3, transform.position.z);
+            _target = new Vector3(transform.position.x, -3, transform.position.z);
         }
 
         // Update is called once per frame
         void Update()
         {
             //moves towards the target position with a consistent speed
-            transform.position = Vector3.MoveTowards(transform.position, target , Speed * Time.deltaTime);
-            if(transform.position.y == -3)
-            {
-                Destroy(gameObject);
-            }
+            transform.position = Vector3.MoveTowards(transform.position, _target , Speed * Time.deltaTime);
+            if(transform.position.y == -3) Destroy(gameObject);
         }
 
         //reduce health if the enemy hits something, destroy the enemy if the health variable = 0
@@ -62,6 +60,7 @@ namespace Minigames.Hacking_Minigame
             }
         }
 
+        //reduce health if the enemy hits something, destroy the enemy if the health variable = 0
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.tag != "Enemy")

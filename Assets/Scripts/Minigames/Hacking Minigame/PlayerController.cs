@@ -31,10 +31,9 @@ namespace Minigames.Hacking_Minigame
             
                 //creates a differential position between the starting and current position of the users finger
                 Vector2 _deltaPos = _startPos- _currentPos;
-            
+
                 //if the user hasnt moved yet, execute
-                if (!_hasMoved) 
-                {
+                if (_hasMoved) return;
                     //choose between outcomes based on the deltapos
                     switch (_deltaPos.x)
                     {
@@ -51,7 +50,6 @@ namespace Minigames.Hacking_Minigame
                         default:
                             break;
                     }
-                }
 
             }
 

@@ -1,13 +1,13 @@
-
-//class of the bullet
 using UnityEngine;
 
+
+//class of the bullet
 public class Bullet : MonoBehaviour
 {
     //speed at which the bullet moves
     public float BulletSpeed;
 
-    //keep track of distance the bullet has traveled
+    //maximum distance the bullet will travel
     public float Distance;
 
     private Vector3 _target;

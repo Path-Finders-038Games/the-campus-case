@@ -10,9 +10,27 @@ namespace Minigames.Hacking_Minigame
     public class GameController : Minigame
     {
 
-        private float _timer;
-        private bool _animationDone;
+        //variables to add animations
+        [Header("Animations")]
+        //list of animations to play
+        public Animator[] Animations;
+
+        //variables related to the locationfile
+        [Header("Locationfile variables")]
+        //button to hide the locationfile
+        public Button HideLocationFileButton;
+        //boolean to check if it is hidden
+        private bool locationFileClosed;
+
+        //background of the game
+        public Canvas GameCanvas;
+
+        //variables related to the behaviour of the game
+        [Header("Game variables")]
+        //health counter
         private int _health = 3;
+
+        //property of health with connection to the healthbar
         public int Health
         {
             get { return _health; }
@@ -23,29 +41,47 @@ namespace Minigames.Hacking_Minigame
             }
         }
 
-        public Animator[] Animations;
-        public AnimationClip Animation;
-
-        public Button HideLocationFileButton;
-        bool locationFileClosed;
-        public Canvas GameCanvas;
-
+        //delay between enemy spawns
         public float SpawnDelay;
+
+        //total amount of enemies that will spawn
         public int SpawnAmount;
+
+        //count of enemies currently alive
         public int EnemyAlive;
+
+        //enemy type 1
         public GameObject Enemy;
+
+        //enemy type 2
         public GameObject Weak;
+
+        //check for if the game is currently active
         public bool PlayGame;
+
+        //height of the spawner
         public GameObject SpawnHeight;
+
+        //lanes for the game to take place in
         public GameObject[] Lanes;
+
+        //the endscreen
         public GameObject EndScreen;
+
+        //lane the player is currently in
         public int CurrentLane;
 
+        // static instance of the gamecontroller
         public static GameController gameController;
-        public  HealthController healthController;
-        
 
-       
+        //the health controller
+        public  HealthController healthController;
+
+        // timer to track passing of time
+        private float _timer;
+        //check to see if the animation has finished
+        private bool _animationDone;
+
 
 
         // Start is called before the first frame update
@@ -56,71 +92,66 @@ namespace Minigames.Hacking_Minigame
             locationFileClosed = false;
             
             base.Start();
+            StartCoroutine(WaitForAnimation());
         }
 
         // Update is called once per frame
         void Update()
         {
             UpdateDialogue();
-            if (locationFileClosed)
-            {
-                _timer += Time.deltaTime;
-                if (!_animationDone)
-                {
-                    StartCoroutine(WaitForAnimation());
-                }
-                if (_animationDone)
-                {
 
+            if (!locationFileClosed) return;
+            // increase time count with time passed
+            _timer += Time.deltaTime;
 
-                    if (PlayGame)
-                    {
+            //stop if the game is not in play
+            if (!_animationDone||!PlayGame) return;
 
-                        if (_timer > SpawnDelay && SpawnAmount != 0)
-                        {
-                            SpawnAmount--;
-                            GameObject spawn;
-                            int type = Random.Range(0, 3);
-                            if (type < 2)
-                            {
-                                spawn = Weak;
-                            }
-                            else
-                            {
-                                spawn = Enemy;
-                            }
+            //if requirements are met call the spawn enemy method
+            if (_timer > SpawnDelay && SpawnAmount != 0) SpawnEnemy();
+            
+            //check losing condition
+            if (Health == 0) GameLost();
 
-                            _timer = 0;
-                            int spawnLocation = Random.Range(0, 3);
-                            Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                        }
-
-                        if (Health == 0)
-                        {
-                            GameLost();
-                        }
-                        else if (EnemyAlive == 0)
-                        {
-                            GameWon();
-                        }
-
-
-                    }
-                }
-            }
+            //check winning condition
+            else if (EnemyAlive == 0) GameWon();
         }
 
+        public void SpawnEnemy()
+        {
+            SpawnAmount--;
+            GameObject spawn;
+            //randomizer for what type of enemy gets spawned
+            int type = Random.Range(0, 3);
+            if (type < 2)
+            {
+                spawn = Weak;
+            }
+            else
+            {
+                spawn = Enemy;
+            }
+            //reset timer
+            _timer = 0;
+
+            //spawn enemy on position
+            int spawnLocation = Random.Range(0, 3);
+            Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+        }
+
+        //the position of a lane 
         public Vector3 LanePos(int lane)
         {
             return new Vector3(Lanes[lane].transform.position.x, SpawnHeight.transform.position.y, Lanes[lane].transform.position.z);
         }
 
+        //return the position of the textbox
         public Vector3 TextPos()
         {
             return new Vector3(Lanes[1].transform.position.x, Lanes[1].transform.position.y, Lanes[1].transform.position.z);
 
         }
-
+        // method to stop playing the game and open the winscreen when the user wins
         void GameWon()
         {
             PlayGame = false;
@@ -130,21 +161,24 @@ namespace Minigames.Hacking_Minigame
             StartCoroutine(Wait());
         }
 
+        // method to stop the game and show the losescreen when the user has lost
         void GameLost()
         {
             PlayGame = false;
-            GameObject winScreen = EndScreen.GetNamedChild("LoseText");
-            Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+            GameObject _loseScreen = EndScreen.GetNamedChild("LoseText");
+            Instantiate(_loseScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
             StartCoroutine(BackToNavigation());
         }
 
+        //coroutine to return to the map
         IEnumerator BackToNavigation()
         {
             yield return new WaitForSeconds(3);
             SceneManager.LoadScene(1);
         }
 
+        //coroutine to wait
         IEnumerator Wait()
         {
             yield return new WaitForSeconds(3);
@@ -152,6 +186,7 @@ namespace Minigames.Hacking_Minigame
         
         }
 
+        //coroutine to wait 3 seconds
         IEnumerator WaitForAnimation()
         {
             yield return new WaitForSeconds(3);
@@ -159,6 +194,7 @@ namespace Minigames.Hacking_Minigame
             PlayGame = true;
         }
 
+        //setup method
         public override void PrepareStep()
         {
             gameController = this;
@@ -168,11 +204,13 @@ namespace Minigames.Hacking_Minigame
             HideLocationFileButton.onClick.AddListener(HideLocationFile);
         }
 
+        //starting the game
         public override void StartGameStep()
         {
             ShowLocationFile();
         }
 
+        //ending the game
         public override void CompleteGameStep()
         {
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
@@ -180,6 +218,7 @@ namespace Minigames.Hacking_Minigame
             ShowLocationFile();
         }
    
+        //show the locationfile before the game begins
         public override void ShowLocationFile()
         {
             PlayGame = false;
