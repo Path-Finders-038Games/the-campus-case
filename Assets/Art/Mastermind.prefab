@@ -141,7 +141,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 460428974607085325}
           m_TargetAssemblyTypeName: Minigames.Mastermind.Mastermind, Assembly-CSharp
-          m_MethodName: Replay
+          m_MethodName: ReplayMinigame
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -716,7 +716,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 460428974607085325}
           m_TargetAssemblyTypeName: Minigames.Mastermind.Mastermind, Assembly-CSharp
-          m_MethodName: Cancel
+          m_MethodName: ClearPlayerInputRow
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1330,7 +1330,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 460428974607085325}
           m_TargetAssemblyTypeName: Minigames.Mastermind.Mastermind, Assembly-CSharp
-          m_MethodName: Check
+          m_MethodName: CheckPlayerInputRow
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

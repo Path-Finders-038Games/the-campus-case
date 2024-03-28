@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Dialog;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -11,7 +10,7 @@ namespace Minigames.Mastermind
 {
     public class Mastermind : Minigame
     {
-        [Header("Color Circle Sprites")]
+        [Header("Color Circle Sprites")] 
         public Sprite Star;
         public Sprite Moon;
         public Sprite Heart;
@@ -19,8 +18,8 @@ namespace Minigames.Mastermind
         public Sprite Circle;
         public Sprite Triangle;
         public Sprite Empty;
-        
-        [Header("Verification Sprites")]
+
+        [Header("Verification Sprites")] 
         public Sprite CorrectPosition;
         public Sprite CorrectColor;
         public Sprite Incorrect;
@@ -44,13 +43,13 @@ namespace Minigames.Mastermind
         private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the shape sprites
         private readonly string[] _secretCodeToGuess = new string[Cols];
 
-        // Done
         private void Update()
         {
             UpdateDialogue();
         }
 
-        // Done
+        #region Converters
+
         private Sprite GetSpriteFromShape(MastermindShape mastermindShape) => mastermindShape switch
         {
             MastermindShape.Star => Star,
@@ -62,19 +61,6 @@ namespace Minigames.Mastermind
             _ => null,
         };
 
-        // Done
-        public void ShapeSelect(string color)
-        {
-            if (!Enum.TryParse(color, out MastermindShape mastermindColor))
-            {
-                string message = $"Failed to parse shape {color} as it doesn't exist in the MastermindShape enum.";
-
-                Debug.LogError(message);
-                throw new ArgumentException(message);
-            }
-
-            ShapeSelect(mastermindColor);
-        }
 
         private static string MastermindColorToString(MastermindShape mastermindShape) => mastermindShape switch
         {
@@ -87,21 +73,47 @@ namespace Minigames.Mastermind
             _ => null,
         };
 
-        // Done
+        #endregion
+
+        #region Player Input
+
+        /// <summary>
+        /// Selects a shape for the player input row. If the row is filled, it will not select a shape.
+        /// </summary>
+        /// <param name="shape">Name of the shape to select</param>
+        /// <exception cref="ArgumentException">Throws when the shape name is not found in the shape enum</exception>
+        public void ShapeSelect(string shape)
+        {
+            if (!Enum.TryParse(shape, out MastermindShape mastermindColor))
+            {
+                string message = $"Failed to parse shape {shape} as it doesn't exist in the MastermindShape enum.";
+
+                Debug.LogError(message);
+                throw new ArgumentException(message);
+            }
+
+            ShapeSelect(mastermindColor);
+        }
+
+        /// <summary>
+        /// Selects a shape for the player input row. If the row is filled, it will not select a shape.
+        /// </summary>
+        /// <param name="shape">Enum of the shape to select</param>
         private void ShapeSelect(MastermindShape shape)
         {
             if (!HiddenCodeRow.activeInHierarchy) return;
+            if (_currentCol == Cols + 1) return;
 
             _boardRows[_currentRow].transform.Find("c" + _currentCol).GetComponent<Image>().sprite =
                 GetSpriteFromShape(shape);
             _playerInputCode.SetValue(MastermindColorToString(shape), _currentCol - 1);
             _currentCol++;
-
-            if (_currentCol == 5) _currentCol = 1;
         }
 
-        // Done
-        public void Cancel()
+        /// <summary>
+        /// Clears the player input row, and sets the current column to 1. 
+        /// </summary>
+        public void ClearPlayerInputRow()
         {
             for (int i = 1; i < Cols + 1; i++)
             {
@@ -112,13 +124,23 @@ namespace Minigames.Mastermind
             _currentCol = 1;
         }
 
-        // Done
-        public void Replay()
+        /// <summary>
+        /// Replays the minigame by reloading the scene.
+        /// THIS DOES NOT WORK AS OF NOW.
+        /// TODO: Fix replaying the minigame
+        /// </summary>
+        [Obsolete("Currently not implemented, likely won't in the future")]
+        public void ReplayMinigame()
         {
             SceneLoader.LoadMinigame(MinigameName.Mastermind);
         }
 
-        public void Check()
+        /// <summary>
+        /// Checks the player's input row. If the row is filled, it will check the row for correctness.
+        /// After checking the row, it will update the verify icons to show the player how many correct colors and
+        /// positions they have. 
+        /// </summary>
+        public void CheckPlayerInputRow()
         {
             GameObject[] rowItemsToVerify = new GameObject[Cols];
             GameObject[] rowVerifyIcons = new GameObject[Cols];
@@ -163,9 +185,10 @@ namespace Minigames.Mastermind
                 rowVerifyIcons[i].GetComponent<Image>().sprite = Incorrect;
             }
 
+            // Check if the player has won or lost
             if (goodPositions == 4)
             {
-                CompleteGameStep();
+                Win();
                 return;
             }
 
@@ -175,9 +198,9 @@ namespace Minigames.Mastermind
                 return;
             }
 
-            // TODO: fix shape for selected row
             _currentRow++;
 
+            // TODO: fix color for the current row. Not working as intended
             Color originMastermindColor = rowToVerify.GetComponent<Image>().color;
             Color selectionMastermindColor = originMastermindColor;
             selectionMastermindColor.a = 0.25f;
@@ -186,37 +209,36 @@ namespace Minigames.Mastermind
             previousRow.GetComponent<Image>().color = originMastermindColor;
         }
 
-        void Win()
-        {
-            HiddenCodeRow.SetActive(false);
-        }
+        #endregion
 
-        void Lose()
-        {
-            HiddenCodeRow.SetActive(false);
-        }
+        #region Game Initialization
 
-        // Done
+        /// <summary>
+        /// Populates the board with the rows for the player to input their guesses.
+        /// </summary>
         private void PopulateBoard()
         {
             _boardRows = new GameObject[MaxRows];
 
-            // generate x amount of rows from the MastermindRow prefab, and set their position, and mount them to the parent
+            // generate MaxRows amount of rows from the MastermindRow prefab, and set their position, and mount them to the parent
             for (int i = 0; i < MaxRows; i++)
             {
                 GameObject row = Instantiate(RowPrefab, new Vector3(RowX, InitialRowY + i * RowYOffset, RowZ),
                     Quaternion.identity);
                 row.transform.SetParent(RowParentPrefab.transform);
-                row.transform.localScale = new Vector3(1,1,1);
-                // row.GetComponent<RectTransform>().sizeDelta = new Vector2(RowW, RowH);
+                row.transform.localScale = new Vector3(1, 1, 1);
                 row.layer = 5;
                 _boardRows[i] = row;
             }
 
+            // Reverse the array so the first row is at the bottom
             Array.Reverse(_boardRows);
         }
 
-        // Done
+        /// <summary>
+        /// Sets the location file for the minigame, as well as generating a new secret codeToCheck for the player to guess.
+        /// Inits some variables for the minigame.
+        /// </summary>
         public override void PrepareStep()
         {
             SetLocationFile();
@@ -225,52 +247,6 @@ namespace Minigames.Mastermind
             _currentRow = 0; // 0-MaxRows
             _currentCol = 1; // 1-4
 
-            _playerInputCode = new string[Cols];
-        }
-
-        // Done
-        public override void StartGameStep()
-        {
-            PopulateBoard();
-            // ShowLocationFile();
-        }
-
-        // Done
-        public override void CompleteGameStep()
-        {
-            LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
-            LocationFile.IsCompleted = true;
-            ShowLocationFile();
-        }
-
-        // Done
-        public override void ShowLocationFile()
-        {
-            LocationFileUI.SetActive(true);
-        }
-
-        // Done
-        public override void HideLocationFile()
-        {
-            LocationFileUI.SetActive(false);
-
-            if (LocationFile.IsCompleted)
-            {
-                ReturnToMap();
-            }
-        }
-
-        // Done
-        public override void SplitDialogue()
-        {
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_0"));
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_1"));
-            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_2"));
-        }
-
-        // Done
-        void Awake()
-        {
             // Add the shape sprites to the dictionary
             _discoSprite.Add("Circle", Circle);
             _discoSprite.Add("Star", Star);
@@ -278,9 +254,31 @@ namespace Minigames.Mastermind
             _discoSprite.Add("Heart", Heart);
             _discoSprite.Add("Square", Square);
             _discoSprite.Add("Triangle", Triangle);
+
+            _playerInputCode = new string[Cols];
         }
 
-        // Done
+        /// <summary>
+        /// Starts the minigame step. Populates the board.
+        /// </summary>
+        public override void StartGameStep()
+        {
+            PopulateBoard();
+        }
+
+        /// <summary>
+        /// Splits the dialogues for the minigame.
+        /// </summary>
+        public override void SplitDialogue()
+        {
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_2"));
+        }
+
+        /// <summary>
+        /// Gets a new secret codeToCheck for the player to guess. Sets the sprites of the secret codeToCheck.
+        /// </summary>
         private void GetNewSecretCode()
         {
             // Generate a new codeToCheck to guess
@@ -297,6 +295,68 @@ namespace Minigames.Mastermind
                     _discoSprite[_secretCodeToGuess[i]];
             }
         }
+
+        #endregion
+
+        #region Game Ending
+
+        /// <summary>
+        /// Called when the player has won the game. Hides the codeToCheck row, and shows the hint for the next location.
+        /// </summary>
+        private void Win()
+        {
+            HiddenCodeRow.SetActive(false);
+            LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
+            CompleteGameStep();
+        }
+
+        /// <summary>
+        /// Called when the player has lost the game. Hides the codeToCheck row, and shows a message that the player has lost.
+        /// </summary>
+        private void Lose()
+        {
+            HiddenCodeRow.SetActive(false);
+            LocationUIHintNextLocation.text = "It looks libe you've run out of tries. Better luck next time!";
+            CompleteGameStep();
+        }
+
+        /// <summary>
+        /// Completes the minigame step. Shows the location file.
+        /// </summary>
+        public override void CompleteGameStep()
+        {
+            LocationFile.IsCompleted = true;
+            ShowLocationFile();
+        }
+
+        #endregion
+
+        #region LocationFile
+
+        /// <summary>
+        /// Sows the location file UI.
+        /// </summary>
+        public override void ShowLocationFile()
+        {
+            LocationFileUI.SetActive(true);
+        }
+
+        /// <summary>
+        /// Hides the location file UI.
+        /// </summary>
+        public override void HideLocationFile()
+        {
+            LocationFileUI.SetActive(false);
+
+            if (LocationFile.IsCompleted)
+            {
+                ReturnToMap();
+            }
+        }
+
+        #endregion
+
+        #region Row Verification
 
         /// <summary>
         /// Gets the amount of good items in the codeToCheck based on the secretCode
@@ -330,5 +390,7 @@ namespace Minigames.Mastermind
 
             return goodColors - GetAmountOfCorrectPositions(codeToCheck, secretCode);
         }
+
+        #endregion
     }
 }
