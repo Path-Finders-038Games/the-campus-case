@@ -2,32 +2,29 @@ using UnityEngine;
 
 namespace Navigation
 {
-    public class DataManager : MonoBehaviour
+    public static class DataManager
     {
-        public static DataManager Instance;
-
-        public int CurrentStep;
-        public string CurrentMap;
-
-        /// <summary>
-        /// Initializes the instance and sets the current map and step to the saved values.
-        /// </summary>
-        private void Awake()
+        private static int _currentStep = PlayerPrefs.GetInt("Currentstep");
+        private static string _currentMap = PlayerPrefs.GetString("Currentmap");
+        
+        public static int CurrentStep
         {
-            // If the instance is null, set it to this object and don't destroy it on load, otherwise destroy the object.
-            if (Instance == null)
+            get => _currentStep;
+            set
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
+                _currentStep = value;
+                PlayerPrefs.SetInt("Currentstep", value);
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+        }
 
-            // Set the current map and step to the saved values.
-            CurrentMap = PlayerPrefs.GetString("Currentmap");
-            CurrentStep = PlayerPrefs.GetInt("Currentstep");
+        public static string CurrentMap
+        {
+            get => _currentMap;
+            set
+            {
+                _currentMap = value;
+                PlayerPrefs.SetString("Currentmap", value);
+            }
         }
     }
 }
