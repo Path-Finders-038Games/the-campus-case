@@ -8,25 +8,16 @@ namespace Dialog
 {
     public static class DialogueManagerV2
     {
-        private static Locale _locale;
-        private static List<string> _readDialogues;
+        private static readonly List<string> ReadDialogues;
 
         /// <summary>
         /// Sets the locale to align with the language set in the player preferences.
         /// </summary>
-        public static void Initialize()
+        static DialogueManagerV2()
         {
-            string cultureCode = LanguageManager.GetLanguage() switch
-            {
-                LanguageManager.Language.Dutch => "nl",
-                LanguageManager.Language.English => "en",
-                _ => "en",
-            };
+            LocalizationSettings.SelectedLocale = LanguageManager.GetLocale();
 
-            _locale = Locale.CreateLocale(cultureCode);
-            LocalizationSettings.SelectedLocale = _locale;
-
-            _readDialogues = new List<string>();
+            ReadDialogues = new List<string>();
         }
 
         /// <summary>
@@ -44,7 +35,7 @@ namespace Dialog
             ICollection<StringTableEntry> entries = stringTable.Values;
             StringTableEntry entry = entries.First(e => e.Key == key);
 
-            return entry.GetLocalizedString(_locale);
+            return entry.GetLocalizedString();
         }
         
         /// <summary>
@@ -58,7 +49,7 @@ namespace Dialog
             StringTable stringTable = tableCollection.GetTable(table);
 
             ICollection<StringTableEntry> entries = stringTable.Values;
-            return entries.Select(e => e.GetLocalizedString(_locale)).ToList();
+            return entries.Select(e => e.GetLocalizedString()).ToList();
         }
 
         /// <summary>
@@ -80,9 +71,9 @@ namespace Dialog
         /// <param name="key">Key of the dialogue to mark as read.</param>
         public static void MarkDialogueAsRead(string key)
         {
-            if (!_readDialogues.Contains(key))
+            if (!ReadDialogues.Contains(key))
             {
-                _readDialogues.Add(key);
+                ReadDialogues.Add(key);
             }
         }
 
@@ -102,7 +93,7 @@ namespace Dialog
 
             foreach (StringTableEntry entry in entries.Where(e => e.Key.StartsWith(key)))
             {
-                string localizedString = entry.GetLocalizedString(_locale);
+                string localizedString = entry.GetLocalizedString();
                 Dialogue dialogue = new(localizedString);
                 dialogues.Add(dialogue);
             }
@@ -117,7 +108,7 @@ namespace Dialog
         /// <returns>First unread Dialogue</returns>
         public static Dialogue GetFirstUnreadDialogue(IEnumerable<Dialogue> dialogues)
         {
-            return dialogues.FirstOrDefault(dialogue => !_readDialogues.Contains(dialogue.Text));
+            return dialogues.FirstOrDefault(dialogue => !ReadDialogues.Contains(dialogue.Text));
         }
     }
 }

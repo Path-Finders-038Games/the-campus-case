@@ -6,6 +6,8 @@ namespace Navigation
     {
         private static int _currentStep = PlayerPrefs.GetInt("Currentstep");
         private static string _currentMap = PlayerPrefs.GetString("Currentmap");
+        private static string _language = PlayerPrefs.GetString("Language");
+        private static string _buddy = PlayerPrefs.GetString("Buddy");
         
         public static int CurrentStep
         {

@@ -32,13 +32,12 @@ public class MainMenu : MonoBehaviour
     // Navigation
     private int _navigationLocation;
 
-    void Start()
+    private void Start()
     {
-        // During development, clear the language to test the language screen and localization strings
-        // PlayerPrefs.DeleteKey("Language");
-
+        // Load the language based on the player preferences
         LoadLanguage();
 
+        // Set the navigation location to the title screen
         _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
@@ -124,7 +123,6 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void SwitchToTitleScreen()
     {
-        DialogueManagerV2.Initialize();
         PopulateUiWithLocalizedStrings();
         LanguageScreen.SetActive(false);
         TitleScreen.SetActive(true);
