@@ -11,12 +11,8 @@ namespace Minigames.SimomSays
 {
     public class SimonSays : Minigame
     {
-        //Buttons
-
         // button on screen to start the simon says game
         public Button StartButton;
-        //not used anywhere???
-        public Material ButtonMat;
         //Text field for displaying messages
         public TMP_Text Text;
         // list of the buttons on the safe
