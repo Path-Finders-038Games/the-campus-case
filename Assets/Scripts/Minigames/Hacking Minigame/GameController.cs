@@ -37,7 +37,7 @@ namespace Minigames.Hacking_Minigame
             set
             {
                 _health = value;
-                healthController.ChangeHealthSprite(_health);
+                HealthControllerProperty.ChangeHealthSprite(_health);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Minigames.Hacking_Minigame
         public static GameController gameController;
 
         //the health controller
-        public  HealthController healthController;
+        public  HealthController HealthControllerProperty;
 
         // timer to track passing of time
         private float _timer;

@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-
         BulletTravel();
     }
 

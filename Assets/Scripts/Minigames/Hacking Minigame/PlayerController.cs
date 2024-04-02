@@ -34,22 +34,22 @@ namespace Minigames.Hacking_Minigame
 
                 //if the user hasnt moved yet, execute
                 if (_hasMoved) return;
-                    //choose between outcomes based on the deltapos
-                    switch (_deltaPos.x)
-                    {
-                        //if the users has moved to the left
-                        case > 100:
-                            SwitchLane(true);
-                            break;
+                //choose between outcomes based on the deltapos
+                switch (_deltaPos.x)
+                {
+                    //if the users has moved to the left
+                    case > 100:
+                        SwitchLane(true);
+                        break;
 
-                        //if the user has moved to the right
-                        case < -100:
-                           SwitchLane(false);
-                            break;
+                    //if the user has moved to the right
+                    case < -100:
+                        SwitchLane(false);
+                        break;
 
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
+                }
 
             }
 
@@ -62,7 +62,7 @@ namespace Minigames.Hacking_Minigame
             _hasMoved = true;
 
             //sets the currentlane to the left by 1
-                if(directionLeft && GameController.gameController.CurrentLane > 0)
+            if(directionLeft && GameController.gameController.CurrentLane > 0)
                 {
                     GameController.gameController.CurrentLane--;
                 }
