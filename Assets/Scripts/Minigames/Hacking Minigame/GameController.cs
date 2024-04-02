@@ -92,7 +92,7 @@ namespace Minigames.Hacking_Minigame
             locationFileClosed = false;
             
             base.Start();
-            StartCoroutine(WaitForAnimation());
+            
         }
 
         // Update is called once per frame
@@ -230,6 +230,7 @@ namespace Minigames.Hacking_Minigame
         public override void HideLocationFile()
         {
             LocationFileUI.SetActive(false);
+            StartCoroutine(WaitForAnimation());
             PlayGame = true;
             locationFileClosed= true;
             if (LocationFile.IsCompleted)
