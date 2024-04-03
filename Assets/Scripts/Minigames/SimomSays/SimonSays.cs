@@ -88,6 +88,7 @@ namespace Minigames.SimomSays
         public override void CompleteGameStep()
         {
             Animator animator = GetComponentInChildren<Animator>();
+            //open vault
             animator.SetTrigger("ToggleOpen");
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
@@ -159,6 +160,7 @@ namespace Minigames.SimomSays
         //Add playerinput button to List and check if player fails,continues or wins
         private void AddToPlayerTaskSequence(int buttonId)
         {
+            if (!_isPlaying) return;
             _playerSequence.Add(buttonId);
             for (int index = 0; index < _playerSequence.Count; index++)
             {
@@ -217,7 +219,6 @@ namespace Minigames.SimomSays
             if (Physics.Raycast(ray, out hit, _raycastRange))
             {
                 string name = hit.transform.gameObject.name;
-                Debug.Log(name);
                 switch (name)
                 {
                     case "SafeButtonLT":
@@ -231,9 +232,6 @@ namespace Minigames.SimomSays
                         break;
                     case "SafeButtonRB":
                         SimonButtonEvent(3);
-                        break;
-                    case "LocationFileCollectable":
-                        ShowLocationFile();
                         break;
                     default:
                         _isDoneChecking = false;
