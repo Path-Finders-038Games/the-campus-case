@@ -681,7 +681,6 @@ MonoBehaviour:
   Animations:
   - {fileID: 5597675361297381662}
   - {fileID: 882978747723739819}
-  Animation: {fileID: 7400000, guid: a804a5158e817784c8e9a94a89dca3be, type: 2}
   HideLocationFileButton: {fileID: 4389073846633952827}
   GameCanvas: {fileID: 5030832880641896296}
   SpawnDelay: 1
@@ -698,7 +697,7 @@ MonoBehaviour:
   EndScreen: {fileID: 3329865392459039760, guid: 5f5afe548140f38478f7ed870504dbd3,
     type: 3}
   CurrentLane: 1
-  healthController: {fileID: 383759667992273754}
+  HealthControllerProperty: {fileID: 383759667992273754}
 --- !u!1 &4932145249438336441
 GameObject:
   m_ObjectHideFlags: 0

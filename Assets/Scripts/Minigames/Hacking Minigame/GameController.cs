@@ -77,6 +77,9 @@ namespace Minigames.Hacking_Minigame
         //the health controller
         public  HealthController HealthControllerProperty;
 
+        //the combat controller
+        public CombatController CombatControllerProperty;
+
         // timer to track passing of time
         private float _timer;
         //check to see if the animation has finished
@@ -194,6 +197,12 @@ namespace Minigames.Hacking_Minigame
             PlayGame = true;
         }
 
+        IEnumerator CombatStartDelay()
+        {
+            yield return new WaitForSeconds(3);
+            CombatControllerProperty.enabled = true;
+        }
+
         //setup method
         public override void PrepareStep()
         {
@@ -240,8 +249,11 @@ namespace Minigames.Hacking_Minigame
 
             foreach (Animator item in Animations)
             {
+                item.enabled = true;
                 item.SetTrigger("Test");
             }
+
+            StartCoroutine(CombatStartDelay());
         }
 
         //receive the dialogue used in the minigame
