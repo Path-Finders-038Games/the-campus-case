@@ -18,18 +18,13 @@ namespace Minigames.WaldoMinigame
             UpdateDialogue();
 
             if (!_isChecking) return;
+            if (Input.touchCount <= 0 || Input.touches[0].phase != TouchPhase.Began) return;
 
-            Debug.Log(Input.touchCount);
-
-            if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
-            {
-                RaycastCheck();
-            }
+            RayCastCheck();
         }
 
         /// <summary>
         /// Split the dialogue into the start and end of the minigame.
-        /// TODO: Replace with localized dialogue.
         /// </summary>
         public override void SplitDialogue()
         {
@@ -84,23 +79,26 @@ namespace Minigames.WaldoMinigame
         {
             LocationFileUI.SetActive(false);
             _isChecking = true;
-            if (LocationFile.IsCompleted)
-            {
-                SceneManager.LoadScene(1);
-            }
+
+            if (!LocationFile.IsCompleted) return;
+
+            SceneManager.LoadScene(1);
         }
 
         /// <summary>
-        /// Check if the raycast hits the target. If so, complete the minigame.
+        /// Check if the ray cast hits the target. If so, complete the minigame.
+        /// Target is the hidden object in the minigame.
         /// </summary>
-        private void RaycastCheck()
+        private void RayCastCheck()
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            if (!Physics.Raycast(ray, out hit)) return;
+            if (!Camera.main) return;
 
-            string name = hit.transform.gameObject.name;
-            if (name.Equals(Target.name)) CompleteGameStep();
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            
+            if (!Physics.Raycast(ray, out RaycastHit hit)) return;
+            if (!hit.transform.gameObject.name.Equals(Target.name)) return;
+            
+            CompleteGameStep();
         }
     }
 }

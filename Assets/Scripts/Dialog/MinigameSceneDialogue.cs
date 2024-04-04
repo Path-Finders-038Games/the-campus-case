@@ -24,7 +24,7 @@ namespace Dialog
 
         void Update()
         {
-            if (DataManager.Instance.CurrentStep <= 3)
+            if (DataManager.CurrentStep <= 3)
             {
                 UpdateDialogue();
             }

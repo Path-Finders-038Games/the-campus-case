@@ -1,5 +1,7 @@
 using Dialog;
+using Navigation;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,18 +9,18 @@ public class MainMenu : MonoBehaviour
 {
     // Language screen
     public GameObject LanguageScreen;
-    
+
     // Title screen
     public GameObject TitleScreen;
     public GameObject ContinueBtn;
     public TMP_Text ContinueText;
     public TMP_Text NewGameText;
     public TMP_Text QuitText;
-    
+
     // Buddy screen
     public GameObject BuddyScreen;
     public TMP_Text BuddyChoiceTitle;
-    
+
     // Introduction screen
     public GameObject IntroductionScreen;
     public TMP_Text IntroductionTitle;
@@ -26,21 +28,21 @@ public class MainMenu : MonoBehaviour
     public TMP_Text IntroductionBuddyMessage;
     public GameObject IntroductionBuddyCat;
     public GameObject IntroductionBuddyDog;
-    
+
     // Navigation
     private int _navigationLocation;
 
     void Start()
     {
         // During development, clear the language to test the language screen and localization strings
-        PlayerPrefs.DeleteKey("Language");
-        
+        // PlayerPrefs.DeleteKey("Language");
+
         LoadLanguage();
-        
+
         _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
-        if (PlayerPrefs.GetInt("Currentstep") == 0)
+        if (DataManager.CurrentStep == 0)
         {
             ContinueBtn.SetActive(false);
         }
@@ -66,7 +68,6 @@ public class MainMenu : MonoBehaviour
                 TitleScreen.SetActive(false);
                 break;
         }
-        
     }
 
     /// <summary>
@@ -74,8 +75,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnNewGameBtn()
     {
-        PlayerPrefs.SetInt("Currentstep", 0);
-        PlayerPrefs.SetString("Currentmap", "C0Map");
+        DataManager.CurrentStep = 0;
+        DataManager.CurrentMap = "C0Map";
         TitleScreen.SetActive(false);
         BuddyScreen.SetActive(true);
     }
@@ -97,7 +98,7 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
     /// <summary>
     /// Set the language to Dutch and switch to the title screen.
     /// This is a separate method to allow for the language to be set from the language screen.
@@ -180,13 +181,14 @@ public class MainMenu : MonoBehaviour
         ContinueText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
         NewGameText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");
         QuitText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "quitBtn");
-        
+
         // Buddy screen
         BuddyChoiceTitle.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "buddyChoiceTitle");
-        
+
         // Introduction screen
         IntroductionTitle.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionTitle");
         IntroductionMessage.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionMessage");
-        IntroductionBuddyMessage.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
+        IntroductionBuddyMessage.text =
+            DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "introductionBuddyMessage");
     }
 }
