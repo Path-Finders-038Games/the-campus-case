@@ -681,6 +681,7 @@ MonoBehaviour:
   Animations:
   - {fileID: 5597675361297381662}
   - {fileID: 882978747723739819}
+  - {fileID: 4661285098833818566}
   HideLocationFileButton: {fileID: 4389073846633952827}
   GameCanvas: {fileID: 5030832880641896296}
   SpawnDelay: 1
@@ -698,6 +699,7 @@ MonoBehaviour:
     type: 3}
   CurrentLane: 1
   HealthControllerProperty: {fileID: 383759667992273754}
+  CombatControllerProperty: {fileID: 6934045030124480579}
 --- !u!1 &4932145249438336441
 GameObject:
   m_ObjectHideFlags: 0
