@@ -249,7 +249,9 @@ namespace Minigames.Hacking_Minigame
 
             foreach (Animator item in Animations)
             {
+                //start all animations in the list
                 item.enabled = true;
+                //this trigger activates the animation for the hacking base
                 item.SetTrigger("Test");
             }
 
