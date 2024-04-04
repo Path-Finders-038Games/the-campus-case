@@ -1,4 +1,3 @@
-using System;
 using Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,8 +42,13 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMinigame()
     {
-        DataManager.Instance.CurrentMap = GetMinigameMapName(SelectedMinigame);
-        LoadScene(GameScene.Minigame);
+        LoadMinigame(SelectedMinigame);
+    }
+    
+    public static void LoadMinigame(MinigameName minigameName)
+    {
+        DataManager.CurrentMap = GetMinigameMapName(minigameName);
+        LoadScene(GameSceneToId(GameScene.Minigame));
     }
     
     public static string GetMinigameMapName(MinigameName minigameName) => minigameName switch
@@ -62,7 +66,7 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     /// <param name="gameScene"></param>
     /// <returns></returns>
-    private static int GameSceneToId(GameScene gameScene) => gameScene switch
+    public static int GameSceneToId(GameScene gameScene) => gameScene switch
     {
         GameScene.MainMenu => 0,
         GameScene.Navigation => 1,

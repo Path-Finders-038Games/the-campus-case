@@ -16,14 +16,11 @@ namespace Minigames
         Lost,
     }
     
-    public abstract partial class Minigame : MonoBehaviour
+    public abstract class Minigame : MonoBehaviour
     {
-        // Location file.
-        // Still no clue what this is.
-        protected LocationFile LocationFile;
-
         // Buddy dialogue.
         // These will be set in the Unity editor.
+        [Header("Buddy Dialogue")]
         public TMP_Text BuddyTextBlock;
         public GameObject BuddyDialogueObject;
         public GameObject BuddyImage;
@@ -38,6 +35,8 @@ namespace Minigames
 
         // Location info.
         // These will be set in the Unity editor.
+        protected LocationFile LocationFile;
+        [Header("Location File")]
         public LocationInfoScriptableObject LocationInfo;
         public TMP_Text LocationUIName;
         public TMP_Text LocationUIDescription;

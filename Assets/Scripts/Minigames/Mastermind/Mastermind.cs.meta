@@ -5,11 +5,12 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - Yellow: {fileID: 21300000, guid: 637e39309d5e0fc48be79b7852657f9e, type: 3}
-  - Blue: {instanceID: 0}
-  - Red: {instanceID: 0}
-  - Green: {instanceID: 0}
+  - Blue: {fileID: 21300000, guid: 50ed2b9a6de589849b122e0e5987acca, type: 3}
+  - Red: {fileID: 21300000, guid: 7c74cab79726eb543b7d520af3377b2c, type: 3}
+  - Green: {fileID: 21300000, guid: ed3681e20ed66584d8adb11539831ac0, type: 3}
   - White: {fileID: 21300000, guid: ec669b2913cfa4248bbadaab806707ea, type: 3}
   - Black: {fileID: 21300000, guid: 8ceee480b76b22447aef6d4f01b36460, type: 3}
+  - HiddenSlot: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
