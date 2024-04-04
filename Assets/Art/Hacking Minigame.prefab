@@ -687,9 +687,9 @@ MonoBehaviour:
   SpawnDelay: 1
   SpawnAmount: 15
   EnemyAlive: 0
-  Enemy: {fileID: 7175975073974738795, guid: 2daa4774c69aa544fa295485ec2c6a45, type: 3}
-  Weak: {fileID: 8867176410883701454, guid: 3edddb4b4a392a743bd18fce30682ab3, type: 3}
-  PlayGame: 0
+  StrongEnemy: {fileID: 0}
+  WeakEnemy: {fileID: 0}
+  PlayingGame: 0
   SpawnHeight: {fileID: 7108887168681143127}
   Lanes:
   - {fileID: 8202498115407394093}

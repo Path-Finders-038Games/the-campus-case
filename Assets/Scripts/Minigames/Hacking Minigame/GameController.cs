@@ -51,13 +51,13 @@ namespace Minigames.Hacking_Minigame
         public int EnemyAlive;
 
         //enemy type 1
-        public GameObject Enemy;
+        public GameObject StrongEnemy;
 
         //enemy type 2
-        public GameObject Weak;
+        public GameObject WeakEnemy;
 
         //check for if the game is currently active
-        public bool PlayGame;
+        public bool PlayingGame;
 
         //height of the spawner
         public GameObject SpawnHeight;
@@ -108,7 +108,7 @@ namespace Minigames.Hacking_Minigame
             _timer += Time.deltaTime;
 
             //stop if the game is not in play
-            if (!_animationDone||!PlayGame) return;
+            if (!_animationDone||!PlayingGame) return;
 
             //if requirements are met call the spawn enemy method
             if (_timer > SpawnDelay && SpawnAmount != 0) SpawnEnemy();
@@ -128,11 +128,11 @@ namespace Minigames.Hacking_Minigame
             int type = Random.Range(0, 3);
             if (type < 2)
             {
-                spawn = Weak;
+                spawn = WeakEnemy;
             }
             else
             {
-                spawn = Enemy;
+                spawn = StrongEnemy;
             }
             //reset timer
             _timer = 0;
@@ -157,7 +157,7 @@ namespace Minigames.Hacking_Minigame
         // method to stop playing the game and open the winscreen when the user wins
         void GameWon()
         {
-            PlayGame = false;
+            PlayingGame = false;
             GameObject winScreen = EndScreen.GetNamedChild("WinText");
             Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
@@ -167,7 +167,7 @@ namespace Minigames.Hacking_Minigame
         // method to stop the game and show the losescreen when the user has lost
         void GameLost()
         {
-            PlayGame = false;
+            PlayingGame = false;
             GameObject _loseScreen = EndScreen.GetNamedChild("LoseText");
             Instantiate(_loseScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
@@ -194,7 +194,7 @@ namespace Minigames.Hacking_Minigame
         {
             yield return new WaitForSeconds(3);
             _animationDone = true;
-            PlayGame = true;
+            PlayingGame = true;
         }
 
         IEnumerator CombatStartDelay()
@@ -207,7 +207,7 @@ namespace Minigames.Hacking_Minigame
         public override void PrepareStep()
         {
             gameController = this;
-            PlayGame = false;
+            PlayingGame = false;
             EnemyAlive = SpawnAmount;
             SetLocationFile();
             HideLocationFileButton.onClick.AddListener(HideLocationFile);
@@ -230,7 +230,7 @@ namespace Minigames.Hacking_Minigame
         //show the locationfile before the game begins
         public override void ShowLocationFile()
         {
-            PlayGame = false;
+            PlayingGame = false;
             LocationFileUI.SetActive(true);
         }
 
@@ -240,7 +240,7 @@ namespace Minigames.Hacking_Minigame
         {
             LocationFileUI.SetActive(false);
             StartCoroutine(WaitForAnimation());
-            PlayGame = true;
+            PlayingGame = true;
             locationFileClosed= true;
             if (LocationFile.IsCompleted)
             {

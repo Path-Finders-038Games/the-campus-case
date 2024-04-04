@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4569760058467807456}
   - component: {fileID: 9110831404831054544}
   m_Layer: 0
-  m_Name: hangman complete
+  m_Name: Hangman_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

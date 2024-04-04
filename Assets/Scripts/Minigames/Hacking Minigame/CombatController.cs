@@ -18,7 +18,7 @@ public class CombatController : MonoBehaviour
     void Update()
     {
         //only execute it the game is played
-        if (!GameController.gameController.PlayGame) return;
+        if (!GameController.gameController.PlayingGame) return;
 
         // add time that has passed to the time tracker variable
         _timer += Time.deltaTime;
