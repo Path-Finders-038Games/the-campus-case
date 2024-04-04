@@ -35,9 +35,6 @@ namespace Minigames.Sliding_puzzel
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
