@@ -1,4 +1,4 @@
-using UnityEditor;
+/*using UnityEditor;
 using UnityEditor.SceneManagement;
 
 public class LoadMainMenuOnPlayInEditor : EditorWindow
@@ -10,4 +10,4 @@ public class LoadMainMenuOnPlayInEditor : EditorWindow
         EditorSceneManager.playModeStartScene =
             AssetDatabase.LoadAssetAtPath<SceneAsset>($"Assets/Scenes/{StartGameScene}.unity");
     }
-}
+}*/

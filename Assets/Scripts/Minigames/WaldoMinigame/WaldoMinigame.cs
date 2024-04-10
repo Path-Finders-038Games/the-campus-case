@@ -31,6 +31,7 @@ namespace Minigames.WaldoMinigame
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_0"));
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_1"));
             WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_2"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_3"));
         }
 
         /// <summary>

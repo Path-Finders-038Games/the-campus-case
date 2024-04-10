@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameScene: 2
-  SelectedMinigame: 1
+  SelectedMinigame: 6
 --- !u!1001 &869549754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4577,7 +4577,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1814619877}
-  - component: {fileID: 1814619876}
   m_Layer: 0
   m_Name: DataMannager
   m_TagString: Untagged
@@ -4585,20 +4584,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1814619876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814619875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba824a5f6f5e5b043a06e56718ebb246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentStep: 0
-  CurrentMap: C0Map
 --- !u!4 &1814619877
 Transform:
   m_ObjectHideFlags: 0

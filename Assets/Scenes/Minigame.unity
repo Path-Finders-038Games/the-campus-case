@@ -397,9 +397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a04815f1449dab448b5fd338e79940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Default: {fileID: 6717461012115478838, guid: f52a6233cd202484d8cff91a5ca7a6e7, type: 3}
   Minigames:
-  - MinigameName: 5
-    MinigamePrefab: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
+  - MinigameName: 6
+    MinigamePrefab: {fileID: 7985207449370841564, guid: bd0c133aab3262d47bdc7ce5b63a851f,
       type: 3}
   - MinigameName: 1
     MinigamePrefab: {fileID: 8221244126007089358, guid: 1dab6b51f6b87b248b98dac5e6e19210,
@@ -413,7 +414,6 @@ MonoBehaviour:
   - MinigameName: 4
     MinigamePrefab: {fileID: 7971184478392807997, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
       type: 3}
-  Default: {fileID: 6717461012115478838, guid: f52a6233cd202484d8cff91a5ca7a6e7, type: 3}
 --- !u!1 &694060473
 GameObject:
   m_ObjectHideFlags: 0

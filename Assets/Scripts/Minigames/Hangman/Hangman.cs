@@ -17,6 +17,12 @@ namespace Minigames
     // class for all logic related to the hangman minigame
     public class Hangman : Minigame
     {
+        //list of guessed letters
+        private List<char> _guessedLetters = new();
+
+        //counter for the amount of mistakes made
+        private int _strikes = 0;
+
         //list of potential words for the game to select
         public List<string> Words = new();
 
@@ -25,43 +31,14 @@ namespace Minigames
 
         //a list of letters that make up the word
         public List<Character> WordLetters = new();
-
-        //list of guessed letters
-        private List<char> _guessedLetters = new();
-
-        //counter for the amount of mistakes made
-        private int _strikes = 0;
-
+   
+        // boolean to decide if the game is currently being played
         public bool Playing;
 
         //variable for Executing animations
         public AnimationManager AnimationManagerProperty;
 
         public Button HideLocationFileButton;
-
-        //setup method used for setting up the game at the beginning
-        public override void PrepareStep()
-        {
-            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6 localization");
-
-            // Check if words have spaces, if so, remove the spaces and log an error
-            foreach (string sanitizedWord in localizedWords.Select(SanitizeWord))
-            {
-                Words.Add(sanitizedWord);
-            }
-
-            //setup of the word generation for the game
-            System.Random random = new System.Random();
-            Word = Words[random.Next(0, Words.Count)];
-            foreach (char character in Word)
-            {
-                WordLetters.Add(new Character(character));
-            }
-
-            Playing = false;
-            SetLocationFile();
-            HideLocationFileButton.onClick.AddListener(HideLocationFile);
-        }
 
         /// <summary>
         /// Sanitizes the word by removing spaces and other unwanted characters.
@@ -136,11 +113,35 @@ namespace Minigames
             }
         }
 
+        //setup method used for setting up the game at the beginning
+        public override void PrepareStep()
+        {
+            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6 localization");
+
+            // Check if words have spaces, if so, remove the spaces and log an error
+            foreach (string sanitizedWord in localizedWords.Select(SanitizeWord))
+            {
+                Words.Add(sanitizedWord);
+            }
+
+            //setup of the word generation for the game
+            System.Random random = new System.Random();
+            Word = Words[random.Next(0, Words.Count)];
+            foreach (char character in Word)
+            {
+                WordLetters.Add(new Character(character));
+            }
+
+            Playing = false;
+            SetLocationFile();
+            HideLocationFileButton.onClick.AddListener(HideLocationFile);
+        }
+
         public override void SplitDialogue()
         {
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_0"));
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_1"));
-            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_2"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_2"));
         }
 
         public override void StartGameStep()

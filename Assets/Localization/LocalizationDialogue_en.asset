@@ -165,6 +165,18 @@ MonoBehaviour:
     m_Localized: You did it! you successfully helped Windesheim and exposed the society!
     m_Metadata:
       m_Items: []
+  - m_Id: 17343163875512320
+    m_Localized: testbox 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343330271940608
+    m_Localized: testbox 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343563911450624
+    m_Localized: testbox 2
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

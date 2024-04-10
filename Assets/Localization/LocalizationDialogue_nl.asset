@@ -168,6 +168,18 @@ MonoBehaviour:
       geheimen van de vereniging onthuld!
     m_Metadata:
       m_Items: []
+  - m_Id: 17343163875512320
+    m_Localized: testvakje 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343330271940608
+    m_Localized: testvakje 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343563911450624
+    m_Localized: testvakje 2
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

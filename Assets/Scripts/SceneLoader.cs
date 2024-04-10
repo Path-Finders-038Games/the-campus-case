@@ -18,6 +18,7 @@ public enum MinigameName
     WhereIsWaldo,
     Hacking,
     SimonSays,
+    Hangman
 }
 
 public class SceneLoader : MonoBehaviour
@@ -53,11 +54,12 @@ public class SceneLoader : MonoBehaviour
     
     public static string GetMinigameMapName(MinigameName minigameName) => minigameName switch
     {
-        MinigameName.SlidingPuzzle => "C0Map",
+        //MinigameName.SlidingPuzzle => "C0Map",
         MinigameName.Mastermind => "S0Map",
         MinigameName.WhereIsWaldo => "X1Map",
         MinigameName.Hacking => "T2Map",
         MinigameName.SimonSays => "T5Map",
+        MinigameName.Hangman => "C0Map",
         _ => "C0Map",
     };
 
