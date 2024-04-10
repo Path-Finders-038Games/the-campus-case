@@ -30,7 +30,7 @@ public class Ending : MonoBehaviour
 
         if (_currentImage >= TextureList.Count)
         {
-            SceneManager.LoadScene(0);
+            SceneLoader.LoadScene(GameScene.MainMenu);
         }
 
         image.texture = TextureList[_currentImage];

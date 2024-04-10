@@ -62,8 +62,8 @@ namespace Navigation
             int currentStep = DataManager.CurrentStep;
             DataManager.CurrentStep = ++currentStep;
 
-            // If the current step is greater than or equal to the amount of steps, load the next scene.
-            if (currentStep >= Steps.Length) SceneManager.LoadScene(3);
+            // If all the steps are completed, load the ending scene.
+            if (currentStep >= Steps.Length) SceneLoader.LoadScene(GameScene.Ending);
 
             // If the line is not null, set the mesh renderer to the line's mesh renderer.
             if (Steps[currentStep].line != null) meshRend = Steps[currentStep].line.GetComponent<MeshRenderer>();

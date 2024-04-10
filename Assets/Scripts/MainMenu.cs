@@ -29,16 +29,10 @@ public class MainMenu : MonoBehaviour
     public GameObject IntroductionBuddyCat;
     public GameObject IntroductionBuddyDog;
 
-    // Navigation
-    private int _navigationLocation;
-
     private void Start()
     {
         // Load the language based on the player preferences
         LoadLanguage();
-
-        // Set the navigation location to the title screen
-        _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
         if (DataManager.CurrentStep == 0)
@@ -75,7 +69,7 @@ public class MainMenu : MonoBehaviour
     public void OnNewGameBtn()
     {
         DataManager.CurrentStep = 0;
-        DataManager.CurrentMap = "C0Map";
+        // DataManager.CurrentMap = "C0Map";
         TitleScreen.SetActive(false);
         BuddyScreen.SetActive(true);
     }
@@ -134,7 +128,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SwitchToNavigation()
     {
-        SceneManager.LoadScene(_navigationLocation);
+        SceneLoader.LoadScene(GameScene.Navigation);
     }
 
     /// <summary>

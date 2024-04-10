@@ -1,5 +1,6 @@
 using System.Collections;
 using Dialog;
+using Navigation;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -108,6 +109,9 @@ namespace Minigames.Hacking_Minigame
         void GameWon()
         {
             PlayGame = false;
+            
+            DataManager.SetMinigameStatus(MinigameName.Hacking, true);
+            
             GameObject winScreen = EndScreen.GetNamedChild("WinText");
             Instantiate(winScreen, TextPos(), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
@@ -126,7 +130,7 @@ namespace Minigames.Hacking_Minigame
         IEnumerator BackToNavigation()
         {
             yield return new WaitForSeconds(3);
-            SceneManager.LoadScene(1);
+            SceneLoader.LoadScene(GameScene.Navigation);
         }
 
         IEnumerator Wait()
@@ -176,7 +180,7 @@ namespace Minigames.Hacking_Minigame
             locationFileClosed= true;
             if (LocationFile.IsCompleted)
             {
-                SceneManager.LoadScene(1);
+                SceneLoader.LoadScene(GameScene.Navigation);
             }
 
             foreach (Animator item in Animations)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dialog;
+using Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -100,6 +101,8 @@ namespace Minigames.Sliding_puzzel
 
         public override void CompleteGameStep()
         {
+            DataManager.SetMinigameStatus(MinigameName.SlidingPuzzle, true);
+            
             _isChecking = false;
             GameBoard.SetActive(false);
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;

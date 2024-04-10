@@ -33,7 +33,8 @@ namespace Navigation
 
         /// <summary>
         /// Moves the screen based on finger movement.
-        /// TODO: Fix the panning so that when the user is zoomed in or out, the panning moves the correct amount.
+        /// ~~Fix the panning so that when the user is zoomed in or out, the panning moves the correct amount.~~
+        /// Fixed enough for now.
         /// </summary>
         public void Update()
         {

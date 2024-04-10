@@ -25,7 +25,6 @@ namespace Minigames
         private GameObject _spawnedPrefab;
         private ARRaycastManager _raycastManager;
 
-        private string _currentMap;
         private static readonly List<ARRaycastHit> PreviousRaycastHits = new();
 
         private void Start()
@@ -52,8 +51,6 @@ namespace Minigames
             if (!_raycastManager.Raycast(Input.touches[0].position, hitResults,
                     TrackableType.Planes)) return;
             
-            _currentMap = DataManager.CurrentMap;
-            
             // Spawn the prefab at the first hit position. Cast the ARRaycastHit to an ARRaycastHit to prevent null reference.
             SpawnPrefab(hitResults.First());
         }
@@ -75,12 +72,11 @@ namespace Minigames
         {
             // Check if the current map is not a minigame map.
             // If it's not, return the default prefab.
-            if (!Minigames.Select(e => SceneLoader.GetMinigameMapName(e.MinigameName))
-                    .Contains(_currentMap)) return Default;
+            if (Minigames.All(e => e.MinigameName != DataManager.SelectedMinigame)) return Default;
 
             // Return the minigame prefab that matches the current map.
             return Minigames
-                .Where(e => SceneLoader.GetMinigameMapName(e.MinigameName) == _currentMap)
+                .Where(e => e.MinigameName != DataManager.SelectedMinigame)
                 .Select(e => e.MinigamePrefab)
                 .First();
         }

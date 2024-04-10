@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dialog;
+using Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -305,6 +306,8 @@ namespace Minigames.Mastermind
         /// </summary>
         private void Win()
         {
+            DataManager.SetMinigameStatus(MinigameName.Mastermind, true);
+            
             HiddenCodeRow.SetActive(false);
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             CompleteGameStep();

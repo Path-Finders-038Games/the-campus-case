@@ -50,12 +50,12 @@ namespace Art.Map
 
         public void EnterMap()
         {
-            SceneManager.LoadScene(1);
+            SceneLoader.LoadScene(GameScene.Navigation);
         }
 
         public void ExitMap()
         {
-            SceneManager.LoadScene(0);
+            SceneLoader.LoadScene(GameScene.MainMenu);
         }
     }
 }

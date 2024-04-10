@@ -1,4 +1,5 @@
 using Dialog;
+using Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -56,6 +57,8 @@ namespace Minigames.WaldoMinigame
         /// </summary>
         public override void CompleteGameStep()
         {
+            DataManager.SetMinigameStatus(MinigameName.WhereIsWaldo, true);
+            
             _isChecking = false;
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
@@ -82,7 +85,7 @@ namespace Minigames.WaldoMinigame
 
             if (!LocationFile.IsCompleted) return;
 
-            SceneManager.LoadScene(1);
+            SceneLoader.LoadScene(GameScene.Navigation);
         }
 
         /// <summary>
