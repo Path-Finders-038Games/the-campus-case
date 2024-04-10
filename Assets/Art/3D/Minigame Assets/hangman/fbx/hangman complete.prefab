@@ -460,7 +460,7 @@ MonoBehaviour:
   BuddyImage: {fileID: 8899601701354488571}
   BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
   BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
-  LocationInfo: {fileID: 11400000, guid: 9fa5f7bccbeeb3f46ad0be7466a8faa4, type: 2}
+  LocationInfo: {fileID: 11400000, guid: 6c8a26666c1b8d847950761e743da488, type: 2}
   LocationUIName: {fileID: 1215309320592781369}
   LocationUIDescription: {fileID: 3662384125842252799}
   LocationUIFacts: {fileID: 1197310874562929690}
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LetterMesh: {fileID: -2888700847283579708, guid: 98136d23149977c43907852f7dd0edd3,
     type: 3}
-  GuesswordDisplay: {fileID: 4177287650281292037}
+  GuesswordDisplay: {fileID: 7570793806529172686}
   HangmanGame: {fileID: 9110831404831054544}
 --- !u!1 &3848175707638282219 stripped
 GameObject:
@@ -2016,9 +2016,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2936008915383897521}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4177287650281292037 stripped
+--- !u!1 &7570793806529172686 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 1244814777456446644, guid: c05541ba028435b4786b6ecc3952f26e,
+  m_CorrespondingSourceObject: {fileID: 4732738226327935359, guid: c05541ba028435b4786b6ecc3952f26e,
     type: 3}
   m_PrefabInstance: {fileID: 2936008915383897521}
   m_PrefabAsset: {fileID: 0}

@@ -97,9 +97,9 @@ public class AnimationManager : MonoBehaviour
         {
             if (!part.Completed)
             {
+                part.Completed = true;
                 yield return StartCoroutine(part.MoveToPosition());
                 yield return StartCoroutine(part.RotateToDirection());
-                part.Completed = true;
                 break;
             }
         }

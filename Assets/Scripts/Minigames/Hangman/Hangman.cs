@@ -129,12 +129,13 @@ namespace Minigames
             Word = Words[random.Next(0, Words.Count)];
             foreach (char character in Word)
             {
-                WordLetters.Add(new Character(character));
+                WordLetters.Add(new Character(char.ToLower(character)));
             }
 
             Playing = false;
             SetLocationFile();
             HideLocationFileButton.onClick.AddListener(HideLocationFile);
+            Debug.Log(Word);
         }
 
         public override void SplitDialogue()

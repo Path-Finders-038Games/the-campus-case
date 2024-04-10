@@ -41,7 +41,7 @@ namespace Minigames
 
         private void Update()
         {
-            if (!HangmanGame.Playing) return;
+            if (HangmanGame.Playing == false) return;
 
             //checks if the user is touching the screen and fires a raycast
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
