@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Dialog;
 using TMPro;
 using UnityEngine;
@@ -10,74 +11,89 @@ namespace Minigames.SimomSays
 {
     public class SimonSays : Minigame
     {
-        //Buttons
+        // button on screen to start the simon says game
         public Button StartButton;
-        public Material ButtonMat;
-        //Safe buttons
-        public GameObject LTButton;//0
-        public GameObject RTButton;//1
-        public GameObject LBButton;//2
-        public GameObject RBButton;//3
-        //Text field
+        //Text field for displaying messages
         public TMP_Text Text;
-        //Start sequence lenght
-        private int _lenghtSequence = 3;
-        private List<GameObject> _safeButtonList = new();
-        private List<int> _taskSequence = new();
-        private List<int> _playerSequence = new();
-        private int _rounds = 3;
-        private int _curentRound = 1;
-        private int _waitTime = 1;
-        private bool _isDoneChecking = true;
-        private int _raycastRange = 100;
-        private bool _isPlaying = false;
+        // list of the buttons on the safe
+        public List<GameObject> SafeButtonList = new();
+        //button for hiding location file
         public Button HideLocationFileButton;
-        
+
+        //Start sequence lenght for round 1
+        private int _lenghtSequence = 3;
+        //sequence of buttons to press
+        private List<int> _taskSequence = new();
+        //sequence of buttons the player presses
+        private List<int> _playerSequence = new();
+        //rounds the game will play
+        private int _rounds = 3;
+        //current round of the game
+        private int _currentRound = 1;
+        //delay duration used to slow down game elements
+        private int _waitTime = 1;
+        //boolean used to control whether player input should be registered
+        private bool _isDoneChecking = true;
+        // variable used for the AR interaction unsure of its exact behaviour
+        private int _raycastRange = 100;
+        //boolean that signifies whether the player is still in play or has either lost or hasnt started yet
+        private bool _isPlaying = false;
+        //the dialogue for the game
+        private List<Dialogue> _startMinigame = new();
+
         void Update()
         {
             UpdateDialogue();
+
+            //if player input should be registered does something
             if (_isDoneChecking == false)
             {
-                //Screen touched check
+                //checks if the player touched their screen
                 if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
                 {
                     RaycastCheck();
                 }
             }
+            //if the user isnt playing yet allow them to interact with the start button
             if (!_isPlaying)
             {
                 StartButton.interactable = true;
             }
         }
+
+        //adds dialoguetext to the minigame from the localizationtable
         public override void SplitDialogue()
         {
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_1"));
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
+            _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_1"));
         }
+
+        // setup method to configure the minigame before it starts
         public override void PrepareStep()
         {
-            //Add safe buttons to list
-            _safeButtonList.Add(LTButton);
-            _safeButtonList.Add(RTButton);
-            _safeButtonList.Add(LBButton);
-            _safeButtonList.Add(RBButton);
             //Add listeners to safe buttons
             StartButton.onClick.AddListener(StartGame);
             HideLocationFileButton.onClick.AddListener(HideLocationFile);
             SetLocationFile();
             StartButton.interactable = false;
         }
+
+        // start of the minigame setup procedure
         public override void StartGameStep()
         {
             ShowLocationFile();
         }
+
+        // method for configuring the minigame as completed by the player
         public override void CompleteGameStep()
         {
             Animator animator = GetComponentInChildren<Animator>();
+            //open vault
             animator.SetTrigger("ToggleOpen");
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
         }
+
         //starts the game
         private void StartGame()
         {
@@ -88,36 +104,44 @@ namespace Minigames.SimomSays
             MakeSequence();
             StartCoroutine(ShowSequence());
         }
-        //Makes the start sequence
+
+        //Makes the basic start sequence
         private void MakeSequence()
         {
             for (int i = 0; i < _lenghtSequence; i++)
             {
-                int randomButtonId = Random.Range(0, _safeButtonList.Count);
+                int randomButtonId = Random.Range(0, SafeButtonList.Count);
                 _taskSequence.Add(randomButtonId);
             }
         }
-        //Adds to the sequence
+        //expands on the basic sequence each round
         private void AddToSequence()
         {
-            int randomButtonId = Random.Range(0, _safeButtonList.Count);
+            int randomButtonId = Random.Range(0, SafeButtonList.Count);
             _taskSequence.Add(randomButtonId);
         }
+
+        //lights up a button
         private void LightUpButton(int buttonId)
         {
-            _safeButtonList[buttonId].GetComponent<MeshRenderer>().material.SetFloat("_" + buttonId.ToString(), 1);
+            SafeButtonList[buttonId].GetComponent<MeshRenderer>().material.SetFloat("_" + buttonId.ToString(), 1);
         }
+
+        //darkens the button
         private void LightOffButton(int buttonId)
         {
-            _safeButtonList[buttonId].GetComponent<MeshRenderer>().material.SetFloat("_" + buttonId.ToString(), 0);
+            SafeButtonList[buttonId].GetComponent<MeshRenderer>().material.SetFloat("_" + buttonId.ToString(), 0);
         }
+
+        //brightens and darkens the button
         private IEnumerator LightUpAndOffButton(int buttonId)
         {
             LightUpButton(buttonId);
             yield return new WaitForSeconds(_waitTime);
             LightOffButton(buttonId);
         }
-        //Shows the sequence
+
+        //Shows the button sequence to the player
         private IEnumerator ShowSequence()
         {
             //Shows the sequence
@@ -125,18 +149,18 @@ namespace Minigames.SimomSays
             {
                 yield return new WaitForSeconds(_waitTime);
                 Text.text = "Showing Sequence";
-                LightUpButton(buttonId);
-                yield return new WaitForSeconds(_waitTime);
-                LightOffButton(buttonId);
+                StartCoroutine(LightUpAndOffButton(buttonId));
             }
             Text.text = "Your Turn";
             yield return new WaitForSeconds(_waitTime);
-            Text.text = $"Round: {_curentRound}";
+            Text.text = $"Round: {_currentRound}";
             _isDoneChecking = false;
         }
-        //Add player buttons to List and check if player fails,continues or wins
+
+        //Add playerinput button to List and check if player fails,continues or wins
         private void AddToPlayerTaskSequence(int buttonId)
         {
+            if (!_isPlaying) return;
             _playerSequence.Add(buttonId);
             for (int index = 0; index < _playerSequence.Count; index++)
             {
@@ -153,6 +177,8 @@ namespace Minigames.SimomSays
                     return;
                 }
             }
+
+            //if the current playersequence matches the games sequence proceed to the next round
             if (_playerSequence.Count == _taskSequence.Count)
             {
                 Text.text = "Won";
@@ -162,7 +188,7 @@ namespace Minigames.SimomSays
         //Resets game
         private void ResetGame()
         {
-            _curentRound = 1;
+            _currentRound = 1;
             _playerSequence.Clear();
             _taskSequence.Clear();
         }
@@ -170,32 +196,21 @@ namespace Minigames.SimomSays
         private void NextRound()
         {
             _playerSequence.Clear();
-            if (_curentRound == _rounds)
+            if (_currentRound == _rounds)
             {
                 Text.text = "You won the game";
                 CompleteGameStep();
             }
             else
             {
-                _curentRound++;
+                _currentRound++;
                 AddToSequence();
                 StartCoroutine(ShowSequence());
             }
         }
-        public override void ShowLocationFile()
-        {
-            LocationFileUI.SetActive(true);
-        }
-        public override void HideLocationFile()
-        {
-            LocationFileUI.SetActive(false);
-            StartButton.interactable = true;
-            if (LocationFile.IsCompleted)
-            {
-                SceneManager.LoadScene(1);
-            }
-        }
-        //Checks the raycast
+
+
+        //Checks what the player has touched with a raycast
         private void RaycastCheck() 
         {
             RaycastHit hit;
@@ -204,7 +219,6 @@ namespace Minigames.SimomSays
             if (Physics.Raycast(ray, out hit, _raycastRange))
             {
                 string name = hit.transform.gameObject.name;
-                Debug.Log(name);
                 switch (name)
                 {
                     case "SafeButtonLT":
@@ -219,9 +233,6 @@ namespace Minigames.SimomSays
                     case "SafeButtonRB":
                         SimonButtonEvent(3);
                         break;
-                    case "LocationFileCollectable":
-                        ShowLocationFile();
-                        break;
                     default:
                         _isDoneChecking = false;
                         break;
@@ -232,11 +243,31 @@ namespace Minigames.SimomSays
                 _isDoneChecking = false;
             }
         }
+
+        
         // Simon buttons eventhandlers
+        //what happens when a button is pressed
         private void SimonButtonEvent(int buttonId)
         {
             StartCoroutine(LightUpAndOffButton(buttonId));
             AddToPlayerTaskSequence(buttonId);
+        }
+
+        // shows location file
+        public override void ShowLocationFile()
+        {
+            LocationFileUI.SetActive(true);
+        }
+
+        //hides location file and returns to the map
+        public override void HideLocationFile()
+        {
+            LocationFileUI.SetActive(false);
+            StartButton.interactable = true;
+            if (LocationFile.IsCompleted)
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 }
