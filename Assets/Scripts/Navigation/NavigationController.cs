@@ -50,6 +50,11 @@ namespace Navigation
 
             // Set the fill amount of the line to the filled amount.
             meshRend.material.SetFloat("_fillAmount", filledAmount);
+
+            if (DataManager.AllMinigamesCompleted)
+            {
+                SceneLoader.LoadScene(GameScene.Ending);
+            }
         }
 
         public void OnNext()

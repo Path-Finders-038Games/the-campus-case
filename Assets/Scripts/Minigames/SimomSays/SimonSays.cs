@@ -267,7 +267,7 @@ namespace Minigames.SimomSays
             StartButton.interactable = true;
             if (LocationFile.IsCompleted)
             {
-                SceneManager.LoadScene(1);
+                SceneLoader.LoadScene(GameScene.Navigation);
             }
         }
     }

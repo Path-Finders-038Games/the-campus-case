@@ -18,7 +18,7 @@ public enum MinigameName
     WhereIsWaldo,
     Hacking,
     SimonSays,
-    Hangman,
+    // Hangman,
 }
 
 public class SceneLoader : MonoBehaviour

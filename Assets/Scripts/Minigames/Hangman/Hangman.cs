@@ -125,7 +125,7 @@ namespace Minigames
             {
                 //needs work
                 
-                DataManager.SetMinigameStatus(MinigameName.Hangman, true);
+                // DataManager.SetMinigameStatus(MinigameName.Hangman, true);
                 SceneLoader.LoadScene(GameScene.Navigation);
             }
         }
