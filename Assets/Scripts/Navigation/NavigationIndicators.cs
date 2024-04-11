@@ -39,8 +39,6 @@ namespace Navigation
 
         private void Update()
         {
-            Debug.Log(_uncompletedMinigames);
-            
             if (MinigameDependencies.Length == 0) return;
             
             // If the number of uncompleted minigames has not changed, return.
