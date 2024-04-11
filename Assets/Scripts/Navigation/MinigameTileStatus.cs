@@ -17,6 +17,8 @@ namespace Navigation
 
         private void Update()
         {
+            if (!_button.interactable) return;
+            
             if (DataManager.MinigameStatus[Minigame])
             {
                 _button.interactable = false;
