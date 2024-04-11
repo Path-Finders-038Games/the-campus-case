@@ -395,20 +395,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d994f86c374454aaefb26cab28d0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 6374870933685089825}
+  BuddyTextBlock: {fileID: 5705775381298078221}
+  BuddyDialogueObject: {fileID: 5995164345165256064}
+  BuddyImage: {fileID: 1231873395575223425}
+  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
+  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
   LocationInfo: {fileID: 11400000, guid: 64118ba08bf4dcc46a31f1f2e80a645f, type: 2}
   LocationUIName: {fileID: 1620642712243546142}
   LocationUIDescription: {fileID: 3779485887447317464}
   LocationUIFacts: {fileID: 1602643145499376701}
   LocationUIHintNextLocation: {fileID: 7170750765329914698}
   LocationFileUI: {fileID: 6872205671247458074}
+  Target: {fileID: 6374870933685089825}
   GameBoard: {fileID: 8113566251128007031}
   HideLocationFileButton: {fileID: 6454115039904871187}
-  BuddyTextBlock: {fileID: 5705775381298078221}
-  BuddyDialogueObject: {fileID: 5995164345165256064}
-  BuddyImage: {fileID: 1231873395575223425}
-  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
-  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
 --- !u!1 &7736943256924961176
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +838,7 @@ PrefabInstance:
     - target: {fileID: 957048848885680416, guid: 051faec85f5d70a4d8af53f9ff670e25,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 957048848885680416, guid: 051faec85f5d70a4d8af53f9ff670e25,
         type: 3}

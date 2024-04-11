@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Navigation
@@ -11,22 +10,42 @@ namespace Navigation
         
         private void Start()
         {
-            if (Maps.Length == 0)
+            if (Maps.Length < 1)
             {
                 Debug.LogError("No maps found.");
-                throw new NullReferenceException("No maps found.");
+                return;
+            }
+
+            if (!Maps.Select(m => m.name).Distinct().Contains(DataManager.CurrentMap))
+            {
+                DataManager.CurrentMap = Maps.First().name;
+            }
+
+            GameObject currentMap = Maps.First(m => m.name == DataManager.CurrentMap);
+            
+            if (currentMap == null)
+            {
+                Debug.LogError($"Map not found: {DataManager.CurrentMap}");
+                throw new NullReferenceException($"Map not found: {DataManager.CurrentMap}");
             }
             
-            GameObject firstMap = Maps.First();
+            currentMap.SetActive(true);
             
-            firstMap.SetActive(true);
-            
-            foreach (GameObject map in Maps.Where(m => m != firstMap))
+            foreach (GameObject map in Maps.Where(m => m != currentMap))
             {
                 map.SetActive(false);
             }
-        }
 
+            try
+            {
+                Camera.main.transform.position = DataManager.CameraPosition;
+            }
+            catch
+            {
+                Debug.LogWarning("Camera \"MainCamera\" not found.");
+            }
+        }
+        
         public void SwitchMap(string mapName)
         {
             // Reset all maps
@@ -42,6 +61,8 @@ namespace Navigation
             }
 
             selectedMap.SetActive(true);
+            
+            DataManager.CurrentMap = mapName;
         }
     }
 }

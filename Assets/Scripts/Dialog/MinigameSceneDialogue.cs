@@ -1,4 +1,3 @@
-using Navigation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,7 +49,7 @@ namespace Dialog
         /// </summary>
         private void SetBuddy()
         {
-            string buddyChoice = PlayerPrefs.GetString("Buddy");
+            string buddyChoice = DataManager.Buddy;
             BuddyImage.GetComponent<Image>().sprite = buddyChoice switch
             {
                 "Cat" => BuddyCatSprite,

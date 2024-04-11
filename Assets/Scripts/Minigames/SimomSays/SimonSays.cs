@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Dialog;
-using Navigation;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.SimomSays

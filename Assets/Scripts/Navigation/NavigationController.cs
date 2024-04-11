@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Navigation
 {
@@ -19,11 +19,12 @@ namespace Navigation
         public Step[] Steps;
         public MapManager mapManager;
         public Stepbystep Stepbystep;
-        public Camera camera;
 
         private MeshRenderer meshRend;
         public float speed;
         private float filledAmount;
+        
+        private Camera _camera => Camera.main;
 
         /// <summary>
         /// Initializes the map and the guide.
@@ -71,7 +72,7 @@ namespace Navigation
             // If the current step has a map, set the camera's local position to the map's position and switch the map.
             if (Steps[currentStep].hasMap)
             {
-                camera.transform.localPosition = new Vector3(0, 2.689579f, 0);
+                _camera.transform.localPosition = new Vector3(0, 2.689579f, 0);
                 mapManager.SwitchMap(Steps[currentStep].map.name);
                 DataManager.CurrentMap = Steps[currentStep].map.name;
             }
@@ -89,7 +90,7 @@ namespace Navigation
         private void UpdateGuide()
         {
             // Set the text to the current step's text based on the current language.
-            string text = LanguageManager.GetLanguage() switch
+            string text = DataManager.Language switch
             {
                 LanguageManager.Language.Dutch => Steps[DataManager.CurrentStep].text_NL,
                 LanguageManager.Language.English => Steps[DataManager.CurrentStep].text_EN,

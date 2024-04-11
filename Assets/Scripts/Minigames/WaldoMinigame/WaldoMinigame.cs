@@ -1,7 +1,5 @@
 using Dialog;
-using Navigation;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.WaldoMinigame

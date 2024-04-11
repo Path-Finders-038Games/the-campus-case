@@ -1,9 +1,7 @@
 using System.Collections;
 using Dialog;
-using Navigation;
 using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.Hacking_Minigame

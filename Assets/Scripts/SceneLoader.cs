@@ -1,4 +1,3 @@
-using Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +8,6 @@ public enum GameScene
     Navigation,
     Minigame,
     Ending,
-    NavigationDemo,
 }
 
 public enum MinigameName
@@ -47,9 +45,18 @@ public class SceneLoader : MonoBehaviour
     {
         LoadMinigame(SelectedMinigame);
     }
-    
+
     public static void LoadMinigame(MinigameName minigameName)
     {
+        try
+        {
+            DataManager.CameraPosition = Camera.main.transform.position;
+        }
+        catch
+        {
+            Debug.LogWarning("Camera \"MainCamera\" not found.");
+        }
+
         DataManager.SelectedMinigame = minigameName;
         LoadScene(GameSceneToId(GameScene.Minigame));
     }
@@ -57,15 +64,14 @@ public class SceneLoader : MonoBehaviour
     /// <summary>
     /// Convert the GameScene enum to an integer. Used to load scenes. Default is MainMenu.
     /// </summary>
-    /// <param name="gameScene"></param>
-    /// <returns></returns>
+    /// <param name="gameScene">GameScene to switch to.</param>
+    /// <returns>Id of the scene.</returns>
     public static int GameSceneToId(GameScene gameScene) => gameScene switch
     {
         GameScene.MainMenu => 0,
-        GameScene.Navigation => 4,
+        GameScene.Navigation => !DataManager.DemoMode ? 1 : 4, // Demo mode uses a different navigation scene. (T5 map)
         GameScene.Minigame => 2,
         GameScene.Ending => 3,
-        GameScene.NavigationDemo => 4,
         _ => 0,
     };
 }

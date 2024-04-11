@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.Localization;
 
 public static class LanguageManager
@@ -10,24 +9,10 @@ public static class LanguageManager
         Dutch,
         English,
     }
-
-    /// <summary>
-    /// Gets the language from the player preferences. Defaults to English.
-    /// </summary>
-    /// <returns>Currently selected <see cref="Language"/></returns>
-    public static Language GetLanguage()
-    {
-        return PlayerPrefs.GetString("Language") switch
-        {
-            "NL" => Language.Dutch,
-            "EN" => Language.English,
-            _ => Language.None,
-        };
-    }
     
     public static Locale GetLocale()
     {
-        string cultureCode = GetLanguage() switch
+        string cultureCode = DataManager.Language switch
         {
             Language.Dutch => "nl",
             Language.English => "en",

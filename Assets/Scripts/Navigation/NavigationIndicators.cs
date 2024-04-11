@@ -40,7 +40,7 @@ namespace Navigation
         private void Update()
         {
             if (MinigameDependencies.Length == 0) return;
-            
+
             // If the number of uncompleted minigames has not changed, return.
             // This way we prevent unnecessary UI updates.
             int uncompletedMinigames = GetUncompletedMinigames;
@@ -49,7 +49,7 @@ namespace Navigation
 
             // If there are no uncompleted minigames, hide the indicator.
             Indicator.gameObject.SetActive(_uncompletedMinigames > 0);
-            
+
             // Update the number of uncompleted minigames in the area.
             Indicator.text = uncompletedMinigames.ToString();
         }
