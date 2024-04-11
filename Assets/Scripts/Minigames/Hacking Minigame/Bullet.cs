@@ -1,36 +1,49 @@
 using UnityEngine;
 
-namespace Minigames.Hacking_Minigame
+
+//class of the bullet
+public class Bullet : MonoBehaviour
 {
-    public class Bullet : MonoBehaviour
+    //speed at which the bullet moves
+    public float BulletSpeed;
+
+    //maximum distance the bullet will travel
+    public float Distance;
+
+    private Vector3 _target;
+
+    private void Start()
     {
-        public float bulletSpeed;
-        public float distance;
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        _target = new Vector3(transform.position.x, Distance, transform.position.z);
+    }
+    private void Update()
+    {
+        BulletTravel();
+    }
 
-        // Update is called once per frame
-        void Update()
-        {
-            transform.position = Vector3.MoveTowards(transform.position,new Vector3(transform.position.x,distance,transform.position.z),bulletSpeed * Time.deltaTime); 
-            if(transform.position.y >= distance)
-            {
-                Destroy(gameObject);
-            }
-        }
+    //method to move the bullet
+    public void BulletTravel()
+    {
+        //change the position of the bullet depending on the time in between frames to keep the speed consistent
+        transform.position = Vector3.MoveTowards(transform.position, _target, BulletSpeed * Time.deltaTime);
 
-        private void OnTriggerEnter(Collider other)
-        {
-            Destroy(gameObject);
-        
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
+        //if the position of the bullet meets or exceeds the distance variable destroy the object
+        if (transform.position.y >= Distance)
         {
             Destroy(gameObject);
         }
+    }
+
+    // if the bullet touches anything, destroy the bullet
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+
+    }
+
+    // if the bullet touches anything, destroy the bullet
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }
