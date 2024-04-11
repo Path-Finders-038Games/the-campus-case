@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Ending : MonoBehaviour
 {
     public RawImage image;
     public List<Texture2D> TextureList;
+    public List<Texture2D> TextureListDemo;
 
+    private List<Texture2D> GetTextureList() => DataManager.DemoMode ? TextureListDemo : TextureList;
+    
     private int _currentImage;
 
     /// <summary>
@@ -16,7 +18,7 @@ public class Ending : MonoBehaviour
     void Start()
     {
         _currentImage = 0;
-        image.texture = TextureList[_currentImage];
+        image.texture = GetTextureList()[_currentImage];
     }
 
     /// <summary>
@@ -28,11 +30,11 @@ public class Ending : MonoBehaviour
 
         _currentImage++;
 
-        if (_currentImage >= TextureList.Count)
+        if (_currentImage >= GetTextureList().Count)
         {
-            SceneManager.LoadScene(0);
+            SceneLoader.LoadScene(GameScene.MainMenu);
         }
 
-        image.texture = TextureList[_currentImage];
+        image.texture = GetTextureList()[_currentImage];
     }
 }

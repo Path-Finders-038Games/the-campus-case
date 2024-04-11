@@ -305,6 +305,8 @@ namespace Minigames.Mastermind
         /// </summary>
         private void Win()
         {
+            DataManager.SetMinigameStatus(MinigameName.Mastermind, true);
+            
             HiddenCodeRow.SetActive(false);
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             CompleteGameStep();

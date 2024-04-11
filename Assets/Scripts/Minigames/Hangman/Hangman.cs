@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Linq;
 using Dialog;
 
@@ -125,7 +124,9 @@ namespace Minigames
             if (won)
             {
                 //needs work
-                SceneManager.LoadScene(1);
+                
+                // DataManager.SetMinigameStatus(MinigameName.Hangman, true);
+                SceneLoader.LoadScene(GameScene.Navigation);
             }
         }
 
@@ -135,7 +136,7 @@ namespace Minigames
             if (fout >= 12)
             {
                 //still needs work
-                SceneManager.LoadScene(1);
+                SceneLoader.LoadScene(GameScene.Navigation);
             }
         }
 

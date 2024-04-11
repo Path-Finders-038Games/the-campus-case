@@ -4,7 +4,6 @@ using System.Text;
 using Dialog;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.SimomSays
@@ -92,6 +91,8 @@ namespace Minigames.SimomSays
             animator.SetTrigger("ToggleOpen");
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
+            
+            DataManager.SetMinigameStatus(MinigameName.SimonSays, true);
         }
 
         //starts the game
@@ -266,7 +267,7 @@ namespace Minigames.SimomSays
             StartButton.interactable = true;
             if (LocationFile.IsCompleted)
             {
-                SceneManager.LoadScene(1);
+                SceneLoader.LoadScene(GameScene.Navigation);
             }
         }
     }

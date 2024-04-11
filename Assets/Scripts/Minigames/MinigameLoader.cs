@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Navigation;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
@@ -21,11 +20,12 @@ namespace Minigames
 
         public GameObject Default;
         public Minigame[] Minigames;
+        
+        public GameObject ExitArPlacementButton;
 
         private GameObject _spawnedPrefab;
         private ARRaycastManager _raycastManager;
 
-        private string _currentMap;
         private static readonly List<ARRaycastHit> PreviousRaycastHits = new();
 
         private void Start()
@@ -33,6 +33,8 @@ namespace Minigames
             // Get the ARRaycastManager from the ARSessionOrigin.
             // This should be set in the Unity Editor, but it can't be since the prefab is not discoverable.
             _raycastManager = GetComponent<ARRaycastManager>();
+            
+            ExitArPlacementButton.SetActive(true);
         }
 
         private void Update()
@@ -52,8 +54,6 @@ namespace Minigames
             if (!_raycastManager.Raycast(Input.touches[0].position, hitResults,
                     TrackableType.Planes)) return;
             
-            _currentMap = DataManager.CurrentMap;
-            
             // Spawn the prefab at the first hit position. Cast the ARRaycastHit to an ARRaycastHit to prevent null reference.
             SpawnPrefab(hitResults.First());
         }
@@ -62,25 +62,28 @@ namespace Minigames
         {
             // Get the rotation of the hit plane.
             Quaternion rotation = plane.pose.rotation;
+            
+            GameObject prefab = GetCorrectPrefab();
 
             // The prefab is rotated -90 degrees to have the correct rotation relative to the plane.
-            rotation.eulerAngles = new Vector3(GetCorrectPrefab().transform.eulerAngles.x, rotation.eulerAngles.y,
+            rotation.eulerAngles = new Vector3(prefab.transform.eulerAngles.x, rotation.eulerAngles.y,
                 rotation.eulerAngles.z);
 
             // Instantiate the prefab at the hit position with the correct rotation.
-            _spawnedPrefab = Instantiate(GetCorrectPrefab(), plane.pose.position, rotation);
+            _spawnedPrefab = Instantiate(prefab, plane.pose.position, rotation);
+            
+            ExitArPlacementButton.SetActive(false);
         }
 
         private GameObject GetCorrectPrefab()
         {
             // Check if the current map is not a minigame map.
             // If it's not, return the default prefab.
-            if (!Minigames.Select(e => SceneLoader.GetMinigameMapName(e.MinigameName))
-                    .Contains(_currentMap)) return Default;
+            if (Minigames.All(e => e.MinigameName != DataManager.SelectedMinigame)) return Default;
 
             // Return the minigame prefab that matches the current map.
             return Minigames
-                .Where(e => SceneLoader.GetMinigameMapName(e.MinigameName) == _currentMap)
+                .Where(e => e.MinigameName == DataManager.SelectedMinigame)
                 .Select(e => e.MinigamePrefab)
                 .First();
         }

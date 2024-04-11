@@ -100,6 +100,8 @@ namespace Minigames.Sliding_puzzel
 
         public override void CompleteGameStep()
         {
+            DataManager.SetMinigameStatus(MinigameName.SlidingPuzzle, true);
+            
             _isChecking = false;
             GameBoard.SetActive(false);
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
