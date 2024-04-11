@@ -48,7 +48,7 @@ namespace Minigames
         //setup method used for setting up the game at the beginning
         public void Setup()
         {
-            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6 localization");
+            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6-localization");
 
             // Check if words have spaces, if so, remove the spaces and log an error
             foreach (string sanitizedWord in localizedWords.Select(SanitizeWord))
