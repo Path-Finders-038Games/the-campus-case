@@ -684,7 +684,7 @@ MonoBehaviour:
   - {fileID: 4661285098833818566}
   HideLocationFileButton: {fileID: 4389073846633952827}
   GameCanvas: {fileID: 5030832880641896296}
-  SpawnDelay: 1.25
+  SpawnDelay: 1.5
   SpawnAmount: 30
   EnemyAlive: 0
   StrongEnemy: {fileID: 8867176410883701454, guid: 3edddb4b4a392a743bd18fce30682ab3,

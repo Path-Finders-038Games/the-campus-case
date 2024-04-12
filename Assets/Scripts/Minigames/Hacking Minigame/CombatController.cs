@@ -1,3 +1,4 @@
+using System;
 using Minigames.Hacking_Minigame;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +14,11 @@ public class CombatController : MonoBehaviour
 
     // variable which keeps track of the time
     private float _timer;
+
+    private int _fireDelayTracker = 0;
     
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //only execute it the game is played
         if (!GameController.gameController.PlayingGame) return;
@@ -24,12 +27,15 @@ public class CombatController : MonoBehaviour
         _timer += Time.deltaTime;
 
         //if passed time exceeded the reloadtime, shoot a new bullet
-        if (_timer > ReloadTime)
-        {
-            //reset the timer and instantiate a new bullet
-            _timer = 0;
-            GameObject Bullet = Instantiate(Bullet_Prefab, transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-        }
+        if (!(_timer > ReloadTime)) return;
+        
+        //reset the timer and instantiate a new bullet
+        _timer = 0;
+        _fireDelayTracker++;
+
+        if (_fireDelayTracker < 2) return; // Give the game to play animation
+            
+        Instantiate(Bullet_Prefab, transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
     }
 }

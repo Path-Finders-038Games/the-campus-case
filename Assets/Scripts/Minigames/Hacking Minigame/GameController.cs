@@ -124,8 +124,9 @@ namespace Minigames.Hacking_Minigame
             SpawnAmount--;
             GameObject spawn;
             //randomizer for what type of enemy gets spawned
-            int type = Random.Range(0, 3);
-            if (type < 2)
+            int type = Random.Range(0, 9);
+            
+            if (type > 4)
             {
                 spawn = WeakEnemy;
             }
@@ -139,6 +140,7 @@ namespace Minigames.Hacking_Minigame
             //spawn enemy on position
             int spawnLocation = Random.Range(0, 3);
             Instantiate(spawn, LanePos(spawnLocation), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+            SpawnDelay -= 0.01f;
         }
 
         //the position of a lane 
