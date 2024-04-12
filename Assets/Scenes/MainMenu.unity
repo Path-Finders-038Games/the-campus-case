@@ -2601,7 +2601,7 @@ PrefabInstance:
     - target: {fileID: 6463585761178296359, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6463585761178296359, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
@@ -3936,7 +3936,7 @@ PrefabInstance:
     - target: {fileID: 1336448066020290820, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1816310640832991551, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
@@ -4485,6 +4485,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuitButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1336448066020290820, guid: 123660a36d86adf46b042e1d3e452e0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1816310640832991551, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}
       propertyPath: m_text
@@ -4845,6 +4850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NewGameButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336448066020290820, guid: 123660a36d86adf46b042e1d3e452e0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1816310640832991551, guid: 123660a36d86adf46b042e1d3e452e0c,
         type: 3}

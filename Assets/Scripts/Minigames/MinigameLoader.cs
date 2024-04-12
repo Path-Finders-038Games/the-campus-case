@@ -25,6 +25,7 @@ namespace Minigames
 
         private GameObject _spawnedPrefab;
         private ARRaycastManager _raycastManager;
+        private ARPlaneManager _planeManager;
 
         private static readonly List<ARRaycastHit> PreviousRaycastHits = new();
 
@@ -33,8 +34,10 @@ namespace Minigames
             // Get the ARRaycastManager from the ARSessionOrigin.
             // This should be set in the Unity Editor, but it can't be since the prefab is not discoverable.
             _raycastManager = GetComponent<ARRaycastManager>();
+            _planeManager = GetComponent<ARPlaneManager>();
             
             ExitArPlacementButton.SetActive(true);
+            _planeManager.planePrefab.GetComponent<MeshRenderer>().enabled = true;
         }
 
         private void Update()
@@ -73,6 +76,7 @@ namespace Minigames
             _spawnedPrefab = Instantiate(prefab, plane.pose.position, rotation);
             
             ExitArPlacementButton.SetActive(false);
+            _planeManager.planePrefab.GetComponent<MeshRenderer>().enabled = false;
         }
 
         private GameObject GetCorrectPrefab()

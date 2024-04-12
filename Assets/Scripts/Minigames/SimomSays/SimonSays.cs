@@ -93,6 +93,7 @@ namespace Minigames.SimomSays
             LocationFile.IsCompleted = true;
             
             DataManager.SetMinigameStatus(MinigameName.SimonSays, true);
+            SceneLoader.LoadScene(GameScene.Navigation);
         }
 
         //starts the game
