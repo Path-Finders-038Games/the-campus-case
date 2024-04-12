@@ -20,7 +20,7 @@ namespace Minigames
 
         public GameObject Default;
         public Minigame[] Minigames;
-        
+
         public GameObject ExitArPlacementButton;
 
         private GameObject _spawnedPrefab;
@@ -35,9 +35,9 @@ namespace Minigames
             // This should be set in the Unity Editor, but it can't be since the prefab is not discoverable.
             _raycastManager = GetComponent<ARRaycastManager>();
             _planeManager = GetComponent<ARPlaneManager>();
-            
+
             ExitArPlacementButton.SetActive(true);
-            _planeManager.planePrefab.GetComponent<MeshRenderer>().enabled = true;
+            _planeManager.enabled = true;
         }
 
         private void Update()
@@ -56,7 +56,7 @@ namespace Minigames
             List<ARRaycastHit> hitResults = new();
             if (!_raycastManager.Raycast(Input.touches[0].position, hitResults,
                     TrackableType.Planes)) return;
-            
+
             // Spawn the prefab at the first hit position. Cast the ARRaycastHit to an ARRaycastHit to prevent null reference.
             SpawnPrefab(hitResults.First());
         }
@@ -65,7 +65,7 @@ namespace Minigames
         {
             // Get the rotation of the hit plane.
             Quaternion rotation = plane.pose.rotation;
-            
+
             GameObject prefab = GetCorrectPrefab();
 
             // The prefab is rotated -90 degrees to have the correct rotation relative to the plane.
@@ -74,9 +74,14 @@ namespace Minigames
 
             // Instantiate the prefab at the hit position with the correct rotation.
             _spawnedPrefab = Instantiate(prefab, plane.pose.position, rotation);
-            
+
             ExitArPlacementButton.SetActive(false);
-            _planeManager.planePrefab.GetComponent<MeshRenderer>().enabled = false;
+            _planeManager.enabled = false;
+
+            foreach (ARPlane arPlane in _planeManager.trackables)
+            {
+                arPlane.gameObject.SetActive(false);
+            }
         }
 
         private GameObject GetCorrectPrefab()
