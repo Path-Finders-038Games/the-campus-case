@@ -30,7 +30,7 @@ MonoBehaviour:
     - Locale-nl
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80f0397dd013b5a46b4f389469a22451
-    m_Address: Minigame 6 localization_nl
+    m_Address: Minigame 6-localization_nl
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-nl

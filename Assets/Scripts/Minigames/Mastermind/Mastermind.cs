@@ -199,6 +199,7 @@ namespace Minigames.Mastermind
             }
 
             _currentRow++;
+            _currentCol = 1;
 
             // TODO: fix color for the current row. Not working as intended
             Color originMastermindColor = rowToVerify.GetComponent<Image>().color;
@@ -241,9 +242,6 @@ namespace Minigames.Mastermind
         /// </summary>
         public override void PrepareStep()
         {
-            SetLocationFile();
-            GetNewSecretCode();
-
             _currentRow = 0; // 0-MaxRows
             _currentCol = 1; // 1-4
 
@@ -256,6 +254,9 @@ namespace Minigames.Mastermind
             _discoSprite.Add("Triangle", Triangle);
 
             _playerInputCode = new string[Cols];
+            
+            SetLocationFile();
+            GetNewSecretCode();
         }
 
         /// <summary>

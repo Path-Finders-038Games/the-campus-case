@@ -6,6 +6,8 @@ namespace Navigation
     public class MinigameTileStatus : MonoBehaviour
     {
         public MinigameName Minigame;
+        public Image ButtonPicture;
+        public Sprite CompletedSprite;
 
         private Button _button;
 
@@ -18,11 +20,11 @@ namespace Navigation
         private void Update()
         {
             if (!_button.interactable) return;
+            if (!DataManager.MinigameStatus[Minigame]) return;
             
-            if (DataManager.MinigameStatus[Minigame])
-            {
-                _button.interactable = false;
-            }
+            _button.interactable = false;
+            ButtonPicture.sprite = CompletedSprite;
+            ButtonPicture.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
 }
