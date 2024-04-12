@@ -5,7 +5,7 @@ namespace Navigation
 {
     public class NavigationController : MonoBehaviour
     {
-        [System.Serializable]
+        [Serializable]
         public class Step
         {
             [TextArea(0, 5)] public string text_EN;
@@ -23,7 +23,7 @@ namespace Navigation
         private MeshRenderer meshRend;
         public float speed;
         private float filledAmount;
-        
+
         private Camera _camera => Camera.main;
 
         /// <summary>
@@ -42,6 +42,11 @@ namespace Navigation
         /// </summary>
         private void Update()
         {
+            if (DataManager.AllMinigamesCompleted())
+            {
+                SceneLoader.LoadScene(GameScene.Ending);
+            }
+
             // If the mesh renderer is null, return.
             if (meshRend == null) return;
 
@@ -50,11 +55,6 @@ namespace Navigation
 
             // Set the fill amount of the line to the filled amount.
             meshRend.material.SetFloat("_fillAmount", filledAmount);
-
-            if (DataManager.AllMinigamesCompleted)
-            {
-                SceneLoader.LoadScene(GameScene.Ending);
-            }
         }
 
         public void OnNext()
@@ -86,7 +86,6 @@ namespace Navigation
 
             // Set the current step and map in the player preferences.
             DataManager.CurrentStep = currentStep;
-            
         }
 
         /// <summary>

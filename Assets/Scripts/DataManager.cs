@@ -61,9 +61,13 @@ public static class DataManager
         minigameStatus[minigame] = status;
         MinigameStatus = minigameStatus;
     }
-    
-    public static bool AllMinigamesCompleted => MinigameStatus.All(pair => pair.Value);
-    
+
+    public static bool AllMinigamesCompleted()
+    {
+        Dictionary<MinigameName, bool> minigameStatus = MinigameStatus;
+        return minigameStatus.All(pair => pair.Value);
+    }
+
     public static void ResetAllMinigameStatus()
     {
         MinigameStatus = Minigames.ToDictionary(minigame => minigame, _ => false);
