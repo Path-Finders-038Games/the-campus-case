@@ -124,8 +124,7 @@ namespace Minigames
         /// </summary>
         protected void SetBuddy()
         {
-            string buddyChoice = DataManager.Buddy;
-            BuddyImage.GetComponent<Image>().sprite = buddyChoice switch
+            BuddyImage.GetComponent<Image>().sprite = DataManager.Buddy switch
             {
                 "Cat" => BuddyCatSprite,
                 "Dog" => BuddyDogSprite,

@@ -37,11 +37,11 @@ namespace Minigames.Mastermind
         public GameObject RowPrefab;
         public GameObject HiddenCodeRow;
         private GameObject[] _boardRows;
-
         private int _currentRow, _currentCol;
-        private string[] _playerInputCode;
-        private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the shape sprites
         private readonly string[] _secretCodeToGuess = new string[Cols];
+        private string[] _playerInputCode;
+        
+        private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the shape sprites
 
         private void Update()
         {
