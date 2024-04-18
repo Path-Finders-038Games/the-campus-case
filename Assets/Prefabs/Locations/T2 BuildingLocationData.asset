@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: T2 BuildingLocationData
   m_EditorClassIdentifier: 
   Data_NL:
-    Name: T2 Gebwouw
+    Name: T2 Gebouw
     Description: Ik ben nu bij de T2 Balie, ik heb zojuist een lokaal geboekt om
       mijn dossier in te bestuderen want hier kun je klaslokalen boeken.
     Facts: []

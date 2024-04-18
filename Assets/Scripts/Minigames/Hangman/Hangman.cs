@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 /*
  Todo:
--improve presentation to user(text on win or lose)
 -update to new minigamea standards
  */
 
@@ -45,7 +44,6 @@ namespace Minigames
         /// </summary>
         /// <param name="word">Word to sanitize.</param>
         /// <returns>Sanitized word.</returns>
-        // TODO: Move this method to a separate class
         private static string SanitizeWord(string word)
         {
             word = word.Replace(" ", "");

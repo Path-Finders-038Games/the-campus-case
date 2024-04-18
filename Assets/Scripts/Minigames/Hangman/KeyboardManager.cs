@@ -5,7 +5,8 @@ using UnityEngine;
 
 /*
  add dialogue to the game
-optimize wordcheck
+ optimize wordcheck
+ fix animation rotation
  */
 
 namespace Minigames
