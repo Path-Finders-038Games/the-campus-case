@@ -128,8 +128,8 @@ namespace Minigames
             // If the prefab is not spawned, return.
             if (_spawnedPrefab == null) return;
 
-            // Move the prefab in the forward direction.
-            // distance can be positive or negative to move the prefab forward or backward.
+            // Move the prefab closer or further away from plane it's on.
+            // Due to rotations applied when spawning the prefab, the up vector is used to move the prefab.
             _spawnedPrefab.transform.position += _spawnedPrefab.transform.up * distance;
         }
     }
