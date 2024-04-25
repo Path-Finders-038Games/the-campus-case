@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -22,6 +23,8 @@ namespace Minigames
         public Minigame[] Minigames;
 
         public GameObject ExitArPlacementButton;
+        public GameObject MovePrefabCloserButton;
+        public GameObject MovePrefabFurtherButton;
 
         private GameObject _spawnedPrefab;
         private ARRaycastManager _raycastManager;
@@ -37,6 +40,8 @@ namespace Minigames
             _planeManager = GetComponent<ARPlaneManager>();
 
             ExitArPlacementButton.SetActive(true);
+            MovePrefabCloserButton.SetActive(false);
+            MovePrefabFurtherButton.SetActive(false);
             _planeManager.enabled = true;
         }
 
@@ -76,6 +81,8 @@ namespace Minigames
             _spawnedPrefab = Instantiate(prefab, plane.pose.position, rotation);
 
             ExitArPlacementButton.SetActive(false);
+            MovePrefabCloserButton.SetActive(true);
+            MovePrefabFurtherButton.SetActive(true);
             _planeManager.enabled = false;
 
             foreach (ARPlane arPlane in _planeManager.trackables)
@@ -83,7 +90,7 @@ namespace Minigames
                 arPlane.gameObject.SetActive(false);
             }
         }
-
+    
         private GameObject GetCorrectPrefab()
         {
             // Check if the current map is not a minigame map.
@@ -104,6 +111,16 @@ namespace Minigames
 
             // Destroy the prefab.
             Destroy(_spawnedPrefab);
+        }
+        
+        public void MovePrefab(float distance)
+        {
+            // If the prefab is not spawned, return.
+            if (_spawnedPrefab == null) return;
+
+            // Move the prefab in the forward direction.
+            // distance can be positive or negative to move the prefab forward or backward.
+            _spawnedPrefab.transform.position += _spawnedPrefab.transform.up * distance;
         }
     }
 }
