@@ -65,27 +65,23 @@ namespace Navigation
             if (meshRend != null) meshRend.material.SetFloat("_fillAmount", filledAmount);
 
             // Increase the current step by 1.
-            int currentStep = DataManager.CurrentStep;
-            DataManager.CurrentStep = ++currentStep;
+            DataManager.CurrentStep += 1;
 
             // If all the steps are completed, load the ending scene.
-            if (currentStep >= Steps.Length) SceneLoader.LoadScene(GameScene.Ending);
+            if (DataManager.CurrentStep >= Steps.Length) SceneLoader.LoadScene(GameScene.Ending);
 
             // If the line is not null, set the mesh renderer to the line's mesh renderer.
-            if (Steps[currentStep].line != null) meshRend = Steps[currentStep].line.GetComponent<MeshRenderer>();
+            if (Steps[DataManager.CurrentStep].line != null) meshRend = Steps[DataManager.CurrentStep].line.GetComponent<MeshRenderer>();
 
             // If the current step has a map, set the camera's local position to the map's position and switch the map.
-            if (Steps[currentStep].hasMap)
+            if (Steps[DataManager.CurrentStep].hasMap)
             {
                 _camera.transform.localPosition = new Vector3(0, 2.689579f, 0);
-                mapManager.SwitchMap(Steps[currentStep].map.name);
-                DataManager.CurrentMap = Steps[currentStep].map.name;
+                mapManager.SwitchMap(Steps[DataManager.CurrentStep].map.name);
+                DataManager.CurrentMap = Steps[DataManager.CurrentStep].map.name;
             }
 
             UpdateGuide();
-
-            // Set the current step and map in the player preferences.
-            DataManager.CurrentStep = currentStep;
         }
 
         /// <summary>
