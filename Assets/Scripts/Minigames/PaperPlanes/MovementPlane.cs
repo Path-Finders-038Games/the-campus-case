@@ -32,10 +32,6 @@ namespace Minigames.PaperPlanes
             // move the plane slightly downwards
             transform.Translate(Vector3.down * (Time.deltaTime * 0.05f));
 
-            // print the position and rotation of the GameObject to check if it's spawning randomly.
-            /* Debug.Log(GetPositionAndRotation().position);*/
-            /*Debug.Log(GetPositionAndRotation().rotation);*/
-
             //set a timer: Pick a random number between 1 and 3 and subtract the time that has passed since the last frame.
             _randomTime -= Time.deltaTime;
 
@@ -53,7 +49,7 @@ namespace Minigames.PaperPlanes
                 //set the bool to false so the plane can rotate right
                 _leftright = false;
             }
-            else if (!_leftright)
+            else
             {
                 //Rotate the plane up on the X axis of the rotation
                 transform.Rotate(Vector3.up * Rotate);

@@ -32,6 +32,8 @@ namespace Minigames.PaperPlanes
             
             //Instantiate a new plane at the position of axysX and axysY (Between where the window is going to be).
             Instantiate(PaperPlane, position, gameObject.transform.rotation);
+            
+            PaperPlanesData.PlanesSpawned++;
         }
     }
 }

@@ -1,20 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
-public class PlaneHit : MonoBehaviour
+namespace Minigames.PaperPlanes
 {
-    private void OnCollisionEnter(Collision collision)
+    public class PlaneHit : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Player"))
+        // Trigger the success event and destroy the plane when it hits the player
+        private void OnTriggerEnter(Collider other)
         {
-            // Destroy the object
-            Destroy(gameObject);
+            if (!other.CompareTag("Player")) return;
+            
+            Debug.Log("Player hit plane!");
+            
+            PaperPlanesData.PlanesHit++;
+            
+            DestroyPlane();
         }
-        else if (collision.gameObject.CompareTag("Boundary"))
+
+        // Destroy the plane when it exits the boundary
+        private void OnTriggerExit(Collider other)
         {
-            // Destroy the object
+            if (!other.CompareTag("Boundary")) return;
+            
+            Debug.Log("Plane left boundary");
+            
+            PaperPlanesData.PlanesMissed++;
+            
+            DestroyPlane();
+        }
+
+        private void DestroyPlane()
+        {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
