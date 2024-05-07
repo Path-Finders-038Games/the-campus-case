@@ -26,11 +26,7 @@ namespace Minigames.PaperPlanes
             // This is here and not higher up to still count up _randomSpawn, so the planes will spawn when the game starts.
             if (!PaperPlanesData.IsRunning) return;
             
-            //Set the axysX a random number between -5 and 5. And the axysY a random number between 1 and 10.
-            float x = Random.Range(-1, 1) / 6f;
-            float z = Random.Range(-1, 1) / 6f;
-            
-            Vector3 position = new Vector3(gameObject.transform.position.x + x, 1, gameObject.transform.position.z + z);
+            Vector3 position = new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z);
             
             //Instantiate a new plane at the position of axysX and axysY (Between where the window is going to be).
             Instantiate(PaperPlane, position, gameObject.transform.rotation);

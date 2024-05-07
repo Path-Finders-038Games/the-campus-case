@@ -1,5 +1,4 @@
 using Dialog;
-using UnityEngine;
 
 namespace Minigames.PaperPlanes
 {
@@ -15,6 +14,7 @@ namespace Minigames.PaperPlanes
                 GameState = GameState.Won;
                 
                 LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
+                LocationFile.IsCompleted = true;
                 ShowLocationFile();
             }
             else if (PaperPlanesData.PlanesMissed >= PaperPlanesData.LOSE_SCORE)
@@ -22,6 +22,7 @@ namespace Minigames.PaperPlanes
                 GameState = GameState.Lost;
                 
                 LocationUIHintNextLocation.text = "Better luck next time!";
+                LocationFile.IsCompleted = true;
                 ShowLocationFile();
             }
         }
@@ -64,13 +65,10 @@ namespace Minigames.PaperPlanes
             {
                 // 2nd time this is called, return to map
                 SceneLoader.LoadScene(GameScene.Navigation);
+                return;
             }
-            else
-            {
-                // 1st time this is called, set location file as completed and start the game
-                LocationFile.IsCompleted = true;
-                PaperPlanesData.IsRunning = true;
-            }
+
+            PaperPlanesData.IsRunning = true;
         }
     }
 }
