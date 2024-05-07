@@ -5,30 +5,35 @@ namespace Minigames.PaperPlanes
 {
     public class PlaneHit : MonoBehaviour
     {
-        // Trigger the success event and destroy the plane when it hits the player
+        /// <summary>
+        /// When the player hits the plane, increment the hit counter and destroy the plane.
+        /// </summary>
+        /// <param name="other">Default param. Object that this object collided with.</param>
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Player")) return;
-            
-            Debug.Log("Player hit plane!");
             
             PaperPlanesData.PlanesHit++;
             
             DestroyPlane();
         }
 
-        // Destroy the plane when it exits the boundary
+        /// <summary>
+        /// When the plane leaves the boundary, increment the missed counter and destroy the plane.
+        /// </summary>
+        /// <param name="other">Default param. Object that this object collided with.</param>
         private void OnTriggerExit(Collider other)
         {
             if (!other.CompareTag("Boundary")) return;
-            
-            Debug.Log("Plane left boundary");
             
             PaperPlanesData.PlanesMissed++;
             
             DestroyPlane();
         }
 
+        /// <summary>
+        /// Destroy this gameObject and set it to inactive.
+        /// </summary>
         private void DestroyPlane()
         {
             gameObject.SetActive(false);

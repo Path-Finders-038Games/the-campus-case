@@ -7,12 +7,12 @@ namespace Minigames.PaperPlanes
     public class ScoreIndicator : MonoBehaviour
     {
         public TMP_Text ScoreText;
-        
+        public GameObject ScoreContainer;
+
         private static string GetScoreText()
         {
-            return $"Planes Spawned: {PaperPlanesData.PlanesSpawned}\n" +
-                   $"Planes Hit: {PaperPlanesData.PlanesHit}\n" +
-                   $"Planes Missed: {PaperPlanesData.PlanesMissed}";
+            return $"Planes Hit: {PaperPlanesData.PlanesHit}/{PaperPlanesData.WIN_SCORE}\n" +
+                   $"Planes Missed: {PaperPlanesData.PlanesMissed}/{PaperPlanesData.LOSE_SCORE}";
         }
 
         private void Start()
@@ -25,6 +25,7 @@ namespace Minigames.PaperPlanes
 
         private void Update()
         {
+            ScoreContainer.SetActive(PaperPlanesData.IsRunning);
             ScoreText.text = GetScoreText();
         }
     }

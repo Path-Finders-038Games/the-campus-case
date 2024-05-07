@@ -79,6 +79,7 @@ namespace Minigames
         public virtual void Start()
         {
             SetBuddy();
+            SetLocationFile();
             SplitDialogue();
             PrepareStep();
             StartGameStep();

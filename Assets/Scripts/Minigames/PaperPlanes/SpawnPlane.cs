@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Minigames.PaperPlanes
@@ -23,6 +21,10 @@ namespace Minigames.PaperPlanes
             if (Time.time < _randomSpawn) return;
             //Set the randomSpawn a random number between 1 and 5
             _randomSpawn = Random.Range(1, 5) + _randomSpawn;
+
+            // If the game is not running, don't spawn any planes.
+            // This is here and not higher up to still count up _randomSpawn, so the planes will spawn when the game starts.
+            if (!PaperPlanesData.IsRunning) return;
             
             //Set the axysX a random number between -5 and 5. And the axysY a random number between 1 and 10.
             float x = Random.Range(-1, 1) / 6f;
