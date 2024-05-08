@@ -8,8 +8,8 @@ namespace Minigames.PaperPlanes
         public float Speed = 1f;
         public float Rotate = 0.1f;
 
-        private float _randomTime = 5;
-        private bool _leftright;
+        private float _randomTime;
+        private bool _rotatingLeft;
 
         /// <summary>
         /// Sets the randomTime a random number between 1 and 3.
@@ -18,7 +18,7 @@ namespace Minigames.PaperPlanes
         private void Start()
         {
             _randomTime = Random.Range(1, 3);
-            _leftright = Random.Range(0, 1) == 0;
+            _rotatingLeft = Random.Range(0, 1) == 0;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Minigames.PaperPlanes
             _randomTime -= Time.deltaTime;
 
             //Rotate the plane left and right
-            if (_leftright)
+            if (_rotatingLeft)
             {
                 //Rotate the plane down on the X axis of the rotation
                 transform.Rotate(Vector3.down * Rotate);
@@ -52,7 +52,7 @@ namespace Minigames.PaperPlanes
             _randomTime = Random.Range(1, 4) + Time.deltaTime;
 
             // Change the direction of the plane
-            _leftright = !_leftright;
+            _rotatingLeft = !_rotatingLeft;
         }
     }
 }

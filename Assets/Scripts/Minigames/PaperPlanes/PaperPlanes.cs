@@ -10,26 +10,13 @@ namespace Minigames.PaperPlanes
         private void Update()
         {
             UpdateDialogue();
-            
-            if (PaperPlanesData.PlanesHit >= PaperPlanesData.WinScore)
+
+            if (PaperPlanesData.GameOver)
             {
-                DataManager.SetMinigameStatus(MinigameName.PaperPlanes, true);
-                GameState = GameState.Won;
-                
-                LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
-                LocationFile.IsCompleted = true;
-                ShowLocationFile();
-            }
-            else if (PaperPlanesData.PlanesMissed >= PaperPlanesData.LoseScore)
-            {
-                GameState = GameState.Lost;
-                
-                LocationUIHintNextLocation.text = "Better luck next time!";
-                LocationFile.IsCompleted = true;
-                ShowLocationFile();
+                CompleteGameStep();
             }
         }
-        
+
         /// <summary>
         /// Prepares the minigame step. Resets the data for the minigame.
         /// </summary>
@@ -53,7 +40,22 @@ namespace Minigames.PaperPlanes
 
         public override void CompleteGameStep()
         {
-            // Not needed, the game is completed when the win condition is met
+            if (PaperPlanesData.PlanesHit >= PaperPlanesData.WinScore)
+            {
+                DataManager.SetMinigameStatus(MinigameName.PaperPlanes, true);
+                GameState = GameState.Won;
+
+                LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
+            }
+            else if (PaperPlanesData.PlanesMissed >= PaperPlanesData.LoseScore)
+            {
+                GameState = GameState.Lost;
+
+                LocationUIHintNextLocation.text = "Better luck next time!";
+            }
+
+            LocationFile.IsCompleted = true;
+            ShowLocationFile();
         }
 
         /// <summary>

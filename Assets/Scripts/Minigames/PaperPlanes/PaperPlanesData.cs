@@ -12,6 +12,11 @@ namespace Minigames.PaperPlanes
         public static bool IsRunning { get; set; }
         
         /// <summary>
+        /// Check if the minigame is over, both win and lose conditions.
+        /// </summary>
+        public static bool GameOver => PlanesHit >= WinScore || PlanesMissed >= LoseScore;
+        
+        /// <summary>
         /// Reset the data for the paper planes minigame.
         /// </summary>
         public static void ResetData()
