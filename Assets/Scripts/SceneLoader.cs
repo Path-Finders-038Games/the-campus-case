@@ -1,9 +1,9 @@
-using Navigation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameScene
 {
+    None,
     MainMenu,
     Navigation,
     Minigame,
@@ -18,13 +18,14 @@ public enum MinigameName
     WhereIsWaldo,
     Hacking,
     SimonSays,
-    Hangman
+    PaperPlanes,
+    // Hangman,
 }
 
 public class SceneLoader : MonoBehaviour
 {
-    public GameScene GameScene;
-    public MinigameName SelectedMinigame;
+    public GameScene GameScene = GameScene.None;
+    public MinigameName SelectedMinigame = MinigameName.None;
 
     public void LoadScene()
     {
@@ -45,33 +46,31 @@ public class SceneLoader : MonoBehaviour
     {
         LoadMinigame(SelectedMinigame);
     }
-    
+
     public static void LoadMinigame(MinigameName minigameName)
     {
-        DataManager.CurrentMap = GetMinigameMapName(minigameName);
+        try
+        {
+            DataManager.CameraPosition = Camera.main.transform.position;
+        }
+        catch
+        {
+            Debug.LogWarning("Camera \"MainCamera\" not found.");
+        }
+
+        DataManager.SelectedMinigame = minigameName;
         LoadScene(GameSceneToId(GameScene.Minigame));
     }
-    
-    public static string GetMinigameMapName(MinigameName minigameName) => minigameName switch
-    {
-        //MinigameName.SlidingPuzzle => "C0Map",
-        MinigameName.Mastermind => "S0Map",
-        MinigameName.WhereIsWaldo => "X1Map",
-        MinigameName.Hacking => "T2Map",
-        MinigameName.SimonSays => "T5Map",
-        MinigameName.Hangman => "C0Map",
-        _ => "C0Map",
-    };
 
     /// <summary>
     /// Convert the GameScene enum to an integer. Used to load scenes. Default is MainMenu.
     /// </summary>
-    /// <param name="gameScene"></param>
-    /// <returns></returns>
+    /// <param name="gameScene">GameScene to switch to.</param>
+    /// <returns>Id of the scene.</returns>
     public static int GameSceneToId(GameScene gameScene) => gameScene switch
     {
         GameScene.MainMenu => 0,
-        GameScene.Navigation => 1,
+        GameScene.Navigation => !DataManager.DemoMode ? 1 : 4, // Demo mode uses a different navigation scene. (T5 map)
         GameScene.Minigame => 2,
         GameScene.Ending => 3,
         _ => 0,

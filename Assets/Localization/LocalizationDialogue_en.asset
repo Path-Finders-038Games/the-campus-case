@@ -175,6 +175,9 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17343563911450624
     m_Localized: testbox 2
+  - m_Id: 27199825047445504
+    m_Localized: Catch the paper airplanes with your phone! Move through the room
+      to touch them.
     m_Metadata:
       m_Items: []
   references:
