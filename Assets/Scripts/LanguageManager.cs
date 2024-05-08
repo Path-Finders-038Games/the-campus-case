@@ -10,6 +10,10 @@ public static class LanguageManager
         English,
     }
     
+    /// <summary>
+    /// Get the current locale based on the current language setting.
+    /// </summary>
+    /// <returns><see cref="Locale"/> in the current language setting.</returns>
     public static Locale GetLocale()
     {
         string cultureCode = DataManager.Language switch

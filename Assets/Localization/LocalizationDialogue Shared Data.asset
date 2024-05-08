@@ -139,6 +139,10 @@ MonoBehaviour:
     m_Key: ending_0
     m_Metadata:
       m_Items: []
+  - m_Id: 27199825047445504
+    m_Key: paperPlanesMinigame_0
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
