@@ -685,8 +685,8 @@ MonoBehaviour:
     MinigamePrefab: {fileID: 7971184478392807997, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
       type: 3}
     UseAR: 0
-  - MinigameName: 6
-    MinigamePrefab: {fileID: 1763574363128223130, guid: 805e699574f45b94597721d96c53ce9a,
+  - MinigameName: 7
+    MinigamePrefab: {fileID: 7985207449370841564, guid: 410dc807926a9f84ebc843e05235ed04,
       type: 3}
     UseAR: 1
   ExitArPlacementButton: {fileID: 1848193053}

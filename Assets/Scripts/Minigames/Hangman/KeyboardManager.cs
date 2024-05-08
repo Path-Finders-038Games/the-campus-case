@@ -5,7 +5,8 @@ using UnityEngine;
 
 /*
  add dialogue to the game
-potentially centralize code between 3 scripts
+ optimize wordcheck
+ fix animation rotation
  */
 
 namespace Minigames
@@ -14,13 +15,13 @@ namespace Minigames
     public class KeyboardManager : MonoBehaviour
     {
         // list of all letters on the guessingboard
-        private List<GameObject> childrenListLetters = new List<GameObject>();
+        private List<GameObject> _childrenListLetters = new List<GameObject>();
 
         //list of all letters in the word
-        private List<WordLetter> WordLetters = new List<WordLetter>();
+        private List<WordLetter> _wordLetters = new List<WordLetter>();
 
         // mesh of the letters
-        public Mesh mesh;
+        public Mesh LetterMesh;
 
         //dictionary of all materials used by the letters
         public Dictionary<string,Material> Mats = new Dictionary<string, Material>();
@@ -29,7 +30,7 @@ namespace Minigames
         public GameObject GuesswordDisplay;
 
         //hangman game
-        public Hangman hangman;
+        public Hangman HangmanGame;
         // Start is called before the first frame update
         void Start()
         {
@@ -41,6 +42,8 @@ namespace Minigames
 
         private void Update()
         {
+            if (HangmanGame.Playing == false) return;
+
             //checks if the user is touching the screen and fires a raycast
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {
@@ -52,7 +55,7 @@ namespace Minigames
         public void Setup()
         {
             
-            foreach (GameObject go in childrenListLetters)
+            foreach (GameObject go in _childrenListLetters)
             {
                 char letter = go.name.Last();
                 string key = "Paper " + letter;
@@ -72,7 +75,7 @@ namespace Minigames
             {
                 if (count > 0)
                 {
-                    childrenListLetters.Add(child.gameObject);
+                    _childrenListLetters.Add(child.gameObject);
                 }
                 count++;
             }
@@ -81,34 +84,40 @@ namespace Minigames
         //setup method for the guessworddisplay
         public void WordSetup()
         {
+            //offset in front of the backboard 
             float countoffset = 0.42f;
-            Vector3 scale = new Vector3(.25f, 2, hangman.wordletters.Count + 2);
+            //size of the display
+            Vector3 scale = new Vector3(.25f, 2, HangmanGame.WordLetters.Count + 2);
             GuesswordDisplay.transform.localScale = scale;
-            int amount = hangman.wordletters.Count;
-            Vector3 space =  GuesswordDisplay.transform.localScale;
-            foreach (Hangman.Character letter in hangman.wordletters)
+
+            foreach (Character letter in HangmanGame.WordLetters)
             {
+                //get the correct letter graphics
                 String input = "Paper " + letter.Letter.ToString().ToUpper();
                 Material mat = Mats[input];
                 
+                //assign offset value to place letter in front of the board
                 Vector3 offset =new Vector3(-.55f, 0, 0);
                 offset.z = countoffset;
+
+                //create a new gameobject for the letter
                 GameObject gameObject = new GameObject();
                 gameObject.name = letter.Letter.ToString();
-                gameObject.AddComponent<MeshFilter>().mesh = mesh;
+                gameObject.AddComponent<MeshFilter>().mesh = LetterMesh;
                 gameObject.AddComponent<MeshRenderer>().material = mat;
 
+                //correctly place the letter
                 gameObject.transform.position = GuesswordDisplay.transform.position;
                 gameObject.transform.rotation = GuesswordDisplay.transform.rotation;
                 gameObject.transform.Rotate(0,-90,0);
                 gameObject.transform.localScale = GuesswordDisplay.transform.localScale;
                 gameObject.transform.SetParent(GuesswordDisplay.transform);
-                gameObject.transform.localScale = new Vector3((50/hangman.wordletters.Count), 24, (1/GuesswordDisplay.transform.localScale.x));
+                gameObject.transform.localScale = new Vector3((50/HangmanGame.WordLetters.Count), 24, (1/GuesswordDisplay.transform.localScale.x));
                 gameObject.transform.localPosition += offset;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
 
-                WordLetters.Add(new WordLetter(letter.Letter, gameObject));
-                countoffset = countoffset - .84f / (hangman.wordletters.Count-1) ;
+                _wordLetters.Add(new WordLetter(letter.Letter, gameObject));
+                countoffset = countoffset - .84f / (HangmanGame.WordLetters.Count-1) ;
                
             }
         }
@@ -116,11 +125,11 @@ namespace Minigames
         //check to see if letters should be turned visible
         public void Wordcheck()
         {
-            foreach (Hangman.Character letter in hangman.wordletters)
+            foreach (Character letter in HangmanGame.WordLetters)
             {
                 if(letter.Guessed == true)
                 {
-                    foreach(WordLetter wordLetter in WordLetters)
+                    foreach(WordLetter wordLetter in _wordLetters)
                     {
                        
                         if(wordLetter.letter == letter.Letter)
@@ -140,13 +149,13 @@ namespace Minigames
             if (Physics.Raycast(ray, out hit, 100))
            {
                 string name = hit.transform.gameObject.name;
-                foreach (GameObject child in childrenListLetters)
+                foreach (GameObject child in _childrenListLetters)
                 {
 
                     if (child.name == name)
                     {
                         char input = name.Last();
-                        hangman.Guess(input);
+                        HangmanGame.Guess(input);
                         child.SetActive(false);
                     }
                 }
@@ -154,18 +163,6 @@ namespace Minigames
             }
            
            
-        }
-    }
-    // letter object class
-    public class WordLetter
-    {
-        public char letter;
-        public GameObject gameObject;
-
-        public WordLetter(char letter,GameObject gameObject)
-        {
-            this.letter = letter;
-            this.gameObject = gameObject;
         }
     }
 }

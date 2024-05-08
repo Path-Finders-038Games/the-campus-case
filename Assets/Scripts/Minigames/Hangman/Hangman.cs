@@ -1,76 +1,49 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
 using Dialog;
+using UnityEngine.UI;
 
 
 /*
  Todo:
--improve presentation to user(text on win or lose)
 -update to new minigamea standards
  */
 
 namespace Minigames
 {
     // class for all logic related to the hangman minigame
-    public class Hangman : MonoBehaviour
+    public class Hangman : Minigame
     {
-        // Start is called before the first frame update
-        private void Start()
-        {
-            // create the instance of the game and run the setup method to make it ready for playing
-            Hangman Hangman = new();
-            Setup();
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-        }
-
-        //list of potential words for the game to select
-        public List<string> words = new();
-
-        //the word that is being guessed
-        public string word { get; set; }
-
-        //a list of letters that make up the word
-        public List<Character> wordletters = new();
-
         //list of guessed letters
-        private List<char> guessedletters = new();
+        private List<char> _guessedLetters = new();
 
         //counter for the amount of mistakes made
-        private int fout = 0;
+        private int _strikes = 0;
 
-        public AnimationManager animationManager;
+        //list of potential words for the game to select
+        public List<string> Words = new();
 
-        //setup method used for setting up the game at the beginning
-        public void Setup()
-        {
-            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6-localization");
+        //the word that is being guessed
+        public string Word { get; set; }
 
-            // Check if words have spaces, if so, remove the spaces and log an error
-            foreach (string sanitizedWord in localizedWords.Select(SanitizeWord))
-            {
-                words.Add(sanitizedWord);
-            }
+        //a list of letters that make up the word
+        public List<Character> WordLetters = new();
+   
+        // boolean to decide if the game is currently being played
+        public bool Playing;
 
-            //setup of the word generation for the game
-            System.Random random = new System.Random();
-            word = words[random.Next(0, words.Count)];
-            foreach (char character in word)
-            {
-                wordletters.Add(new Character(character));
-            }
-        }
+        //variable for Executing animations
+        public AnimationManager AnimationManagerProperty;
+
+        public Button HideLocationFileButton;
 
         /// <summary>
         /// Sanitizes the word by removing spaces and other unwanted characters.
         /// </summary>
         /// <param name="word">Word to sanitize.</param>
         /// <returns>Sanitized word.</returns>
-        // TODO: Move this method to a separate class
         private static string SanitizeWord(string word)
         {
             word = word.Replace(" ", "");
@@ -85,15 +58,15 @@ namespace Minigames
         public void Guess(char guess)
         {
             char guessLower = char.ToLower(guess);
-            //snippet checking if the letter has been guessed before
+            //snippet checking if the letter has been guessed before: not needed letters dissapear after guessing them in keyboardmanager
             // duplicate guess check probably made redundant in the final version
-            guessedletters.Add(guess);
+            _guessedLetters.Add(guess);
 
             //snippet checking if the word has any letters from the guess
             //if not its counted as a incorrect guess
-            //potential animations included here also
+            //and animation is played
             int count = 0;
-            foreach (Character letter in wordletters.Where(letter => guessLower == letter.Letter))
+            foreach (Character letter in WordLetters.Where(letter => guessLower == letter.Letter))
             {
                 letter.Guessed = true;
                 count++;
@@ -101,8 +74,8 @@ namespace Minigames
 
             if (count == 0)
             {
-                fout++;
-                animationManager.AssemblePart();
+                _strikes++;
+                AnimationManagerProperty.AssemblePart();
             }
 
             CheckLost();
@@ -115,7 +88,7 @@ namespace Minigames
             //checks if the user has won the game
             bool won = true;
 
-            foreach (Character letter in wordletters.Where(letter => letter.Guessed == false))
+            foreach (Character letter in WordLetters.Where(letter => letter.Guessed == false))
             {
                 won = false;
             }
@@ -124,36 +97,88 @@ namespace Minigames
             if (won)
             {
                 //needs work
-                
-                // DataManager.SetMinigameStatus(MinigameName.Hangman, true);
-                SceneLoader.LoadScene(GameScene.Navigation);
+                CompleteGameStep();
             }
         }
 
         // method for checking if the user has lost the game
         public void CheckLost()
         {
-            if (fout >= 12)
+            if (_strikes >= 12)
             {
                 //still needs work
-                SceneLoader.LoadScene(GameScene.Navigation);
+                SceneManager.LoadScene(1);
             }
         }
 
-        // class for each individual letter in the word 
-        public class Character
+        //setup method used for setting up the game at the beginning
+        public override void PrepareStep()
         {
-            // letter itself
-            public char Letter;
+            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6 localization");
 
-            // if it has been guessed yet or not
-            public bool Guessed;
-
-            public Character(char letter)
+            // Check if words have spaces, if so, remove the spaces and log an error
+            foreach (string sanitizedWord in localizedWords.Select(SanitizeWord))
             {
-                this.Letter = letter;
-                this.Guessed = false;
+                Words.Add(sanitizedWord);
             }
+
+            //setup of the word generation for the game
+            System.Random random = new System.Random();
+            Word = Words[random.Next(0, Words.Count)];
+            foreach (char character in Word)
+            {
+                WordLetters.Add(new Character(char.ToLower(character)));
+            }
+
+            Playing = false;
+            SetLocationFile();
+            HideLocationFileButton.onClick.AddListener(HideLocationFile);
+            Debug.Log(Word);
+        }
+
+        public override void SplitDialogue()
+        {
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_0"));
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_1"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_2"));
+        }
+
+        public override void StartGameStep()
+        {
+            ShowLocationFile();
+        }
+
+        /// <summary>
+        /// Completes the minigame step. Shows the location file.
+        /// </summary>
+        public override void CompleteGameStep()
+        {
+            Playing = false;
+            LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
+            LocationFile.IsCompleted = true;
+            ShowLocationFile();
+        }
+
+        /// <summary>
+        /// Sows the location file UI.
+        /// </summary>
+        public override void ShowLocationFile()
+        {
+            Playing = false;
+            LocationFileUI.SetActive(true);
+        }
+
+        /// <summary>
+        /// Hides the location file UI.
+        /// </summary>
+        public override void HideLocationFile()
+        {
+            LocationFileUI.SetActive(false);
+            Playing = true;
+
+            if (!LocationFile.IsCompleted) return;
+
+            SceneManager.LoadScene(1);
         }
     }
 }
