@@ -12,7 +12,16 @@ namespace Minigames.WaldoMinigame
 
         private bool _isChecking;
 
-        void Update()
+        private void Start()
+        {
+            base.Start();
+            
+            _isChecking = false;
+            HideLocationFileButton.onClick.AddListener(HideLocationFile);
+            ShowLocationFile();
+        }
+
+        private void Update()
         {
             UpdateDialogue();
 
@@ -25,7 +34,7 @@ namespace Minigames.WaldoMinigame
         /// <summary>
         /// Split the dialogue into the start and end of the minigame.
         /// </summary>
-        public override void SplitDialogue()
+        protected override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_0"));
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_1"));
@@ -33,27 +42,9 @@ namespace Minigames.WaldoMinigame
         }
 
         /// <summary>
-        /// Prepare the minigame.
-        /// </summary>
-        public override void PrepareStep()
-        {
-            _isChecking = false;
-            SetLocationFile();
-            HideLocationFileButton.onClick.AddListener(HideLocationFile);
-        }
-
-        /// <summary>
-        /// Start the minigame.
-        /// </summary>
-        public override void StartGameStep()
-        {
-            ShowLocationFile();
-        }
-
-        /// <summary>
         /// Complete the minigame.
         /// </summary>
-        public override void CompleteGameStep()
+        protected override void HandleGameOver()
         {
             DataManager.SetMinigameStatus(MinigameName.WhereIsWaldo, true);
             
@@ -69,8 +60,9 @@ namespace Minigames.WaldoMinigame
         /// </summary>
         public override void ShowLocationFile()
         {
+            base.ShowLocationFile();
+            
             _isChecking = false;
-            LocationFileUI.SetActive(true);
         }
 
         /// <summary>
@@ -99,7 +91,7 @@ namespace Minigames.WaldoMinigame
             if (!Physics.Raycast(ray, out RaycastHit hit)) return;
             if (!hit.transform.gameObject.name.Equals(Target.name)) return;
             
-            CompleteGameStep();
+            HandleGameOver();
         }
     }
 }

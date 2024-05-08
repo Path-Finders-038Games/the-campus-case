@@ -7,18 +7,18 @@ namespace Art._3D.Minigame_Assets.Mastermind.Scripts
         private bool isDragging = false;
         private Vector3 offset;
 
-        void OnMouseDown()
+        private void OnMouseDown()
         {
             isDragging = true;
             offset = transform.position - GetMouseWorldPos();
         }
 
-        void OnMouseUp()
+        private void OnMouseUp()
         {
             isDragging = false;
         }
 
-        void Update()
+        private void Update()
         {
             if (isDragging)
             {

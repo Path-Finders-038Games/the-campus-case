@@ -9,7 +9,7 @@ namespace Minigames.Sliding_puzzel
 
         public string Name;
 
-        void Awake()
+        private void Awake()
         {
             Name = gameObject.name;
         }

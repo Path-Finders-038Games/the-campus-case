@@ -14,13 +14,13 @@ namespace Minigames.Hacking_Minigame
         private Vector3 _target;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             _target = new Vector3(transform.position.x, -3, transform.position.z);
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             //moves towards the target position with a consistent speed
             transform.position = Vector3.MoveTowards(transform.position, _target , Speed * Time.deltaTime);

@@ -23,7 +23,33 @@ namespace Minigames.Sliding_puzzel
 
         private List<SlidingPuzzleTile> _tilesScripts;
 
-        void Update()
+        protected override void Start()
+        {
+            base.Start();
+            
+            _tilesScripts = new List<SlidingPuzzleTile>();
+            _isSolvable = false;
+            _boardTileCount = 9; //includes the empty space
+            _correctBoard = new int[3, 3];
+            _currentBoard = new int[3, 3];
+            _raycastRange = 100;
+            HideLocationFileButton.onClick.AddListener(HideLocationFile);
+            FillTilesList();
+            SetBoard();
+            Shuffle();
+            
+            while (!_isSolvable)
+            {
+                CheckShuffle();
+            }
+
+            GameBoard.GetComponent<Canvas>().worldCamera = Camera.main;
+            
+            _isChecking = true;
+            ShowLocationFile();
+        }
+
+        private void Update()
         {
             UpdateDialogue();
             if (!_isChecking) return;
@@ -35,7 +61,7 @@ namespace Minigames.Sliding_puzzel
             }
         }
 
-        public override void SplitDialogue()
+        protected override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_0"));
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "slidingPuzzle_1"));
@@ -71,34 +97,7 @@ namespace Minigames.Sliding_puzzel
             return new[] { plusX, minX, plusY, minY }.Contains(emptySpacePos);
         }
 
-        public override void PrepareStep()
-        {
-            _tilesScripts = new List<SlidingPuzzleTile>();
-            _isSolvable = false;
-            _boardTileCount = 9; //includes the empty space
-            _correctBoard = new int[3, 3];
-            _currentBoard = new int[3, 3];
-            _raycastRange = 100;
-            HideLocationFileButton.onClick.AddListener(HideLocationFile);
-            FillTilesList();
-            SetBoard();
-            SetLocationFile();
-            Shuffle();
-            while (!_isSolvable)
-            {
-                CheckShuffle();
-            }
-
-            GameBoard.GetComponent<Canvas>().worldCamera = Camera.main;
-        }
-
-        public override void StartGameStep()
-        {
-            _isChecking = true;
-            ShowLocationFile();
-        }
-
-        public override void CompleteGameStep()
+        protected override void HandleGameOver()
         {
             DataManager.SetMinigameStatus(MinigameName.SlidingPuzzle, true);
             
@@ -217,7 +216,7 @@ namespace Minigames.Sliding_puzzel
             string currentBoard = MatrixToString(_currentBoard);
             if (correctBoard.Equals(currentBoard))
             {
-                CompleteGameStep();
+                HandleGameOver();
             }
         }
 

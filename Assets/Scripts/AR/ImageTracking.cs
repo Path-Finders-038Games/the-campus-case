@@ -10,7 +10,8 @@ namespace AR
     {
         [SerializeField]
         private GameObject[] _placeblePrefab;
-        Dictionary<string, GameObject> spawnedPrefabs = new();
+
+        private Dictionary<string, GameObject> spawnedPrefabs = new();
         private ARTrackedImageManager _trackedImageManager;
 
         private void Awake()

@@ -5,6 +5,16 @@ namespace Minigames.PaperPlanes
     public class PaperPlanes : Minigame
     {
         /// <summary>
+        /// Resets the data for the paper planes minigame.
+        /// </summary>
+        private void Start()
+        {
+            base.Start();
+            
+            PaperPlanesData.ResetData();
+        }
+        
+        /// <summary>
         /// Updates the dialogue based on the game state, as well as check for win/lose conditions.
         /// </summary>
         private void Update()
@@ -13,32 +23,19 @@ namespace Minigames.PaperPlanes
 
             if (PaperPlanesData.GameOver)
             {
-                CompleteGameStep();
+                HandleGameOver();
             }
-        }
-
-        /// <summary>
-        /// Prepares the minigame step. Resets the data for the minigame.
-        /// </summary>
-        public override void PrepareStep()
-        {
-            PaperPlanesData.ResetData();
         }
 
         /// <summary>
         /// Splits the dialogue into the tutorial dialogues.
         /// </summary>
-        public override void SplitDialogue()
+        protected override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "paperPlanesMinigame_0"));
         }
 
-        public override void StartGameStep()
-        {
-            // Not needed, the game is started when the minigame is loaded
-        }
-
-        public override void CompleteGameStep()
+        protected override void HandleGameOver()
         {
             if (PaperPlanesData.PlanesHit >= PaperPlanesData.WinScore)
             {
@@ -56,14 +53,6 @@ namespace Minigames.PaperPlanes
 
             LocationFile.IsCompleted = true;
             ShowLocationFile();
-        }
-
-        /// <summary>
-        /// Shows the location file.
-        /// </summary>
-        public override void ShowLocationFile()
-        {
-            LocationFileUI.SetActive(true);
         }
 
         /// <summary>

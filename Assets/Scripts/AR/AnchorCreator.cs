@@ -17,8 +17,7 @@ namespace AR
     public class AnchorCreator : MonoBehaviour
     {
         // This is the prefab that will appear every time an anchor is created.
-        [SerializeField]
-        GameObject m_AnchorPrefab;
+        [SerializeField] private GameObject m_AnchorPrefab;
 
         public GameObject AnchorPrefab
         {
@@ -40,7 +39,7 @@ namespace AR
         // The ARRaycastManager allows us to perform raycasts so that we know where to place an anchor.
         // The ARPlaneManager detects surfaces we can place our objects on.
         // The ARAnchorManager handles the processing of all anchors and updates their position and rotation.
-        void Awake()
+        private void Awake()
         {
             m_RaycastManager = GetComponent<ARRaycastManager>();
             m_AnchorManager = GetComponent<ARAnchorManager>();
@@ -48,7 +47,7 @@ namespace AR
             m_AnchorPoints = new List<ARAnchor>();
         }
 
-        void Update()
+        private void Update()
         {
             // If there is no tap, then simply do nothing until the next call to Update().
             if (Input.touchCount == 0)
@@ -84,14 +83,14 @@ namespace AR
             }
         }
 
-        static List<ARRaycastHit> s_Hits = new();
+        private static List<ARRaycastHit> s_Hits = new();
 
-        List<ARAnchor> m_AnchorPoints;
+        private List<ARAnchor> m_AnchorPoints;
 
-        ARRaycastManager m_RaycastManager;
+        private ARRaycastManager m_RaycastManager;
 
-        ARAnchorManager m_AnchorManager;
+        private ARAnchorManager m_AnchorManager;
 
-        ARPlaneManager m_PlaneManager;
+        private ARPlaneManager m_PlaneManager;
     }
 }

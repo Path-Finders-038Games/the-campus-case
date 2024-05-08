@@ -31,7 +31,7 @@ namespace Minigames
         //hangman game
         public Hangman hangman;
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             GetChildObjects(transform);
             Setup();
@@ -65,7 +65,7 @@ namespace Minigames
 
         //gets all child objects of the clipboard by their transform component
         //uses count to step over the clipboard object
-        void GetChildObjects(Transform parent)
+        private void GetChildObjects(Transform parent)
         {
             int count = 0;
             foreach (Transform child in parent)

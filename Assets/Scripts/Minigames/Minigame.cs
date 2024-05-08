@@ -58,23 +58,27 @@ namespace Minigames
         /// }
         /// </code>
         /// </example>
-        public virtual void Start()
+        protected virtual void Start()
         {
             SetBuddy();
             SetLocationFile();
             SplitDialogue();
-            PrepareStep();
-            StartGameStep();
 
             GameState = GameState.Tutorial;
         }
 
-        public abstract void SplitDialogue();
-        public abstract void PrepareStep();
-        public abstract void StartGameStep();
-        public abstract void CompleteGameStep();
-        public abstract void ShowLocationFile();
+        protected abstract void SplitDialogue();
         public abstract void HideLocationFile();
+        
+        protected abstract void HandleGameOver();
+        
+        /// <summary>
+        /// Shows the location file.
+        /// </summary>
+        public virtual void ShowLocationFile()
+        {
+            LocationFileUI.SetActive(true);
+        }
 
         /// <summary>
         /// Sets the buddy image based on the player's choice.

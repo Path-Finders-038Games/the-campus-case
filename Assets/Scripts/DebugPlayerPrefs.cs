@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class DebugPlayerPrefs : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
     }
 
-    void Update()
+    private void Update()
     {
     }
 

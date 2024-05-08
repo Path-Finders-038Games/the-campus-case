@@ -81,7 +81,7 @@ namespace QuickOutline.Scripts
 
     private bool needsUpdate;
 
-    void Awake() {
+    private void Awake() {
 
       // Cache renderers
       renderers = GetComponentsInChildren<Renderer>();
@@ -100,7 +100,7 @@ namespace QuickOutline.Scripts
       needsUpdate = true;
     }
 
-    void OnEnable() {
+    private void OnEnable() {
       foreach (Renderer renderer in renderers) {
 
         // Append outline shaders
@@ -113,7 +113,7 @@ namespace QuickOutline.Scripts
       }
     }
 
-    void OnValidate() {
+    private void OnValidate() {
 
       // Update material properties
       needsUpdate = true;
@@ -130,7 +130,7 @@ namespace QuickOutline.Scripts
       }
     }
 
-    void Update() {
+    private void Update() {
       if (needsUpdate) {
         needsUpdate = false;
 
@@ -138,7 +138,7 @@ namespace QuickOutline.Scripts
       }
     }
 
-    void OnDisable() {
+    private void OnDisable() {
       foreach (Renderer renderer in renderers) {
 
         // Remove outline shaders
@@ -151,14 +151,14 @@ namespace QuickOutline.Scripts
       }
     }
 
-    void OnDestroy() {
+    private void OnDestroy() {
 
       // Destroy material instances
       Destroy(outlineMaskMaterial);
       Destroy(outlineFillMaterial);
     }
 
-    void Bake() {
+    private void Bake() {
 
       // Generate smooth normals for each mesh
       HashSet<Mesh> bakedMeshes = new HashSet<Mesh>();
@@ -178,7 +178,7 @@ namespace QuickOutline.Scripts
       }
     }
 
-    void LoadSmoothNormals() {
+    private void LoadSmoothNormals() {
 
       // Retrieve or generate smooth normals
       foreach (MeshFilter meshFilter in GetComponentsInChildren<MeshFilter>()) {
@@ -219,7 +219,7 @@ namespace QuickOutline.Scripts
       }
     }
 
-    List<Vector3> SmoothNormals(Mesh mesh) {
+    private List<Vector3> SmoothNormals(Mesh mesh) {
 
       // Group vertices by location
       IEnumerable<IGrouping<Vector3, KeyValuePair<Vector3, int>>> groups = mesh.vertices.Select((vertex, index) => new KeyValuePair<Vector3, int>(vertex, index)).GroupBy(pair => pair.Key);
@@ -253,7 +253,7 @@ namespace QuickOutline.Scripts
       return smoothNormals;
     }
 
-    void CombineSubmeshes(Mesh mesh, Material[] materials) {
+    private void CombineSubmeshes(Mesh mesh, Material[] materials) {
 
       // Skip meshes with a single submesh
       if (mesh.subMeshCount == 1) {
@@ -270,7 +270,7 @@ namespace QuickOutline.Scripts
       mesh.SetTriangles(mesh.triangles, mesh.subMeshCount - 1);
     }
 
-    void UpdateMaterialProperties() {
+    private void UpdateMaterialProperties() {
 
       // Apply properties according to mode
       outlineFillMaterial.SetColor("_OutlineColor", outlineColor);

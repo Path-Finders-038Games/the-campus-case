@@ -10,8 +10,7 @@ namespace Minigames.Mastermind
 {
     public class Mastermind : Minigame
     {
-        [Header("Color Circle Sprites")] 
-        public Sprite Star;
+        [Header("Color Circle Sprites")] public Sprite Star;
         public Sprite Moon;
         public Sprite Heart;
         public Sprite Square;
@@ -19,29 +18,46 @@ namespace Minigames.Mastermind
         public Sprite Triangle;
         public Sprite Empty;
 
-        [Header("Verification Sprites")] 
-        public Sprite CorrectPosition;
+        [Header("Verification Sprites")] public Sprite CorrectPosition;
         public Sprite CorrectColor;
         public Sprite Incorrect;
 
-        [Header("Game Board Properties")] 
-        public int MaxRows = 10;
+        [Header("Game Board Properties")] public int MaxRows = 10;
         public int InitialRowY = -165;
         public int RowYOffset = -100;
         public int RowX = 400;
         public int RowZ = 0;
         private const int Cols = 4;
 
-        [Header("Game Logic Variables")] 
-        public GameObject RowParentPrefab;
+        [Header("Game Logic Variables")] public GameObject RowParentPrefab;
         public GameObject RowPrefab;
         public GameObject HiddenCodeRow;
         private GameObject[] _boardRows;
         private int _currentRow, _currentCol;
         private readonly string[] _secretCodeToGuess = new string[Cols];
         private string[] _playerInputCode;
-        
+
         private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the shape sprites
+
+        protected override void Start()
+        {
+            _currentRow = 0; // 0-MaxRows
+            _currentCol = 1; // 1-4
+
+            // Add the shape sprites to the dictionary
+            _discoSprite.Add("Circle", Circle);
+            _discoSprite.Add("Star", Star);
+            _discoSprite.Add("Moon", Moon);
+            _discoSprite.Add("Heart", Heart);
+            _discoSprite.Add("Square", Square);
+            _discoSprite.Add("Triangle", Triangle);
+
+            _playerInputCode = new string[Cols];
+
+            SetLocationFile();
+            GetNewSecretCode();
+            PopulateBoard();
+        }
 
         private void Update()
         {
@@ -237,40 +253,9 @@ namespace Minigames.Mastermind
         }
 
         /// <summary>
-        /// Sets the location file for the minigame, as well as generating a new secret codeToCheck for the player to guess.
-        /// Inits some variables for the minigame.
-        /// </summary>
-        public override void PrepareStep()
-        {
-            _currentRow = 0; // 0-MaxRows
-            _currentCol = 1; // 1-4
-
-            // Add the shape sprites to the dictionary
-            _discoSprite.Add("Circle", Circle);
-            _discoSprite.Add("Star", Star);
-            _discoSprite.Add("Moon", Moon);
-            _discoSprite.Add("Heart", Heart);
-            _discoSprite.Add("Square", Square);
-            _discoSprite.Add("Triangle", Triangle);
-
-            _playerInputCode = new string[Cols];
-            
-            SetLocationFile();
-            GetNewSecretCode();
-        }
-
-        /// <summary>
-        /// Starts the minigame step. Populates the board.
-        /// </summary>
-        public override void StartGameStep()
-        {
-            PopulateBoard();
-        }
-
-        /// <summary>
         /// Splits the dialogues for the minigame.
         /// </summary>
-        public override void SplitDialogue()
+        protected override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_0"));
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "mastermindPuzzle_1"));
@@ -307,10 +292,10 @@ namespace Minigames.Mastermind
         private void Win()
         {
             DataManager.SetMinigameStatus(MinigameName.Mastermind, true);
-            
+
             HiddenCodeRow.SetActive(false);
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
-            CompleteGameStep();
+            HandleGameOver();
         }
 
         /// <summary>
@@ -320,13 +305,13 @@ namespace Minigames.Mastermind
         {
             HiddenCodeRow.SetActive(false);
             LocationUIHintNextLocation.text = "It looks libe you've run out of tries. Better luck next time!";
-            CompleteGameStep();
+            HandleGameOver();
         }
 
         /// <summary>
         /// Completes the minigame step. Shows the location file.
         /// </summary>
-        public override void CompleteGameStep()
+        protected override void HandleGameOver()
         {
             LocationFile.IsCompleted = true;
             ShowLocationFile();

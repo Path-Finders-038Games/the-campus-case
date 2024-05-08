@@ -87,18 +87,24 @@ namespace Minigames.Hacking_Minigame
 
 
         // Start is called before the first frame update
-        public override void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             gameController = this;
             _animationDone = false;
             locationFileClosed = false;
+            PlayingGame = false;
+            EnemyAlive = SpawnAmount;
             
-            base.Start();
+            HideLocationFileButton.onClick.AddListener(HideLocationFile);
+            
+            ShowLocationFile();
             
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             UpdateDialogue();
 
@@ -156,7 +162,7 @@ namespace Minigames.Hacking_Minigame
 
         }
         // method to stop playing the game and open the winscreen when the user wins
-        void GameWon()
+        private void GameWon()
         {
             PlayingGame = false;
             DataManager.SetMinigameStatus(MinigameName.Hacking, true);
@@ -167,7 +173,7 @@ namespace Minigames.Hacking_Minigame
         }
 
         // method to stop the game and show the losescreen when the user has lost
-        void GameLost()
+        private void GameLost()
         {
             PlayingGame = false;
             GameObject _loseScreen = EndScreen.GetNamedChild("LoseText");
@@ -177,52 +183,35 @@ namespace Minigames.Hacking_Minigame
         }
 
         //coroutine to return to the map
-        IEnumerator BackToNavigation()
+        private IEnumerator BackToNavigation()
         {
             yield return new WaitForSeconds(3);
             SceneLoader.LoadScene(GameScene.Navigation);
         }
 
         //coroutine to wait
-        IEnumerator Wait()
+        private IEnumerator Wait()
         {
             yield return new WaitForSeconds(3);
-            CompleteGameStep();
-        
+            HandleGameOver();
         }
 
         //coroutine to wait 3 seconds
-        IEnumerator WaitForAnimation()
+        private IEnumerator WaitForAnimation()
         {
             yield return new WaitForSeconds(3);
             _animationDone = true;
             PlayingGame = true;
         }
 
-        IEnumerator CombatStartDelay()
+        private IEnumerator CombatStartDelay()
         {
             yield return new WaitForSeconds(3);
             CombatControllerProperty.enabled = true;
         }
 
-        //setup method
-        public override void PrepareStep()
-        {
-            gameController = this;
-            PlayingGame = false;
-            EnemyAlive = SpawnAmount;
-            SetLocationFile();
-            HideLocationFileButton.onClick.AddListener(HideLocationFile);
-        }
-
-        //starting the game
-        public override void StartGameStep()
-        {
-            ShowLocationFile();
-        }
-
         //ending the game
-        public override void CompleteGameStep()
+        protected override void HandleGameOver()
         {
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
@@ -261,7 +250,7 @@ namespace Minigames.Hacking_Minigame
         }
 
         //receive the dialogue used in the minigame
-        public override void SplitDialogue()
+        protected override void SplitDialogue()
         {
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_0"));
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hackerMinigame_1"));

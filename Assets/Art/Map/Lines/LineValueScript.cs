@@ -4,17 +4,18 @@ namespace Art.Map.Lines
 {
     public class LineValueScript : MonoBehaviour
     {
-        MeshRenderer meshRend;
+        private MeshRenderer meshRend;
         public float speed;
-        float filledAmount;
+
+        private float filledAmount;
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
         
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (filledAmount < 2)
             {

@@ -6,9 +6,10 @@ namespace Art._2D
     {
         public GameObject rotateObject;
         public float minRot, maxRot, steps;
-        Quaternion targetRot, startRot;
+
+        private Quaternion targetRot, startRot;
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             rotateObject = gameObject;
             startRot = rotateObject.transform.rotation;
@@ -16,7 +17,7 @@ namespace Art._2D
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (rotateObject.transform.rotation != targetRot)
             {

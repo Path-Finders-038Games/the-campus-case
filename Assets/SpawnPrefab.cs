@@ -6,18 +6,18 @@ public class SpawnPrefab : MonoBehaviour
 {
 
     private GameObject _spanwNew;
-    ARRaycastManager raycastManager;
-    static List<ARRaycastHit> hits = new();
+    private ARRaycastManager raycastManager;
+    private static List<ARRaycastHit> hits = new();
     public GameObject Prefab;
     private ARRaycastHit _planeHit;
     private float _distance = 999;
 
-    void Start()
+    private void Start()
     {
         raycastManager = GetComponent<ARRaycastManager>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {

@@ -12,7 +12,7 @@ namespace Minigames.Hacking_Minigame
         public Image Image;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             //set the image sprite to the full HP sprite
             Image.sprite = HealthSprites[3];

@@ -40,7 +40,17 @@ namespace Minigames.SimomSays
         //the dialogue for the game
         private List<Dialogue> _startMinigame = new();
 
-        void Update()
+        protected override void Start()
+        {
+            base.Start();
+            
+            StartButton.onClick.AddListener(HandleGameStart);
+            HideLocationFileButton.onClick.AddListener(HideLocationFile);
+            StartButton.interactable = false;
+            ShowLocationFile();
+        }
+
+        private void Update()
         {
             UpdateDialogue();
 
@@ -61,30 +71,14 @@ namespace Minigames.SimomSays
         }
 
         //adds dialoguetext to the minigame from the localizationtable
-        public override void SplitDialogue()
+        protected override void SplitDialogue()
         {
             _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_0"));
             _startMinigame.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "simonSaysMinigame_1"));
         }
 
-        // setup method to configure the minigame before it starts
-        public override void PrepareStep()
-        {
-            //Add listeners to safe buttons
-            StartButton.onClick.AddListener(StartGame);
-            HideLocationFileButton.onClick.AddListener(HideLocationFile);
-            SetLocationFile();
-            StartButton.interactable = false;
-        }
-
-        // start of the minigame setup procedure
-        public override void StartGameStep()
-        {
-            ShowLocationFile();
-        }
-
         // method for configuring the minigame as completed by the player
-        public override void CompleteGameStep()
+        protected override void HandleGameOver()
         {
             Animator animator = GetComponentInChildren<Animator>();
             //open vault
@@ -97,7 +91,7 @@ namespace Minigames.SimomSays
         }
 
         //starts the game
-        private void StartGame()
+        private void HandleGameStart()
         {
             _isDoneChecking = true;
             _isPlaying = true;
@@ -201,7 +195,7 @@ namespace Minigames.SimomSays
             if (_currentRound == _rounds)
             {
                 Text.text = "You won the game";
-                CompleteGameStep();
+                HandleGameOver();
             }
             else
             {

@@ -4,12 +4,12 @@ using UnityEngine.XR.ARFoundation;
 
 public class TestPlaneLocker : MonoBehaviour
 {
-    ARRaycastManager raycastManager;
-    ARPlaneManager planeManager;
+    private ARRaycastManager raycastManager;
+    private ARPlaneManager planeManager;
     public GameObject PositionLocker;
-    bool planeFound;
-    GameObject FloorPlane;
-    static List<ARRaycastHit> hits = new();
+    private bool planeFound;
+    private GameObject FloorPlane;
+    private static List<ARRaycastHit> hits = new();
 
     public void Start()
     {
@@ -18,7 +18,7 @@ public class TestPlaneLocker : MonoBehaviour
 
     }
 
-    void Update()
+    private void Update()
     {
         if (planeFound && FloorPlane != null)
         {

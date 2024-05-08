@@ -4,14 +4,14 @@ public class Case : MonoBehaviour
 {
     public Animator animator;
 
-    void Start()
+    private void Start()
     {
     }
 
     /// <summary>
     /// Checks for a touch on the CaseFileTop and opens the file if it is touched.
     /// </summary>
-    void Update()
+    private void Update()
     {
         // If there are no touches or the touch is not a beginning touch, return.
         if (Input.touchCount <= 0 || Input.touches[0].phase != TouchPhase.Began) return;

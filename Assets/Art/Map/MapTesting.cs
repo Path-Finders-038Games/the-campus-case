@@ -6,9 +6,9 @@ namespace Art.Map
     public class MapTesting : MonoBehaviour
     {
         public Animator animator;
-        bool mapOpen;
+        private bool mapOpen;
 
-        void Update()
+        private void Update()
         {
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
             {

@@ -12,7 +12,7 @@ namespace Minigames.Hacking_Minigame
         private bool _hasMoved;
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             //check if the users is touching the screen
             if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)

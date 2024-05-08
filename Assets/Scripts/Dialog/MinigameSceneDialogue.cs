@@ -15,13 +15,13 @@ namespace Dialog
         private bool _isLastText;
         private bool _isDoneTaking;
 
-        void Start()
+        private void Start()
         {
             BuddyDialogueObject.SetActive(false);
             SetBuddy();
         }
 
-        void Update()
+        private void Update()
         {
             if (DataManager.CurrentStep <= 3)
             {
