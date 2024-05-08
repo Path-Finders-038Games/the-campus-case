@@ -4,11 +4,14 @@ namespace Minigames.PaperPlanes
 {
     public class PaperPlanes : Minigame
     {
+        /// <summary>
+        /// Updates the dialogue based on the game state, as well as check for win/lose conditions.
+        /// </summary>
         private void Update()
         {
             UpdateDialogue();
             
-            if (PaperPlanesData.PlanesHit >= PaperPlanesData.WIN_SCORE)
+            if (PaperPlanesData.PlanesHit >= PaperPlanesData.WinScore)
             {
                 DataManager.SetMinigameStatus(MinigameName.PaperPlanes, true);
                 GameState = GameState.Won;
@@ -17,7 +20,7 @@ namespace Minigames.PaperPlanes
                 LocationFile.IsCompleted = true;
                 ShowLocationFile();
             }
-            else if (PaperPlanesData.PlanesMissed >= PaperPlanesData.LOSE_SCORE)
+            else if (PaperPlanesData.PlanesMissed >= PaperPlanesData.LoseScore)
             {
                 GameState = GameState.Lost;
                 
@@ -26,18 +29,21 @@ namespace Minigames.PaperPlanes
                 ShowLocationFile();
             }
         }
-
-        public override void SplitDialogue()
-        {
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "paperPlanesMinigame_0"));
-        }
-
+        
         /// <summary>
-        /// Reset the data for the minigame
+        /// Prepares the minigame step. Resets the data for the minigame.
         /// </summary>
         public override void PrepareStep()
         {
             PaperPlanesData.ResetData();
+        }
+
+        /// <summary>
+        /// Splits the dialogue into the tutorial dialogues.
+        /// </summary>
+        public override void SplitDialogue()
+        {
+            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "paperPlanesMinigame_0"));
         }
 
         public override void StartGameStep()
@@ -50,13 +56,17 @@ namespace Minigames.PaperPlanes
             // Not needed, the game is completed when the win condition is met
         }
 
-        // shows location file
+        /// <summary>
+        /// Shows the location file.
+        /// </summary>
         public override void ShowLocationFile()
         {
             LocationFileUI.SetActive(true);
         }
 
-        //hides location file and returns to the map
+        /// <summary>
+        /// Hides the location file and returns to the map if the file is completed.
+        /// </summary>
         public override void HideLocationFile()
         {
             LocationFileUI.SetActive(false);

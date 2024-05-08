@@ -9,12 +9,21 @@ namespace Minigames.PaperPlanes
         public TMP_Text ScoreText;
         public GameObject ScoreContainer;
 
+        /// <summary>
+        /// Gets formatted score text.
+        /// This contains the win and lose score.
+        /// </summary>
+        /// <returns></returns>
         private static string GetScoreText()
         {
-            return $"Planes Hit: {PaperPlanesData.PlanesHit}/{PaperPlanesData.WIN_SCORE}\n" +
-                   $"Planes Missed: {PaperPlanesData.PlanesMissed}/{PaperPlanesData.LOSE_SCORE}";
+            return $"Planes Hit: {PaperPlanesData.PlanesHit}/{PaperPlanesData.WinScore}\n" +
+                   $"Planes Missed: {PaperPlanesData.PlanesMissed}/{PaperPlanesData.LoseScore}";
         }
 
+        /// <summary>
+        /// Starts the minigame. Runs before the first frame update.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">ScoreText is not set in the Unity Editor.</exception>
         private void Start()
         {
             if (ScoreText == null)
@@ -23,6 +32,9 @@ namespace Minigames.PaperPlanes
             }
         }
 
+        /// <summary>
+        /// Displays the score container and updates the score text every frame.
+        /// </summary>
         private void Update()
         {
             ScoreContainer.SetActive(PaperPlanesData.IsRunning);

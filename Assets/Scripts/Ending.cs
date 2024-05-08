@@ -8,6 +8,10 @@ public class Ending : MonoBehaviour
     public List<Texture2D> TextureList;
     public List<Texture2D> TextureListDemo;
 
+    /// <summary>
+    /// Gets the texture list based on the game mode.
+    /// </summary>
+    /// <returns>List with all 2D textures.</returns>
     private List<Texture2D> GetTextureList() => DataManager.DemoMode ? TextureListDemo : TextureList;
     
     private int _currentImage;
@@ -15,7 +19,7 @@ public class Ending : MonoBehaviour
     /// <summary>
     /// Inits the ending cutscene.
     /// </summary>
-    void Start()
+    private void Start()
     {
         _currentImage = 0;
         image.texture = GetTextureList()[_currentImage];
@@ -24,7 +28,7 @@ public class Ending : MonoBehaviour
     /// <summary>
     /// Goes to the next image in the cutscene when the screen is touched.
     /// </summary>
-    void Update()
+    private void Update()
     {
         if (Input.touchCount < 1 || Input.touches[0].phase != TouchPhase.Began) return;
 
