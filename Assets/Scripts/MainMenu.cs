@@ -75,6 +75,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void OnNewGameBtn()
     {
+        DataManager.CurrentMap = "C0Map";
         DataManager.CurrentStep = 0;
         DataManager.CurrentMap = "C0Map";
         TitleScreen.SetActive(false);

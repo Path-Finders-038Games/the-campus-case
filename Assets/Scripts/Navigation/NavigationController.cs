@@ -1,11 +1,11 @@
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Navigation
 {
     public class NavigationController : MonoBehaviour
     {
-        [System.Serializable]
+        [Serializable]
         public class Step
         {
             [TextArea(0, 5)] public string text_EN;
@@ -19,11 +19,12 @@ namespace Navigation
         public Step[] Steps;
         public MapManager mapManager;
         public Stepbystep Stepbystep;
-        public Camera camera;
 
         private MeshRenderer meshRend;
         public float speed;
         private float filledAmount;
+
+        private Camera _camera => Camera.main;
 
         /// <summary>
         /// Initializes the map and the guide.
@@ -41,6 +42,11 @@ namespace Navigation
         /// </summary>
         private void Update()
         {
+            if (DataManager.AllMinigamesCompleted())
+            {
+                SceneLoader.LoadScene(GameScene.Ending);
+            }
+
             // If the mesh renderer is null, return.
             if (meshRend == null) return;
 
@@ -59,28 +65,23 @@ namespace Navigation
             if (meshRend != null) meshRend.material.SetFloat("_fillAmount", filledAmount);
 
             // Increase the current step by 1.
-            int currentStep = DataManager.CurrentStep;
-            DataManager.CurrentStep = ++currentStep;
+            DataManager.CurrentStep += 1;
 
-            // If the current step is greater than or equal to the amount of steps, load the next scene.
-            if (currentStep >= Steps.Length) SceneManager.LoadScene(3);
+            // If all the steps are completed, load the ending scene.
+            if (DataManager.CurrentStep >= Steps.Length) SceneLoader.LoadScene(GameScene.Ending);
 
             // If the line is not null, set the mesh renderer to the line's mesh renderer.
-            if (Steps[currentStep].line != null) meshRend = Steps[currentStep].line.GetComponent<MeshRenderer>();
+            if (Steps[DataManager.CurrentStep].line != null) meshRend = Steps[DataManager.CurrentStep].line.GetComponent<MeshRenderer>();
 
             // If the current step has a map, set the camera's local position to the map's position and switch the map.
-            if (Steps[currentStep].hasMap)
+            if (Steps[DataManager.CurrentStep].hasMap)
             {
-                camera.transform.localPosition = new Vector3(0, 2.689579f, 0);
-                mapManager.SwitchMap(Steps[currentStep].map.name);
-                DataManager.CurrentMap = Steps[currentStep].map.name;
+                _camera.transform.localPosition = new Vector3(0, 2.689579f, 0);
+                mapManager.SwitchMap(Steps[DataManager.CurrentStep].map.name);
+                DataManager.CurrentMap = Steps[DataManager.CurrentStep].map.name;
             }
 
             UpdateGuide();
-
-            // Set the current step and map in the player preferences.
-            DataManager.CurrentStep = currentStep;
-            
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Navigation
         private void UpdateGuide()
         {
             // Set the text to the current step's text based on the current language.
-            string text = LanguageManager.GetLanguage() switch
+            string text = DataManager.Language switch
             {
                 LanguageManager.Language.Dutch => Steps[DataManager.CurrentStep].text_NL,
                 LanguageManager.Language.English => Steps[DataManager.CurrentStep].text_EN,
