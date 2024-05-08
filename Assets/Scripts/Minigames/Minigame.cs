@@ -81,7 +81,8 @@ namespace Minigames
         /// </summary>
         private void SetBuddy()
         {
-            BuddyImage.GetComponent<Image>().sprite = DataManager.Buddy switch
+            string buddyChoice = PlayerPrefs.GetString("Buddy");
+            BuddyImage.GetComponent<Image>().sprite = buddyChoice switch
             {
                 "Cat" => BuddyCatSprite,
                 "Dog" => BuddyDogSprite,
@@ -94,7 +95,7 @@ namespace Minigames
         /// </summary>
         protected void SetLocationFile()
         {
-            LocationFile = DataManager.Language switch
+            LocationFile = LanguageManager.GetLanguage() switch
             {
                 LanguageManager.Language.Dutch => DutchFile(),
                 LanguageManager.Language.English => EnglishFile(),

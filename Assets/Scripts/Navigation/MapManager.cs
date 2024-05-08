@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Navigation
@@ -7,62 +6,35 @@ namespace Navigation
     public class MapManager : MonoBehaviour
     {
         public GameObject[] Maps;
-        
-        private void Start()
-        {
-            if (Maps.Length < 1)
-            {
-                Debug.LogError("No maps found.");
-                return;
-            }
+        public int Mapnnmber;
 
-            if (!Maps.Select(m => m.name).Distinct().Contains(DataManager.CurrentMap))
-            {
-                DataManager.CurrentMap = Maps.First().name;
-            }
-
-            GameObject currentMap = Maps.First(m => m.name == DataManager.CurrentMap);
-            
-            if (currentMap == null)
-            {
-                Debug.LogError($"Map not found: {DataManager.CurrentMap}");
-                throw new NullReferenceException($"Map not found: {DataManager.CurrentMap}");
-            }
-            
-            currentMap.SetActive(true);
-            
-            foreach (GameObject map in Maps.Where(m => m != currentMap))
-            {
-                map.SetActive(false);
-            }
-
-            try
-            {
-                Camera.main.transform.position = DataManager.CameraPosition;
-            }
-            catch
-            {
-                Debug.LogWarning("Camera \"MainCamera\" not found.");
-            }
-        }
-        
-        public void SwitchMap(string mapName)
+        public void SwitchMap(string nameMap)
         {
             // Reset all maps
-            foreach (GameObject map in Maps.Where(m => m.name != mapName)) map.SetActive(false);
-
+            foreach (GameObject map in Maps) map.SetActive(false);
+            
             // Find the map by name and activate it
-            GameObject selectedMap = Array.Find(Maps, m => m.name == mapName);
-
+            GameObject selectedMap = Array.Find(Maps, map => map.name == nameMap);
+            
             if (selectedMap == null)
             {
-                Debug.LogError($"Map not found: {mapName}");
-                throw new NullReferenceException($"Map not found: {mapName}");
+                Debug.LogWarning("Map not found: " + nameMap);
+                return;
             }
-
-            selectedMap.SetActive(true);
             
-            DataManager.CurrentMap = mapName;
+            selectedMap.SetActive(true);
+        }
+
+        public void NextMap()
+        {
+            // Reset all maps
+            foreach (GameObject map in Maps) map.SetActive(false);
+            
+            // Loop around when the end of the array is reached
+            if (Mapnnmber > Maps.Length - 1) Mapnnmber = 0;
+            
+            Maps[Mapnnmber].SetActive(true);
+            Mapnnmber++;
         }
     }
 }

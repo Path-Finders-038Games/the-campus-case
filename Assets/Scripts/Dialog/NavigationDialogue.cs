@@ -1,4 +1,5 @@
 using System.Linq;
+using Navigation;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,7 @@ namespace Dialog
         private void UpdateDialogue()
         {
             int currentStep = DataManager.CurrentStep;
-            if (DataManager.Language == LanguageManager.Language.English)
+            if (PlayerPrefs.GetString("Language").Equals("EN"))
             {
                 if (!DialogueManager.Instance.EnglishBuddyDialogue.ContainsKey(currentStep)) return;
                 
@@ -42,7 +43,7 @@ namespace Dialog
                 }
             }
 
-            if (DataManager.Language == LanguageManager.Language.Dutch)
+            if (PlayerPrefs.GetString("Language").Equals("NL"))
             {
                 if (!DialogueManager.Instance.DutchBuddyDialogue.ContainsKey(currentStep)) return;
                 
@@ -57,7 +58,7 @@ namespace Dialog
 
         private void SetBuddy()
         {
-            string buddyChoice = DataManager.Buddy;
+            string buddyChoice = PlayerPrefs.GetString("Buddy");
 
             BuddyImage.GetComponent<Image>().sprite = buddyChoice switch
             {
@@ -76,7 +77,7 @@ namespace Dialog
         public void OnTextBlockClick(string DialoguePerson)
         {
             int currentStep = DataManager.CurrentStep;
-            if (DataManager.Language == LanguageManager.Language.English)
+            if (PlayerPrefs.GetString("Language").Equals("EN"))
             {
                 if (DialoguePerson.Equals("Buddy"))
                 {
@@ -87,7 +88,7 @@ namespace Dialog
                 }
             }
 
-            if (DataManager.Language == LanguageManager.Language.Dutch)
+            if (PlayerPrefs.GetString("Language").Equals("NL"))
             {
                 if (DialoguePerson.Equals("Buddy"))
                 {

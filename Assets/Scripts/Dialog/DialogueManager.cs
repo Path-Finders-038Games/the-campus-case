@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // TODO: Remove this class and move the dialogue to localization files.
-// ReSharper disable Unity.IncorrectScriptableObjectInstantiation
 // ReSharper disable Unity.IncorrectMonoBehaviourInstantiation
 
 namespace Dialog

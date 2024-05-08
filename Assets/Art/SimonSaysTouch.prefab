@@ -701,7 +701,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1037,12 +1037,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 163254415468072408}
     m_Modifications:
-    - target: {fileID: 2674122225815661346, guid: a46b25b162935c54ea0d74799123c482,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e2faa273ad8479b4b8eff6e8165fc320,
-        type: 3}
     - target: {fileID: 2716747928155602683, guid: a46b25b162935c54ea0d74799123c482,
         type: 3}
       propertyPath: m_Name
@@ -1272,7 +1266,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d8adb09e25d70e2439c4d94248376c64,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.234
+      value: 2.4302
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d8adb09e25d70e2439c4d94248376c64,
         type: 3}
@@ -1392,25 +1386,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50831ffd1455c14aa18a3164c111a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuddyTextBlock: {fileID: 4219293820470208936}
-  BuddyDialogueObject: {fileID: 2417651625253640541}
-  BuddyImage: {fileID: 8023064800055185823}
-  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
-  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
-  LocationInfo: {fileID: 11400000, guid: 255d7759ec0a2674594d30f018260ccc, type: 2}
+  StartButton: {fileID: 3564139390133517231}
+  ButtonMat: {fileID: -876546973899608171, guid: 4c749666d39c5e64a82094b7bfc39c77,
+    type: 3}
+  LTButton: {fileID: 1541811905339818943}
+  RTButton: {fileID: 2518865105656767915}
+  LBButton: {fileID: 7239745727867513448}
+  RBButton: {fileID: 6648425824947222716}
+  Text: {fileID: 2574141520844117472}
   LocationUIName: {fileID: 2703696230383806443}
   LocationUIDescription: {fileID: 543729337395508269}
   LocationUIFacts: {fileID: 2721691378013221832}
   LocationUIHintNextLocation: {fileID: 5799307304429245631}
   LocationFileUI: {fileID: 7828982615434453231}
-  StartButton: {fileID: 3564139390133517231}
-  Text: {fileID: 2574141520844117472}
-  SafeButtonList:
-  - {fileID: 1541811905339818943}
-  - {fileID: 2518865105656767915}
-  - {fileID: 7239745727867513448}
-  - {fileID: 6648425824947222716}
+  LocationInfo: {fileID: 11400000, guid: 255d7759ec0a2674594d30f018260ccc, type: 2}
   HideLocationFileButton: {fileID: 7667738999884479718}
+  BuddyTextBlock: {fileID: 4219293820470208936}
+  BuddyDialogueObject: {fileID: 2417651625253640541}
+  BuddyImage: {fileID: 8023064800055185823}
+  BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
+  BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
 --- !u!1001 &3093640117622445852
 PrefabInstance:
   m_ObjectHideFlags: 0

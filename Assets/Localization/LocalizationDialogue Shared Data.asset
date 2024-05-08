@@ -139,6 +139,16 @@ MonoBehaviour:
     m_Key: ending_0
     m_Metadata:
       m_Items: []
+  - m_Id: 17343163875512320
+    m_Key: hangman_0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343330271940608
+    m_Key: hangman_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343563911450624
+    m_Key: hangman_2
   - m_Id: 27199825047445504
     m_Key: paperPlanesMinigame_0
     m_Metadata:

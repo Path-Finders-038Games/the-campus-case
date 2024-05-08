@@ -1,7 +1,9 @@
 using Dialog;
+using Navigation;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -27,17 +29,22 @@ public class MainMenu : MonoBehaviour
     public GameObject IntroductionBuddyCat;
     public GameObject IntroductionBuddyDog;
 
-    private void Start()
+    // Navigation
+    private int _navigationLocation;
+
+    void Start()
     {
-        DataManager.DemoMode = false;
-        
-        // Load the language based on the player preferences
+        // During development, clear the language to test the language screen and localization strings
+        // PlayerPrefs.DeleteKey("Language");
+
         LoadLanguage();
+
+        _navigationLocation = 1;
 
         // If there is no saved game, hide the continue button
         if (DataManager.CurrentStep == 0)
         {
-            ContinueBtn.GetComponent<Button>().interactable = false;
+            ContinueBtn.SetActive(false);
         }
     }
 
@@ -47,7 +54,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void LoadLanguage()
     {
-        switch (DataManager.Language)
+        switch (LanguageManager.GetLanguage())
         {
             case LanguageManager.Language.Dutch:
                 SetLanguageToDutch();
@@ -70,7 +77,7 @@ public class MainMenu : MonoBehaviour
     {
         DataManager.CurrentMap = "C0Map";
         DataManager.CurrentStep = 0;
-        DataManager.ResetAllMinigameStatus();
+        DataManager.CurrentMap = "C0Map";
         TitleScreen.SetActive(false);
         BuddyScreen.SetActive(true);
     }
@@ -99,7 +106,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetLanguageToDutch()
     {
-        DataManager.Language = LanguageManager.Language.Dutch;
+        PlayerPrefs.SetString("Language", "NL");
         SwitchToTitleScreen();
     }
 
@@ -109,18 +116,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetLanguageToEnglish()
     {
-        DataManager.Language = LanguageManager.Language.English;
+        PlayerPrefs.SetString("Language", "EN");
         SwitchToTitleScreen();
-    }
-    
-    public void SwitchToDemoMode()
-    {
-        DataManager.DemoMode = true;
-        DataManager.Buddy = "Cat";
-        DataManager.CurrentMap = "YellowWing";
-        DataManager.ResetAllMinigameStatus();
-        
-        SwitchToNavigation();
     }
 
     /// <summary>
@@ -128,6 +125,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void SwitchToTitleScreen()
     {
+        DialogueManagerV2.Initialize();
         PopulateUiWithLocalizedStrings();
         LanguageScreen.SetActive(false);
         TitleScreen.SetActive(true);
@@ -139,7 +137,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SwitchToNavigation()
     {
-        SceneLoader.LoadScene(GameScene.Navigation);
+        SceneManager.LoadScene(_navigationLocation);
     }
 
     /// <summary>
@@ -157,7 +155,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetBuddyToCat()
     {
-        DataManager.Buddy = "Cat";
+        PlayerPrefs.SetString("Buddy", "Cat");
         IntroductionBuddyCat.SetActive(true);
         IntroductionBuddyDog.SetActive(false);
         SwitchToIntroductionScreen();
@@ -169,7 +167,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void SetBuddyToDog()
     {
-        DataManager.Buddy = "Dog";
+        PlayerPrefs.SetString("Buddy", "Dog");
         IntroductionBuddyCat.SetActive(false);
         IntroductionBuddyDog.SetActive(true);
         SwitchToIntroductionScreen();

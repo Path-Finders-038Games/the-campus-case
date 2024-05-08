@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Navigation
@@ -11,25 +10,10 @@ namespace Navigation
         private float _minZoom = 0.7f;
         private float _maxZoom = 5f;
 
-        private void Start()
-        {
-            try
-            {
-                if (DataManager.CameraOrthographicSize > 0)
-                {
-                    Camera.main.orthographicSize = DataManager.CameraOrthographicSize;
-                }
-            }
-            catch
-            {
-                Debug.LogWarning("Camera \"MainCamera\" not found.");
-            }
-        }
-
         /// <summary>
         /// Zooms in/out on the minimap when pinching with two fingers.
         /// </summary>
-        private void Update()
+        void Update()
         {
             if (Input.touchCount != 2) return;
 
@@ -54,7 +38,6 @@ namespace Navigation
 
                 // Clamp the zoom level to be within the specified minZoom and maxZoom values.
                 Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, _minZoom, _maxZoom);
-                DataManager.CameraOrthographicSize = Camera.main.orthographicSize;
 
                 // Calculate the offset between the initial middle point and the current middle point in world space.
                 Vector2 offset = Camera.main.ScreenToWorldPoint(_initialMiddlePoint) - Camera.main.ScreenToWorldPoint(middlePoint);

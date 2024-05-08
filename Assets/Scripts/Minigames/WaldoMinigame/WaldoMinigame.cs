@@ -1,5 +1,6 @@
 using Dialog;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Minigames.WaldoMinigame
@@ -30,6 +31,7 @@ namespace Minigames.WaldoMinigame
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_0"));
             TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_1"));
             WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_2"));
+            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "waldoMinigame_3"));
         }
 
         /// <summary>
@@ -55,8 +57,6 @@ namespace Minigames.WaldoMinigame
         /// </summary>
         public override void CompleteGameStep()
         {
-            DataManager.SetMinigameStatus(MinigameName.WhereIsWaldo, true);
-            
             _isChecking = false;
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
@@ -83,7 +83,7 @@ namespace Minigames.WaldoMinigame
 
             if (!LocationFile.IsCompleted) return;
 
-            SceneLoader.LoadScene(GameScene.Navigation);
+            SceneManager.LoadScene(1);
         }
 
         /// <summary>

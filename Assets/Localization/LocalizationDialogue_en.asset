@@ -165,6 +165,16 @@ MonoBehaviour:
     m_Localized: You did it! you successfully helped Windesheim and exposed the society!
     m_Metadata:
       m_Items: []
+  - m_Id: 17343163875512320
+    m_Localized: testbox 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343330271940608
+    m_Localized: testbox 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17343563911450624
+    m_Localized: testbox 2
   - m_Id: 27199825047445504
     m_Localized: Catch the paper airplanes with your phone! Move through the room
       to touch them.

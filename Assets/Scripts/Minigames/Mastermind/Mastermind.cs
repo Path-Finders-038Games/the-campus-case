@@ -37,11 +37,11 @@ namespace Minigames.Mastermind
         public GameObject RowPrefab;
         public GameObject HiddenCodeRow;
         private GameObject[] _boardRows;
+
         private int _currentRow, _currentCol;
-        private readonly string[] _secretCodeToGuess = new string[Cols];
         private string[] _playerInputCode;
-        
         private readonly Dictionary<string, Sprite> _discoSprite = new(); // Dictionary to store the shape sprites
+        private readonly string[] _secretCodeToGuess = new string[Cols];
 
         private void Update()
         {
@@ -199,7 +199,6 @@ namespace Minigames.Mastermind
             }
 
             _currentRow++;
-            _currentCol = 1;
 
             // TODO: fix color for the current row. Not working as intended
             Color originMastermindColor = rowToVerify.GetComponent<Image>().color;
@@ -242,6 +241,9 @@ namespace Minigames.Mastermind
         /// </summary>
         public override void PrepareStep()
         {
+            SetLocationFile();
+            GetNewSecretCode();
+
             _currentRow = 0; // 0-MaxRows
             _currentCol = 1; // 1-4
 
@@ -254,9 +256,6 @@ namespace Minigames.Mastermind
             _discoSprite.Add("Triangle", Triangle);
 
             _playerInputCode = new string[Cols];
-            
-            SetLocationFile();
-            GetNewSecretCode();
         }
 
         /// <summary>
@@ -306,8 +305,6 @@ namespace Minigames.Mastermind
         /// </summary>
         private void Win()
         {
-            DataManager.SetMinigameStatus(MinigameName.Mastermind, true);
-            
             HiddenCodeRow.SetActive(false);
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             CompleteGameStep();

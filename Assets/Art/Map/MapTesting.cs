@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Art.Map
 {
@@ -49,12 +50,12 @@ namespace Art.Map
 
         public void EnterMap()
         {
-            SceneLoader.LoadScene(GameScene.Navigation);
+            SceneManager.LoadScene(1);
         }
 
         public void ExitMap()
         {
-            SceneLoader.LoadScene(GameScene.MainMenu);
+            SceneManager.LoadScene(0);
         }
     }
 }
