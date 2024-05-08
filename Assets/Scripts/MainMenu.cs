@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
         
         // Load the language based on the player preferences
         LoadLanguage();
+        PopulateUiWithLocalizedStrings();
 
         // If there is no saved game, hide the continue button
         if (DataManager.CurrentStep == 0)

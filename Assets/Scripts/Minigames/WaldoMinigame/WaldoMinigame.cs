@@ -12,7 +12,7 @@ namespace Minigames.WaldoMinigame
 
         private bool _isChecking;
 
-        private void Start()
+        protected override void Start()
         {
             base.Start();
             

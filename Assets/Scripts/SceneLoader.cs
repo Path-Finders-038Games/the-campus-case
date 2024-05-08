@@ -35,6 +35,16 @@ public class SceneLoader : MonoBehaviour
     public static void LoadScene(GameScene gameScene)
     {
         LoadScene(GameSceneToId(gameScene));
+        
+        // unload all other scenes
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.buildIndex != GameSceneToId(gameScene))
+            {
+                SceneManager.UnloadSceneAsync(scene);
+            }
+        }
     }
 
     private static void LoadScene(int sceneId)

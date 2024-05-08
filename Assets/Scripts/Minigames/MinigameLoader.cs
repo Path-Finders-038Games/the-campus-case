@@ -1,7 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -10,7 +10,7 @@ namespace Minigames
     public class MinigameLoader : MonoBehaviour
     {
         /// <summary>
-        /// This class is located here so it's visible in Unity.
+        /// This class is located here, so it's visible in Unity.
         /// </summary>
         [System.Serializable]
         public class Minigame
@@ -21,38 +21,55 @@ namespace Minigames
         }
 
         public GameObject Default;
-        public Minigame[] Minigames;
 
         public GameObject ExitArPlacementButton;
         public GameObject MovePrefabCloserButton;
         public GameObject MovePrefabFurtherButton;
+        public GameObject DialogContainer;
+        
+        public Minigame[] Minigames;
 
         private GameObject _spawnedPrefab;
         private ARRaycastManager _raycastManager;
         private ARPlaneManager _planeManager;
 
+        private void Awake()
+        {
+            if (DataManager.SelectedMinigame != MinigameName.None) return;
+            
+            Debug.LogError("No minigame selected. Returning to navigation scene.");
+            SceneLoader.LoadScene(GameScene.Navigation);
+        }
+
         private void Start()
         {
-            // Before loading anything for AR, check if UseAR is enabled for the current minigame.
-            // Otherwise, just spawn the prefab for the minigame.
-            if (Minigames.All(e => e.MinigameName != DataManager.SelectedMinigame) ||
-                !Minigames.First(e => e.MinigameName == DataManager.SelectedMinigame).UseAR)
-            {
-                ExitArPlacementButton.SetActive(false);
-                _planeManager.enabled = false;
-                Instantiate(GetCorrectPrefab());
-                return;
-            }
+            DestroyPrefab();
             
             // Get the ARRaycastManager from the ARSessionOrigin.
             // This should be set in the Unity Editor, but it can't be since the prefab is not discoverable.
             _raycastManager = GetComponent<ARRaycastManager>();
             _planeManager = GetComponent<ARPlaneManager>();
-
-            ExitArPlacementButton.SetActive(true);
+            
+            // Set the buttons to be inactive until the prefab is spawned.
             MovePrefabCloserButton.SetActive(false);
             MovePrefabFurtherButton.SetActive(false);
+            
+            // Before loading anything for AR, check if UseAR is enabled for the current minigame.
+            // Otherwise, just spawn the prefab for the minigame.
+            Minigame minigame = Minigames.First(m => m.MinigameName == DataManager.SelectedMinigame);
+
+            if (!minigame.UseAR)
+            {
+                ExitArPlacementButton.SetActive(false);
+                _planeManager.enabled = false;
+                DialogContainer.SetActive(false);
+                Instantiate(GetCorrectPrefab());
+                return;
+            }
+
             _planeManager.enabled = true;
+            DialogContainer.SetActive(true);
+            ExitArPlacementButton.SetActive(true);
         }
 
         private void Update()

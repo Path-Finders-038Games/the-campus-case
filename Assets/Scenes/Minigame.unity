@@ -664,6 +664,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Default: {fileID: 6717461012115478838, guid: f52a6233cd202484d8cff91a5ca7a6e7, type: 3}
+  ExitArPlacementButton: {fileID: 1848193053}
+  MovePrefabCloserButton: {fileID: 384242922}
+  MovePrefabFurtherButton: {fileID: 1675392310}
+  DialogContainer: {fileID: 1748592068}
   Minigames:
   - MinigameName: 5
     MinigamePrefab: {fileID: 3287429797429140950, guid: d0e91a0ade1db1842a82ab0685653b33,
@@ -689,9 +693,6 @@ MonoBehaviour:
     MinigamePrefab: {fileID: 1763574363128223130, guid: 805e699574f45b94597721d96c53ce9a,
       type: 3}
     UseAR: 1
-  ExitArPlacementButton: {fileID: 1848193053}
-  MovePrefabCloserButton: {fileID: 384242922}
-  MovePrefabFurtherButton: {fileID: 1675392310}
 --- !u!1 &694060473
 GameObject:
   m_ObjectHideFlags: 0
