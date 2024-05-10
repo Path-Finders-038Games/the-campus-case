@@ -460,7 +460,7 @@ MonoBehaviour:
   BuddyImage: {fileID: 8899601701354488571}
   BuddyDogSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
   BuddyCatSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
-  LocationInfo: {fileID: 11400000, guid: 9fa5f7bccbeeb3f46ad0be7466a8faa4, type: 2}
+  LocationInfo: {fileID: 11400000, guid: 121ee208c92d98f47a83787c0dcd04a2, type: 2}
   LocationUIName: {fileID: 1215309320592781369}
   LocationUIDescription: {fileID: 3662384125842252799}
   LocationUIFacts: {fileID: 1197310874562929690}
@@ -559,6 +559,16 @@ PrefabInstance:
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1198286039478201393, guid: 7469c67da6f684b409a6011b79d586ee,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226960423073938093, guid: 7469c67da6f684b409a6011b79d586ee,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -450
+      objectReference: {fileID: 0}
     - target: {fileID: 2422545034618792058, guid: 7469c67da6f684b409a6011b79d586ee,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -624,6 +634,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3670433546481839060, guid: 7469c67da6f684b409a6011b79d586ee,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6467849778657836822, guid: 7469c67da6f684b409a6011b79d586ee,
         type: 3}
       propertyPath: m_Name
@@ -633,6 +648,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683757373254433467, guid: 7469c67da6f684b409a6011b79d586ee,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -380
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803573070987042050, guid: 7469c67da6f684b409a6011b79d586ee,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

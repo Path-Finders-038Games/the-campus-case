@@ -12,7 +12,7 @@ public class AnimationTransform : MonoBehaviour
 
     //vector 3 objects containing the relative positon and rotation to the parent 
     private Vector3 _assembled_pos;
-    private Vector3 _assembled_rot;
+    private Quaternion _assembled_rot;
 
     //vector 3 objects containing the relative target position and rotation for the part to have relative to the parent in the unassembled state
     private Vector3 _dissasembled_pos;
@@ -29,7 +29,7 @@ public class AnimationTransform : MonoBehaviour
         PartTansform = this.Part.transform;
 
         _assembled_pos = this.Part.transform.localPosition;
-        _assembled_rot = this.Part.transform.localEulerAngles;
+        _assembled_rot = this.Part.transform.localRotation;
 
         _dissasembled_pos = transform_dissassembled_position;
         _dissasembled_rot = transform_dissassembled_rotation;
@@ -93,19 +93,19 @@ public class AnimationTransform : MonoBehaviour
     //method to set the rotation of the part in the assmebled state
     public IEnumerator RotateToDirection()
     {
-        Vector3 startRotation = PartTansform.localEulerAngles;
-        Vector3 finalRotation = _assembled_rot;
+        Quaternion startRotation = PartTansform.localRotation;
+        Quaternion finalRotation = _assembled_rot;
         float t = 0f;
         while (t <= 1f)
         {
             // total time for the animation to complete
             t += Time.deltaTime / 1;
             //linear interpolation of the current rotation and target rotation
-            PartTansform.localEulerAngles = Vector3.Lerp(startRotation, finalRotation, t);
+            PartTansform.localRotation = Quaternion.Lerp(startRotation, finalRotation, t);
             yield return null;
         }
         //explicit assignment for precision
-        PartTansform.localEulerAngles = finalRotation;
+        PartTansform.localRotation = finalRotation;
     }
 
 }

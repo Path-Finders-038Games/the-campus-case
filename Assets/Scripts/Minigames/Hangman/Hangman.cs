@@ -4,12 +4,11 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using Dialog;
 using UnityEngine.UI;
+using UnityEngine.Experimental.XR.Interaction;
+using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Text;
 
-
-/*
- Todo:
--update to new minigamea standards
- */
 
 namespace Minigames
 {
@@ -21,6 +20,8 @@ namespace Minigames
 
         //counter for the amount of mistakes made
         private int _strikes = 0;
+
+        private bool _lost = false;
 
         //list of potential words for the game to select
         public List<string> Words = new();
@@ -46,12 +47,32 @@ namespace Minigames
         /// <returns>Sanitized word.</returns>
         private static string SanitizeWord(string word)
         {
+            // Remove spaces
             word = word.Replace(" ", "");
 
-            // TODO: Replace characters like ', _ and - with nothing
-            // TODO: Replace characters like é with e, etc.
+            // Replace characters like ', _ and - with nothing
+            word = Regex.Replace(word, "[\'_-]", "");
+
+            // Replace characters like é with e
+            word = RemoveDiacritics(word);
 
             return word;
+        }
+        //method for returning special characters to their normal state
+        static string RemoveDiacritics(string text)
+        {
+            string normalized = text.Normalize(NormalizationForm.FormD);
+            StringBuilder builder = new StringBuilder();
+
+            foreach (char c in normalized)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    builder.Append(c);
+                }
+            }
+
+            return builder.ToString().Normalize(NormalizationForm.FormC);
         }
 
         // method used to make a guess
@@ -96,7 +117,6 @@ namespace Minigames
             //code for what to do when the user has won
             if (won)
             {
-                //needs work
                 CompleteGameStep();
             }
         }
@@ -106,15 +126,14 @@ namespace Minigames
         {
             if (_strikes >= 12)
             {
-                //still needs work
-                SceneManager.LoadScene(1);
+                ReturnGameStep();
             }
         }
 
         //setup method used for setting up the game at the beginning
         public override void PrepareStep()
         {
-            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6 localization");
+            List<string> localizedWords = DialogueManagerV2.GetAllLocalizedStrings("Minigame 6-localization");
 
             // Check if words have spaces, if so, remove the spaces and log an error
             foreach (string sanitizedWord in localizedWords.Select(SanitizeWord))
@@ -131,16 +150,12 @@ namespace Minigames
             }
 
             Playing = false;
-            SetLocationFile();
             HideLocationFileButton.onClick.AddListener(HideLocationFile);
-            Debug.Log(Word);
         }
 
         public override void SplitDialogue()
         {
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_0"));
-            TutorialDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_1"));
-            WonDialogues.Add(DialogueManagerV2.GetDialogue("LocalizationDialogue", "hangman_2"));
+            //niet in gebruik atm
         }
 
         public override void StartGameStep()
@@ -149,13 +164,35 @@ namespace Minigames
         }
 
         /// <summary>
-        /// Completes the minigame step. Shows the location file.
+        /// Completes the minigame step. Shows the location file with updated text.
         /// </summary>
         public override void CompleteGameStep()
         {
+            //receives the text in a single string which gets split up
+            string CompleteText = DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "Hangman_win");
+            string[] separatedStrings = CompleteText.Split('-');
             Playing = false;
+            LocationUIName.text = separatedStrings[0];
+            LocationUIFacts.text = "";
+            LocationUIDescription.text = separatedStrings[1];
             LocationUIHintNextLocation.text = "Hint for next location \n" + LocationFile.HintNextLocation;
             LocationFile.IsCompleted = true;
+            ShowLocationFile();
+        }
+
+        /// <summary>
+        /// Method for when the player loses the game and is returned to the map.
+        /// </summary>
+        public void ReturnGameStep()
+        {
+            //receives the text in a single string which gets split up
+            string CompleteText = DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "Hangman_loss");
+            string[] separatedStrings = CompleteText.Split('-');
+            Playing = false;
+            _lost = true;
+            LocationUIName.text = separatedStrings[0]; ;
+            LocationUIFacts.text = "";
+            LocationUIDescription.text = LocationUIDescription.text = separatedStrings[1]; ;
             ShowLocationFile();
         }
 
@@ -176,9 +213,10 @@ namespace Minigames
             LocationFileUI.SetActive(false);
             Playing = true;
 
-            if (!LocationFile.IsCompleted) return;
-
-            SceneManager.LoadScene(1);
+            if (LocationFile.IsCompleted || _lost)
+            {
+                SceneManager.LoadScene(1);
+            }
         }
     }
 }

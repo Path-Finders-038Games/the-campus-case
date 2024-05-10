@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-/*
- add dialogue to the game
- optimize wordcheck
- fix animation rotation
- */
 
 namespace Minigames
 {
@@ -132,9 +127,9 @@ namespace Minigames
                     foreach(WordLetter wordLetter in _wordLetters)
                     {
                        
-                        if(wordLetter.letter == letter.Letter)
+                        if(wordLetter.Letter == letter.Letter)
                         {
-                           wordLetter.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                           wordLetter.LetterGameObject.GetComponent<MeshRenderer>().enabled = true;
                         }
                     }
                 }
