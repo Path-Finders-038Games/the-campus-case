@@ -6,19 +6,19 @@ using UnityEngine;
 public class Difference : MonoBehaviour
 {
     //original object part
-    public GameObject Original { get; set; }
+    public GameObject Original;
 
     //different object part
-    public GameObject Different { get; set; }
+    public GameObject Different;
 
     //boolean keeping track of if it has been found
-    public bool Completed {  get; set; }
+    public bool Completed  {  get; set; } = false;
 
-    //consctructor
+    /*//consctructor
     public Difference(GameObject original, GameObject different)
     {
         Original = original;
         Different = different;
         Completed = false;
-    }
+    }*/
 }

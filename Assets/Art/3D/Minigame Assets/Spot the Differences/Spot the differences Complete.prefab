@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1879466625568613710}
   - component: {fileID: 2658859209166888744}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Bottom-bulbs-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,15 +160,24 @@ MonoBehaviour:
   BuddyImage: {fileID: 8896464979812450569}
   BuddyDogSprite: {fileID: 21300000, guid: f8a144b2a097cde4fa22cc0466b190b4, type: 3}
   BuddyCatSprite: {fileID: 21300000, guid: 33a9b3a477c15cb4aba2fc463f3e99d4, type: 3}
-  LocationInfo: {fileID: 0}
+  LocationInfo: {fileID: 11400000, guid: 9fa5f7bccbeeb3f46ad0be7466a8faa4, type: 2}
   LocationUIName: {fileID: 5127054364816537855}
   LocationUIDescription: {fileID: 7289136821269523257}
   LocationUIFacts: {fileID: 5145048393137990876}
   LocationUIHintNextLocation: {fileID: 3663896988820360107}
   LocationFileUI: {fileID: 1010393564078309371}
   HideLocationFileButton: {fileID: 633536799948563442}
-  differences:
-  - {fileID: 0}
+  material: {fileID: 2100000, guid: 29373f0a670b92c4d9a2cb959f7dd4d4, type: 2}
+  DifferenceObjects:
+  - {fileID: 5202009349054012107}
+  - {fileID: 1640969768635306001}
+  - {fileID: 6760096787762239857}
+  - {fileID: 1585346774981997482}
+  - {fileID: 1774484785366263457}
+  - {fileID: 6274946622631913358}
+  - {fileID: 4147189839636953487}
+  - {fileID: 2119648904213155066}
+  - {fileID: 5817466613803924050}
 --- !u!1 &1325736310964816437
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +191,7 @@ GameObject:
   - component: {fileID: 8156430916099133777}
   - component: {fileID: 344107705486216672}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Upper-glass-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,6 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3386989484265648291}
+  - component: {fileID: 2307705522382449592}
   m_Layer: 0
   m_Name: Pillar-Connection-1
   m_TagString: Untagged
@@ -307,6 +317,20 @@ Transform:
   - {fileID: 1529939472719482119}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2307705522382449592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585346774981997482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 7279846264781786961}
+  Different: {fileID: 5363438600753933460}
 --- !u!1 &1640969768635306001
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5628012292041253604}
+  - component: {fileID: 4263219424049518166}
   m_Layer: 0
   m_Name: Top-disc
   m_TagString: Untagged
@@ -340,6 +365,20 @@ Transform:
   - {fileID: 5793231374516789155}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4263219424049518166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640969768635306001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 7557182386750231412}
+  Different: {fileID: 5436089264694093317}
 --- !u!1 &1774484785366263457
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7052969703641595392}
+  - component: {fileID: 6197586510835436713}
   m_Layer: 0
   m_Name: Pillar-Connection-2
   m_TagString: Untagged
@@ -373,6 +413,20 @@ Transform:
   - {fileID: 6457140416583100548}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6197586510835436713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774484785366263457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 5324059291675623443}
+  Different: {fileID: 6664005882178246986}
 --- !u!1 &2119648904213155066
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 728394211155527263}
+  - component: {fileID: 8310561817136936737}
   m_Layer: 0
   m_Name: Lower-glass
   m_TagString: Untagged
@@ -406,6 +461,20 @@ Transform:
   - {fileID: 489409591759782541}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8310561817136936737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119648904213155066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 7993253092559916182}
+  Different: {fileID: 5568761071535812607}
 --- !u!1 &2210356230280898293
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +488,7 @@ GameObject:
   - component: {fileID: 577017318265118033}
   - component: {fileID: 214491470788460871}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Upper-glass-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,7 +868,7 @@ GameObject:
   - component: {fileID: 7189459200165503046}
   - component: {fileID: 8660642387032261447}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Top-bulb-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,6 +1103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 590011769583810458}
+  - component: {fileID: 3150518707188486758}
   m_Layer: 0
   m_Name: Pillar
   m_TagString: Untagged
@@ -1058,6 +1128,20 @@ Transform:
   - {fileID: 1127781505280276168}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3150518707188486758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147189839636953487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 4567223829099360120}
+  Different: {fileID: 4950791212735910008}
 --- !u!1 &4472865539805777238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,7 +1155,7 @@ GameObject:
   - component: {fileID: 4996371349689001607}
   - component: {fileID: 6410397740564002982}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Top-bulb-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1176,7 +1260,7 @@ GameObject:
   - component: {fileID: 5857642624066089017}
   - component: {fileID: 6942126749596801916}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Pillar-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1281,7 +1365,7 @@ GameObject:
   - component: {fileID: 833649113712709962}
   - component: {fileID: 6746601830732405690}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Pillar-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1382,6 +1466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2090694935175901834}
+  - component: {fileID: 5203917827346332993}
   m_Layer: 0
   m_Name: Top-bulb
   m_TagString: Untagged
@@ -1406,6 +1491,20 @@ Transform:
   - {fileID: 7077913334687698518}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5203917827346332993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202009349054012107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 4472865539805777238}
+  Different: {fileID: 3589727170826561380}
 --- !u!1 &5324059291675623443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1518,7 @@ GameObject:
   - component: {fileID: 627721645820133592}
   - component: {fileID: 6140372230982392829}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Pillar-Connection-2-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1524,7 +1623,7 @@ GameObject:
   - component: {fileID: 7873514377843282096}
   - component: {fileID: 8881395422162243893}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Pillar-Connection-1-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1728,7 @@ GameObject:
   - component: {fileID: 2366315819514472559}
   - component: {fileID: 2261882550028712552}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Top-disc-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1735,7 +1834,7 @@ GameObject:
   - component: {fileID: 9037879729443954972}
   - component: {fileID: 8913213045701217615}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Lower-glass-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1836,6 +1935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5695536601891226140}
+  - component: {fileID: 5669339968211208451}
   m_Layer: 0
   m_Name: Bottom-bulbs
   m_TagString: Untagged
@@ -1860,6 +1960,20 @@ Transform:
   - {fileID: 2015105140828471538}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5669339968211208451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817466613803924050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 7090452985725636348}
+  Different: {fileID: 181015644047762685}
 --- !u!1 &6274946622631913358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841294728546953086}
+  - component: {fileID: 3995744628942296232}
   m_Layer: 0
   m_Name: Pillar-Connection-3
   m_TagString: Untagged
@@ -1893,6 +2008,20 @@ Transform:
   - {fileID: 7704582208518407036}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3995744628942296232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274946622631913358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 8320356542144494169}
+  Different: {fileID: 6425578645116472903}
 --- !u!1 &6425578645116472903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,7 +2035,7 @@ GameObject:
   - component: {fileID: 685972511713123779}
   - component: {fileID: 8698176707075583438}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Pillar-Connection-3-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2011,7 +2140,7 @@ GameObject:
   - component: {fileID: 5130356700246211387}
   - component: {fileID: 3006547220846816187}
   m_Layer: 0
-  m_Name: Difference
+  m_Name: Pillar-Connection-2-Difference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2112,6 +2241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8410224936254587358}
+  - component: {fileID: 2338686515616554422}
   m_Layer: 0
   m_Name: Upper-glass
   m_TagString: Untagged
@@ -2136,6 +2266,20 @@ Transform:
   - {fileID: 4248947460098098861}
   m_Father: {fileID: 3641793679684230526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2338686515616554422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760096787762239857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244d728f0a88fd342851dc85ff81972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Original: {fileID: 1325736310964816437}
+  Different: {fileID: 2210356230280898293}
 --- !u!1 &7090452985725636348
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2293,7 @@ GameObject:
   - component: {fileID: 4303426482850128512}
   - component: {fileID: 550399963011418648}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Bottom-bulbs-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2255,7 +2399,7 @@ GameObject:
   - component: {fileID: 1486550560780143997}
   - component: {fileID: 8263004799529518281}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Pillar-Connection-1-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2360,7 +2504,7 @@ GameObject:
   - component: {fileID: 3694010750499624824}
   - component: {fileID: 7622094730984424139}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Top-disc-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2466,7 +2610,7 @@ GameObject:
   - component: {fileID: 7170451481454227446}
   - component: {fileID: 4662856638676314305}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Lower-glass-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2571,7 +2715,7 @@ GameObject:
   - component: {fileID: 2444226214845421224}
   - component: {fileID: 3675136336892494901}
   m_Layer: 0
-  m_Name: Original
+  m_Name: Pillar-Connection-3-Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

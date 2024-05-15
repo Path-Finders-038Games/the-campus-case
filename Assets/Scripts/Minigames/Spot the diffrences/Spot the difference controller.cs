@@ -1,31 +1,44 @@
+using Dialog;
 using Minigames;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 //general script where the game logic for the spot the difference minigame is placed
 public class SpotTheDifference: Minigame
 {
-    public GameObject Original { get; set; }
-    public GameObject Different { get; set; }
-
     //button to hide the locationfile
     public Button HideLocationFileButton;
 
-    public GameObject OriginalHourglas { get; set; }
+    //material to give the hitbox when it is hit
+    public Material material;
 
-    public GameObject DifferentHourglas { get; set; }
+    //list of all objects with differences
+    public List<GameObject> DifferenceObjects = new List<GameObject>();
 
-    public List<Difference> differences = new List<Difference>();
+    //list of all the difference scripts inside the DifferenceObjects
+    private List<Difference> Differences = new List<Difference>();
 
     private bool _playing {  get; set; }
 
     private bool _won {  get; set; }
 
+     public override void Start()
+    {
+        Debug.Log("sadsadcsafc");
+        PrepareStep();
+        StartGameStep();
+        CheckDifference("Bottom-bulbs-Difference");
+    }
+
     // Update is called once per frame
     void Update()
     {
+        //Random.Range(0,DifferenceObjects.Count);
+        
         //if player input should be registered does something
         if (!_playing) return;
         {
@@ -45,8 +58,14 @@ public class SpotTheDifference: Minigame
 
     public override void PrepareStep()
     {
+        Debug.Log("sadas");
         _playing = false;
         _won = false;
+        foreach (GameObject gameObject in DifferenceObjects)
+        {
+            Difference difference = gameObject.GetComponent<Difference>();
+            Differences.Add(difference);
+        }
     }
 
     public override void StartGameStep()
@@ -63,7 +82,7 @@ public class SpotTheDifference: Minigame
 
     public override void CompleteGameStep()
     {
-        throw new System.NotImplementedException();
+       //idk
     }
     public override void HideLocationFile()
     {
@@ -85,19 +104,39 @@ public class SpotTheDifference: Minigame
 
     public void CheckDifference(string name)
     {
-        foreach( Difference difference in differences )
+        Debug.Log("1"+name);
+        Debug.Log("1.5"+Differences.Count);
+        foreach( Difference difference in Differences )
         {
+            Debug.Log("2"+difference.name);
+            Debug.Log("3"+difference.Original.name);
+            Debug.Log("4"+difference.Different.name);
             if ( difference.Original.name == name || difference.Different.name == name )
             {
-                difference.Completed = true; break;
+                ChangeHitboxToCorrect(difference);
+                difference.Completed = true;
+                Debug.Log(difference.Completed);
+                break;
             }
         }
+    }
+
+    public void ChangeHitboxToCorrect(Difference difference)
+    {
+
+        Collider collider = difference.Original.GetComponent<Collider>();
+        Collider collider1 = difference.Different.GetComponent<Collider>();
+        Destroy(collider);
+        Destroy(collider1);
+        MeshRenderer meshRenderer = difference.Original.GetComponent<MeshRenderer>();
+        meshRenderer.enabled = true;
+        meshRenderer.material = material;
     }
 
     public void CheckWin()
     {
         _won = true;
-        foreach( Difference difference in differences )
+        foreach( Difference difference in Differences )
         {
             if (!difference.Completed)
             {
@@ -108,7 +147,11 @@ public class SpotTheDifference: Minigame
 
     public void Won()
     {
-
+        string Filetext = DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "Differences-Minigame-win");
+        string[] separatedStrings = Filetext.Split('-');
+        LocationUIName.text = separatedStrings[0];
+        LocationUIDescription.text = separatedStrings[1];
+        LocationUIFacts.text = "";
         ShowLocationFile();
         HideLocationFileButton.onClick.RemoveAllListeners();
         HideLocationFileButton.onClick.AddListener(ExitGame);
