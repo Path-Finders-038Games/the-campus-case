@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: cf86827f23b40c14c82cf5114ab8ccff
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Navigation.unity
     guid: c62b2fdb0fd812349978084f8b43abe7
+  - enabled: 1
+    path: Assets/Scenes/NavigationFreeroam.unity
+    guid: 1328e5ce1a5d1bb40b83c6efd586df2b
   - enabled: 1
     path: Assets/Scenes/Minigame.unity
     guid: ebf6618d85c02d2499230361d54c45e1
