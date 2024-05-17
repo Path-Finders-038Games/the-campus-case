@@ -173,6 +173,15 @@ MonoBehaviour:
       om ze aan te raken.
     m_Metadata:
       m_Items: []
+  - m_Id: 28280989155045376
+    m_Localized: Gewonnen!-Knap gedaan! We zijn een stap dichter bij dit mysterie
+      ontrafelen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28281049980841984
+    m_Localized: Verloren!-Volgende keer beter!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

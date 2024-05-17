@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc4fb6460057c441ad324bc6cd846e2, type: 3}
+  m_Name: Hangman Location Info Object
+  m_EditorClassIdentifier: 
+  Data_NL:
+    Name: Hangman
+    Description: Hier speel je een potje hangman oftewel galgje. Kun jij het woord
+      raden voor je kansen op zijn?
+    Facts:
+    - Plaats de galg en begin met spelen.
+    - de galg bestaat uit 12 onderdelen dus pas op!
+    - Het woord wat je zoekt is in het nederlands.
+    - Veel succes!
+    HintNextLocation: Hier zou een hint moeten staan
+  Data_EN:
+    Name: Hangman
+    Description: Here you are going to play a game of hangman. Can you find the word
+      before your chances are up?
+    Facts:
+    - Place the hangman and start playing.
+    - The hangman consists of 12 parts so count your guesses!
+    - The word you are looking for is in english.
+    - Good luck!
+    HintNextLocation: There should be a hint here
+  Name: .
+  Description: .
+  Facts: []
+  HintNextLocation: .
