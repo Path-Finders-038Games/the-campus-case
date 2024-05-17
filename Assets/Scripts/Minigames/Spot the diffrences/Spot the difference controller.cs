@@ -3,9 +3,15 @@ using Minigames;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+//todo:
+//code for storing when you won
+//fix size
+//notify when a wrong guess is made 
 
 //general script where the game logic for the spot the difference minigame is placed
 public class SpotTheDifference: Minigame
@@ -14,31 +20,31 @@ public class SpotTheDifference: Minigame
     public Button HideLocationFileButton;
 
     //material to give the hitbox when it is hit
-    public Material material;
+    public Material GuessedMaterial;
+
+    public TMP_Text ScoreText;
 
     //list of all objects with differences
     public List<GameObject> DifferenceObjects = new List<GameObject>();
 
     //list of all the difference scripts inside the DifferenceObjects
-    private List<Difference> Differences = new List<Difference>();
+    private List<Difference> _differences = new List<Difference>();
 
+    //bool to check whether the game is in play
     private bool _playing {  get; set; }
 
+    //bool to check if the user satisfies the win condition
     private bool _won {  get; set; }
 
+    //use start method from general minigame class
      public override void Start()
     {
-        Debug.Log("sadsadcsafc");
-        PrepareStep();
-        StartGameStep();
-        CheckDifference("Bottom-bulbs-Difference");
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        //Random.Range(0,DifferenceObjects.Count);
-        
+    {   
         //if player input should be registered does something
         if (!_playing) return;
         {
@@ -48,48 +54,60 @@ public class SpotTheDifference: Minigame
                 RaycastCheck();
             }
         }
+        DifferenceRemaining();
         CheckWin();
     }
 
+    //not needed method from parent class
     public override void SplitDialogue()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("");  
     }
 
+    // method  to prepare the game for playing by gathering the required objects and setting them to the correct state
     public override void PrepareStep()
     {
-        Debug.Log("sadas");
         _playing = false;
         _won = false;
         foreach (GameObject gameObject in DifferenceObjects)
         {
             Difference difference = gameObject.GetComponent<Difference>();
-            Differences.Add(difference);
+            _differences.Add(difference);
+            MeshRenderer meshRenderer1 = difference.Original.GetComponent<MeshRenderer>();
+            MeshRenderer meshRenderer2= difference.Different.GetComponent<MeshRenderer>();
+            meshRenderer1.enabled = false;
+            meshRenderer2.enabled = false;
         }
     }
 
+    //method to start playing the game
     public override void StartGameStep()
     {
         ShowLocationFile();
         HideLocationFileButton.onClick.AddListener(HideLocationFile);
     }
 
+    //method to display the file overlay
     public override void ShowLocationFile()
     {
         _playing = false;
         LocationFileUI.SetActive(true);
     }
 
+    // method to complete the game and return to the map
     public override void CompleteGameStep()
     {
-       //idk
+        SceneLoader.LoadScene(GameScene.Navigation);
     }
+
+    //method to hide the file overlay
     public override void HideLocationFile()
     {
         LocationFileUI.SetActive(false);
         _playing = true;
     }
 
+    //method to check what you pressed using raycast
     public void RaycastCheck()
     {
         RaycastHit hit;
@@ -102,25 +120,21 @@ public class SpotTheDifference: Minigame
         }
     }
 
+    //method to check the item you hit and if it is one of the differences
     public void CheckDifference(string name)
     {
-        Debug.Log("1"+name);
-        Debug.Log("1.5"+Differences.Count);
-        foreach( Difference difference in Differences )
+        foreach( Difference difference in _differences )
         {
-            Debug.Log("2"+difference.name);
-            Debug.Log("3"+difference.Original.name);
-            Debug.Log("4"+difference.Different.name);
             if ( difference.Original.name == name || difference.Different.name == name )
             {
                 ChangeHitboxToCorrect(difference);
                 difference.Completed = true;
-                Debug.Log(difference.Completed);
                 break;
             }
         }
     }
 
+    //change the material of a difference object to a transparant green material
     public void ChangeHitboxToCorrect(Difference difference)
     {
 
@@ -129,22 +143,33 @@ public class SpotTheDifference: Minigame
         Destroy(collider);
         Destroy(collider1);
         MeshRenderer meshRenderer = difference.Original.GetComponent<MeshRenderer>();
+        MeshRenderer meshRenderer1 = difference.Different.GetComponent<MeshRenderer>();
         meshRenderer.enabled = true;
-        meshRenderer.material = material;
+        meshRenderer.material = GuessedMaterial;
+        meshRenderer1.enabled = true;
+        meshRenderer1.material = GuessedMaterial;
     }
 
+    //check if the user has won
     public void CheckWin()
     {
         _won = true;
-        foreach( Difference difference in Differences )
+
+        foreach( Difference difference in _differences )
         {
-            if (!difference.Completed)
+            if (difference.Completed == false)
             {
                 _won = false; break;
             }
         }
+        if (_won)
+        {
+            Won();
+        }
+        
     }
 
+    //method to change the file overlay text and display it
     public void Won()
     {
         string Filetext = DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "Differences-Minigame-win");
@@ -154,11 +179,21 @@ public class SpotTheDifference: Minigame
         LocationUIFacts.text = "";
         ShowLocationFile();
         HideLocationFileButton.onClick.RemoveAllListeners();
-        HideLocationFileButton.onClick.AddListener(ExitGame);
+        HideLocationFileButton.onClick.AddListener(CompleteGameStep);
     }
 
-    public void ExitGame()
+    public void DifferenceRemaining()
     {
-        SceneLoader.LoadScene(GameScene.Navigation);
+        int count = 0;
+        foreach (Difference difference in _differences)
+        {
+            if (difference.Completed == false)
+            {
+                count++;
+            }
+        }
+        string Filetext = DialogueManagerV2.GetLocalizedString("LocalizationDialogue", "Differences-Minigame-counter");
+        string Textbox = Filetext + ": "+count.ToString();
+        ScoreText.text = Textbox;
     }
 }

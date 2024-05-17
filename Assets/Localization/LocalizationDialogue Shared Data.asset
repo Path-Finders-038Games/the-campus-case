@@ -147,6 +147,10 @@ MonoBehaviour:
     m_Key: Differences-Minigame-win
     m_Metadata:
       m_Items: []
+  - m_Id: 30454560037588992
+    m_Key: Differences-Minigame-counter
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

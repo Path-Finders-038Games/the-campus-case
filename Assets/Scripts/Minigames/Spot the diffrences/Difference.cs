@@ -12,7 +12,7 @@ public class Difference : MonoBehaviour
     public GameObject Different;
 
     //boolean keeping track of if it has been found
-    public bool Completed  {  get; set; } = false;
+    public bool Completed = false;
 
     /*//consctructor
     public Difference(GameObject original, GameObject different)
