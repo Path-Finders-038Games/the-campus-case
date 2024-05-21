@@ -33,6 +33,11 @@ namespace Minigames
 
         private void Start()
         {
+            // Get the ARRaycastManager from the ARSessionOrigin.
+            // This should be set in the Unity Editor, but it can't be since the prefab is not discoverable.
+            _raycastManager = GetComponent<ARRaycastManager>();
+            _planeManager = GetComponent<ARPlaneManager>();
+
             // Before loading anything for AR, check if UseAR is enabled for the current minigame.
             // Otherwise, just spawn the prefab for the minigame.
             if (Minigames.All(e => e.MinigameName != DataManager.SelectedMinigame) ||
@@ -44,10 +49,7 @@ namespace Minigames
                 return;
             }
             
-            // Get the ARRaycastManager from the ARSessionOrigin.
-            // This should be set in the Unity Editor, but it can't be since the prefab is not discoverable.
-            _raycastManager = GetComponent<ARRaycastManager>();
-            _planeManager = GetComponent<ARPlaneManager>();
+           
 
             ExitArPlacementButton.SetActive(true);
             MovePrefabCloserButton.SetActive(false);

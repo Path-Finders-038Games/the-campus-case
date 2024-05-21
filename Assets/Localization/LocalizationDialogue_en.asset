@@ -176,6 +176,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 30454560037588992
     m_Localized: Differences
+  - m_Id: 28280989155045376
+    m_Localized: You Won!-Nice work! We are one step closer to solving this mystery.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28281049980841984
+    m_Localized: You lost!-Better luck next time!
     m_Metadata:
       m_Items: []
   references:

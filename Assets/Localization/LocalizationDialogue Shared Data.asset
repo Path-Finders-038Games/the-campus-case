@@ -149,6 +149,12 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 30454560037588992
     m_Key: Differences-Minigame-counter
+  - m_Id: 28280989155045376
+    m_Key: Hangman_win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28281049980841984
+    m_Key: Hangman_loss
     m_Metadata:
       m_Items: []
   m_Metadata:
