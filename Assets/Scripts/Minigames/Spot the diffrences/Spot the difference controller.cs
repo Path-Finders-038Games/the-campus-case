@@ -182,6 +182,7 @@ public class SpotTheDifference: Minigame
         HideLocationFileButton.onClick.AddListener(CompleteGameStep);
     }
 
+    //method to update and show the amount of differences remaining to the player
     public void DifferenceRemaining()
     {
         int count = 0;
