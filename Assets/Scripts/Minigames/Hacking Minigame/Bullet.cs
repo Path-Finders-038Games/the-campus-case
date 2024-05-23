@@ -5,16 +5,19 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //speed at which the bullet moves
-    public float BulletSpeed;
+    private float _bulletSpeed;
+
+    public float Bulletspeed { get { return _bulletSpeed; } set { if (value > 0) _bulletSpeed = value; } }
 
     //maximum distance the bullet will travel
-    public float Distance;
+    private float _distance;
 
+    public float Distance { get { return _distance; } set { if (value > 0) _distance = value; } }
     private Vector3 _target;
 
     private void Start()
     {
-        _target = new Vector3(transform.position.x, Distance, transform.position.z);
+        _target = new Vector3(transform.position.x, _distance, transform.position.z);
     }
     private void Update()
     {
@@ -25,10 +28,10 @@ public class Bullet : MonoBehaviour
     public void BulletTravel()
     {
         //change the position of the bullet depending on the time in between frames to keep the speed consistent
-        transform.position = Vector3.MoveTowards(transform.position, _target, BulletSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _target, _bulletSpeed * Time.deltaTime);
 
         //if the position of the bullet meets or exceeds the distance variable destroy the object
-        if (transform.position.y >= Distance)
+        if (transform.position.y >= _distance)
         {
             Destroy(gameObject);
         }

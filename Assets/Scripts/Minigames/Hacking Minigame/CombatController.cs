@@ -33,7 +33,7 @@ public class CombatController : MonoBehaviour
         _timer = 0;
         _fireDelayTracker++;
 
-        if (_fireDelayTracker < 2) return; // Give the game to play animation
+        if (_fireDelayTracker < 2) return; // Give the game time to play animation
             
         Instantiate(Bullet_Prefab, transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
 
