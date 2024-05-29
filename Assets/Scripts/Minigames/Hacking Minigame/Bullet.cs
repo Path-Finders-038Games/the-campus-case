@@ -4,11 +4,13 @@ using UnityEngine;
 //class of the bullet
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
     //speed at which the bullet moves
     private float _bulletSpeed;
 
     public float Bulletspeed { get { return _bulletSpeed; } set { if (value > 0) _bulletSpeed = value; } }
 
+    [SerializeField]
     //maximum distance the bullet will travel
     private float _distance;
 

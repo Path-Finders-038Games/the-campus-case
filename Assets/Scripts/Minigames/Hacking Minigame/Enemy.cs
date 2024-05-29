@@ -4,18 +4,33 @@ namespace Minigames.Hacking_Minigame
 {
     public class Enemy : MonoBehaviour
     {
-
+        // Backing field for speed
+        [SerializeField] private float _speed = 1f;
         //speed at which the enemy moves
-        private float _speed;
+        public float Speed
+        {
+            get { return _speed; }
+            set { if (value > 0) _speed = value; }
+        }
 
-        public float Speed { get { return _speed; } set { if (value > 0) _speed = value; } }
-
+        // Backing field for health
+        [SerializeField] private int _health = 100;
         //health points the enemy has
-        private int _health;
+        public int Health
+        {
+            get { return _health; }
+            set { if (value > 0) _health = value; }
+        }
 
-        public int Health { get { return _health; } set { if (value > 0) _health = value; } }
-        //target position the enemy moves towards
+        // Target position the enemy moves towards
         private Vector3 _target;
+
+        // Optional: Validate the values in the Unity Editor
+        private void OnValidate()
+        {
+            if (_speed <= 0) _speed = 1f;
+            if (_health <= 0) _health = 100;
+        }
 
         // Start is called before the first frame update
         void Start()

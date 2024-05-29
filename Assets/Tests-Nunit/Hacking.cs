@@ -10,11 +10,6 @@ using UnityEngine.TestTools;
 public class Hacking
 {
     public GameController Controller;
-    [SetUp]
-    public void Setup()
-    {
-
-    }
     // A Test behaves as an ordinary method
     [SetUp]
     public void setup()
