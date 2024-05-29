@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,15 +7,28 @@ namespace Navigation.FreeRoam
 {
     public class MapManagerV2 : MonoBehaviour
     {
+        public MapName InitialMap;
         public List<MapModel> Maps;
         private GameObject _currentMap;
+        private MapName _currentMapName;
         private List<GameObject> _loadedMaps;
 
         private void Start()
         {
             _loadedMaps = new List<GameObject>();
-            
-            SwitchMap(MapName.T0);
+
+            // for debugging purposes
+            DataManager.CurrentMapV2 = InitialMap;
+
+            SwitchMap(InitialMap);
+        }
+
+        private void Update()
+        {
+            if (_currentMapName != DataManager.CurrentMapV2)
+            {
+                SwitchMap(DataManager.CurrentMapV2);
+            }
         }
 
         public void SwitchMap(MapName mapName)
@@ -35,10 +49,9 @@ namespace Navigation.FreeRoam
                 _currentMap = Instantiate(mapModel.MapPrefab, Vector3.zero, Quaternion.identity);
                 _loadedMaps.Add(_currentMap);
             }
-            
+
             _currentMap.SetActive(true);
-            
-            MapData.CurrentMap = mapName;
+
             DataManager.CurrentMapV2 = mapName;
         }
     }

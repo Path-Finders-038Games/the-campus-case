@@ -4,6 +4,7 @@ namespace Navigation.FreeRoam
     {
         A0,
         B0,
+        C0,
         H0,
         H1,
         H2,
