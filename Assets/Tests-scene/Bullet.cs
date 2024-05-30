@@ -77,7 +77,7 @@ public class BulletTest
                 hit = true;
             }
         }
-
+        yield return new WaitForSeconds(1);
         Assert.AreEqual(true, hit);
     }
 
@@ -109,7 +109,84 @@ public class BulletTest
                 hit = true;
             }
         }
-
+        yield return new WaitForSeconds(1);
         Assert.AreEqual(true, hit);
+    }
+
+    [UnityTest]
+    public IEnumerator TestLost()
+    {
+
+        yield return WaitForSceneLoad();
+        yield return new WaitForSeconds(1); // Ensure setup is complete
+        float timer = 0;
+        Transform canvastransform = hackingGame.transform.Find("Canvas");
+        GameObject canvas = canvastransform.gameObject;
+        Transform losstransform;
+        GameObject lost = null;
+        controller.SpawnAmount = 1;
+        controller.EnemyAlive = 1;
+        controller.Health = 1;
+        for (int i = 0; i < controller.Lanes.Length; i++)
+        {
+            controller.Lanes[i] = controller.Lanes[0];
+        }
+        controller.HideLocationFile();
+        // Check initial condition
+        Assert.IsTrue(controller.PlayingGame);
+
+        while (timer < 15 && controller.EnemyAlive > 0)
+        {
+            yield return null; // Wait for a frame
+            timer += Time.deltaTime; // Increment the timer by the time passed since the last frame
+
+            if (controller.EnemyAlive == 0)
+            {
+                yield return new WaitForSeconds(1);
+                losstransform = canvas.transform.Find("LoseText(Clone)");
+                lost = losstransform.gameObject;
+                Debug.Log(lost.name);
+            }
+        }
+        yield return new WaitForSeconds(1);
+        Assert.IsTrue(lost != null);
+    }
+
+    [UnityTest]
+    public IEnumerator TestWon()
+    {
+
+        yield return WaitForSceneLoad();
+        yield return new WaitForSeconds(1); // Ensure setup is complete
+        float timer = 0;
+        Transform canvastransform = hackingGame.transform.Find("Canvas");
+        GameObject canvas = canvastransform.gameObject;
+        Debug.Log(canvas.name);
+        Transform wontransform;
+        GameObject won = null;
+        controller.SpawnAmount = 1;
+        controller.EnemyAlive = 1;
+        for (int i = 0; i < controller.Lanes.Length; i++)
+        {
+            controller.Lanes[i] = controller.Lanes[controller.CurrentLane];
+        }
+        controller.HideLocationFile();
+        // Check initial condition
+        Assert.IsTrue(controller.PlayingGame);
+
+        while (timer < 10 && controller.EnemyAlive > 0)
+        {
+            yield return null; // Wait for a frame
+            timer += Time.deltaTime; // Increment the timer by the time passed since the last frame
+
+            if (controller.EnemyAlive == 0)
+            {
+                yield return new WaitForSeconds(1);
+                wontransform = canvas.transform.Find("WinText(Clone)");
+                won = wontransform.gameObject;
+            }
+        }
+        yield return new WaitForSeconds(1);
+        Assert.IsTrue(won != null);
     }
 }
