@@ -5,6 +5,7 @@ using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using Minigames.Hacking_Minigame;
+using UnityEngine.UI;
 
 public class BulletTest
 {
@@ -188,5 +189,63 @@ public class BulletTest
         }
         yield return new WaitForSeconds(1);
         Assert.IsTrue(won != null);
+    }
+
+    [UnityTest]
+    public IEnumerator CorrectVallues()
+    {
+        yield return WaitForSceneLoad();
+        yield return new WaitForSeconds(1); // Ensure setup is complete
+        Bullet bullet = controller.CombatControllerProperty.Bullet_Prefab.GetComponent<Bullet>();
+        Enemy enemy_weak = controller.WeakEnemy.GetComponent<Enemy>();
+        Enemy enemy_strong = controller.StrongEnemy.GetComponent<Enemy>();
+
+        yield return null;
+
+        float bullet_speed = bullet.Bulletspeed;
+        float bullet_distance = bullet.Distance;
+
+        float weak_speed = enemy_weak.Speed;
+        float weak_health = enemy_weak.Health;
+
+        float strong_speed = enemy_strong.Speed;
+        float strong_health = enemy_strong.Health;
+
+        Assert.That(bullet_speed > 700 && bullet_speed < 1000);
+        Assert.That(bullet_distance > 2000 && bullet_distance < 3000);
+
+        Assert.That(weak_speed > 300 && weak_speed < 500);
+        Assert.That(weak_health == 1);
+
+        Assert.That(strong_speed > 100 && strong_speed < 300);
+        Assert.That(strong_health == 2);
+
+    }
+
+    [UnityTest]
+    public IEnumerator HealthbarTest()
+    {
+        yield return WaitForSceneLoad();
+        yield return new WaitForSeconds(1); // Ensure setup is complete
+
+        Transform canvastransform = hackingGame.transform.Find("Canvas");
+        GameObject canvas = canvastransform.gameObject;
+
+        Transform healthbartransform = canvas.transform.Find("HackingBase");
+        GameObject healthbar = healthbartransform.gameObject;
+
+        Transform healthtransform = healthbar.transform.Find("Health");
+        GameObject health = healthtransform.gameObject;
+
+        Image image = health.GetComponent<Image>();
+        yield return null;
+        controller.Health = 3;
+        Assert.IsTrue(image.sprite.name == "HackMinigameSprites_9");
+        yield return null;
+        controller.Health = 2;
+        Assert.IsTrue(image.sprite.name == "HackMinigameSprites_10");
+        yield return null;
+        controller.Health = 1;
+        Assert.IsTrue(image.sprite.name == "HackMinigameSprites_11");
     }
 }

@@ -687,9 +687,9 @@ MonoBehaviour:
   SpawnDelay: 1.5
   SpawnAmount: 30
   EnemyAlive: 0
-  StrongEnemy: {fileID: 8867176410883701454, guid: 3edddb4b4a392a743bd18fce30682ab3,
+  StrongEnemy: {fileID: 7175975073974738795, guid: 2daa4774c69aa544fa295485ec2c6a45,
     type: 3}
-  WeakEnemy: {fileID: 7175975073974738795, guid: 2daa4774c69aa544fa295485ec2c6a45,
+  WeakEnemy: {fileID: 8867176410883701454, guid: 3edddb4b4a392a743bd18fce30682ab3,
     type: 3}
   PlayingGame: 0
   SpawnHeight: {fileID: 7108887168681143127}
@@ -702,6 +702,7 @@ MonoBehaviour:
   CurrentLane: 1
   HealthControllerProperty: {fileID: 383759667992273754}
   CombatControllerProperty: {fileID: 6934045030124480579}
+  AnimationDone: 0
 --- !u!1 &4932145249438336441
 GameObject:
   m_ObjectHideFlags: 0
