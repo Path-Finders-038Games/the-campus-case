@@ -7,7 +7,7 @@ namespace Navigation.FreeRoam
     {
         private const float CameraY = 5f;
         private const float MinZoom = 1f;
-        private const float MaxZoom = 50f;
+        private const float MaxZoom = 10f;
 
         private Camera _camera;
 
@@ -17,6 +17,15 @@ namespace Navigation.FreeRoam
         private void Start()
         {
             _camera = Camera.main;
+
+            if (_camera == null)
+            {
+                throw new NullReferenceException("Camera is not found in the scene.");
+            }
+
+            // Load data from DataManager
+            _camera.transform.position = DataManager.CameraPosition;
+            _camera.orthographicSize = DataManager.CameraOrthographicSize;
         }
 
         private void Update()
@@ -69,11 +78,11 @@ namespace Navigation.FreeRoam
                 // transform.Translate(deltaX, 0, deltaZ);
             }
 
-            Debug.Log(
-                $"Camera X: {transform.localPosition.x}\nCamera Z: {transform.localPosition.z}\nCamera Orthographic Size: {_camera.orthographicSize}\nDelta X: {deltaX}\nDelta Z: {deltaZ}");
-
             // Save the finger movement for next frame
             _panFingerDistance = currentFingerDistance;
+
+            // Save data to DataManager
+            DataManager.CameraPosition = transform.position;
         }
 
         private void HandleZoom()
@@ -104,14 +113,15 @@ namespace Navigation.FreeRoam
                     // calculate the zoom amount.
                     float zoomAmount = _camera.orthographicSize - delta * 0.01f;
 
-                    // TODO: Take into account that being zoomed out will require a different delta value, as the distance between the fingers will be greater.
-
                     // set the new zoom level.
                     _camera.orthographicSize = zoomAmount;
                 }
 
                 // store the current finger distance for the next frame.
                 _zoomFingerDistance = currentFingerDistance;
+
+                // Save data to DataManager
+                DataManager.CameraOrthographicSize = _camera.orthographicSize;
             }
         }
 
@@ -119,9 +129,9 @@ namespace Navigation.FreeRoam
         {
             _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, MinZoom, MaxZoom);
             _camera.transform.position = new Vector3(
-                Mathf.Clamp(_camera.transform.position.x, -200, 200),
+                Mathf.Clamp(_camera.transform.position.x, -10, 10),
                 CameraY,
-                Mathf.Clamp(_camera.transform.position.z, -200, 200));
+                Mathf.Clamp(_camera.transform.position.z, -10, 10));
         }
     }
 }

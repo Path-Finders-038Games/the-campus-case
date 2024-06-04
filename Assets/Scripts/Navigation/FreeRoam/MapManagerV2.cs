@@ -7,18 +7,19 @@ namespace Navigation.FreeRoam
 {
     public class MapManagerV2 : MonoBehaviour
     {
+        private const float CameraY = 5f;
+
         public MapName InitialMap;
         public List<MapModel> Maps;
         private GameObject _currentMap;
         private MapName _currentMapName;
         private List<GameObject> _loadedMaps;
+        private Camera _camera;
 
         private void Start()
         {
+            _camera = Camera.main;
             _loadedMaps = new List<GameObject>();
-
-            // for debugging purposes
-            DataManager.CurrentMapV2 = InitialMap;
 
             SwitchMap(InitialMap);
         }
@@ -33,6 +34,16 @@ namespace Navigation.FreeRoam
 
         public void SwitchMap(MapName mapName)
         {
+            if (mapName == MapName.None) return;
+            
+            MapName previousMapName = _currentMapName;
+
+            if (Maps.All(m => m.Name != mapName))
+            {
+                Debug.LogError($"Map {mapName} not found in Maps list.");
+                return;
+            }
+
             if (_currentMap != null)
             {
                 _currentMap.SetActive(false);
@@ -51,8 +62,24 @@ namespace Navigation.FreeRoam
             }
 
             _currentMap.SetActive(true);
+            _currentMapName = mapName;
 
             DataManager.CurrentMapV2 = mapName;
+
+            var children = _currentMap.GetAllChildren();
+            var buttonToPreviousMap = children.First(c => c.name.Contains(Converter.MapNameToString(previousMapName)));
+
+            if (!buttonToPreviousMap)
+            {
+                _camera.transform.position = new Vector3(0, CameraY, 0);
+                Debug.LogError($"Button to previous map ({previousMapName}) not found in {mapName}");
+            }
+
+            _camera.transform.position = new Vector3(
+                buttonToPreviousMap.transform.position.x,
+                CameraY,
+                buttonToPreviousMap.transform.position.z
+            );
         }
     }
 }

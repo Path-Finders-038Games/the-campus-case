@@ -2,6 +2,7 @@ namespace Navigation.FreeRoam
 {
     public enum MapName
     {
+        None,
         A0,
         B0,
         C0,
