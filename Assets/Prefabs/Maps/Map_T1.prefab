@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced304d2ca334442b97fc870bdb780f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapName: 8
+  MapName: 9
 --- !u!114 &3159450646916984954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced304d2ca334442b97fc870bdb780f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapName: 10
+  MapName: 11
 --- !u!114 &389169213291545090
 MonoBehaviour:
   m_ObjectHideFlags: 0
