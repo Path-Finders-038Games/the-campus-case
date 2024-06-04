@@ -19,7 +19,8 @@ public enum MinigameName
     Hacking,
     SimonSays,
     PaperPlanes,
-    // Hangman,
+    Differences,
+    Hangman,
 }
 
 public class SceneLoader : MonoBehaviour
