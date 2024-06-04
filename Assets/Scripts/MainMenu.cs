@@ -1,4 +1,5 @@
 using Dialog;
+using Navigation.FreeRoam;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,6 +70,7 @@ public class MainMenu : MonoBehaviour
     public void OnNewGameBtn()
     {
         DataManager.CurrentMap = "C0Map";
+        DataManager.CurrentMapV2 = MapName.H0;
         DataManager.CurrentStep = 0;
         DataManager.ResetAllMinigameStatus();
         TitleScreen.SetActive(false);
