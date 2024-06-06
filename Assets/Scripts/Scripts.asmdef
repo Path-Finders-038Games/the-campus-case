@@ -1,0 +1,20 @@
+{
+    "name": "Scripts",
+    "rootNamespace": "",
+    "references": [
+        "Unity.XR.ARSubsystems",
+        "Unity.XR.ARFoundation",
+        "Unity.Localization",
+        "Unity.TextMeshPro",
+        "Unity.XR.CoreUtils"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using Dialog;
 using UnityEngine.UI;
-using UnityEngine.Experimental.XR.Interaction;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Text;

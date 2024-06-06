@@ -156,5 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0ae227a910cba4cafc44bdbf7832d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 960
-  Distance: 2500
+  _bulletSpeed: 960
+  _distance: 2500

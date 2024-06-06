@@ -458,6 +458,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6934045030124480579, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
+        type: 3}
+      propertyPath: ReloadTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7971184478392807997, guid: 5790a8c6ec5aa5147820b117e9ca57ca,
         type: 3}
       propertyPath: m_Name

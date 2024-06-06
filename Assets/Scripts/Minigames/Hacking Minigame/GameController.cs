@@ -82,7 +82,7 @@ namespace Minigames.Hacking_Minigame
         // timer to track passing of time
         private float _timer;
         //check to see if the animation has finished
-        private bool _animationDone;
+        public bool AnimationDone;
 
 
 
@@ -90,7 +90,7 @@ namespace Minigames.Hacking_Minigame
         public override void Start()
         {
             gameController = this;
-            _animationDone = false;
+            AnimationDone = false;
             locationFileClosed = false;
             
             base.Start();
@@ -98,7 +98,7 @@ namespace Minigames.Hacking_Minigame
         }
 
         // Update is called once per frame
-        void Update()
+       public void Update()
         {
             UpdateDialogue();
 
@@ -107,7 +107,7 @@ namespace Minigames.Hacking_Minigame
             _timer += Time.deltaTime;
 
             //stop if the game is not in play
-            if (!_animationDone||!PlayingGame) return;
+            if (!AnimationDone||!PlayingGame) return;
 
             //if requirements are met call the spawn enemy method
             if (_timer > SpawnDelay && SpawnAmount != 0) SpawnEnemy();
@@ -195,7 +195,7 @@ namespace Minigames.Hacking_Minigame
         IEnumerator WaitForAnimation()
         {
             yield return new WaitForSeconds(3);
-            _animationDone = true;
+            AnimationDone = true;
             PlayingGame = true;
         }
 
