@@ -19,6 +19,7 @@ public enum MinigameName
     Hacking,
     SimonSays,
     PaperPlanes,
+    Differences,
     Hangman,
 }
 

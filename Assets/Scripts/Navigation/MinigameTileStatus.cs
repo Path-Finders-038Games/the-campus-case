@@ -24,7 +24,6 @@ namespace Navigation
             
             _button.interactable = false;
             ButtonPicture.sprite = CompletedSprite;
-            ButtonPicture.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Navigation.FreeRoam;
 using UnityEngine;
 
 public static class DataManager
@@ -83,6 +84,12 @@ public static class DataManager
     {
         get => PlayerPrefs.GetString("Currentmap");
         set => PlayerPrefs.SetString("Currentmap", value);
+    }
+
+    public static MapName CurrentMapV2
+    {
+        get => Converter.StringToMapName(PlayerPrefs.GetString("CurrentmapV2"));
+        set => PlayerPrefs.SetString("CurrentmapV2", Converter.MapNameToString(value));
     }
 
     public static LanguageManager.Language Language

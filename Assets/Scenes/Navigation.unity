@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameScene: 2
-  SelectedMinigame: 2
+  SelectedMinigame: 6
 --- !u!1001 &573146212
 PrefabInstance:
   m_ObjectHideFlags: 0
