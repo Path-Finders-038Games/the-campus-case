@@ -29,19 +29,19 @@ public class Hacking
 
 
     [Test]
-    public void Test()
+    public void ViableSpawnamount()
     {
         Assert.IsTrue(Controller.SpawnAmount > 0);
     }
 
     [Test]
-    public void Test1()
+    public void HasCombat()
     {
         Assert.IsTrue(Controller.CombatControllerProperty != null);
     }
 
     [Test]
-    public void Test2()
+    public void HasHealth()
     {
         Assert.IsTrue(Controller.HealthControllerProperty != null);
     }

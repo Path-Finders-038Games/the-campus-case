@@ -83,7 +83,7 @@ public class BulletTest
     }
 
     [UnityTest]
-    public IEnumerator TestShot()
+    public IEnumerator TestEnemyDeath()
     {
         yield return WaitForSceneLoad();
         yield return new WaitForSeconds(1); // Ensure setup is complete
