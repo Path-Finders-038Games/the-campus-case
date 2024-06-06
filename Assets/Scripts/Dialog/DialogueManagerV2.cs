@@ -14,9 +14,14 @@ namespace Dialog
         /// </summary>
         static DialogueManagerV2()
         {
-            LocalizationSettings.SelectedLocale = LanguageManager.GetLocale();
-
+            ResetLocale();
+            
             ReadDialogues = new List<string>();
+        }
+
+        public static void ResetLocale()
+        {
+            LocalizationSettings.SelectedLocale = LanguageManager.GetLocale();
         }
 
         /// <summary>
@@ -36,7 +41,7 @@ namespace Dialog
 
             return entry.GetLocalizedString();
         }
-        
+
         /// <summary>
         /// Gets all localized strings from the given table.
         /// </summary>

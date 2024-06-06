@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        DataManager.DemoMode = false;
+        DataManager.DemoMode = true;
         
         // Load the language based on the player preferences
         LoadLanguage();
@@ -182,6 +182,8 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     private void PopulateUiWithLocalizedStrings()
     {
+        DialogueManagerV2.ResetLocale();
+        
         // Title screen
         ContinueText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "continueBtn");
         NewGameText.text = DialogueManagerV2.GetLocalizedString("LocalizationMainMenu", "newGameBtn");

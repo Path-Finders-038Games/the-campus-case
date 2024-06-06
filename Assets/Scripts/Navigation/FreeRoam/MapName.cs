@@ -19,5 +19,6 @@ namespace Navigation.FreeRoam
         T5,
         X0,
         X1,
+        DEMO
     }
 }
